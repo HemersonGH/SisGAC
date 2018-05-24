@@ -22,7 +22,7 @@ class PagPrincipal extends CI_Controller {
 	public function verificar_sessao()
 	{
 		if (!($this->session->userdata('logado'))) {
-			redirect('pagPrincipal/login');
+			redirect('usuario');
 		}
 	}
 
@@ -38,7 +38,7 @@ class PagPrincipal extends CI_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('pagPrincipal');
+		redirect('usuario');
 	}
 
 }
