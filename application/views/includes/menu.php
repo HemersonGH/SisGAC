@@ -42,7 +42,7 @@
       </div>
       <div class="modal-footer">
         <a type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Não </a>
-        <a type="button" class="btn btn-primary" href="<?= base_url(); ?>dashboard/logout"> Sim </a>
+        <a type="button" class="btn btn-primary" href="<?= base_url(); ?>pagPrincipal/logout"> Sim </a>
       </div>
     </div>
   </div>

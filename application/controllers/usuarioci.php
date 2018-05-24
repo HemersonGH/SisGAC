@@ -26,43 +26,45 @@ class Usuario extends CI_Controller {
 		}
 	}
 
-	public function index()
+	public function index($indice=null)
 	{
-		// $this->verificar_sessao();
+		$this->verificar_sessao();
+		$this->load->model('usuario_model','usuario');
+
+		$dados['usuarios'] = $this->usuario->get_Usuarios();
+
 		$this->load->view('includes/html_header');
-		$this->load->view('login/login');
-		$this->load->view('includes/html_footer');
-	}
+		$this->load->view('includes/menu');
 
-	public function registrar()
-	{
-		$this->load->view('includes/html_header');
-		$this->load->view('login/registrar');
-		$this->load->view('includes/html_footer');
-	}
-
-	public function logar()
-	{
-		$email = $this->input->post('email');
-		$senha = md5($this->input->post('password'));
-
-		$this->db->where('email', $email);
-		$this->db->where('senha', $senha);
-		$this->db->where('status', 1);
-
-		$data['usuario'] = $this->db->get('usuario')->result();
-
-		if (count($data['usuario']) == 1) {
-			$dados['nome'] = $data['usuario'][0]->nome;
-			$dados['id'] = $data['usuario'][0]->idUsuario;
-			$dados['logado'] = true;
-			$this->session->set_userdata($dados);
-
-			redirect('dashboard');
-		} else {
-			redirect('dashboard/login');
+		switch ($indice) {
+			case '1':
+			$data['msg'] = "Usuário cadastrado com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+			case '2':
+			$data['msg'] = "Não foi possível cadastrar o usuário.";
+			$this->load->view('includes/msg_erro', $data);
+			break;
+			case '3':
+			$data['msg'] = "Usuário excluído com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+			case '4':
+			$data['msg'] = "Não foi possível exclui o usuário.";
+			$this->load->view('includes/msg_erro', $data);
+			break;
+			case '5':
+			$data['msg'] = "Usuário atualizado com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+			case '6':
+			$data['msg'] = "Não foi possível atualizar o usuário.";
+			$this->load->view('includes/msg_erro', $data);
+			break;
 		}
 
+		$this->load->view('listar_usuario', $dados);
+		$this->load->view('includes/html_footer');
 	}
 
 	public function cadastro()
@@ -80,21 +82,24 @@ class Usuario extends CI_Controller {
 
 	public function cadastrar()
 	{
-		$data['nome'] = $this->input->post('nome');
+		$this->verificar_sessao();
+
+		$data['nome'] = $this->input->post('name');
     $data['cpf'] = $this->input->post('cpf');
-		$data['data'] = $this->input->post('data');
-		$data['email'] = $this->input->post('email');
-    $data['senha'] = md5($this->input->post('senha'));
-    $data['tipoUsuario'] = $this->input->post('tipoUsuario');
+    $data['email'] = $this->input->post('email');
+    $data['senha'] = md5($this->input->post('password'));
+    $data['status'] = $this->input->post('status');
+    $data['nivel'] = $this->input->post('nivel');
+    $data['endereco'] = $this->input->post('endereco');
+    $data['cidade_idCidade'] = $this->input->post('cidade');
+    $data['dataNasc'] = $this->input->post('data');
 
 		$this->load->model('usuario_model','usuario');
 
 		if ($this->usuario->cadastrar($data)) {
-			echo "Registrado";
-			// redirect('usuario/1');
+			redirect('usuario/1');
 		} else {
-			echo "Não Registrado";
-			// redirect('usuario/2');
+			redirect('usuario/2');
 		}
 	}
 
