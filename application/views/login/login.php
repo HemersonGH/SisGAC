@@ -10,4 +10,11 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> </br>
     <a href="<?= base_url(); ?>usuario/registrar"> Registrar </a>
   </form>
-<!-- </div> --> <!-- Essa div fecha a div do login "<div class="col-md-12 text-center">" -->
+</div> <!-- Essa div fecha a div do login "<div class="col-md-12 text-center">" -->
+
+
+<main class="col-md-12 text-center form-signin">
+  <div class="alert alert-success" role="alert">
+    <strong> Teste teste teste Teste teste teste </strong>
+  </div>
+</main>

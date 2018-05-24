@@ -31,21 +31,21 @@ class Usuario extends CI_Controller {
 		$this->load->view('includes/html_header');
 		$this->load->view('login/login');
 
-		switch ($indice) {
-			case '1':
-			$data['msg'] = "Usuário cadastrado com sucesso.";
-			$this->load->view('includes/msg_sucesso_login', $data);
-			break;
-
-			case '2':
-			$data['msg'] = "Não foi possível cadastrar o usuário.";
-			$this->load->view('includes/msg_erro_login', $data);
-			break;
-
-			case null:
-			$this->load->view('includes/div');
-			break;
-		}
+		// switch ($indice) {
+		// 	case '1':
+		// 	$data['msg'] = "Usuário cadastrado com sucesso.";
+		// 	$this->load->view('includes/msg_sucesso_login', $data);
+		// 	break;
+		//
+		// 	case '2':
+		// 	$data['msg'] = "Não foi possível cadastrar o usuário.";
+		// 	$this->load->view('includes/msg_erro_login', $data);
+		// 	break;
+		//
+		// 	case null:
+		// 	$this->load->view('includes/div');
+		// 	break;
+		// }
 
 		$this->load->view('includes/html_footer');
 	}
