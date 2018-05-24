@@ -2,7 +2,6 @@
 
 <div class="col-md-12 text-center">
   <form class="form-signin" action="<?= base_url(); ?>pagPrincipal/logar" method="post">
-    <!-- <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
     <h1 class="h3 mb-3 font-weight-normal"> SGD's UFLA </h1>
     <label for="email" class="sr-only"> Email </label>
     <input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus> </br>
@@ -11,4 +10,4 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> </br>
     <a href="<?= base_url(); ?>usuario/registrar"> Registrar </a>
   </form>
-</div>
+<!-- </div> --> <!-- Essa div fecha a div do login "<div class="col-md-12 text-center">" -->

@@ -26,11 +26,23 @@ class Usuario extends CI_Controller {
 		}
 	}
 
-	public function index()
+	public function index($indice=null)
 	{
-		// $this->verificar_sessao();
 		$this->load->view('includes/html_header');
 		$this->load->view('login/login');
+
+		switch ($indice) {
+			case '1':
+			$data['msg'] = "Usuário cadastrado com sucesso.";
+			$this->load->view('includes/msg_sucesso_login', $data);
+			break;
+
+			case '2':
+			$data['msg'] = "Não foi possível cadastrar o usuário.";
+			$this->load->view('includes/msg_erro_login', $data);
+			break;
+		}
+
 		$this->load->view('includes/html_footer');
 	}
 
@@ -81,20 +93,18 @@ class Usuario extends CI_Controller {
 	public function cadastrar()
 	{
 		$data['nome'] = $this->input->post('nome');
-    $data['cpf'] = $this->input->post('cpf');
+		$data['cpf'] = $this->input->post('cpf');
 		$data['data'] = $this->input->post('data');
 		$data['email'] = $this->input->post('email');
-    $data['senha'] = md5($this->input->post('senha'));
-    $data['tipoUsuario'] = $this->input->post('tipoUsuario');
+		$data['senha'] = md5($this->input->post('senha'));
+		$data['tipoUsuario'] = $this->input->post('tipoUsuario');
 
 		$this->load->model('usuario_model','usuario');
 
 		if ($this->usuario->cadastrar($data)) {
-			echo "Registrado";
-			// redirect('usuario/1');
+			redirect('usuario/1');
 		} else {
-			echo "Não Registrado";
-			// redirect('usuario/2');
+			redirect('usuario/2');
 		}
 	}
 
@@ -139,14 +149,14 @@ class Usuario extends CI_Controller {
 
 		$id = $this->input->post('idUsuario');
 
-    $data['nome'] = $this->input->post('name');
-    $data['cpf'] = $this->input->post('cpf');
-    $data['email'] = $this->input->post('email');
-    $data['status'] = $this->input->post('status');
-    $data['nivel'] = $this->input->post('nivel');
-    $data['endereco'] = $this->input->post('endereco');
-    $data['cidade_idCidade'] = $this->input->post('cidade');
-    $data['dataNasc'] = $this->input->post('data');
+		$data['nome'] = $this->input->post('name');
+		$data['cpf'] = $this->input->post('cpf');
+		$data['email'] = $this->input->post('email');
+		$data['status'] = $this->input->post('status');
+		$data['nivel'] = $this->input->post('nivel');
+		$data['endereco'] = $this->input->post('endereco');
+		$data['cidade_idCidade'] = $this->input->post('cidade');
+		$data['dataNasc'] = $this->input->post('data');
 
 		$this->load->model('usuario_model','usuario');
 
@@ -163,8 +173,8 @@ class Usuario extends CI_Controller {
 
 		$id = $this->input->post('idUsuario');
 
-    $senha_antiga = md5($this->input->post('senha_antiga'));
-    $senha_nova = md5($this->input->post('senha_nova'));
+		$senha_antiga = md5($this->input->post('senha_antiga'));
+		$senha_nova = md5($this->input->post('senha_nova'));
 
 		$this->load->model('usuario_model','usuario');
 
