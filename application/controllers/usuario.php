@@ -41,6 +41,10 @@ class Usuario extends CI_Controller {
 			$data['msg'] = "Não foi possível cadastrar o usuário.";
 			$this->load->view('includes/msg_erro_login', $data);
 			break;
+
+			case null:
+			$this->load->view('includes/div');
+			break;
 		}
 
 		$this->load->view('includes/html_footer');
