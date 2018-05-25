@@ -22,30 +22,46 @@ class Usuario extends CI_Controller {
 	public function verificar_sessao()
 	{
 		if (!($this->session->userdata('logado'))) {
-			redirect('dashboard/login');
+			redirect('usuario/login');
 		}
 	}
 
 	public function index($indice=null)
 	{
+		$this->verificar_sessao();
+
+		if ($this->session->userdata('tipoUsuario') == 1) {
+			redirect('aluno');
+		} else if ($this->session->userdata('tipoUsuario') == 2) {
+			redirect('professor');
+		}
+	}
+
+	public function login($indice=null)
+	{
 		$this->load->view('includes/html_header');
 		$this->load->view('login/login');
 
-		// switch ($indice) {
-		// 	case '1':
-		// 	$data['msg'] = "Usuário cadastrado com sucesso.";
-		// 	$this->load->view('includes/msg_sucesso_login', $data);
-		// 	break;
-		//
-		// 	case '2':
-		// 	$data['msg'] = "Não foi possível cadastrar o usuário.";
-		// 	$this->load->view('includes/msg_erro_login', $data);
-		// 	break;
-		//
-		// 	case null:
-		// 	$this->load->view('includes/div');
-		// 	break;
-		// }
+		switch ($indice) {
+			case '1':
+			$data['msg'] = "Usuário cadastrado com sucesso.";
+			$this->load->view('includes/msg_sucesso_login', $data);
+			break;
+
+			case '2':
+			$data['msg'] = "Não foi possível cadastrar o usuário.";
+			$this->load->view('includes/msg_erro_login', $data);
+			break;
+
+			case '3':
+			$data['msg'] = "Usuário/Senha incorretos.";
+			$this->load->view('includes/msg_erro_login', $data);
+			break;
+
+			case null:
+			$this->load->view('includes/div');
+			break;
+		}
 
 		$this->load->view('includes/html_footer');
 	}
@@ -62,36 +78,34 @@ class Usuario extends CI_Controller {
 		$email = $this->input->post('email');
 		$senha = md5($this->input->post('password'));
 
-		$this->db->where('email', $email);
-		$this->db->where('senha', $senha);
-		$this->db->where('status', 1);
+		$this->load->model('usuario_model','usuario');
 
-		$data['usuario'] = $this->db->get('usuario')->result();
+		$data['usuario'] = $this->usuario->valida_usuario($email, $senha);
 
 		if (count($data['usuario']) == 1) {
 			$dados['nome'] = $data['usuario'][0]->nome;
 			$dados['id'] = $data['usuario'][0]->idUsuario;
+			$dados['tipoUsuario'] = $data['usuario'][0]->tipoUsuario;
 			$dados['logado'] = true;
 			$this->session->set_userdata($dados);
 
-			redirect('dashboard');
+			if ($data['usuario'][0]->tipoUsuario == 1) {
+				redirect('aluno');
+			} else if ($data['usuario'][0]->tipoUsuario == 2) {
+				redirect('professor');
+			}
 		} else {
-			redirect('dashboard/login');
+			redirect('usuario/3');
 		}
-
 	}
 
-	public function cadastro()
+	public function verificar_usuario($tipo)
 	{
-		$this->verificar_sessao();
-		$this->load->model('usuario_model','usuario');
-
-		$dados['cidades'] = $this->usuario->get_Cidades();
-
-		$this->load->view('includes/html_header');
-		$this->load->view('includes/menu');
-		$this->load->view('cadastro_usuario', $dados);
-		$this->load->view('includes/html_footer');
+		if ($tipo == 1) {
+			redirect('aluno');
+		} else if ($tipo == 2) {
+			redirect('professor');
+		}
 	}
 
 	public function cadastrar()
@@ -112,12 +126,29 @@ class Usuario extends CI_Controller {
 		}
 	}
 
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('usuario');
+	}
+
+	public function cadastro()
+	{
+		$this->verificar_sessao();
+		$this->load->model('usuario_model','usuario');
+
+		$dados['cidades'] = $this->usuario->get_Cidades();
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('cadastro_usuario', $dados);
+		$this->load->view('includes/html_footer');
+	}
 	public function atualizar($id=null, $indice=null)
 	{
 		$this->verificar_sessao();
 		$this->load->model('usuario_model','usuario');
 
-		$data['cidades'] = $this->usuario->get_Cidades();
 		$data['usuario'] = $this->usuario->get_Usuario($id);
 
 		$this->load->view('includes/html_header');
@@ -131,8 +162,38 @@ class Usuario extends CI_Controller {
 			$this->load->view('includes/msg_erro', $data);
 		}
 
-		$this->load->view('editar_usuario', $data);
+		$this->load->view('aluno/menu_lateral');
+		$this->load->view('includes/editar_usuario', $data);
 		$this->load->view('includes/html_footer');
+	}
+
+
+	public function salvar_atualizacao()
+	{
+		$this->verificar_sessao();
+
+		$id = $this->input->post('idUsuario');
+
+		$data['nome'] = $this->input->post('name');
+		$data['cpf'] = $this->input->post('cpf');
+		$data['data'] = $this->input->post('data');
+		$data['email'] = $this->input->post('email');
+
+		$this->load->model('usuario_model','usuario');
+
+		if ($this->session->userdata('tipoUsuario') == 1) {
+			if ($this->usuario->salvar_atualizacao($id, $data)) {
+				redirect('aluno/1');
+			} else {
+				redirect('aluno/2');
+			}
+		} else if ($this->session->userdata('tipoUsuario') == 2) {
+			if ($this->usuario->salvar_atualizacao($id, $data)) {
+				redirect('professor/1');
+			} else {
+				redirect('professor/2');
+			}
+		}
 	}
 
 	public function excluir($id=null)
@@ -144,30 +205,6 @@ class Usuario extends CI_Controller {
 			redirect('usuario/3');
 		} else {
 			redirect('usuario/4');
-		}
-	}
-
-	public function salvar_atualizacao()
-	{
-		$this->verificar_sessao();
-
-		$id = $this->input->post('idUsuario');
-
-		$data['nome'] = $this->input->post('name');
-		$data['cpf'] = $this->input->post('cpf');
-		$data['email'] = $this->input->post('email');
-		$data['status'] = $this->input->post('status');
-		$data['nivel'] = $this->input->post('nivel');
-		$data['endereco'] = $this->input->post('endereco');
-		$data['cidade_idCidade'] = $this->input->post('cidade');
-		$data['dataNasc'] = $this->input->post('data');
-
-		$this->load->model('usuario_model','usuario');
-
-		if ($this->usuario->salvar_atualizacao($id, $data)) {
-			redirect('usuario/5');
-		} else {
-			redirect('usuario/6');
 		}
 	}
 

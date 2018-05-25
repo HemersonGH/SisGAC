@@ -12,6 +12,14 @@ class Usuario_model extends CI_Model
     return $this->db->insert('usuario', $data);
   }
 
+  public function valida_usuario($email, $senha)
+  {
+    $this->db->where('email', $email);
+		$this->db->where('senha', $senha);
+
+    return $this->db->get('usuario')->result();
+  }
+
   public function get_Usuario($id=null)
   {
     $this->db->where('idUsuario', $id);

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PagPrincipal extends CI_Controller {
+class Aluno extends CI_Controller {
 
 	/**
 	* Index Page for this controller.
@@ -26,19 +26,26 @@ class PagPrincipal extends CI_Controller {
 		}
 	}
 
-	public function index()
+	public function index($indice=null)
 	{
 		$this->verificar_sessao();
+
+		// $id = $this->session->userdata('id');
+
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('pagPrincipal');
-		$this->load->view('includes/html_footer');
-	}
 
-	public function logout()
-	{
-		$this->session->sess_destroy();
-		redirect('usuario');
+		if ($indice == 1) {
+			$data['msg'] = "Dados atualizados com sucesso.";
+			$this->load->view('includes/msg_sucesso_login', $data);
+		} else if ($indice == 2) {
+			$data['msg'] = "Não foi possível atualizar os dados.";
+			$this->load->view('includes/msg_erro_login', $data);
+		}
+
+		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/pagina_principal');
+		$this->load->view('includes/html_footer');
 	}
 
 }

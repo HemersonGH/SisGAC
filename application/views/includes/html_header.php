@@ -9,11 +9,7 @@
 
     <title> SGDs CI</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
-
-    <!-- Bootstrap core CSS -->
     <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
     <link href="<?= base_url(); ?>assets/css/dashboard.css" rel="stylesheet">
 
   </head>
