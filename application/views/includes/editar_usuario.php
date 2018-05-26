@@ -1,55 +1,32 @@
-<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
-<link href="<?= base_url(); ?>assets/css/dashboard.css" rel="stylesheet">
-<script src="<?= base_url(); ?>assets/js/vendor/jquery.min.js "></script>
-<script src="<?= base_url(); ?>assets/maxcdn/maxcdn.min.js "></script>
+<link href="<?= base_url(); ?>assets/css/editar_usuario.css" rel="stylesheet">
 
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
   <div class="col-md-12">
-    <h1 class="page-header"> Atualizar Dados</h1>
+    <h1 class="page-header"> Atualizar Dados </h1>
   </div>
 
   <div class="col-md-12 form-control form-group">
-    <form style="align-items: center;" action="<?= base_url(); ?>usuario/salvar_atualizacao" method="post">
+    <form class="col-md-6 ajust" action="<?= base_url(); ?>usuario/salvar_atualizacao" method="post">
       <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $usuario[0]->idUsuario; ?>">
+      <label for="name">Nome:</label>
 
-      <div class="row" style="margin-bottom: 15px;">
-        <div class="col-md-6">
-          <label for="name">Nome:</label>
-          <input type="text" class="form-control" id="name" name="name" value="<?= $usuario[0]->nome; ?>" required>
-        </div>
-      </div>
-      <div class="row" style="margin-bottom: 15px;">
-        <div class="col-md-6">
-          <label for="cpf">CPF:</label>
-          <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $usuario[0]->cpf; ?>" required>
-        </div>
-      </div>
-      <div class="row" style="margin-bottom: 15px;">
-        <div class="col-md-6">
-          <label for="data"> Data de Nascimento: </label>
-          <input type="date" class="form-control" id="data" name="data" value="<?= date('Y-m-d', strtotime($usuario[0]->data)); ?>" required>
-        </div>
-      </div>
-      <div class="row" style="margin-bottom: 15px;">
-        <div class="col-md-6">
-          <label for="email">Email:</label>
-          <input type="email" class="form-control" id="email" name="email" value="<?= $usuario[0]->email; ?>" required>
-        </div>
-      </div>
-      <div class="row" style="margin-bottom: 15px;">
-        <div class="col-md-6">
-          <label for="password">Senha:</label>
-          <input type="button" class="btn btn-default btn-block" value="Atualizar Senha"
-          data-toggle="modal" data-target="#myModal">
-        </div>
-      </div>
+      <input type="text" class="form-control" id="name" name="name" value="<?= $usuario[0]->nome; ?>" required>
+      <label for="cpf" class="padding">CPF:</label>
 
-      <div class="row">
-        <div class="col-md-6" style="text-align: right">
-          <a type="btn" class="btn btn-secondary" href="<?= base_url('usuario/verificar_usuario/'.$this->session->userdata('tipoUsuario')); ?>" >Cancelar </a>
-          <button type="submit" class="btn btn-success"> Atualizar </button>
-        </div>
-      </div>
+      <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $usuario[0]->cpf; ?>" required>
+      <label for="data" class="padding"> Data de Nascimento: </label>
+
+      <input type="date" class="form-control" id="data" name="data" value="<?= date('Y-m-d', strtotime($usuario[0]->data)); ?>" required>
+      <label for="email" class="padding">Email:</label>
+
+      <input type="email" class="form-control" id="email" name="email" value="<?= $usuario[0]->email; ?>" required>
+      <label for="password" class="padding">Senha:</label>
+
+      <input type="button" class="btn btn-default btn-block" value="Atualizar Senha"
+      data-toggle="modal" data-target="#myModal">
+
+      <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url('usuario/'.$this->session->userdata('tipoUsuario')); ?>" >Cancelar </a>
+      <button type="submit" class="paddingButton btn btn-success right"> Atualizar </button>
     </div>
   </form>
 </div>

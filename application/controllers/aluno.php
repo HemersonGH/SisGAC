@@ -30,8 +30,6 @@ class Aluno extends CI_Controller {
 	{
 		$this->verificar_sessao();
 
-		// $id = $this->session->userdata('id');
-
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 
@@ -44,7 +42,7 @@ class Aluno extends CI_Controller {
 		}
 
 		$this->load->view('aluno/menu_lateral');
-		$this->load->view('aluno/pagina_principal');
+		$this->load->view('aluno/disciplinas');
 		$this->load->view('includes/html_footer');
 	}
 
