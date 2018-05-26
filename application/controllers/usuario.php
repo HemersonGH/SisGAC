@@ -95,16 +95,7 @@ class Usuario extends CI_Controller {
 				redirect('professor');
 			}
 		} else {
-			redirect('usuario/3');
-		}
-	}
-
-	public function verificar_usuario($tipo)
-	{
-		if ($tipo == 1) {
-			redirect('aluno');
-		} else if ($tipo == 2) {
-			redirect('professor');
+			redirect('usuario/login/3');
 		}
 	}
 
@@ -120,9 +111,9 @@ class Usuario extends CI_Controller {
 		$this->load->model('usuario_model','usuario');
 
 		if ($this->usuario->cadastrar($data)) {
-			redirect('usuario/1');
+			redirect('usuario/login/1');
 		} else {
-			redirect('usuario/2');
+			redirect('usuario/login/2');
 		}
 	}
 

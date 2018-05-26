@@ -7,8 +7,8 @@
     <input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus> </br>
     <label for="password" class="sr-only"> Password </label>
     <input type="password" id="password" name="password" class="form-control" placeholder="Senha" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit"> Acessar </button> </br>
-    <a href="<?= base_url(); ?>usuario/registrar"> Registrar </a>
+    <button class="btn btn-lg btn-primary btn-block color" type="submit" style="cursor:pointer;"> Acessar </button>
+    <a class="btn btn-secondary distance" role="button" aria-pressed="true" href="<?= base_url(); ?>usuario/registrar"> Registrar </a>
   </form>
-  <!-- </div> --> <!-- Essa div fecha a div do login "<div class="col-md-12 text-center">" -->
-  <!-- Arrumar isso depois  -->
+<!-- </div> --> <!-- Essa div fecha a div do login "<div class="col-md-12 text-center">" -->
+<!-- Arrumar isso depois  -->

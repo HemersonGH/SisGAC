@@ -5,16 +5,15 @@
       aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="<?= base_url('usuario/verificar_usuario/'.$this->session->userdata('tipoUsuario')); ?>"> Home </a> <!-- implementar função de ir para home-->
-
+  <a class="navbar-brand" href="<?= base_url('usuario/'.$this->session->userdata('tipoUsuario')); ?>"> Home </a>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
     <li class="nav-item">
       <a class="nav-link" href="<?= base_url('usuario/atualizar/'.$this->session->userdata('id')); ?>"> Perfil </a>
     </li>
   </ul>
-  <form class="text-center mt-2 mt-md-0">
-      <a type="btn" class="btn btn-danger btn-block form-control mr-sm-2" style="cursor:pointer; color: white;"
+  <form class="mt-2 mt-md-0">
+      <a type="btn" class="btn btn-danger mr-sm-2" style="cursor:pointer; color: white;"
         data-toggle="modal" data-target="#myModalLogout"> Logout </a>
   </form>
 </div>

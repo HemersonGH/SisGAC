@@ -8,9 +8,19 @@ body {
   display: flex;
   -ms-flex-align: center;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
+  padding-top: 10%;
+  padding-bottom: 20%;
+  background-color: #E4E5DF;
+}
+
+.distance {
+  margin-top: 15px;
+  background-color: #616B5C;
+  color: white;
+}
+
+.color {
+  color: white;
 }
 
 .form-signin {

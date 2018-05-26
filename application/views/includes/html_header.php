@@ -7,10 +7,10 @@
     <meta name="author" content="Hemerson Batista">
     <link rel="icon" href="<?= base_url(); ?>application/img/favicon.ico">
 
-    <title> SGDs CI</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
     <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/dashboard.css" rel="stylesheet">
+
+    <title> SGDs </title>
 
   </head>
 
