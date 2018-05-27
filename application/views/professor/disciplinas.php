@@ -37,7 +37,7 @@
         <td> <?= $disciplina->codigo_disciplina; ?> </td>
         <td> <?= $disciplina->nome_disciplina; ?> </td>
         <td>
-          <a type="btn" class="btn btn-success mr-1" style="cursor:pointer;" href="<?= base_url('professor/adicionar_atividade/'.$disciplina->idDisciplina); ?>"> Escolher </a>
+          <a type="btn" class="btn btn-success mr-1" style="cursor:pointer;" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>"> Escolher </a>
           <a href="<?= base_url('professor/atualizar_disciplina/'.$disciplina->idDisciplina); ?>" class="btn btn-primary btn-group mr-1"> Atualizar </a>
           <button type="btn" style="cursor:pointer;" class="btn btn-danger btn-group mr-1" data-toggle="modal" data-target="#myModalExcluirDisciplina"> Remover </button>
         </td>

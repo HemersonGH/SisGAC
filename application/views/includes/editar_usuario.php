@@ -34,7 +34,7 @@
 </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Atualizar Senha-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <form class="" action="<?= base_url(); ?>usuario/salvar_senha" method="post">

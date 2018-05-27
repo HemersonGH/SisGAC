@@ -12,6 +12,16 @@
   background-color: #616B5C;
 }
 
+.position_left {
+  align-items: flex-start;
+  float: left;
+}
+
+.position_right {
+  float: right;
+  text-align: right;
+}
+
 .div_height {
   height: 130%;
 }
