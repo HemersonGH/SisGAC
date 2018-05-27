@@ -33,8 +33,8 @@
         Tem certeza que deseja sair?
       </div>
       <div class="modal-footer">
-        <a type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Não </a>
-        <a type="button" class="btn btn-primary" href="<?= base_url(); ?>usuario/logout"> Sim </a>
+        <button type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Não </button>
+        <a class="btn btn-primary" href="<?= base_url(); ?>usuario/logout"> Sim </a>
       </div>
     </div>
   </div>
