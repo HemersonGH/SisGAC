@@ -271,18 +271,18 @@ class Professor extends CI_Controller {
 	public function atividades_conjunto($idConjuntoAtividade=null, $indice=null)
 	{
 		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 		$this->load->view('professor/menu_lateral');
 
-		$this->load->model('professor_model','professor');
-
 		$conjunto_atividade['conjunto_atividade'] = $this->professor->get_Conjunto($idConjuntoAtividade);
+		$atividades['atividades'] = $this->professor->get_Atividades($idConjuntoAtividade);
 
 		switch ($indice) {
 			case 1:
-			$data['msg'] = "Atividade cadastrado com sucesso.";
+			$data['msg'] = "Atividade cadastrada com sucesso.";
 			$this->load->view('includes/msg_sucesso', $data);
 			break;
 
@@ -292,7 +292,8 @@ class Professor extends CI_Controller {
 			break;
 		}
 
-		$this->load->view('professor/conjunto_atividades', $conjunto_atividade);
+		$this->load->view('professor/cabecalho_atividade', $conjunto_atividade);
+		$this->load->view('professor/conjunto_atividades', $atividades);
 		$this->load->view('includes/html_footer');
 	}
 
@@ -316,13 +317,17 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$data['id_professor'] = $this->input->post('id_professor');
-		$data['nome_conjunto'] = $this->input->post('nome_conjunto');
+		$atividade['nome_atividade'] = $this->input->post('nome_atividade');
+		$atividade['descricao_atividade'] = $this->input->post('descricao_atividade');
+		$atividade['prazo_entrega'] = $this->input->post('data');
+		$atividade['idConjuntoAtividade'] = $this->input->post('id_conjunto');
+		$atividade['id_professor'] = $this->input->post('idProfessor');
+		$atividade['pontos'] = $this->input->post('valor_atividade');
 
-		if ($this->professor->cadastrar_atividades($data)) {
-			redirect('professor/atividades/1');
+		if ($this->professor->cadastrar_atividades($atividade)) {
+			redirect('professor/atividades_conjunto/'.$this->input->post('id_conjunto').'/1');
 		} else {
-			redirect('professor/atividades/2');
+			redirect('professor/atividades_conjunto/'.$this->input->post('id_conjunto').'/2');
 		}
 	}
 

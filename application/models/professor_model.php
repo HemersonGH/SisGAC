@@ -77,6 +77,18 @@ class Professor_model extends CI_Model
     return $this->db->delete('conjunto_atividade');
   }
 
+  public function cadastrar_atividades($atividade)
+  {
+    return $this->db->insert('atividade', $atividade);
+  }
+
+  public function get_Atividades($id_conjunto_atividade)
+  {
+    $this->db->select('*');
+    $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
+
+    return $this->db->get('atividade')->result();
+  }
 
   public function valida_usuario($email, $senha)
   {
