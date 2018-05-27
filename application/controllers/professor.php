@@ -29,6 +29,9 @@ class Professor extends CI_Controller {
 	public function index($indice=null)
 	{
 		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$disciplinas['disciplinas'] = $this->professor->get_Disciplinas($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
@@ -55,10 +58,30 @@ class Professor extends CI_Controller {
 			$this->load->view('includes/msg_erro', $data);
 			break;
 
+			case 5:
+			$data['msg'] = "Disciplina atualizada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+
+			case 6:
+			$data['msg'] = "Não foi possível atualizar a disciplina.";
+			$this->load->view('includes/msg_erro', $data);
+			break;
+
+			case 7:
+			$data['msg'] = "Disciplina excluída com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+
+			case 8:
+			$data['msg'] = "Não foi possível excluir a disciplina.";
+			$this->load->view('includes/msg_erro', $data);
+			break;
+
 		}
 
 		$this->load->view('professor/menu_lateral');
-		$this->load->view('professor/disciplinas');
+		$this->load->view('professor/disciplinas', $disciplinas);
 		$this->load->view('includes/html_footer');
 	}
 
@@ -77,12 +100,12 @@ class Professor extends CI_Controller {
 	{
 		$this->verificar_sessao();
 
+		$this->load->model('professor_model','professor');
+
 		$data['id_Professor'] = $this->input->post('idProfessor');
 		$data['nome_disciplina'] = $this->input->post('nome_disciplina');
 		$data['codigo_disciplina'] = $this->input->post('codigo_disciplina');
 		$data['descricao_disciplina'] = $this->input->post('descricao_disciplina');
-
-		$this->load->model('professor_model','professor');
 
 		if ($this->professor->cadastrar_disciplina($data)) {
 			redirect('professor/3');
@@ -90,5 +113,49 @@ class Professor extends CI_Controller {
 			redirect('professor/4');
 		}
 	}
+
+	public function atualizar_disciplina($idDisciplina=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/editar_disciplina', $disciplina);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function salvar_atualizacao_disciplina()
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$idDisciplina = $this->input->post('idDisciplina');
+		$disciplina['nome_disciplina'] = $this->input->post('nome_disciplina');
+		$disciplina['codigo_disciplina'] = $this->input->post('codigo_disciplina');
+		$disciplina['descricao_disciplina'] = $this->input->post('descricao_disciplina');
+
+		if ($this->professor->salvar_atualizacao_disciplina($idDisciplina, $disciplina)) {
+			redirect('professor/5');
+		} else {
+			redirect('professor/6');
+		}
+	}
+
+	public function excluir_disciplina($idDisciplina=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		if ($this->professor->excluir_disciplina($idDisciplina)) {
+			redirect('professor/7');
+		} else {
+			redirect('professor/8');
+		}
+	}
+
 
 }

@@ -12,6 +12,36 @@ class Professor_model extends CI_Model
     return $this->db->insert('disciplina', $data);
   }
 
+  public function get_Disciplinas($idUsuario=null)
+  {
+    // $this->db->from('disciplina');
+    // $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
+    $this->db->select('*');
+    $this->db->where('id_professor', $idUsuario);
+
+    return $this->db->get('disciplina')->result();
+  }
+
+  public  function get_Disciplina($idDisciplina=null)
+  {
+    $this->db->where('idDisciplina', $idDisciplina);
+    return $this->db->get('disciplina')->result();
+  }
+
+  public function salvar_atualizacao_disciplina($idDisciplina=null, $disciplina)
+  {
+    $this->db->where('idDisciplina', $idDisciplina);
+
+    return $this->db->update('disciplina', $disciplina);
+  }
+
+  public function excluir_disciplina($idDisciplina=null)
+	{
+		$this->db->where('idDisciplina', $idDisciplina);
+
+    return $this->db->delete('disciplina');
+	}
+
   public function valida_usuario($email, $senha)
   {
     $this->db->where('email', $email);
@@ -26,18 +56,10 @@ class Professor_model extends CI_Model
     return $this->db->get('usuario')->result();
   }
 
-  public function get_Usuarios()
-  {
-    $this->db->select('*');
-    $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
-
-    return $this->db->get('usuario')->result();
-  }
 
   public function get_Usuarios_Like($termo)
   {
     $this->db->select('*');
-    $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
     $this->db->like('nome', $termo);
 
     return $this->db->get('usuario')->result();

@@ -16,7 +16,7 @@
       <input type="text" class="form-control" id="codigo_disciplina" name="codigo_disciplina" required>
 
       <label for="descricao_disciplina" class="padding"> <h6> Descrição da Disciplina: </h6> </label>
-      <textarea class="form-control descricao_height" id="descricao_disciplina" name="descricao_disciplina" required> </textarea>
+      <textarea class="form-control descricao_height" id="descricao_disciplina" name="descricao_disciplina" required></textarea>
 
       <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url(); ?>professor" > Cancelar </a>
       <button type="submit" class="paddingButton btn btn-success right"> Criar Disciplina </button>
