@@ -23,8 +23,8 @@
 </div> -->
 
 <div class="padding col-md-12">
-  <h4> Minhas Disciplinas </h4>
-  <table class="table table-striped">
+  <h5> Minhas Disciplinas </h5>
+  <table class="table table-striped paddingTable">
     <tr>
       <th> Professor </th>
       <th> Código da Disciplina </th>
@@ -37,34 +37,13 @@
         <td> <?= $disciplina->codigo_disciplina; ?> </td>
         <td> <?= $disciplina->nome_disciplina; ?> </td>
         <td>
-          <a type="btn" class="btn btn-success mr-1" style="cursor:pointer;" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>"> Escolher </a>
-          <a href="<?= base_url('professor/atualizar_disciplina/'.$disciplina->idDisciplina); ?>" class="btn btn-primary btn-group mr-1"> Atualizar </a>
-          <button type="btn" style="cursor:pointer;" class="btn btn-danger btn-group mr-1" data-toggle="modal" data-target="#myModalExcluirDisciplina"> Remover </button>
+          <a class="btn btn-success mr-1 cursor" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>"> Escolher </a>
+          <a class="btn btn-primary btn-group mr-1 cursor" href="<?= base_url('professor/atualizar_disciplina/'.$disciplina->idDisciplina); ?>"> Atualizar </a>
+          <a href="<?= base_url('professor/excluir_disciplina/'.$disciplina->idDisciplina); ?>" class="btn btn-danger btn-group mr-0" onclick="return confirm('Deseja realmente remover essa disciplina?'); "> Remover </a>
         </td>
       </tr>
     <?php } ?>
   </table>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModalExcluirDisciplina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4> Excluir Disciplina </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Tem certeza que deseja excluir essa disciplina?
-      </div>
-      <div class="modal-footer">
-        <a type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Não </a>
-        <a type="button" class="btn btn-primary" href="<?= base_url('professor/excluir_disciplina/'.$disciplina->idDisciplina); ?>"> Sim </a>
-      </div>
-    </div>
-  </div>
 </div>
 
 </main>

@@ -6,10 +6,19 @@
   -ms-flex-align: center;
 }
 
+.tituloConjunto {
+  /* text-align: center; */
+  padding-bottom: 10px;
+}
+
 .distance {
   color: white;
   margin-top: 15px;
   background-color: #616B5C;
+}
+
+.cursor {
+  cursor:pointer;
 }
 
 .position_left {
@@ -31,13 +40,31 @@
   resize: none;
 }
 
+.descricao_atividade {
+  height: 150px;
+  resize: none;
+}
+
+.camp {
+  height: 42px;
+  /* width: 20px; */
+}
+
 .padding {
   margin-top: 10px;
+}
+
+.paddingTable {
+  margin-top: 15px;
 }
 
 .paddingButton {
   margin-top: 3%;
   margin-bottom: 4%;
+}
+
+.paddingUp {
+  margin-top: 5%;
 }
 
 .left {
@@ -73,6 +100,13 @@
 .form-signin .form-control:focus {
   z-index: 2;
 }
+
+.checkbox {
+  font-size: 18px;
+  height: 20px;
+  width: 20px;
+}
+
 /* .form-signin input[type="email"] {
 margin-bottom: -10px;
 }

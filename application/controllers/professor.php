@@ -185,7 +185,7 @@ class Professor extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function atividades()
+	public function atividades($indice=null)
 	{
 		$this->verificar_sessao();
 
@@ -193,29 +193,166 @@ class Professor extends CI_Controller {
 		$this->load->view('includes/menu');
 		$this->load->view('professor/menu_lateral');
 
+		$this->load->model('professor_model','professor');
 
+		$conjunto_atividades['conjunto_atividades'] = $this->professor->get_Conjuntos($this->session->userdata('idUsuario'));
 
-		$this->load->view('professor/atividades');
+		switch ($indice) {
+			case 1:
+			$data['msg'] = "Conjunto cadastrado com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+
+			case 2:
+			$data['msg'] = "Não foi possível cadastrar o conjunto.";
+			$this->load->view('includes/msg_erro', $data);
+			break;
+
+			case 3:
+			$data['msg'] = "Conjunto atualizado com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+
+			case 4:
+			$data['msg'] = "Não foi possível atualizar o conjunto.";
+			$this->load->view('includes/msg_erro', $data);
+			break;
+
+		}
+
+		$this->load->view('professor/atividades', $conjunto_atividades);
 		$this->load->view('includes/html_footer');
 	}
 
 	public function cadastrar_conjunto_atividades()
 	{
 		$this->verificar_sessao();
-
 		$this->load->model('professor_model','professor');
 
-		$data['id_Professor'] = $this->input->post('idProfessor');
-		$data['nome_disciplina'] = $this->input->post('nome_disciplina');
-		$data['codigo_disciplina'] = $this->input->post('codigo_disciplina');
-		$data['descricao_disciplina'] = $this->input->post('descricao_disciplina');
+		$data['id_professor'] = $this->input->post('id_professor');
+		$data['nome_conjunto'] = $this->input->post('nome_conjunto');
 
-		if ($this->professor->cadastrar_disciplina($data)) {
-			redirect('professor/3');
+		if ($this->professor->cadastrar_conjunto_atividades($data)) {
+			redirect('professor/atividades/1');
 		} else {
-			redirect('professor/4');
+			redirect('professor/atividades/2');
 		}
 	}
 
+	public function salvar_atualizacao_conjunto_atividades($id_conjunto_atividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->load->model('professor_model','professor');
+
+		$conjunto_atividade['id_professor'] = $this->input->post('id_professor');
+		$conjunto_atividade['nome_conjunto'] = $this->input->post('nome_conjunto');
+
+		if ($this->professor->salvar_atualizacao_conjunto_atividades($id_conjunto_atividade, $conjunto_atividade)) {
+			redirect('professor/atividades/3');
+		} else {
+			redirect('professor/atividades/4');
+		}
+	}
+
+	public function excluir_conjunto_atividades($id_conjunto_atividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		if ($this->professor->excluir_conjunto_atividades($id_conjunto_atividade)) {
+			redirect('professor/atividades/5');;
+		} else {
+			redirect('professor/atividades/6');
+		}
+	}
+
+	public function atividades_conjunto($idConjuntoAtividade=null, $indice=null)
+	{
+		$this->verificar_sessao();
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('professor/menu_lateral');
+
+		$this->load->model('professor_model','professor');
+
+		$conjunto_atividade['conjunto_atividade'] = $this->professor->get_Conjunto($idConjuntoAtividade);
+
+		switch ($indice) {
+			case 1:
+			$data['msg'] = "Atividade cadastrado com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+
+			case 2:
+			$data['msg'] = "Não foi possível cadastrar a atividade.";
+			$this->load->view('includes/msg_erro', $data);
+			break;
+		}
+
+		$this->load->view('professor/conjunto_atividades', $conjunto_atividade);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function adicionar_atividade($id_conjunto_atividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('professor/menu_lateral');
+
+		$conjunto_atividade['conjunto_atividade'] = $this->professor->get_Conjunto($id_conjunto_atividade);
+
+		$this->load->view('professor/criar_atividade', $conjunto_atividade);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function cadastrar_atividades()
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$data['id_professor'] = $this->input->post('id_professor');
+		$data['nome_conjunto'] = $this->input->post('nome_conjunto');
+
+		if ($this->professor->cadastrar_atividades($data)) {
+			redirect('professor/atividades/1');
+		} else {
+			redirect('professor/atividades/2');
+		}
+	}
+
+	public function salvar_atualizacao_atividades($id_conjunto_atividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->load->model('professor_model','professor');
+
+		$conjunto_atividade['id_professor'] = $this->input->post('id_professor');
+		$conjunto_atividade['nome_conjunto'] = $this->input->post('nome_conjunto');
+
+		if ($this->professor->salvar_atualizacao_conjunto_atividades($id_conjunto_atividade, $conjunto_atividade)) {
+			redirect('professor/atividades/3');
+		} else {
+			redirect('professor/atividades/4');
+		}
+	}
+
+	public function excluir_atividades($id_conjunto_atividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		if ($this->professor->excluir_conjunto_atividades($id_conjunto_atividade)) {
+			redirect('professor/atividades/5');;
+		} else {
+			redirect('professor/atividades/6');
+		}
+	}
 
 }

@@ -6,19 +6,28 @@
   </div>
 
   <div class="col-md-2">
-    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModalCriarConjunto"> Criar Conjunto </button>
+    <button class="btn btn-primary btn-block cursor" data-toggle="modal" data-target="#myModalCriarConjunto"> Criar Conjunto </button>
   </div>
 
 <div class="padding col-md-12">
   <h5> Conjuntos de Atividades </h5>
   <table class="table table-striped">
     <tr>
-      <th> Professor </th>
-      <th> Código da Disciplina </th>
-      <th> Disciplina </th>
+      <th> Nome do Conjunto </th>
+      <th> Quantidade de Atividades </th>
       <th> Ações </th>
     </tr>
-
+    <?php foreach ($conjunto_atividades as $conjunto_atividade) { ?>
+      <tr>
+        <td> <?= $conjunto_atividade->nome_conjunto; ?> </td>
+        <td> </td>
+        <td>
+          <a class="btn btn-success mr-1 cursor" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>"> Adicionar Atividade </a>
+          <button type="button" class="btn btn-primary btn-group mr-1 cursor"> Atualizar </button>
+          <button type="button" class="btn btn-danger btn-group mr-1 cursor"> Remover </button>
+          </td>
+      </tr>
+    <?php } ?>
   </table>
 </div>
 
@@ -26,7 +35,7 @@
 <div class="modal fade" id="myModalCriarConjunto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <form class="" action="<?= base_url(); ?>professor/cadastrar_conjunto_atividades" method="post">
-      <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $this->session->userdata('idUsuario')?>">
+      <input type="hidden" id="id_professor" name="id_professor" value="<?= $this->session->userdata('idUsuario')?>">
       <div class="modal-content">
         <div class="modal-header">
           <h4> Novo Conjunto de Atividades </h4>
@@ -43,8 +52,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" style="cursor:pointer;" data-dismiss="modal"> Cancelar </button>
-          <button type="submit" class="btn btn-primary " href="<?= base_url(); ?>professor/cadastrar_conjunto_atividades"> Salvar </button>
+          <button type="button" class="btn btn-secondary cursor" data-dismiss="modal"> Cancelar </button>
+          <button type="submit" class="btn btn-primary cursor" href="<?= base_url(); ?>professor/cadastrar_conjunto_atividades"> Salvar </button>
         </div>
       </div>
     </form>

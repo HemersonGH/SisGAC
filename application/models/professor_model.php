@@ -42,6 +42,42 @@ class Professor_model extends CI_Model
     return $this->db->delete('disciplina');
 	}
 
+  public function cadastrar_conjunto_atividades($data)
+  {
+    return $this->db->insert('conjunto_atividade', $data);
+  }
+
+  public function get_Conjuntos($idUsuario=null)
+  {
+    $this->db->select('*');
+    $this->db->where('id_professor', $idUsuario);
+
+    return $this->db->get('conjunto_atividade')->result();
+  }
+
+  public function get_Conjunto($id_conjunto_atividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
+
+    return $this->db->get('conjunto_atividade')->result();
+  }
+
+  public function salvar_atualizacao_conjunto_atividades($id_conjunto_atividade=null, $conjunto_atividade)
+  {
+    $this->db->where('id_conjunto_atividade', $id_conjunto_atividade);
+
+    return $this->db->update('conjunto_atividade', $conjunto_atividade);
+  }
+
+  public function excluir_conjunto_atividades($id_conjunto_atividade=null)
+  {
+    $this->db->where('id_conjunto_atividade', $id_conjunto_atividade);
+
+    return $this->db->delete('conjunto_atividade');
+  }
+
+
   public function valida_usuario($email, $senha)
   {
     $this->db->where('email', $email);
