@@ -180,12 +180,18 @@ class Usuario extends CI_Controller {
 
 		if ($this->session->userdata('tipoUsuario') == 1) {
 			if ($this->usuario->salvar_atualizacao($id, $data)) {
+				$dados['nome'] = $data['nome'];
+				$this->session->set_userdata($dados);
+
 				redirect('aluno/1');
 			} else {
 				redirect('aluno/2');
 			}
 		} else if ($this->session->userdata('tipoUsuario') == 2) {
 			if ($this->usuario->salvar_atualizacao($id, $data)) {
+				$dados['nome'] = $data['nome'];
+				$this->session->set_userdata($dados);
+
 				redirect('professor/1');
 			} else {
 				redirect('professor/2');
