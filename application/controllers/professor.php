@@ -157,5 +157,19 @@ class Professor extends CI_Controller {
 		}
 	}
 
+	public function adicionar_atividade($idDisciplina=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/adicionar_atividade', $disciplina);
+		$this->load->view('includes/html_footer');
+	}
+
 
 }
