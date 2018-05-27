@@ -33,17 +33,62 @@ class Professor extends CI_Controller {
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 
-		if ($indice == 1) {
+		switch ($indice)
+		{
+			case 1:
 			$data['msg'] = "Dados atualizados com sucesso.";
 			$this->load->view('includes/msg_sucesso_login', $data);
-		} else if ($indice == 2) {
+			break;
+
+			case 2:
 			$data['msg'] = "Não foi possível atualizar os dados.";
 			$this->load->view('includes/msg_erro_login', $data);
+			break;
+
+			case 3:
+			$data['msg'] = "Disciplina criada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+
+			case 4:
+			$data['msg'] = "Não foi possível criar a disciplina.";
+			$this->load->view('includes/msg_erro', $data);
+			break;
+
 		}
 
 		$this->load->view('professor/menu_lateral');
-		$this->load->view('professor/pagina_principal');
+		$this->load->view('professor/disciplinas');
 		$this->load->view('includes/html_footer');
+	}
+
+	public function criar_disciplina()
+	{
+		$this->verificar_sessao();
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/criar_disciplina');
+		$this->load->view('includes/html_footer');
+	}
+
+	public function cadastrar_disciplina()
+	{
+		$this->verificar_sessao();
+
+		$data['id_Professor'] = $this->input->post('idProfessor');
+		$data['nome_disciplina'] = $this->input->post('nome_disciplina');
+		$data['codigo_disciplina'] = $this->input->post('codigo_disciplina');
+		$data['descricao_disciplina'] = $this->input->post('descricao_disciplina');
+
+		$this->load->model('professor_model','professor');
+
+		if ($this->professor->cadastrar_disciplina($data)) {
+			redirect('professor/3');
+		} else {
+			redirect('professor/4');
+		}
 	}
 
 }

@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-      <a class="nav-link" href="<?= base_url('usuario/atualizar/'.$this->session->userdata('id')); ?>"> Perfil </a>
+      <a class="nav-link" href="<?= base_url('usuario/atualizar/'.$this->session->userdata('idUsuario')); ?>"> Perfil </a>
     </li>
   </ul>
   <form class="mt-2 mt-md-0">

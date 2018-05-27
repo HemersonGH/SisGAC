@@ -84,7 +84,7 @@ class Usuario extends CI_Controller {
 
 		if (count($data['usuario']) == 1) {
 			$dados['nome'] = $data['usuario'][0]->nome;
-			$dados['id'] = $data['usuario'][0]->idUsuario;
+			$dados['idUsuario'] = $data['usuario'][0]->idUsuario;
 			$dados['tipoUsuario'] = $data['usuario'][0]->tipoUsuario;
 			$dados['logado'] = true;
 			$this->session->set_userdata($dados);
@@ -153,7 +153,13 @@ class Usuario extends CI_Controller {
 			$this->load->view('includes/msg_erro', $data);
 		}
 
-		$this->load->view('aluno/menu_lateral');
+
+		if ($this->session->userdata('tipoUsuario') == 1) {
+			$this->load->view('aluno/menu_lateral');
+		} else if ($this->session->userdata('tipoUsuario') == 2) {
+			$this->load->view('professor/menu_lateral');
+		}
+
 		$this->load->view('includes/editar_usuario', $data);
 		$this->load->view('includes/html_footer');
 	}

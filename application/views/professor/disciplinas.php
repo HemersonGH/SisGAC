@@ -1,10 +1,12 @@
+<link href="<?= base_url(); ?>assets/css/disciplina_professor.css" rel="stylesheet">
+
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
   <div class="col-md-10">
     <h1 class="page-header"> Disciplinas </h1>
   </div>
 
   <div class="col-md-2">
-    <a class="btn btn-primary btn-block" href="<?= base_url(); ?>usuario/cadastro"> Adicionar Disciplina </a>
+    <a class="btn btn-primary btn-block" href="<?= base_url(); ?>professor/criar_disciplina"> Criar Disciplina </a>
   </div>
 
   <!-- <div class="col-md-12" style="padding-bottom: 10px">
@@ -20,8 +22,8 @@
     </form>
   </div> -->
 
-  <h1> Minhas Disciplinas </h1>
-  <div class="col-md-12">
+  <div class="padding col-md-12">
+    <h4> Minhas Disciplinas </h4>
     <table class="table table-striped">
       <tr>
         <th> ID </th>

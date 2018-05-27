@@ -22,10 +22,9 @@
       <input type="email" class="form-control" id="email" name="email" value="<?= $usuario[0]->email; ?>" required>
       <label for="password" class="padding">Senha:</label>
 
-      <input type="button" class="btn btn-default btn-block" value="Atualizar Senha"
-      data-toggle="modal" data-target="#myModal">
+      <input type="button" class="btn btn-default btn-block" value="Atualizar Senha" data-toggle="modal" data-target="#myModal">
 
-      <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url('usuario/'.$this->session->userdata('tipoUsuario')); ?>" >Cancelar </a>
+      <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url('usuario/'.$this->session->userdata('tipoUsuario')); ?>" > Cancelar </a>
       <button type="submit" class="paddingButton btn btn-success right"> Atualizar </button>
     </div>
   </form>
