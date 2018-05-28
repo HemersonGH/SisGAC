@@ -19,6 +19,10 @@ body {
   color: white;
 }
 
+.cursor {
+  cursor:pointer;
+}
+
 .color {
   color: white;
 }

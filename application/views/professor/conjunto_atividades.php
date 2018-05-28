@@ -15,7 +15,8 @@
             <td> <?= date('d-m-Y', strtotime($atividade->prazo_entrega)); ?> </td>
             <td> <?= $atividade->pontos; ?> </td>
             <td>
-
+              <a class="btn btn-primary btn-group mr-1 cursor" href="<?= base_url('professor/atualizar_atividade/'.$atividade->idAtividade); ?>"> Editar </a>
+              <a href="<?= base_url('professor/excluir_atividades/'.$atividade->idAtividade.'/'.$atividade->idConjuntoAtividade); ?>" class="btn btn-danger btn-group mr-0" onclick="return confirm('Deseja realmente remover essa atividade?'); "> Remover </a>
             </td>
           </tr>
         <?php } ?>

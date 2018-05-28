@@ -2,7 +2,7 @@
 
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
   <div class="col-md-12">
-    <h1 class="page-header"> Atualizar Disciplina </h1>
+    <h1 class="page-header"> Editar Disciplina </h1>
   </div>
 
   <div class="col-md-6 form-control">

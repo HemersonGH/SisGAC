@@ -38,7 +38,7 @@
         <td> <?= $disciplina->nome_disciplina; ?> </td>
         <td>
           <a class="btn btn-success mr-1 cursor" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>"> Escolher </a>
-          <a class="btn btn-primary btn-group mr-1 cursor" href="<?= base_url('professor/atualizar_disciplina/'.$disciplina->idDisciplina); ?>"> Atualizar </a>
+          <a class="btn btn-primary btn-group mr-1 cursor" href="<?= base_url('professor/atualizar_disciplina/'.$disciplina->idDisciplina); ?>"> Editar </a>
           <a href="<?= base_url('professor/excluir_disciplina/'.$disciplina->idDisciplina); ?>" class="btn btn-danger btn-group mr-0" onclick="return confirm('Deseja realmente remover essa disciplina?'); "> Remover </a>
         </td>
       </tr>

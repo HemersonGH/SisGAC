@@ -14,7 +14,6 @@ class Professor_model extends CI_Model
 
   public function get_Disciplinas($idUsuario=null)
   {
-    // $this->db->from('disciplina');
     // $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
     $this->db->select('*');
     $this->db->where('id_professor', $idUsuario);
@@ -77,17 +76,39 @@ class Professor_model extends CI_Model
     return $this->db->delete('conjunto_atividade');
   }
 
-  public function cadastrar_atividades($atividade)
+  public function cadastrar_atividades($atividade=null)
   {
     return $this->db->insert('atividade', $atividade);
   }
 
-  public function get_Atividades($id_conjunto_atividade)
+  public function get_Atividades($id_conjunto_atividade=null)
   {
     $this->db->select('*');
     $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
 
     return $this->db->get('atividade')->result();
+  }
+
+  public function get_Atividade($idAtividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAtividade', $idAtividade);
+
+    return $this->db->get('atividade')->result();
+  }
+
+  public function salvar_atualizacao_atividade($idAtividade=null, $atividade)
+  {
+    $this->db->where('idAtividade', $idAtividade);
+
+    return $this->db->update('atividade', $atividade);
+  }
+
+  public function excluir_atividade($idAtividade=null)
+  {
+    $this->db->where('idAtividade', $idAtividade);
+
+    return $this->db->delete('atividade');
   }
 
   public function valida_usuario($email, $senha)

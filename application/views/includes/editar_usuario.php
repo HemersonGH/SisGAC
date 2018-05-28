@@ -2,7 +2,7 @@
 
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
   <div class="col-md-12">
-    <h1 class="page-header"> Atualizar Dados </h1>
+    <h1 class="page-header"> Editar Dados </h1>
   </div>
 
   <div class="col-md-6 form-control">
@@ -59,7 +59,7 @@
 </div>
 </div>
 
-<!-- Modal Atualizar Senha-->
+<!-- Modal Editar Senha-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <form class="" action="<?= base_url(); ?>usuario/salvar_senha" method="post">

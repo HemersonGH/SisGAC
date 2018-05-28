@@ -239,11 +239,9 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function salvar_atualizacao_conjunto_atividades($id_conjunto_atividade=null)
+	public function salvar_atualizacao_conjunto_atividades()
 	{
 		$this->verificar_sessao();
-		$this->load->model('professor_model','professor');
-
 		$this->load->model('professor_model','professor');
 
 		$conjunto_atividade['id_professor'] = $this->input->post('id_professor');
@@ -290,6 +288,26 @@ class Professor extends CI_Controller {
 			$data['msg'] = "Não foi possível cadastrar a atividade.";
 			$this->load->view('includes/msg_erro', $data);
 			break;
+
+			case 3:
+			$data['msg'] = "Atividade atualizada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+
+			case 4:
+			$data['msg'] = "Não foi possível atualizar a atividade.";
+			$this->load->view('includes/msg_erro', $data);
+			break;
+
+			case 5:
+			$data['msg'] = "Atividade excluída com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+
+			case 6:
+			$data['msg'] = "Não foi possível excluír a atividade.";
+			$this->load->view('includes/msg_erro', $data);
+			break;
 		}
 
 		$this->load->view('professor/cabecalho_atividade', $conjunto_atividade);
@@ -302,12 +320,11 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$conjunto_atividade['conjunto_atividade'] = $this->professor->get_Conjunto($id_conjunto_atividade);
+
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 		$this->load->view('professor/menu_lateral');
-
-		$conjunto_atividade['conjunto_atividade'] = $this->professor->get_Conjunto($id_conjunto_atividade);
-
 		$this->load->view('professor/criar_atividade', $conjunto_atividade);
 		$this->load->view('includes/html_footer');
 	}
@@ -331,32 +348,50 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function salvar_atualizacao_atividades($id_conjunto_atividade=null)
+	public function atualizar_atividade($idAtividade=null)
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$atividade['atividade'] = $this->professor->get_Atividade($idAtividade);
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/editar_atividade', $atividade);
+		$this->load->view('includes/html_footer');
+	}
+
+
+	public function salvar_atualizacao_atividade()
+	{
+		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$conjunto_atividade['id_professor'] = $this->input->post('id_professor');
-		$conjunto_atividade['nome_conjunto'] = $this->input->post('nome_conjunto');
+		$atividade['idAtividade'] = $this->input->post('idAtividade');
+		$atividade['nome_atividade'] = $this->input->post('nome_atividade');
+		$atividade['descricao_atividade'] = $this->input->post('descricao_atividade');
+		$atividade['prazo_entrega'] = $this->input->post('data');
+		$atividade['idConjuntoAtividade'] = $this->input->post('id_conjunto');
+		$atividade['id_professor'] = $this->input->post('idProfessor');
+		$atividade['pontos'] = $this->input->post('valor_atividade');
 
-		if ($this->professor->salvar_atualizacao_conjunto_atividades($id_conjunto_atividade, $conjunto_atividade)) {
-			redirect('professor/atividades/3');
+		if ($this->professor->salvar_atualizacao_atividade($this->input->post('idAtividade'), $atividade)) {
+			redirect('professor/atividades_conjunto/'.$this->input->post('id_conjunto').'/3');
 		} else {
-			redirect('professor/atividades/4');
+			redirect('professor/atividades_conjunto/'.$this->input->post('id_conjunto').'/4');
 		}
 	}
 
-	public function excluir_atividades($id_conjunto_atividade=null)
+	public function excluir_atividades($idAtividade=null, $idConjuntoAtividade=null)
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		if ($this->professor->excluir_conjunto_atividades($id_conjunto_atividade)) {
-			redirect('professor/atividades/5');;
+		if ($this->professor->excluir_atividade($idAtividade)) {
+			redirect('professor/atividades_conjunto/'.$idConjuntoAtividade.'/5');
 		} else {
-			redirect('professor/atividades/6');
+			redirect('professor/atividades_conjunto/'.$idConjuntoAtividade	.'/6');
 		}
 	}
 
