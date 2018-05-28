@@ -17,3 +17,4 @@ Essa pasta conterá com as seguintes estruturas e documentos:<br />
 <br />
 <b> Divisão Da Equipe CS Dev:</b> <br />
 Hemerson Batista (G.P %% P.O && Analista de Requisitos && Dev && WebDesing && Tester)<br />
+Alexandre Grillo (WebDesing && Tester)<br />
