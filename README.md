@@ -1,5 +1,4 @@
-# TP_Eng_Soft_2018_1 SGDs_ES
-Trabalho Prático De Engenharia de Software - 2018_1 - Sistema Gerenciador De Atividades Currculares
+# Trabalho Prático De Engenharia de Software - 2018_1 - Sistema Gerenciador De Atividades Currculares
 
 Os produtos de trabalho referente a esse projeto se encontra no Google Driver
 pelo Link: <br /> https://drive.google.com/drive/folders/1qKuH4UJI4pZ4dgHFmJyi52-NaFw-a3wr <br />
@@ -17,8 +16,5 @@ Essa pasta conterá com as seguintes estruturas e documentos:<br />
 <b>Stakeholders:</b> Um documento descrevendo os principais interessados do projeto. <br />
 <br />
 <b> Divisão Da Equipe CS Dev:</b> <br />
-Hemerson Batista (G.P %% P.O && Analista de Requisitos && Tester)<br />
-Alexandre (Dev && Scrum Master && WebDesing)<br />
-Rafaela (Dev && Scrum Master && WebDesing)<br />
-Guilherme (Dev)<br />
-Gabriel (Dev)<br />
+Hemerson Batista (G.P %% P.O && Analista de Requisitos && Dev && WebDesing && Tester)<br />
+Alexandre Grillo (WebDesing && Tester)<br />
