@@ -9,6 +9,7 @@
 
     <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/dashboard.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/font-awesome.css" rel="stylesheet">
 
     <title> SGDs </title>
 

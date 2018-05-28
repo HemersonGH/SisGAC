@@ -8,7 +8,9 @@
     <label for="password" class="sr-only"> Password </label>
     <input type="password" id="password" name="password" class="form-control" placeholder="Senha" required>
     <button class="btn btn-lg btn-primary btn-block color cursor" type="submit"> Acessar </button>
-    <a class="btn btn-secondary distance" role="button" aria-pressed="true" href="<?= base_url(); ?>usuario/registrar"> Registrar </a>
+    <a class="btn btn-secondary distance" role="button" aria-pressed="true" href="<?= base_url(); ?>usuario/registrar">
+      <span class="fa fa-star" aria-hidden="true" style="font-size:28px"></span>
+    </a>
   </form>
 <!-- </div> --> <!-- Essa div fecha a div do login "<div class="col-md-12 text-center">" -->
 <!-- Arrumar isso depois  -->
