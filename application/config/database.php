@@ -70,6 +70,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
+// Routes Infinity Free
+// 'hostname' => 'sql106.epizy.com',
+// 'username' => 'epiz_21889983',
+// 'password' => 'Seagate01ZXIF',
+// 'database' => 'epiz_21889983_db_sgd',
+
 $active_group = 'default';
 $query_builder = TRUE;
 
