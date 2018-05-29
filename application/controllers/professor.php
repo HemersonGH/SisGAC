@@ -408,7 +408,9 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		return ($this->professor->get_Qtd_Atividades($idConjuntoAtividade))[0]->total;
+		$this->professor->get_Qtd_Atividades($idConjuntoAtividade);
+
+		// $this->professor->get_Qtd_Conjunto_Atividades($disciplina->idDisciplina); // Estava implementado desse jeito antes, a view chamava a model direto
 	}
 
 	public function get_Qtd_Conjunto_Atividades($idDisciplina=null)
@@ -416,7 +418,9 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		return ($this->professor->get_Qtd_Conjunto_Atividades($idDisciplina))[0]->total;
+		$this->professor->get_Qtd_Conjunto_Atividades($idDisciplina);
+
+		// $this->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade); // Estava implementado desse jeito antes, a view chamava a model direto
 	}
 
 }

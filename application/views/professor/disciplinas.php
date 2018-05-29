@@ -7,7 +7,7 @@
 
   <div class="col-md-2">
     <a class="btn btn-primary btn-block" href="<?= base_url(); ?>professor/criar_disciplina">
-      <span class="fa fa-plus-square" aria-hidden="true"></span> Criar Disciplina 
+      <span class="fa fa-plus-square" aria-hidden="true"></span> Criar Disciplina
     </a>
   </div>
 
@@ -38,7 +38,7 @@
       <tr>
         <td> <?= $disciplina->codigo_disciplina; ?> </td>
         <td> <?= $disciplina->nome_disciplina; ?> </td>
-        <td> <?= ($this->professor->get_Qtd_Conjunto_Atividades($disciplina->idDisciplina))[0]->total; ?> </td> <!-- Resolver isso pois a view não pode chamar a model diretamente-->
+        <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Conjunto_Atividades($disciplina->idDisciplina); ?> </td>
         <td> <?= $disciplina->status == null ? 'Em Andamento':($disciplina->status == 1 ? 'Disponível':'Finalizada'); ?> </td>
         <td>
           <a class="btn btn-success mr-1  " title="Adicionar conjuntos de atividades para a disciplina" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>">

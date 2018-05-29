@@ -22,7 +22,7 @@
     <?php foreach ($conjunto_atividades as $conjunto_atividade) { ?>
       <tr>
         <td> <?= $conjunto_atividade->nome_conjunto; ?> </td>
-        <td> <?= ($this->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade))[0]->total; ?> </td> <!-- Resolver isso pois a view não pode chamar a model diretamente-->
+        <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade); ?> </td>
         <td>
           <a class="btn btn-success mr-1 cursor" title="Adicionar atividade para o conjunto" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>">
             <span class="fa fa-file-text-o" aria-hidden="true"></span>
