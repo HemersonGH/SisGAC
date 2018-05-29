@@ -24,15 +24,15 @@
         <td> <?= $conjunto_atividade->nome_conjunto; ?> </td>
         <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade); ?> </td>
         <td>
-          <a class="btn btn-success mr-1 cursor" title="Adicionar atividade para o conjunto" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>">
-            <span class="fa fa-file-text-o" aria-hidden="true"></span>
+          <a title="Adicionar atividade para o conjunto" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>">
+            <span class="fa fa-paste paste mr-2 " aria-hidden="true"> </span>
           </a>
-          <button type="button" class="btn btn-primary btn-group mr-1 cursor" title="Editar conjunto">
-            <span class="fa fa-pencil" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="btn btn-danger btn-group mr-1 cursor" title="Excluir conjunto">
-            <span class="fa fa-trash" aria-hidden="true"></span>
-          </button>
+          <!-- <button type="button" class="btn btn-primary btn-group mr-1 cursor" title="Editar conjunto"> -->
+            <span class="fa fa-pencil pencil mr-2" aria-hidden="true" title="Editar conjunto"></span>
+          <!-- </button> -->
+          <!-- <button title="Excluir conjunto"> -->
+            <span class="fa fa-remove remove mr-2" aria-hidden="true" title="Excluir conjunto"></span>
+          <!-- </button> -->
         </td>
       </tr>
     <?php } ?>

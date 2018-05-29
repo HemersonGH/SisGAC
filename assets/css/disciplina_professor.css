@@ -106,3 +106,31 @@
   height: 20px;
   width: 20px;
 }
+
+.remove {
+  color: red;
+  font-size: 20px;
+}
+
+.pencil {
+  font-size: 18px;
+  color: black;
+}
+
+.color_disabled {
+  font-size: 18px;
+  color: silver;
+}
+
+.plus_square {
+  font-size: 15px;
+}
+
+.paste {
+  font-size: 18px;
+}
+
+.folder {
+  /* color: blue; */
+  font-size: 18px;
+}

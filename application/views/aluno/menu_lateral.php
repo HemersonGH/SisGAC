@@ -4,12 +4,12 @@
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url(); ?>aluno" style="color: black;">
-            <h5> <span class="fa fa-tasks" aria-hidden="true"> </span> Disciplinas </h5>
+            <h5> <span class="fa fa-th-list" aria-hidden="true"> </span> Disciplinas </h5>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" style="color: black;">
-            <h5> <span class="fa fa-file" aria-hidden="true"> </span> Atividades </h5>
+            <h5> <span class="fa fa-list-alt" aria-hidden="true"> </span> Atividades </h5>
           </a>
         </li>
         <li class="nav-item">

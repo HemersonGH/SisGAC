@@ -15,11 +15,11 @@
             <td> <?= date('d-m-Y', strtotime($atividade->prazo_entrega)); ?> </td>
             <td> <?= $atividade->pontos; ?> </td>
             <td>
-              <a class="btn btn-primary btn-group mr-1 cursor" title="Editar atividade" href="<?= base_url('professor/atualizar_atividade/'.$atividade->idAtividade); ?>">
-                <span class="fa fa-pencil" aria-hidden="true"></span>
+              <a title="Editar atividade" href="<?= base_url('professor/atualizar_atividade/'.$atividade->idAtividade); ?>">
+                <span class="fa fa-pencil color_pencil mr-1" aria-hidden="true"></span>
               </a>
-              <a class="btn btn-danger btn-group mr-0" title="Excluir atividade" href="<?= base_url('professor/excluir_atividades/'.$atividade->idAtividade.'/'.$atividade->idConjuntoAtividade); ?>" onclick="return confirm('Deseja realmente remover essa atividade?'); ">
-                <span class="fa fa-trash" aria-hidden="true"></span>
+              <a title="Excluir atividade" href="<?= base_url('professor/excluir_atividades/'.$atividade->idAtividade.'/'.$atividade->idConjuntoAtividade); ?>" onclick="return confirm('Deseja realmente remover essa atividade?'); ">
+                <span class="fa fa-remove remove " aria-hidden="true"></span>
               </a>
             </td>
           </tr>
