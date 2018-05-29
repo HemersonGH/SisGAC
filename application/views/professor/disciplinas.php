@@ -60,18 +60,15 @@
               <span class="fa fa-pencil color_disabled mr-2" aria-hidden="true"></span>
             </a>
           <?php endif; ?>
-
-          <!-- <button type="btn" class="btn btn-primary" title="Excluir disciplina"  data-toggle="modal" data-target="#myModalLogout" > -->
-           <!-- onclick="return confirm('Deseja realmente remover essa disciplina?'); " -->
-            <span class="fa fa-remove remove mr-2 cursor" title="Excluir disciplina" aria-hidden="true" data-toggle="modal" data-target="#myModalExcluirDisciplina"
-              id="idDisciplina" value="<?= $disciplina->idDisciplina ?>"></span>
-          <!-- </button> -->
+          <!-- onclick="return confirm('Deseja realmente remover essa disciplina?'); " -->
+          <span class="fa fa-remove remove mr-2 cursor" title="Excluir disciplina" aria-hidden="true"
+          data-toggle="modal" data-target="#myModalExcluirDisciplina" value="<?= $disciplina->idDisciplina ?>">
+          </span>
         </td>
       </tr>
     <?php } ?>
-  </table>
+</table>
 </div>
-
 </main>
 </div>
 </div>
@@ -99,8 +96,6 @@
   </div>
 </div>
 
-
 <script>
-   // document.getElementById("id_disciplina").innerHTML =
-   document.getElementById("id_disciplina").innerHTML = document.getElementById("idDisciplina").value ;
+document.getElementById("id_disciplina").innerHTML = document.getElementById("idDisciplina").innerHTML ;
 </script>
