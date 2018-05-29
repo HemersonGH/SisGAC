@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Maio-2018 às 01:56
+-- Generation Time: 29-Maio-2018 às 06:27
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -43,10 +43,11 @@ CREATE TABLE `atividade` (
 --
 
 INSERT INTO `atividade` (`idAtividade`, `nome_atividade`, `descricao_atividade`, `prazo_entrega`, `idConjuntoAtividade`, `id_professor`, `pontos`) VALUES
-(1, 'Nome da Atividade:', '12121', '2018-05-27 03:00:00', 1, 3, '21212'),
-(2, 'wqewqewq', 'wwq213123', '2018-05-27 03:00:00', 1, 3, '14'),
-(3, '324324', '324', '2018-05-27 03:00:00', 1, 3, '32'),
-(4, 'Nome da Atividade:', '1212', '2018-05-27 03:00:00', 3, 3, '212');
+(4, 'Nome da Atividade:', '1212', '2018-05-27 03:00:00', 3, 3, '212'),
+(7, '423', '3434', '2018-06-28 03:00:00', 1, 3, '243'),
+(9, '23', '23', '2018-05-28 03:00:00', 1, 3, '1'),
+(10, '22', '232', '2018-05-28 03:00:00', 1, 3, '12'),
+(11, '232', '32', '2018-05-28 03:00:00', 3, 3, '2');
 
 -- --------------------------------------------------------
 
@@ -57,17 +58,16 @@ INSERT INTO `atividade` (`idAtividade`, `nome_atividade`, `descricao_atividade`,
 CREATE TABLE `conjunto_atividade` (
   `idConjuntoAtividade` int(11) NOT NULL,
   `nome_conjunto` varchar(80) NOT NULL,
-  `id_professor` int(11) NOT NULL
+  `id_professor` int(11) NOT NULL,
+  `id_disciplina_conjunto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `conjunto_atividade`
 --
 
-INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `id_professor`) VALUES
-(1, 'Desenvolvimento', 3),
-(2, 'Requisitos', 3),
-(3, 'Gerência', 3);
+INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `id_professor`, `id_disciplina_conjunto`) VALUES
+(7, 'rrr', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -80,17 +80,22 @@ CREATE TABLE `disciplina` (
   `id_professor` int(11) NOT NULL,
   `nome_disciplina` varchar(80) NOT NULL,
   `codigo_disciplina` varchar(10) NOT NULL,
-  `descricao_disciplina` varchar(200) NOT NULL
+  `descricao_disciplina` varchar(200) NOT NULL,
+  `status` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `disciplina`
 --
 
-INSERT INTO `disciplina` (`idDisciplina`, `id_professor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`) VALUES
-(1, 3, 'Banco de Dados', 'GCC-192', 'Essa disciplina deverá propiciar conhecimento na área de banco de dados com o professor.'),
-(2, 4, 'renata', 'renata', 'renatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatare'),
-(3, 4, 'renata2', 'renata2', 'renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2');
+INSERT INTO `disciplina` (`idDisciplina`, `id_professor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status`) VALUES
+(1, 3, 'Banco de Dados', 'GCC-192', 'Essa disciplina deverá propiciar conhecimento na área de banco de dados com o professor.', NULL),
+(2, 4, 'renata', 'renata', 'renatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatare', NULL),
+(3, 4, 'renata2', 'renata2', 'renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2', NULL),
+(4, 3, 'wqewqe', 'wqeqwe', 'wqeqweq', NULL),
+(5, 3, '343', '343', '4343', 1),
+(6, 3, 'er', 'er', 'ere', 0),
+(7, 3, 'qwqwqwq', 'wqwq', 'wqwq', NULL);
 
 -- --------------------------------------------------------
 
@@ -156,13 +161,13 @@ INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `data`, `email`, `senha`, `ti
 -- Indexes for table `atividade`
 --
 ALTER TABLE `atividade`
-  ADD PRIMARY KEY (`idAtividade`);
+  ADD PRIMARY KEY (`idAtividade`,`idConjuntoAtividade`);
 
 --
 -- Indexes for table `conjunto_atividade`
 --
 ALTER TABLE `conjunto_atividade`
-  ADD PRIMARY KEY (`idConjuntoAtividade`);
+  ADD PRIMARY KEY (`idConjuntoAtividade`,`id_disciplina_conjunto`);
 
 --
 -- Indexes for table `disciplina`
@@ -196,25 +201,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `atividade`
 --
 ALTER TABLE `atividade`
-  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `conjunto_atividade`
 --
 ALTER TABLE `conjunto_atividade`
-  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `disciplina`
 --
 ALTER TABLE `disciplina`
-  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `trofeus`
 --
 ALTER TABLE `trofeus`
-  MODIFY `idTrofeu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idTrofeu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `usuario`

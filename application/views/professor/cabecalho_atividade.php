@@ -6,5 +6,7 @@
       </div>
 
       <div class="col-md-2">
-        <a class="btn btn-primary btn-block" href="<?= base_url('professor/adicionar_atividade/'.$conjunto_atividade[0]->idConjuntoAtividade); ?>"> Criar Atividade </a>
+        <a class="btn btn-primary btn-block" href="<?= base_url('professor/adicionar_atividade/'.$conjunto_atividade[0]->idConjuntoAtividade); ?>">
+          <span class="fa fa-plus-square" aria-hidden="true"> </span> Criar Atividade 
+        </a>
       </div>

@@ -21,6 +21,14 @@
               <label for="codigo_disciplina" class="padding"> <h6> Código da Disciplina: </h6> </label>
               <input type="text" class="form-control" id="codigo_disciplina" name="codigo_disciplina" required>
             </div>
+            <!-- <div class="col-md-6">
+              <label for="status" class="padding"> <h6> Status: </h6> </label>
+              <select class="form-control " id="status" name="status" required>
+                <option value="NULL"> Em Andamento </option>
+                <option value="1"> Disponível </option>
+                <option value="0"> Finalizada </option>
+              </select>
+            </div> -->
           </div>
 
           <div class="row">

@@ -97,6 +97,22 @@ class Professor_model extends CI_Model
     return $this->db->get('atividade')->result();
   }
 
+  public function get_Qtd_Atividades($id_conjunto_atividade=null)
+  {
+    $this->db->select('count(*) as total');
+    $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
+
+		return $this->db->get('atividade')->result();
+  }
+
+  public function get_Qtd_Conjunto_Atividades($idDisciplina=null)
+  {
+    $this->db->select('count(*) as total');
+    $this->db->where('id_disciplina_conjunto', $idDisciplina);
+
+		return $this->db->get('conjunto_atividade')->result();
+  }
+
   public function salvar_atualizacao_atividade($idAtividade=null, $atividade)
   {
     $this->db->where('idAtividade', $idAtividade);

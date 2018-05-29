@@ -6,7 +6,9 @@
   </div>
 
   <div class="col-md-2">
-    <button class="btn btn-primary btn-block cursor" data-toggle="modal" data-target="#myModalCriarConjunto"> Criar Conjunto </button>
+    <button class="btn btn-primary btn-block cursor" data-toggle="modal" data-target="#myModalCriarConjunto">
+      <span class="fa fa-plus-square" aria-hidden="true"> </span> Criar Conjunto
+    </button>
   </div>
 
 <div class="padding col-md-12">
@@ -14,18 +16,24 @@
   <table class="table table-striped">
     <tr>
       <th> Nome do Conjunto </th>
-      <th> Quantidade de Atividades </th>
+      <th> Nº de Atividades </th>
       <th> Ações </th>
     </tr>
     <?php foreach ($conjunto_atividades as $conjunto_atividade) { ?>
       <tr>
         <td> <?= $conjunto_atividade->nome_conjunto; ?> </td>
-        <td> </td>
+        <td> <?= ($this->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade))[0]->total; ?> </td> <!-- Resolver isso pois a view não pode chamar a model diretamente-->
         <td>
-          <a class="btn btn-success mr-1 cursor" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>"> Adicionar Atividade </a>
-          <button type="button" class="btn btn-primary btn-group mr-1 cursor"> Atualizar </button>
-          <button type="button" class="btn btn-danger btn-group mr-1 cursor"> Remover </button>
-          </td>
+          <a class="btn btn-success mr-1 cursor" title="Adicionar atividade para o conjunto" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>">
+            <span class="fa fa-file-text-o" aria-hidden="true"></span>
+          </a>
+          <button type="button" class="btn btn-primary btn-group mr-1 cursor" title="Editar conjunto">
+            <span class="fa fa-pencil" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-danger btn-group mr-1 cursor" title="Excluir conjunto">
+            <span class="fa fa-trash" aria-hidden="true"></span>
+          </button>
+        </td>
       </tr>
     <?php } ?>
   </table>

@@ -1,10 +1,13 @@
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
-  <div class="col-md-10">
+
+  <div class="col-md-9">
     <h1 class="page-header"> Disciplinas </h1>
   </div>
 
-  <div class="col-md-2">
-    <a class="btn btn-primary btn-block" href="<?= base_url(); ?>usuario/cadastro"> Adicionar Disciplina </a>
+  <div class="col-md-3">
+    <a class="btn btn-primary btn-block" href="<?= base_url(); ?>usuario/cadastro">
+      <span class="fa fa-plus-square" aria-hidden="true"> </span> Matricular Disciplina
+    </a>
   </div>
 
   <!-- <div class="col-md-12" style="padding-bottom: 10px">
@@ -20,8 +23,8 @@
     </form>
   </div> -->
 
-  <h1> Minhas Disciplinas </h1>
-  <div class="col-md-12">
+  <div class="padding col-md-12">
+    <h5> Disciplinas Matrículadas </h5>
     <table class="table table-striped">
       <tr>
         <th> ID </th>

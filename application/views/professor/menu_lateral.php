@@ -6,12 +6,12 @@
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url(); ?>professor" style="color: black;">
-            <h5> <span class="fa fa-user-circle" aria-hidden="true"></span> Disciplinas </h5>
+            <h5> <span class="fa fa-tasks" aria-hidden="true"></span> Disciplinas </h5>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url(); ?>professor/atividades" style="color: black;"> 
-            <h5> Atividades </h5>
+          <a class="nav-link" href="<?= base_url(); ?>professor/atividades" style="color: black;">
+            <h5> <span class="fa fa-files-o" aria-hidden="true"></span> Atividades </h5>
           </a>
         </li>
       </ul>

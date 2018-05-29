@@ -6,7 +6,9 @@
   </div>
 
   <div class="col-md-2">
-    <a class="btn btn-primary btn-block" href="<?= base_url(); ?>professor/criar_disciplina"> Criar Disciplina </a>
+    <a class="btn btn-primary btn-block" href="<?= base_url(); ?>professor/criar_disciplina">
+      <span class="fa fa-plus-square" aria-hidden="true"></span> Criar Disciplina 
+    </a>
   </div>
 
   <!-- <div class="col-md-12" style="padding-bottom: 10px">
@@ -26,20 +28,34 @@
   <h5> Minhas Disciplinas </h5>
   <table class="table table-striped paddingTable">
     <tr>
-      <th> Professor </th>
       <th> Código da Disciplina </th>
       <th> Disciplina </th>
+      <th> Nº de Conjuntos </th>
+      <th> Status </th>
       <th> Ações </th>
     </tr>
     <?php foreach ($disciplinas as $disciplina) { ?>
       <tr>
-        <td> <?= $this->session->userdata('nome'); ?> </td>
         <td> <?= $disciplina->codigo_disciplina; ?> </td>
         <td> <?= $disciplina->nome_disciplina; ?> </td>
+        <td> <?= ($this->professor->get_Qtd_Conjunto_Atividades($disciplina->idDisciplina))[0]->total; ?> </td> <!-- Resolver isso pois a view não pode chamar a model diretamente-->
+        <td> <?= $disciplina->status == null ? 'Em Andamento':($disciplina->status == 1 ? 'Disponível':'Finalizada'); ?> </td>
         <td>
-          <a class="btn btn-success mr-1 cursor" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>"> Escolher </a>
-          <a class="btn btn-primary btn-group mr-1 cursor" href="<?= base_url('professor/atualizar_disciplina/'.$disciplina->idDisciplina); ?>"> Editar </a>
-          <a href="<?= base_url('professor/excluir_disciplina/'.$disciplina->idDisciplina); ?>" class="btn btn-danger btn-group mr-0" onclick="return confirm('Deseja realmente remover essa disciplina?'); "> Remover </a>
+          <a class="btn btn-success mr-1  " title="Adicionar conjuntos de atividades para a disciplina" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>">
+            <span class="fa fa-paste" aria-hidden="true"></span>
+          </a>
+          <?php if ($disciplina->status == null): ?>
+            <a class="btn btn-primary btn-group mr-1" title="Editar disciplina" href="<?= base_url('professor/atualizar_disciplina/'.$disciplina->idDisciplina); ?>">
+              <span class="fa fa-pencil" aria-hidden="true"></span>
+            </a>
+          <?php else: ?>
+            <a class="btn btn-primary btn-group mr-1" title="Edição bloqueada">
+              <span class="fa fa-pencil color" aria-hidden="true"></span>
+            </a>
+          <?php endif; ?>
+          <a class="btn btn-danger btn-group mr-0" title="Excluir disciplina" href="<?= base_url('professor/excluir_disciplina/'.$disciplina->idDisciplina); ?>" onclick="return confirm('Deseja realmente remover essa disciplina?'); ">
+            <span class="fa fa-trash" aria-hidden="true"></span>
+          </a>
         </td>
       </tr>
     <?php } ?>

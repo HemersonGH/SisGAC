@@ -102,12 +102,13 @@ class Professor extends CI_Controller {
 
 		$this->load->model('professor_model','professor');
 
-		$data['id_Professor'] = $this->input->post('idProfessor');
-		$data['nome_disciplina'] = $this->input->post('nome_disciplina');
-		$data['codigo_disciplina'] = $this->input->post('codigo_disciplina');
-		$data['descricao_disciplina'] = $this->input->post('descricao_disciplina');
+		$disciplina['id_Professor'] = $this->input->post('idProfessor');
+		$disciplina['nome_disciplina'] = $this->input->post('nome_disciplina');
+		$disciplina['codigo_disciplina'] = $this->input->post('codigo_disciplina');
+		// $disciplina['status'] = $this->input->post('status');
+		$disciplina['descricao_disciplina'] = $this->input->post('descricao_disciplina');
 
-		if ($this->professor->cadastrar_disciplina($data)) {
+		if ($this->professor->cadastrar_disciplina($disciplina)) {
 			redirect('professor/3');
 		} else {
 			redirect('professor/4');
@@ -136,6 +137,13 @@ class Professor extends CI_Controller {
 		$idDisciplina = $this->input->post('idDisciplina');
 		$disciplina['nome_disciplina'] = $this->input->post('nome_disciplina');
 		$disciplina['codigo_disciplina'] = $this->input->post('codigo_disciplina');
+
+		if ($this->input->post('status') == "NULL") {
+			$disciplina['status'] = null;
+		} else {
+			$disciplina['status'] = $this->input->post('status');
+		}
+
 		$disciplina['descricao_disciplina'] = $this->input->post('descricao_disciplina');
 
 		if ($this->professor->salvar_atualizacao_disciplina($idDisciplina, $disciplina)) {
@@ -220,7 +228,7 @@ class Professor extends CI_Controller {
 
 		}
 
-		$this->load->view('professor/atividades', $conjunto_atividades);
+		$this->load->view('professor/conjuntos_atividades', $conjunto_atividades);
 		$this->load->view('includes/html_footer');
 	}
 
@@ -311,7 +319,7 @@ class Professor extends CI_Controller {
 		}
 
 		$this->load->view('professor/cabecalho_atividade', $conjunto_atividade);
-		$this->load->view('professor/conjunto_atividades', $atividades);
+		$this->load->view('professor/atividades_conjunto', $atividades);
 		$this->load->view('includes/html_footer');
 	}
 
@@ -393,6 +401,22 @@ class Professor extends CI_Controller {
 		} else {
 			redirect('professor/atividades_conjunto/'.$idConjuntoAtividade	.'/6');
 		}
+	}
+
+	public function get_Qtd_Atividades($idConjuntoAtividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		return ($this->professor->get_Qtd_Atividades($idConjuntoAtividade))[0]->total;
+	}
+
+	public function get_Qtd_Conjunto_Atividades($idDisciplina=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		return ($this->professor->get_Qtd_Conjunto_Atividades($idDisciplina))[0]->total;
 	}
 
 }
