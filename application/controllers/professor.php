@@ -39,43 +39,43 @@ class Professor extends CI_Controller {
 		switch ($indice)
 		{
 			case 1:
-			$data['msg'] = "Dados atualizados com sucesso.";
-			$this->load->view('includes/msg_sucesso_login', $data);
+			$msg['msg'] = "Dados atualizados com sucesso.";
+			$this->load->view('includes/msg_sucesso_login', $msg);
 			break;
 
 			case 2:
-			$data['msg'] = "Não foi possível atualizar os dados.";
-			$this->load->view('includes/msg_erro_login', $data);
+			$msg['msg'] = "Não foi possível atualizar os dados.";
+			$this->load->view('includes/msg_erro_login', $msg);
 			break;
 
 			case 3:
-			$data['msg'] = "Disciplina criada com sucesso.";
-			$this->load->view('includes/msg_sucesso', $data);
+			$msg['msg'] = "Disciplina criada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 4:
-			$data['msg'] = "Não foi possível criar a disciplina.";
-			$this->load->view('includes/msg_erro', $data);
+			$msg['msg'] = "Não foi possível criar a disciplina.";
+			$this->load->view('includes/msg_erro', $msg);
 			break;
 
 			case 5:
-			$data['msg'] = "Disciplina atualizada com sucesso.";
-			$this->load->view('includes/msg_sucesso', $data);
+			$msg['msg'] = "Disciplina atualizada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 6:
-			$data['msg'] = "Não foi possível atualizar a disciplina.";
-			$this->load->view('includes/msg_erro', $data);
+			$msg['msg'] = "Não foi possível atualizar a disciplina.";
+			$this->load->view('includes/msg_erro', $msg);
 			break;
 
 			case 7:
-			$data['msg'] = "Disciplina excluída com sucesso.";
-			$this->load->view('includes/msg_sucesso', $data);
+			$msg['msg'] = "Disciplina excluída com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 8:
-			$data['msg'] = "Não foi possível excluir a disciplina.";
-			$this->load->view('includes/msg_erro', $data);
+			$msg['msg'] = "Não foi possível excluir a disciplina.";
+			$this->load->view('includes/msg_erro', $msg);
 			break;
 
 		}
@@ -207,23 +207,23 @@ class Professor extends CI_Controller {
 
 		switch ($indice) {
 			case 1:
-			$data['msg'] = "Conjunto cadastrado com sucesso.";
-			$this->load->view('includes/msg_sucesso', $data);
+			$msg['msg'] = "Conjunto cadastrado com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 2:
-			$data['msg'] = "Não foi possível cadastrar o conjunto.";
-			$this->load->view('includes/msg_erro', $data);
+			$msg['msg'] = "Não foi possível cadastrar o conjunto.";
+			$this->load->view('includes/msg_erro', $msg);
 			break;
 
 			case 3:
-			$data['msg'] = "Conjunto atualizado com sucesso.";
-			$this->load->view('includes/msg_sucesso', $data);
+			$msg['msg'] = "Conjunto atualizado com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 4:
-			$data['msg'] = "Não foi possível atualizar o conjunto.";
-			$this->load->view('includes/msg_erro', $data);
+			$msg['msg'] = "Não foi possível atualizar o conjunto.";
+			$this->load->view('includes/msg_erro', $msg);
 			break;
 
 		}
@@ -237,10 +237,10 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$data['id_professor'] = $this->input->post('id_professor');
-		$data['nome_conjunto'] = $this->input->post('nome_conjunto');
+		$dadosProfessor['id_professor'] = $this->input->post('id_professor');
+		$dadosProfessor['nome_conjunto'] = $this->input->post('nome_conjunto');
 
-		if ($this->professor->cadastrar_conjunto_atividades($data)) {
+		if ($this->professor->cadastrar_conjunto_atividades($dadosProfessor)) {
 			redirect('professor/atividades/1');
 		} else {
 			redirect('professor/atividades/2');
@@ -288,33 +288,33 @@ class Professor extends CI_Controller {
 
 		switch ($indice) {
 			case 1:
-			$data['msg'] = "Atividade cadastrada com sucesso.";
-			$this->load->view('includes/msg_sucesso', $data);
+			$msg['msg'] = "Atividade cadastrada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 2:
-			$data['msg'] = "Não foi possível cadastrar a atividade.";
-			$this->load->view('includes/msg_erro', $data);
+			$msg['msg'] = "Não foi possível cadastrar a atividade.";
+			$this->load->view('includes/msg_erro', $msg);
 			break;
 
 			case 3:
-			$data['msg'] = "Atividade atualizada com sucesso.";
-			$this->load->view('includes/msg_sucesso', $data);
+			$msg['msg'] = "Atividade atualizada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 4:
-			$data['msg'] = "Não foi possível atualizar a atividade.";
-			$this->load->view('includes/msg_erro', $data);
+			$msg['msg'] = "Não foi possível atualizar a atividade.";
+			$this->load->view('includes/msg_erro', $msg);
 			break;
 
 			case 5:
-			$data['msg'] = "Atividade excluída com sucesso.";
-			$this->load->view('includes/msg_sucesso', $data);
+			$msg['msg'] = "Atividade excluída com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 6:
-			$data['msg'] = "Não foi possível excluír a atividade.";
-			$this->load->view('includes/msg_erro', $data);
+			$msg['msg'] = "Não foi possível excluír a atividade.";
+			$this->load->view('includes/msg_erro', $msg);
 			break;
 		}
 

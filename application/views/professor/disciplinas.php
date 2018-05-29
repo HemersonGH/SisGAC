@@ -66,8 +66,26 @@
 </div>
 </div>
 
-
-
+<!-- Modal Logout-->
+<div class="modal fade" id="myModalExcluirDisciplina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4> Encerrar sessão </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja sair?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger cursor type_color" data-dismiss="modal"> Não </button>
+        <a class="btn btn-primary" href="<?= base_url(); ?>usuario/logout"> Sim </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
 <h1> Disciplinas </h1> -->

@@ -44,18 +44,18 @@ class Usuario extends CI_Controller {
 
 		switch ($indice) {
 			case '1':
-			$data['msg'] = "Usuário cadastrado com sucesso.";
-			$this->load->view('includes/msg_sucesso_login', $data);
+			$msg['msg'] = "Usuário cadastrado com sucesso.";
+			$this->load->view('includes/msg_sucesso_login', $msg);
 			break;
 
 			case '2':
-			$data['msg'] = "Não foi possível cadastrar o usuário.";
-			$this->load->view('includes/msg_erro_login', $data);
+			$msg['msg'] = "Não foi possível cadastrar o usuário.";
+			$this->load->view('includes/msg_erro_login', $msg);
 			break;
 
 			case '3':
-			$data['msg'] = "Usuário/Senha incorretos.";
-			$this->load->view('includes/msg_erro_login', $data);
+			$msg['msg'] = "Usuário/Senha incorretos.";
+			$this->load->view('includes/msg_erro_login', $msg);
 			break;
 
 			case null:
@@ -80,18 +80,18 @@ class Usuario extends CI_Controller {
 
 		$this->load->model('usuario_model','usuario');
 
-		$data['usuario'] = $this->usuario->valida_usuario($email, $senha);
+		$dadosUsuario['usuario'] = $this->usuario->valida_usuario($email, $senha);
 
-		if (count($data['usuario']) == 1) {
-			$dados['nome'] = $data['usuario'][0]->nome;
-			$dados['idUsuario'] = $data['usuario'][0]->idUsuario;
-			$dados['tipoUsuario'] = $data['usuario'][0]->tipoUsuario;
-			$dados['logado'] = true;
-			$this->session->set_userdata($dados);
+		if (count($dadosUsuario['usuario']) == 1) {
+			$dadosUsuarioLogado['nome'] = $dadosUsuario['usuario'][0]->nome;
+			$dadosUsuarioLogado['idUsuario'] = $dadosUsuario['usuario'][0]->idUsuario;
+			$dadosUsuarioLogado['tipoUsuario'] = $dadosUsuario['usuario'][0]->tipoUsuario;
+			$dadosUsuarioLogado['logado'] = true;
+			$this->session->set_userdata($dadosUsuarioLogado);
 
-			if ($data['usuario'][0]->tipoUsuario == 1) {
+			if ($dadosUsuario['usuario'][0]->tipoUsuario == 1) {
 				redirect('aluno');
-			} else if ($data['usuario'][0]->tipoUsuario == 2) {
+			} else if ($dadosUsuario['usuario'][0]->tipoUsuario == 2) {
 				redirect('professor');
 			}
 		} else {
@@ -101,16 +101,16 @@ class Usuario extends CI_Controller {
 
 	public function cadastrar()
 	{
-		$data['nome'] = $this->input->post('nome');
-		$data['cpf'] = $this->input->post('cpf');
-		$data['data'] = $this->input->post('data');
-		$data['email'] = $this->input->post('email');
-		$data['senha'] = md5($this->input->post('senha'));
-		$data['tipoUsuario'] = $this->input->post('tipoUsuario');
+		$dadosUsuario['nome'] = $this->input->post('nome');
+		$dadosUsuario['cpf'] = $this->input->post('cpf');
+		$dadosUsuario['data'] = $this->input->post('data');
+		$dadosUsuario['email'] = $this->input->post('email');
+		$dadosUsuario['senha'] = md5($this->input->post('senha'));
+		$dadosUsuario['tipoUsuario'] = $this->input->post('tipoUsuario');
 
 		$this->load->model('usuario_model','usuario');
 
-		if ($this->usuario->cadastrar($data)) {
+		if ($this->usuario->cadastrar($dadosUsuario)) {
 			redirect('usuario/login/1');
 		} else {
 			redirect('usuario/login/2');
@@ -123,34 +123,22 @@ class Usuario extends CI_Controller {
 		redirect('usuario');
 	}
 
-	public function cadastro()
-	{
-		$this->verificar_sessao();
-		$this->load->model('usuario_model','usuario');
-
-		$dados['cidades'] = $this->usuario->get_Cidades();
-
-		$this->load->view('includes/html_header');
-		$this->load->view('includes/menu');
-		$this->load->view('cadastro_usuario', $dados);
-		$this->load->view('includes/html_footer');
-	}
 	public function atualizar($id=null, $indice=null)
 	{
 		$this->verificar_sessao();
 		$this->load->model('usuario_model','usuario');
 
-		$data['usuario'] = $this->usuario->get_Usuario($id);
+		$dadosUsuario['usuario'] = $this->usuario->get_Usuario($id);
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 
 		if ($indice == 1) {
-			$data['msg'] = 	"Senha atualizada com sucesso.";
-			$this->load->view('includes/msg_sucesso', $data);
+			$msg['msg'] = 	"Senha atualizada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
 		} else if ($indice == 2) {
-			$data['msg'] = 	"Não foi possível atualizar a senha do usuário.";
-			$this->load->view('includes/msg_erro', $data);
+			$msg['msg'] = 	"Não foi possível atualizar a senha do usuário.";
+			$this->load->view('includes/msg_erro', $msg);
 		}
 
 
@@ -160,7 +148,7 @@ class Usuario extends CI_Controller {
 			$this->load->view('professor/menu_lateral');
 		}
 
-		$this->load->view('includes/editar_usuario', $data);
+		$this->load->view('includes/editar_usuario', $dadosUsuario);
 		$this->load->view('includes/html_footer');
 	}
 
@@ -171,26 +159,26 @@ class Usuario extends CI_Controller {
 
 		$id = $this->input->post('idUsuario');
 
-		$data['nome'] = $this->input->post('name');
-		$data['cpf'] = $this->input->post('cpf');
-		$data['data'] = $this->input->post('data');
-		$data['email'] = $this->input->post('email');
+		$dadosUsuario['nome'] = $this->input->post('name');
+		$dadosUsuario['cpf'] = $this->input->post('cpf');
+		$dadosUsuario['data'] = $this->input->post('data');
+		$dadosUsuario['email'] = $this->input->post('email');
 
 		$this->load->model('usuario_model','usuario');
 
 		if ($this->session->userdata('tipoUsuario') == 1) {
-			if ($this->usuario->salvar_atualizacao($id, $data)) {
-				$dados['nome'] = $data['nome'];
-				$this->session->set_userdata($dados);
+			if ($this->usuario->salvar_atualizacao($id, $dadosUsuario)) {
+				$dadosUsuarioLogado['nome'] = $dadosUsuario['nome'];
+				$this->session->set_userdata($dadosUsuarioLogado);
 
 				redirect('aluno/1');
 			} else {
 				redirect('aluno/2');
 			}
 		} else if ($this->session->userdata('tipoUsuario') == 2) {
-			if ($this->usuario->salvar_atualizacao($id, $data)) {
-				$dados['nome'] = $data['nome'];
-				$this->session->set_userdata($dados);
+			if ($this->usuario->salvar_atualizacao($id, $dadosUsuario)) {
+				$dadosUsuarioLogado['nome'] = $dadosUsuario['nome'];
+				$this->session->set_userdata($dadosUsuarioLogado);
 
 				redirect('professor/1');
 			} else {

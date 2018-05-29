@@ -34,11 +34,11 @@ class Aluno extends CI_Controller {
 		$this->load->view('includes/menu');
 
 		if ($indice == 1) {
-			$data['msg'] = "Dados atualizados com sucesso.";
-			$this->load->view('includes/msg_sucesso_login', $data);
+			$msg['msg'] = "Dados atualizados com sucesso.";
+			$this->load->view('includes/msg_sucesso_login', $msg);
 		} else if ($indice == 2) {
-			$data['msg'] = "Não foi possível atualizar os dados.";
-			$this->load->view('includes/msg_erro_login', $data);
+			$msg['msg'] = "Não foi possível atualizar os dados.";
+			$this->load->view('includes/msg_erro_login', $msg);
 		}
 
 		$this->load->view('aluno/menu_lateral');
