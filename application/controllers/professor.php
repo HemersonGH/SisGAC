@@ -40,12 +40,12 @@ class Professor extends CI_Controller {
 		{
 			case 1:
 			$msg['msg'] = "Dados atualizados com sucesso.";
-			$this->load->view('includes/msg_sucesso_login', $msg);
+			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 2:
 			$msg['msg'] = "Não foi possível atualizar os dados.";
-			$this->load->view('includes/msg_erro_login', $msg);
+			$this->load->view('includes/msg_erro', $msg);
 			break;
 
 			case 3:
@@ -165,32 +165,49 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function adicionar_conjunto_atividade($idDisciplina=null)
+	public function adicionar_conjunto_atividade($idDisciplina=null, $indice=null)
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
 		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
+		$conjunto_atividades_sem_disciplina['conjunto_atividades_sem_disciplina'] = $this->professor->get_Conjuntos_Sem_Disciplinas($this->session->userdata('idUsuario'));
+		$conjunto_atividades_da_disciplina['conjunto_atividades_da_disciplina'] = $this->professor->get_Conjuntos_Da_Disciplinas($this->session->userdata('idUsuario'), $idDisciplina);
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 		$this->load->view('professor/menu_lateral');
-		$this->load->view('professor/adicionar_conjunto_atividade', $disciplina);
+
+		switch ($indice) {
+			case 1:
+			$msg['msg'] = "Conjunto adicionado com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
+			break;
+
+			case 2:
+			$msg['msg'] = "Não foi possível adicionar o conjunto.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
+		}
+
+		$this->load->view('professor/cabecalho_disciplina', $disciplina);
+		$this->load->view('professor/adicionar_conjunto_atividade', $conjunto_atividades_sem_disciplina);
 		$this->load->view('includes/html_footer');
 	}
 
-	public function criar_iteracao($idDisciplina=null)
+	public function cadastrar_conjAtiv_disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
+		$conjunto_atividade['id_disciplina_conjunto'] = $this->input->post('idDisciplina');
+		$conjunto_atividade['idConjuntoAtividade'] = $this->input->post('idConjuntoAtividade');
 
-		$this->load->view('includes/html_header');
-		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral');
-		$this->load->view('professor/adicionar_atividade', $disciplina);
-		$this->load->view('includes/html_footer');
+		if ($this->professor->cadastrar_conjAtiv_disciplina($conjunto_atividade)) {
+			redirect('professor/adicionar_conjunto_atividade/'.$conjunto_atividade['id_disciplina_conjunto'].'/1');
+		} else {
+			redirect('professor/adicionar_conjunto_atividade/'.$conjunto_atividade['id_disciplina_conjunto'].'/2');
+		}
 	}
 
 	public function atividades($indice=null)
@@ -237,10 +254,10 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$dadosProfessor['id_professor'] = $this->input->post('id_professor');
-		$dadosProfessor['nome_conjunto'] = $this->input->post('nome_conjunto');
+		$dadosProfessorConjunto['id_professor'] = $this->input->post('id_professor');
+		$dadosProfessorConjunto['nome_conjunto'] = $this->input->post('nome_conjunto');
 
-		if ($this->professor->cadastrar_conjunto_atividades($dadosProfessor)) {
+		if ($this->professor->cadastrar_conjunto_atividades($dadosProfessorConjunto)) {
 			redirect('professor/atividades/1');
 		} else {
 			redirect('professor/atividades/2');

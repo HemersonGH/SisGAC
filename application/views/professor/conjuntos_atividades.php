@@ -24,20 +24,26 @@
         <td> <?= $conjunto_atividade->nome_conjunto; ?> </td>
         <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade); ?> </td>
         <td>
-          <a title="Adicionar atividade para o conjunto" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>">
+          <a data-toggle="tooltip" title="Adicionar atividade para o conjunto" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>">
             <span class="fa fa-paste paste mr-2 " aria-hidden="true"> </span>
           </a>
           <!-- <button type="button" class="btn btn-primary btn-group mr-1 cursor" title="Editar conjunto"> -->
-            <span class="fa fa-pencil pencil mr-2" aria-hidden="true" title="Editar conjunto"></span>
+            <span class="fa fa-pencil pencil mr-2" aria-hidden="true" data-toggle="tooltip" title="Editar conjunto"></span>
           <!-- </button> -->
           <!-- <button title="Excluir conjunto"> -->
-            <span class="fa fa-remove remove mr-2" aria-hidden="true" title="Excluir conjunto"></span>
+            <span class="fa fa-remove remove mr-2" aria-hidden="true" data-toggle="tooltip" title="Excluir conjunto"></span>
           <!-- </button> -->
         </td>
       </tr>
     <?php } ?>
   </table>
 </div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
 <!-- Modal Criar Conjunto de Atividades-->
 <div class="modal fade" id="myModalCriarConjunto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

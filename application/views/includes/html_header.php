@@ -11,6 +11,8 @@
     <link href="<?= base_url(); ?>assets/css/dashboard.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/font-awesome.css" rel="stylesheet">
 
+    <script src="<?= base_url(); ?>assets/js/vendor/jquery.min.js"></script>
+
     <title> SGDs </title>
 
   </head>

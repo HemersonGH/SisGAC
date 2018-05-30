@@ -54,6 +54,24 @@ class Professor_model extends CI_Model
     return $this->db->get('conjunto_atividade')->result();
   }
 
+  public function get_Conjuntos_Sem_Disciplinas($idUsuario=null)
+  {
+    $this->db->select('*');
+    $this->db->where('id_professor', $idUsuario);
+    $this->db->where('id_disciplina_conjunto', null);
+
+    return $this->db->get('conjunto_atividade')->result();
+  }
+
+  public function get_Conjuntos_Da_Disciplinas($idUsuario=null, $idDisciplina)
+  {
+    $this->db->select('*');
+    $this->db->where('id_professor', $idUsuario);
+    $this->db->where('id_disciplina_conjunto', $idDisciplina);
+
+    return $this->db->get('conjunto_atividade')->result();
+  }
+
   public function get_Conjunto($id_conjunto_atividade=null)
   {
     $this->db->select('*');
@@ -129,6 +147,13 @@ class Professor_model extends CI_Model
     $this->db->where('idAtividade', $idAtividade);
 
     return $this->db->delete('atividade');
+  }
+
+  public function cadastrar_conjAtiv_disciplina($conjunto_atividade)
+  {
+    $this->db->where('idConjuntoAtividade', $conjunto_atividade['idConjuntoAtividade']);
+
+    return $this->db->update('conjunto_atividade', $conjunto_atividade);
   }
 
   public function valida_usuario($email, $senha)

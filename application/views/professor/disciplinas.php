@@ -30,7 +30,7 @@
     <tr>
       <th> Código da Disciplina </th>
       <th> Disciplina </th>
-      <th> Nº de Conjuntos </th>
+      <th> Nº de Conjuntos de Atividades </th>
       <th> Status </th>
       <th> Ações </th>
     </tr>
@@ -42,27 +42,26 @@
         <td> <?= $disciplina->status == null ? 'Em Andamento':($disciplina->status == 1 ? 'Disponível':'Finalizada'); ?> </td>
         <td>
           <?php if ($disciplina->status == null): ?>
-            <a title="Adicionar conjuntos de atividades para a disciplina" href="<?= base_url('professor/adicionar_conjunto_atividade/'.$disciplina->idDisciplina); ?>">
+            <a data-toggle="tooltip" title="Adicionar conjuntos de atividades para a disciplina" href="<?= base_url('professor/adicionar_conjunto_atividade/'.$disciplina->idDisciplina); ?>">
               <span class="fa fa-folder folder mr-2" aria-hidden="true"></span>
             </a>
           <?php else: ?>
-            <a title="Não é possível adicionar conjunto de atividades pois a disciplina está disponível" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>">
+            <a data-toggle="tooltip" title="Não é possível adicionar conjunto de atividades pois a disciplina está disponível" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>">
               <span class="fa fa-folder mr-2 color_disabled" aria-hidden="true"></span>
             </a>
           <?php endif; ?>
 
           <?php if ($disciplina->status == null): ?>
-            <a title="Editar disciplina" href="<?= base_url('professor/atualizar_disciplina/'.$disciplina->idDisciplina); ?>">
+            <a data-toggle="tooltip" title="Editar disciplina" href="<?= base_url('professor/atualizar_disciplina/'.$disciplina->idDisciplina); ?>">
               <span class="fa fa-pencil pencil mr-2" aria-hidden="true"></span>
             </a>
           <?php else: ?>
-            <a title="Edição bloqueada">
+            <a data-toggle="tooltip" title="Edição bloqueada">
               <span class="fa fa-pencil color_disabled mr-2" aria-hidden="true"></span>
             </a>
           <?php endif; ?>
-          <!--  " -->
-          <a href="<?= base_url('professor/excluir_disciplina/'.$disciplina->idDisciplina); ?>" onclick="return confirm('Deseja realmente remover essa disciplina?');">
-            <span class="fa fa-remove remove mr-2 cursor" title="Excluir disciplina" aria-hidden="true"></span>
+          <a data-toggle="tooltip" href="<?= base_url('professor/excluir_disciplina/'.$disciplina->idDisciplina); ?>" onclick="return confirm('Deseja realmente remover essa disciplina?');">
+            <span class="fa fa-remove remove mr-2 cursor" title="Excluir disciplina" data-toggle="tooltip" aria-hidden="true"></span>
           </a>
         </td>
       </tr>
@@ -72,3 +71,9 @@
 </main>
 </div>
 </div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>

@@ -63,6 +63,10 @@
   margin-bottom: 4%;
 }
 
+.paddingBotton {
+  margin-bottom: 8%;
+}
+
 .paddingUp {
   margin-top: 5%;
 }
@@ -133,4 +137,8 @@
 .folder {
   /* color: blue; */
   font-size: 18px;
+}
+
+.paddingButtonAdd {
+  margin-top: 37px;
 }
