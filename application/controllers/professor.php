@@ -188,10 +188,21 @@ class Professor extends CI_Controller {
 			$msg['msg'] = "Não foi possível adicionar o conjunto.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
+
+			case 3:
+			$msg['msg'] = "Conjunto removido com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
+			break;
+
+			case 4:
+			$msg['msg'] = "Não foi possível remover o conjunto.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
 		}
 
 		$this->load->view('professor/cabecalho_disciplina', $disciplina);
 		$this->load->view('professor/adicionar_conjunto_atividade', $conjunto_atividades_sem_disciplina);
+		$this->load->view('professor/conjuntos_atividades_disciplina', $conjunto_atividades_da_disciplina);
 		$this->load->view('includes/html_footer');
 	}
 
@@ -207,6 +218,21 @@ class Professor extends CI_Controller {
 			redirect('professor/adicionar_conjunto_atividade/'.$conjunto_atividade['id_disciplina_conjunto'].'/1');
 		} else {
 			redirect('professor/adicionar_conjunto_atividade/'.$conjunto_atividade['id_disciplina_conjunto'].'/2');
+		}
+	}
+
+	public function remove_conjunto_atividade_disciplina($idDisciplina=null, $idConjuntoAtividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$conjunto_atividade = $this->professor->get_Conjunto($idConjuntoAtividade);
+		$conjunto_atividade[0]->id_disciplina_conjunto = null;
+
+		if ($this->professor->remove_conjunto_atividade_disciplina($idConjuntoAtividade, $conjunto_atividade[0])) {
+			redirect('professor/adicionar_conjunto_atividade/'.$idDisciplina.'/3');
+		} else {
+			redirect('professor/adicionar_conjunto_atividade/'.$idDisciplina.'/4');
 		}
 	}
 
@@ -426,7 +452,6 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$this->professor->get_Qtd_Atividades($idConjuntoAtividade);
-
 		// $this->professor->get_Qtd_Conjunto_Atividades($disciplina->idDisciplina); // Estava implementado desse jeito antes, a view chamava a model direto
 	}
 
@@ -436,7 +461,6 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$this->professor->get_Qtd_Conjunto_Atividades($idDisciplina);
-
 		// $this->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade); // Estava implementado desse jeito antes, a view chamava a model direto
 	}
 

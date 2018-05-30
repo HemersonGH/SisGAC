@@ -74,7 +74,7 @@ class Professor_model extends CI_Model
 
   public function get_Conjunto($id_conjunto_atividade=null)
   {
-    $this->db->select('*');
+    // $this->db->select('*');
     $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
 
     return $this->db->get('conjunto_atividade')->result();
@@ -152,6 +152,13 @@ class Professor_model extends CI_Model
   public function cadastrar_conjAtiv_disciplina($conjunto_atividade)
   {
     $this->db->where('idConjuntoAtividade', $conjunto_atividade['idConjuntoAtividade']);
+
+    return $this->db->update('conjunto_atividade', $conjunto_atividade);
+  }
+
+  public function remove_conjunto_atividade_disciplina($idConjuntoAtividade=null, $conjunto_atividade)
+  {
+    $this->db->where('idConjuntoAtividade', $idConjuntoAtividade);
 
     return $this->db->update('conjunto_atividade', $conjunto_atividade);
   }

@@ -19,23 +19,14 @@
         </select>
       </div>
       <div class="col-md-2">
-        <button type="submit" class="btn btn-primary btn-block paddingButtonAdd" id="add" name="add"> Adicionar </button>
+        <button type="submit" class="btn btn-primary btn-block paddingButtonAdd cursor" id="add" name="add"> Adicionar </button>
       </div>
     </div>
   </form>
 </div>
 
-<div class="padding col-md-12">
-  <h4> Conjuntos de Atividades Adicionados </h4>
-  <table class="table table-striped">
-    <tr>
-      <th> Nome do Conjunto </th>
-      <th> Nº de Atividades </th>
-      <th> Ações </th>
-    </tr>
-  </table>
-
-</div>
-</main>
-</div>
-</div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
