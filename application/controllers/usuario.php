@@ -179,7 +179,7 @@ class Usuario extends CI_Controller {
 			if ($this->usuario->salvar_atualizacao($id, $dadosUsuario)) {
 				$dadosUsuarioLogado['nome'] = $dadosUsuario['nome'];
 				$this->session->set_userdata($dadosUsuarioLogado);
-
+				
 				redirect('professor/1');
 			} else {
 				redirect('professor/2');
@@ -219,53 +219,4 @@ class Usuario extends CI_Controller {
 		}
 	}
 
-	public function pesquisar()
-	{
-		$this->verificar_sessao();
-
-		$termo = $this->input->post('pesquisar');
-
-		$this->load->model('usuario_model','usuario');
-
-		$dados['usuarios'] = $this->usuario->get_Usuarios_Like($termo);
-
-		$this->load->view('includes/html_header');
-		$this->load->view('includes/menu');
-		$this->load->view('listar_usuario', $dados);
-		$this->load->view('includes/html_footer');
-	}
-
-	public function pag($value=null)
-	{
-		$this->verificar_sessao();
-		$this->load->model('usuario_model','usuario');
-
-		if ($value == null) {
-			$value = 1;
-		}
-
-		$reg_p_pag = 10;
-
-		if ($value <= $reg_p_pag) {
-			$data['btnA'] = 'disabled';
-		} else {
-			$data['btnA'] = '';
-		}
-
-		$u = $this->usuario->getQtdUsuarios();
-
-		if (($u[0]->total - $value) < $reg_p_pag) {
-			$data['btnP'] = 'disabled';
-		} else {
-			$data['btnP'] = '';
-		}
-
-		$dados['usuarios'] = $this->usuario->get_Usuarios_Pag($value, $reg_p_pag);
-
-		$this->load->view('includes/html_header');
-		$this->load->view('includes/menu');
-		$this->load->view('listar_usuario', $dados);
-		$this->load->view('includes/html_footer');
-
-	}
 }

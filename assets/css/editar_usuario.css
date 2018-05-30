@@ -1,5 +1,5 @@
 .ajust {
-	/* margin: 0px auto; */ serve para centralizar os input
+  /* margin: 0px auto; */ serve para centralizar os input
   -ms-flex-align: center;
   align-items: center;
   padding-top: 1%;
@@ -54,9 +54,3 @@
 .form-signin .form-control:focus {
   z-index: 2;
 }
-/* .form-signin input[type="email"] {
-  margin-bottom: -10px;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 15px;
-} */

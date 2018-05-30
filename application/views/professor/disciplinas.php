@@ -6,7 +6,7 @@
   </div>
 
   <div class="col-md-2">
-    <a class="btn btn-primary btn-block" href="<?= base_url(); ?>professor/criar_disciplina">
+    <a class="btn btn-primary btn-block font" href="<?= base_url(); ?>professor/criar_disciplina">
       <span class="fa fa-plus-square" aria-hidden="true"></span> Criar Disciplina
     </a>
   </div>
@@ -26,7 +26,7 @@
 
 <div class="padding col-md-12">
   <h5> Minhas Disciplinas </h5>
-  <table class="table table-striped paddingTable">
+  <table class="table table-striped">
     <tr>
       <th> Código da Disciplina </th>
       <th> Disciplina </th>
@@ -66,7 +66,7 @@
         </td>
       </tr>
     <?php } ?>
-</table>
+  </table>
 </div>
 </main>
 </div>
@@ -74,6 +74,6 @@
 
 <script>
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="tooltip"]').tooltip();
 });
 </script>

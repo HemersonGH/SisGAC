@@ -15,7 +15,7 @@ class Usuario_model extends CI_Model
   public function valida_usuario($email, $senha)
   {
     $this->db->where('email', $email);
-		$this->db->where('senha', $senha);
+    $this->db->where('senha', $senha);
 
     return $this->db->get('usuario')->result();
   }
@@ -23,22 +23,6 @@ class Usuario_model extends CI_Model
   public function get_Usuario($id=null)
   {
     $this->db->where('idUsuario', $id);
-    return $this->db->get('usuario')->result();
-  }
-
-  public function get_Usuarios()
-  {
-    $this->db->select('*');
-    $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
-
-    return $this->db->get('usuario')->result();
-  }
-
-  public function get_Usuarios_Like($termo)
-  {
-    $this->db->select('*');
-    $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
-    $this->db->like('nome', $termo);
 
     return $this->db->get('usuario')->result();
   }
@@ -72,27 +56,6 @@ class Usuario_model extends CI_Model
     } else {
       return false;
     }
-  }
-
-  public function get_Cidades()
-  {
-    return $this->db->get('cidade')->result();
-  }
-
-  public function getQtdUsuarios()
-  {
-    $this->db->select('count(*) as total');
-
-		return $this->db->get('usuario')->result();
-  }
-
-  public function get_Usuarios_Pag($value, $reg_p_pag)
-  {
-    $this->db->select('*');
-    $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
-    $this->db->limit($reg_p_pag, $value);
-
-    return $this->db->get('usuario')->result();
   }
 
 }

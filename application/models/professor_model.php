@@ -14,7 +14,6 @@ class Professor_model extends CI_Model
 
   public function get_Disciplinas($idUsuario=null)
   {
-    // $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
     $this->db->select('*');
     $this->db->where('id_professor', $idUsuario);
 
@@ -24,6 +23,7 @@ class Professor_model extends CI_Model
   public  function get_Disciplina($idDisciplina=null)
   {
     $this->db->where('idDisciplina', $idDisciplina);
+
     return $this->db->get('disciplina')->result();
   }
 
@@ -35,11 +35,11 @@ class Professor_model extends CI_Model
   }
 
   public function excluir_disciplina($idDisciplina=null)
-	{
-		$this->db->where('idDisciplina', $idDisciplina);
+  {
+    $this->db->where('idDisciplina', $idDisciplina);
 
     return $this->db->delete('disciplina');
-	}
+  }
 
   public function cadastrar_conjunto_atividades($data)
   {
@@ -74,7 +74,6 @@ class Professor_model extends CI_Model
 
   public function get_Conjunto($id_conjunto_atividade=null)
   {
-    // $this->db->select('*');
     $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
 
     return $this->db->get('conjunto_atividade')->result();
@@ -120,7 +119,7 @@ class Professor_model extends CI_Model
     $this->db->select('count(*) as total');
     $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
 
-		$qtd = $this->db->get('atividade')->result();
+    $qtd = $this->db->get('atividade')->result();
 
     return $qtd[0]->total;
   }
@@ -132,7 +131,7 @@ class Professor_model extends CI_Model
 
     $qtd = $this->db->get('conjunto_atividade')->result();
 
-		return $qtd[0]->total;
+    return $qtd[0]->total;
   }
 
   public function salvar_atualizacao_atividade($idAtividade=null, $atividade)
@@ -161,81 +160,6 @@ class Professor_model extends CI_Model
     $this->db->where('idConjuntoAtividade', $idConjuntoAtividade);
 
     return $this->db->update('conjunto_atividade', $conjunto_atividade);
-  }
-
-  public function valida_usuario($email, $senha)
-  {
-    $this->db->where('email', $email);
-		$this->db->where('senha', $senha);
-
-    return $this->db->get('usuario')->result();
-  }
-
-  public function get_Usuario($id=null)
-  {
-    $this->db->where('idUsuario', $id);
-    return $this->db->get('usuario')->result();
-  }
-
-
-  public function get_Usuarios_Like($termo)
-  {
-    $this->db->select('*');
-    $this->db->like('nome', $termo);
-
-    return $this->db->get('usuario')->result();
-  }
-
-  public function excluir($id=null)
-  {
-    $this->db->where('idUsuario', $id);
-
-    return $this->db->delete('usuario');
-  }
-
-  public function salvar_atualizacao($id, $data)
-  {
-    $this->db->where('idUsuario', $id);
-
-    return $this->db->update('usuario', $data);
-  }
-
-  public function salvar_senha($id, $senha_antiga, $senha_nova)
-  {
-    $this->db->select('senha');
-    $this->db->where('idUsuario', $id);
-    $data['senha'] = $this->db->get('usuario')->result();
-    $dados['senha'] = $senha_nova;
-
-    if ($data['senha'][0]->senha == $senha_antiga) {
-      $this->db->where('idUsuario', $id);
-      $this->db->update('usuario', $dados);
-
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  public function get_Cidades()
-  {
-    return $this->db->get('cidade')->result();
-  }
-
-  public function getQtdUsuarios()
-  {
-    $this->db->select('count(*) as total');
-
-		return $this->db->get('usuario')->result();
-  }
-
-  public function get_Usuarios_Pag($value, $reg_p_pag)
-  {
-    $this->db->select('*');
-    $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
-    $this->db->limit($reg_p_pag, $value);
-
-    return $this->db->get('usuario')->result();
   }
 
 }

@@ -47,7 +47,6 @@
 
 .camp {
   height: 42px;
-  /* width: 20px; */
 }
 
 .padding {
@@ -135,10 +134,13 @@
 }
 
 .folder {
-  /* color: blue; */
   font-size: 18px;
 }
 
 .paddingButtonAdd {
   margin-top: 37px;
+}
+
+.font {
+  font-size: 16px;
 }

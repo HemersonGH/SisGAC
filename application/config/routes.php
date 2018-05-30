@@ -53,7 +53,6 @@ $route['default_controller'] = 'usuario'; // before was welcome // now call dash
 $route['usuario/(:num)'] = 'usuario/index/$1'; // send value to get after try insert into bd
 $route['aluno/(:num)'] = 'aluno/index/$1'; // send value to get after try insert into bd
 $route['professor/(:num)'] = 'professor/index/$1'; // send value to get after try insert into bd
-// $route['usuario'] = 'usuario';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

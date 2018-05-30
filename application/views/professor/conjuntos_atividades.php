@@ -11,38 +11,34 @@
     </button>
   </div>
 
-<div class="padding col-md-12">
-  <h5> Conjuntos de Atividades </h5>
-  <table class="table table-striped">
-    <tr>
-      <th> Nome do Conjunto </th>
-      <th> Nº de Atividades </th>
-      <th> Ações </th>
-    </tr>
-    <?php foreach ($conjunto_atividades as $conjunto_atividade) { ?>
+  <div class="padding col-md-12">
+    <h5> Conjuntos de Atividades </h5>
+    <table class="table table-striped">
       <tr>
-        <td> <?= $conjunto_atividade->nome_conjunto; ?> </td>
-        <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade); ?> </td>
-        <td>
-          <a data-toggle="tooltip" title="Adicionar atividade para o conjunto" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>">
-            <span class="fa fa-paste paste mr-2 " aria-hidden="true"> </span>
-          </a>
-          <!-- <button type="button" class="btn btn-primary btn-group mr-1 cursor" title="Editar conjunto"> -->
-            <span class="fa fa-pencil pencil mr-2" aria-hidden="true" data-toggle="tooltip" title="Editar conjunto"></span>
-          <!-- </button> -->
-          <!-- <button title="Excluir conjunto"> -->
-            <span class="fa fa-remove remove mr-2" aria-hidden="true" data-toggle="tooltip" title="Excluir conjunto"></span>
-          <!-- </button> -->
-        </td>
+        <th> Nome do Conjunto </th>
+        <th> Nº de Atividades </th>
+        <th> Ações </th>
       </tr>
-    <?php } ?>
-  </table>
-</div>
+      <?php foreach ($conjunto_atividades as $conjunto_atividade) { ?>
+        <tr>
+          <td> <?= $conjunto_atividade->nome_conjunto; ?> </td>
+          <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade); ?> </td>
+          <td>
+            <a data-toggle="tooltip" title="Adicionar atividade para o conjunto" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>">
+              <span class="fa fa-paste paste mr-2 " aria-hidden="true"> </span>
+            </a>
+            <span class="fa fa-pencil pencil mr-2" aria-hidden="true" data-toggle="tooltip" title="Editar conjunto"></span>
+            <span class="fa fa-remove remove mr-2" aria-hidden="true" data-toggle="tooltip" title="Excluir conjunto"></span>
+          </td>
+        </tr>
+      <?php } ?>
+    </table>
+  </div>
 
-<script>
-$(document).ready(function(){
+  <script>
+  $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
-});
+  });
 </script>
 
 <!-- Modal Criar Conjunto de Atividades-->

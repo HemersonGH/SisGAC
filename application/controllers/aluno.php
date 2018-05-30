@@ -35,10 +35,10 @@ class Aluno extends CI_Controller {
 
 		if ($indice == 1) {
 			$msg['msg'] = "Dados atualizados com sucesso.";
-			$this->load->view('includes/msg_sucesso_login', $msg);
+			$this->load->view('includes/msg_sucesso', $msg);
 		} else if ($indice == 2) {
 			$msg['msg'] = "Não foi possível atualizar os dados.";
-			$this->load->view('includes/msg_erro_login', $msg);
+			$this->load->view('includes/msg_erro', $msg);
 		}
 
 		$this->load->view('aluno/menu_lateral');
