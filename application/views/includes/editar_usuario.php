@@ -75,7 +75,7 @@
           <div class="row">
             <div class="col-md-12 form-group">
               <label for="senha_antiga"> Senha Antiga: </label>
-              <input type="password" class="form-control" name="senha_antiga" id="senha_antiga">
+              <input type="password" class="form-control" name="senha_antiga" id="senha_antiga" required>
             </div>
             <div class="col-md-12 form-group">
               <label for="senha_nova"> Nova Senha: </label>
@@ -101,10 +101,10 @@
 </div>
 
 <script>
-$(document).ready(function() {
-  $("#senha_nova").keyup(checkPasswordMatch);
-  $("#senha_confirmar").keyup(checkPasswordMatch);
-});
+// $(document).ready(function() {
+//   $("#senha_nova").keyup(checkPasswordMatch);
+//   $("#senha_confirmar").keyup(checkPasswordMatch);
+// });
 function checkPassword() {
   var password = $("#senha_nova").val();
   var confirmPassword = $("#senha_confirmar").val();

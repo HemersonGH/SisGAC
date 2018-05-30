@@ -42,7 +42,7 @@
         <td> <?= $disciplina->status == null ? 'Em Andamento':($disciplina->status == 1 ? 'Disponível':'Finalizada'); ?> </td>
         <td>
           <?php if ($disciplina->status == null): ?>
-            <a title="Adicionar conjuntos de atividades para a disciplina" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>">
+            <a title="Adicionar conjuntos de atividades para a disciplina" href="<?= base_url('professor/adicionar_conjunto_atividade/'.$disciplina->idDisciplina); ?>">
               <span class="fa fa-folder folder mr-2" aria-hidden="true"></span>
             </a>
           <?php else: ?>
@@ -60,10 +60,10 @@
               <span class="fa fa-pencil color_disabled mr-2" aria-hidden="true"></span>
             </a>
           <?php endif; ?>
-          <!-- onclick="return confirm('Deseja realmente remover essa disciplina?'); " -->
-          <span class="fa fa-remove remove mr-2 cursor" title="Excluir disciplina" aria-hidden="true"
-          data-toggle="modal" data-target="#myModalExcluirDisciplina" value="<?= $disciplina->idDisciplina ?>">
-          </span>
+          <!--  " -->
+          <a href="<?= base_url('professor/excluir_disciplina/'.$disciplina->idDisciplina); ?>" onclick="return confirm('Deseja realmente remover essa disciplina?');">
+            <span class="fa fa-remove remove mr-2 cursor" title="Excluir disciplina" aria-hidden="true"></span>
+          </a>
         </td>
       </tr>
     <?php } ?>
@@ -72,30 +72,3 @@
 </main>
 </div>
 </div>
-
-<!-- Modal Excluir Disicplina-->
-<div class="modal fade" id="myModalExcluirDisciplina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4> Remover Disciplina </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <!-- <input type="hidden" id="id_disciplina" name="id_disciplina"> -->
-      <div class="modal-body">
-        Tem certeza que deseja remover essa disciplina?
-        <p id="id_disciplina" name="id_disciplina"> </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger cursor type_color" data-dismiss="modal"> Não </button>
-        <a class="btn btn-primary" href="<?= base_url('professor/excluir_disciplina/'.$disciplina->idDisciplina); ?>"> Sim </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-document.getElementById("id_disciplina").innerHTML = document.getElementById("idDisciplina").innerHTML ;
-</script>

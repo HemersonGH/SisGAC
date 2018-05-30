@@ -165,7 +165,7 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function adicionar_iteracao($idDisciplina=null)
+	public function adicionar_conjunto_atividade($idDisciplina=null)
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
@@ -175,7 +175,7 @@ class Professor extends CI_Controller {
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 		$this->load->view('professor/menu_lateral');
-		$this->load->view('professor/adicionar_atividade', $disciplina);
+		$this->load->view('professor/adicionar_conjunto_atividade', $disciplina);
 		$this->load->view('includes/html_footer');
 	}
 
