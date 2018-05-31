@@ -81,14 +81,14 @@ class Professor_model extends CI_Model
 
   public function salvar_atualizacao_conjunto_atividades($id_conjunto_atividade=null, $conjunto_atividade)
   {
-    $this->db->where('id_conjunto_atividade', $id_conjunto_atividade);
+    $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
 
     return $this->db->update('conjunto_atividade', $conjunto_atividade);
   }
 
   public function excluir_conjunto_atividades($id_conjunto_atividade=null)
   {
-    $this->db->where('id_conjunto_atividade', $id_conjunto_atividade);
+    $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
 
     return $this->db->delete('conjunto_atividade');
   }

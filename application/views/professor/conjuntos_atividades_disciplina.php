@@ -12,10 +12,9 @@
           <td> <?= $conjuntos_atividades->nome_conjunto; ?> </td>
           <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Atividades($conjuntos_atividades->idConjuntoAtividade); ?> </td>
           <td>
-            <a title="Remover conjunto da disciplina" data-toggle="tooltip" onclick="return confirm('Deseja realmente remover esse conjunto da disciplina?');"
-            href="<?= base_url('professor/remove_conjunto_atividade_disciplina/'.$conjuntos_atividades->id_disciplina_conjunto.'/'.$conjuntos_atividades->idConjuntoAtividade); ?>">
-            <span class="fa fa-remove remove mr-2 cursor" aria-hidden="true"></span>
-          </a>
+          <span class="fa fa-remove remove cursor" aria-hidden="true" data-tooltip="tooltip" title="Remover conjunto da disciplina"
+            onclick="confirmarRemocaoConjAtividade(<?= $conjuntos_atividades->idConjuntoAtividade; ?>, <?= $conjuntos_atividades->id_disciplina_conjunto; ?>)" data-toggle="modal" data-target="#myModalRemoverConjuntoAtividadeDisciplina">
+          </span>
         </td>
       </tr>
     <?php } ?>
@@ -23,9 +22,42 @@
 
 <script>
 $(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-tooltip="tooltip"]').tooltip();
 });
 </script>
+
+<script type="text/javascript">
+function confirmarRemocaoConjAtividade(idConjuntoAtividadeRemover, idDisciplinaRemover) {
+  document.getElementById("idConjuntoAtividadeRemover").value = idConjuntoAtividadeRemover;
+  document.getElementById("idDisciplinaRemover").value = idDisciplinaRemover;
+}
+</script>
+
+<!-- Modal Remover Conjunto Atividades da Disciplina -->
+<div class="modal fade" id="myModalRemoverConjuntoAtividadeDisciplina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form class="" action="<?= base_url(); ?>professor/remove_conjunto_atividade_disciplina" method="post">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4> Remover conjunto da disciplina </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Tem certeza que deseja remover esse conjunto de atividades da disciplina?
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" id="idConjuntoAtividadeRemover" name="idConjuntoAtividadeRemover">
+          <input type="hidden" id="idDisciplinaRemover" name="idDisciplinaRemover">
+          <button type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Não </button>
+          <button type="submit" class="btn btn-primary"> Sim </a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
 
 </div>
 </main>

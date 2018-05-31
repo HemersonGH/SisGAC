@@ -27,6 +27,6 @@
 
 <script>
 $(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-tooltip="tooltip"]').tooltip();
 });
 </script>

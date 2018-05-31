@@ -14,5 +14,10 @@
             <h5> <span class="fa fa-list-alt" aria-hidden="true"></span> Atividades </h5>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url(); ?>professor/solicitacoes_disciplinas" style="color: black;">
+            <h5> <span class="fa fa-id-card-o" aria-hidden="true"></span> Solicitações </h5>
+          </a>
+        </li>
       </ul>
     </nav>

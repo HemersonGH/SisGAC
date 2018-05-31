@@ -24,21 +24,38 @@
           <td> <?= $conjunto_atividade->nome_conjunto; ?> </td>
           <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade); ?> </td>
           <td>
-            <a data-toggle="tooltip" title="Adicionar atividade para o conjunto" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>">
+            <a data-tooltip="tooltip" title="Adicionar atividade para o conjunto" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade->idConjuntoAtividade); ?>">
               <span class="fa fa-paste paste mr-2 " aria-hidden="true"> </span>
             </a>
-            <span class="fa fa-pencil pencil mr-2" aria-hidden="true" data-toggle="tooltip" title="Editar conjunto"></span>
-            <span class="fa fa-remove remove mr-2" aria-hidden="true" data-toggle="tooltip" title="Excluir conjunto"></span>
+            <span class="fa fa-pencil pencil mr-2 cursor" aria-hidden="true" data-tooltip="tooltip" title="Editar conjunto"
+              onclick="editarConjunto(<?= $conjunto_atividade->idConjuntoAtividade; ?>, <?= $conjunto_atividade->nome_conjunto; ?>)" data-toggle="modal" data-target="#myModalEditarConjunto">
+            </span>
+            <span class="fa fa-remove remove mr-2 cursor" aria-hidden="true" data-tooltip="tooltip" title="Excluir conjunto"
+              onclick="confimarExcluirConjunto(<?= $conjunto_atividade->idConjuntoAtividade; ?>)" data-toggle="modal" data-target="#myModalExcluirConjunto">
+            </span>
           </td>
         </tr>
       <?php } ?>
     </table>
   </div>
 
-  <script>
+<script>
   $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-tooltip="tooltip"]').tooltip();
   });
+</script>
+
+<script type="text/javascript">
+function editarConjunto(id, nome_conjunto) {
+  document.getElementById("idConjuntoAtividade").value = id;
+  document.getElementById("idNomeConjunto").value = nome_conjunto;
+}
+</script>
+
+<script type="text/javascript">
+function confimarExcluirConjunto(id) {
+  document.getElementById("idConjuntoAtividadeExcluir").value = id;
+}
 </script>
 
 <!-- Modal Criar Conjunto de Atividades-->
@@ -68,6 +85,59 @@
       </div>
     </form>
   </div>
+</div>
+
+<!-- Modal Editar Conjunto Atividades -->
+<div class="modal fade" id="myModalEditarConjunto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form class="" action="<?= base_url(); ?>professor/salvar_atualizacao_conjunto_atividades" method="post">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4> Atualizar Conjunto de Atividades </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="nome_conjunto"> <h6> Nome do Conjunto: </h6> </label>
+              <input type="text" class="form-control" name="idNomeConjunto" id="idNomeConjunto" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" id="idConjuntoAtividade" name="idConjuntoAtividade">
+          <button type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Cancelar </button>
+          <button type="submit" class="btn btn-success"> Atualizar </a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Modal Excluir Conjunto Atividades -->
+<div class="modal fade" id="myModalExcluirConjunto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form class="" action="<?= base_url(); ?>professor/excluir_conjunto_atividades" method="post">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4> Excluir Conjunto </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Tem certeza que deseja excluir esse conjunto?
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" id="idConjuntoAtividadeExcluir" name="idConjuntoAtividadeExcluir">
+          <button type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Não </button>
+          <button type="submit" class="btn btn-primary"> Sim </a>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
 </main>

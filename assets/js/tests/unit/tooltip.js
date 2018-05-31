@@ -790,7 +790,7 @@ $(function () {
   QUnit.test('should do nothing when an attempt is made to hide an uninitialized tooltip', function (assert) {
     assert.expect(1)
 
-    var $tooltip = $('<span data-toggle="tooltip" title="some tip">some text</span>')
+    var $tooltip = $('<span data-tooltip="tooltip" title="some tip">some text</span>')
       .appendTo('#qunit-fixture')
       .on('hidden.bs.tooltip shown.bs.tooltip', function () {
         assert.ok(false, 'should not fire any tooltip events')
@@ -875,7 +875,7 @@ $(function () {
                           '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +
                               '<div class="modal-body">' +
-                                '<a id="tooltipTest" href="#" data-toggle="tooltip" title="Some tooltip text!">Tooltip</a>' +
+                                '<a id="tooltipTest" href="#" data-tooltip="tooltip" title="Some tooltip text!">Tooltip</a>' +
                               '</div>' +
                             '</div>' +
                           '</div>' +

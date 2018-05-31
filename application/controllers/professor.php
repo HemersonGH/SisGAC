@@ -153,10 +153,12 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function excluir_disciplina($idDisciplina=null)
+	public function excluir_disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idDisciplina = $this->input->post('idDisciplina');
 
 		if ($this->professor->excluir_disciplina($idDisciplina)) {
 			redirect('professor/7');
@@ -180,22 +182,22 @@ class Professor extends CI_Controller {
 
 		switch ($indice) {
 			case 1:
-			$msg['msg'] = "Conjunto adicionado com sucesso.";
+			$msg['msg'] = "Conjunto adicionado para a disciplina com sucesso.";
 			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 2:
-			$msg['msg'] = "Não foi possível adicionar o conjunto.";
+			$msg['msg'] = "Não foi possível adicionar o conjunto para a disciplina.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
 			case 3:
-			$msg['msg'] = "Conjunto removido com sucesso.";
+			$msg['msg'] = "Conjunto removido da disciplina com sucesso.";
 			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 4:
-			$msg['msg'] = "Não foi possível remover o conjunto.";
+			$msg['msg'] = "Não foi possível remover o conjunto da disciplina.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 		}
@@ -221,18 +223,18 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function remove_conjunto_atividade_disciplina($idDisciplina=null, $idConjuntoAtividade=null)
+	public function remove_conjunto_atividade_disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$conjunto_atividade = $this->professor->get_Conjunto($idConjuntoAtividade);
+		$conjunto_atividade = $this->professor->get_Conjunto($this->input->post('idConjuntoAtividadeRemover'));
 		$conjunto_atividade[0]->id_disciplina_conjunto = null;
 
-		if ($this->professor->remove_conjunto_atividade_disciplina($idConjuntoAtividade, $conjunto_atividade[0])) {
-			redirect('professor/adicionar_conjunto_atividade/'.$idDisciplina.'/3');
+		if ($this->professor->remove_conjunto_atividade_disciplina($this->input->post('idConjuntoAtividadeRemover'), $conjunto_atividade[0])) {
+			redirect('professor/adicionar_conjunto_atividade/'.$this->input->post('idDisciplinaRemover').'/3');
 		} else {
-			redirect('professor/adicionar_conjunto_atividade/'.$idDisciplina.'/4');
+			redirect('professor/adicionar_conjunto_atividade/'.$this->input->post('idDisciplinaRemover').'/4');
 		}
 	}
 
@@ -295,22 +297,23 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$conjunto_atividade['id_professor'] = $this->input->post('id_professor');
-		$conjunto_atividade['nome_conjunto'] = $this->input->post('nome_conjunto');
+		$conjunto_atividade['id_professor'] = $this->session->userdata('idUsuario');
+		$conjunto_atividade['nome_conjunto'] = $this->input->post('idNomeConjunto');
+		$conjunto_atividade['idConjuntoAtividade'] = $this->input->post('idConjuntoAtividade');
 
-		if ($this->professor->salvar_atualizacao_conjunto_atividades($id_conjunto_atividade, $conjunto_atividade)) {
+		if ($this->professor->salvar_atualizacao_conjunto_atividades($this->input->post('idConjuntoAtividade'), $conjunto_atividade)) {
 			redirect('professor/atividades/3');
 		} else {
 			redirect('professor/atividades/4');
 		}
 	}
 
-	public function excluir_conjunto_atividades($id_conjunto_atividade=null)
+	public function excluir_conjunto_atividades()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		if ($this->professor->excluir_conjunto_atividades($id_conjunto_atividade)) {
+		if ($this->professor->excluir_conjunto_atividades($this->input->post('idConjuntoAtividadeExcluir'))) {
 			redirect('professor/atividades/5');;
 		} else {
 			redirect('professor/atividades/6');
@@ -434,15 +437,15 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function excluir_atividades($idAtividade=null, $idConjuntoAtividade=null)
+	public function excluir_atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		if ($this->professor->excluir_atividade($idAtividade)) {
-			redirect('professor/atividades_conjunto/'.$idConjuntoAtividade.'/5');
+		if ($this->professor->excluir_atividade($this->input->post('idAtividadeExcluir'))) {
+			redirect('professor/atividades_conjunto/'.$this->input->post('idConjuntoAtividadeExcluir').'/5');
 		} else {
-			redirect('professor/atividades_conjunto/'.$idConjuntoAtividade	.'/6');
+			redirect('professor/atividades_conjunto/'.$this->input->post('idConjuntoAtividadeExcluir').'/6');
 		}
 	}
 
