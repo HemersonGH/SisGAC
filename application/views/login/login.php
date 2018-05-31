@@ -10,7 +10,7 @@
     <label for="password" class="sr-only"> Password </label>
     <input type="password" id="password" name="password" class="form-control" placeholder="Senha" required>
     <button class="btn btn-lg btn-primary btn-block color cursor" type="submit">
-      <span class="fa fa-sign-in" aria-hidden="true"></span> Acessar
+      <span class="fa fa-sign-in" aria-hidden="true"></span> Entrar
     </button>
     <a class="btn btn-secondary distance" role="button" aria-pressed="true" href="<?= base_url(); ?>usuario/registrar">
       <span class="fa fa-user-plus" aria-hidden="true"></span> Criar conta
