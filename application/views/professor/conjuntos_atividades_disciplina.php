@@ -1,4 +1,4 @@
-<link href="<?= base_url(); ?>assets/css/disciplina_professor.css" rel="stylesheet">
+<link href="<?= base_url(); ?>assets/css/professor.css" rel="stylesheet">
 
 <div class="padding col-md-12">
   <h4> Conjuntos de Atividades Adicionados </h4>
