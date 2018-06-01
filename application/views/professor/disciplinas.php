@@ -41,6 +41,11 @@
         <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Conjunto_Atividades($disciplina->idDisciplina); ?> </td>
         <td> <?= $disciplina->status == null ? 'Em Andamento':($disciplina->status == 1 ? 'Disponível':'Finalizada'); ?> </td>
         <td>
+          <?php if ($disciplina->status == 1): ?>
+            <a data-tooltip="tooltip" title="Visualizar disciplina" href="<?= base_url('professor/visualizar_disciplina/'.$disciplina->idDisciplina); ?>">
+              <span class="fa fa-eye eye mr-2" aria-hidden="true"></span>
+            </a>
+          <?php endif; ?>
           <?php if ($disciplina->status == null): ?>
             <a data-tooltip="tooltip" title="Adicionar conjuntos de atividades para a disciplina" href="<?= base_url('professor/adicionar_conjunto_atividade/'.$disciplina->idDisciplina); ?>">
               <span class="fa fa-folder folder mr-2" aria-hidden="true"></span>

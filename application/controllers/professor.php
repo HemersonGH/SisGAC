@@ -467,4 +467,39 @@ class Professor extends CI_Controller {
 		// $this->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade); // Estava implementado desse jeito antes, a view chamava a model direto
 	}
 
+	public function visualizar_disciplina($idDisciplina=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
+		$conjunto_atividades_da_disciplina['conjunto_atividades_da_disciplina'] = $this->professor->get_Conjuntos_Da_Disciplinas($this->session->userdata('idUsuario'), $idDisciplina);
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/cabecalho_disciplina', $disciplina);
+		$this->load->view('professor/visualizar_disciplina', $conjunto_atividades_da_disciplina);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function get_Atividades($id_conjunto_atividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->professor->get_Atividades($id_conjunto_atividade);
+	}
+
+	public function solicitacoes_disciplinas()
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/solicitacoes_disciplinas');
+		$this->load->view('includes/html_footer');
+	}
 }

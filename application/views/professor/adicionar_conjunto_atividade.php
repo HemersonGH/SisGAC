@@ -1,6 +1,5 @@
 <link href="<?= base_url(); ?>assets/css/disciplina_professor.css" rel="stylesheet">
 
-
 <div class="col-md-12">
   <form action="<?= base_url(); ?>professor/cadastrar_conjAtiv_disciplina" method="post">
     <div class="row">

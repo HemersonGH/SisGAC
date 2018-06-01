@@ -2,9 +2,9 @@
 
 <div class="padding col-md-12">
   <h5> Atividades </h5>
-  <table class="table table-striped paddingTable">
+  <table class="table table-striped">
     <tr>
-      <th> Nome do Atividade </th>
+      <th> Nome da Atividade </th>
       <th> Prazo </th>
       <th> Valor </th>
       <th> Ações </th>
