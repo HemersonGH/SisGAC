@@ -137,12 +137,7 @@ class Professor extends CI_Controller {
 		$idDisciplina = $this->input->post('idDisciplina');
 		$disciplina['nome_disciplina'] = $this->input->post('nome_disciplina');
 		$disciplina['codigo_disciplina'] = $this->input->post('codigo_disciplina');
-
-		if ($this->input->post('status') == "NULL") {
-			$disciplina['status'] = null;
-		} else {
-			$disciplina['status'] = $this->input->post('status');
-		}
+		$disciplina['status_disciplina'] = $this->input->post('status');
 
 		$disciplina['descricao_disciplina'] = $this->input->post('descricao_disciplina');
 
@@ -555,6 +550,36 @@ class Professor extends CI_Controller {
 			redirect('professor/solicitacoes_disciplinas/3');
 		} else {
 			redirect('professor/solicitacoes_disciplinas/4');
+		}
+	}
+
+	public function avaliar_solicitacao($idSolicitacao=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$solicitacao['solicitacao'] = $this->professor->get_Solicitacao($idSolicitacao);
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/avaliar_solicitacao', $solicitacao);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function salvar_avaliacao_solicitacao()
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$solicitacao['idSolicitacao'] = $this->input->post('idSolicitacao');
+		$solicitacao['status_solicitacao'] = $this->input->post('status_solicitacao');
+		$solicitacao['justificativa_professor'] = $this->input->post('justificativa_professor');
+
+		if ($this->professor->salvar_avaliacao_solicitacao($this->input->post('idSolicitacao'), $solicitacao)) {
+			redirect('professor/solicitacoes_disciplinas/1');
+		} else {
+			redirect('professor/solicitacoes_disciplinas/2');
 		}
 	}
 

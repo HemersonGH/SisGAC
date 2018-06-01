@@ -39,23 +39,23 @@
         <td> <?= $disciplina->codigo_disciplina; ?> </td>
         <td> <?= $disciplina->nome_disciplina; ?> </td>
         <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Conjunto_Atividades($disciplina->idDisciplina); ?> </td>
-        <td> <?= $disciplina->status == null ? 'Em Andamento':($disciplina->status == 1 ? 'Disponível':'Finalizada'); ?> </td>
+        <td> <?= $disciplina->status_disciplina == 1 ? 'Em Andamento':($disciplina->status_disciplina == 2 ? 'Disponível':'Finalizada'); ?> </td>
         <td>
-          <?php if ($disciplina->status == 1): ?>
+          <?php if ($disciplina->status_disciplina == 2): ?>
             <a data-tooltip="tooltip" title="Visualizar disciplina" href="<?= base_url('professor/visualizar_disciplina/'.$disciplina->idDisciplina); ?>">
               <span class="fa fa-eye eye mr-2" aria-hidden="true"></span>
             </a>
           <?php endif; ?>
-          <?php if ($disciplina->status == null): ?>
+          <?php if ($disciplina->status_disciplina == 1): ?>
             <a data-tooltip="tooltip" title="Adicionar conjuntos de atividades para a disciplina" href="<?= base_url('professor/adicionar_conjunto_atividade/'.$disciplina->idDisciplina); ?>">
               <span class="fa fa-folder folder mr-2" aria-hidden="true"></span>
             </a>
           <?php else: ?>
-            <a data-tooltip="tooltip" title="Não é possível adicionar conjunto de atividades pois a disciplina está disponível" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>">
+            <a data-tooltip="tooltip" title="Não é possível adicionar conjunto de atividades pois a disciplina está disponível ou finalizada" href="<?= base_url('professor/adicionar_iteracao/'.$disciplina->idDisciplina); ?>">
               <span class="fa fa-folder mr-2 color_disabled" aria-hidden="true"></span>
             </a>
           <?php endif; ?>
-          <?php if ($disciplina->status == null): ?>
+          <?php if ($disciplina->status_disciplina == 1): ?>
             <a data-tooltip="tooltip" title="Editar disciplina" href="<?= base_url('professor/atualizar_disciplina/'.$disciplina->idDisciplina); ?>">
               <span class="fa fa-pencil pencil mr-2" aria-hidden="true"></span>
             </a>

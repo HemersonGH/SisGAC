@@ -164,4 +164,10 @@
 
 .handshake {
   font-size: 20px;
+  color: black;
+}
+
+.justificativa {
+  height: 100px;
+  resize: none;
 }

@@ -24,9 +24,9 @@
         <div class="col-md-6">
           <label for="status" class="padding"> <h6> Status: </h6> </label>
           <select id="status" name="status" class="form-control" required>
-            <option value="NULL" <?= $disciplina[0]->status == null ? 'selected':''; ?> > Em Andamento </option>
-            <option value="1"    <?= $disciplina[0]->status == 1 ? 'selected':''; ?> > Disponível </option>
-            <option value="0"    <?= $disciplina[0]->status == 0 ? 'selected':''; ?> > Finalizada </option>
+            <option value="1" <?= $disciplina[0]->status_disciplina == 1 ? 'selected':''; ?> > Em Andamento </option>
+            <option value="2" <?= $disciplina[0]->status_disciplina == 2 ? 'selected':''; ?> > Disponível </option>
+            <option value="3" <?= $disciplina[0]->status_disciplina == 3 ? 'selected':''; ?> > Finalizada </option>
           </select>
         </div>
       </div>

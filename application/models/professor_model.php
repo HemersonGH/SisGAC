@@ -194,6 +194,21 @@ class Professor_model extends CI_Model
     return $this->db->delete('solicitacoes_disciplinas');
   }
 
+  public function get_Solicitacao($idSolicitacao=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idSolicitacao', $idSolicitacao);
+
+    return $this->db->get('solicitacoes_disciplinas')->result();
+  }
+
+  public function salvar_avaliacao_solicitacao($idSolicitacao=null, $solicitacao)
+  {
+    $this->db->where('idSolicitacao', $idSolicitacao);
+
+    return $this->db->update('solicitacoes_disciplinas', $solicitacao);
+  }
+
 }
 
 ?>
