@@ -51,8 +51,8 @@ function confirmarRemocaoConjAtividade(idConjuntoAtividadeRemover, idDisciplinaR
         <div class="modal-footer">
           <input type="hidden" id="idConjuntoAtividadeRemover" name="idConjuntoAtividadeRemover">
           <input type="hidden" id="idDisciplinaRemover" name="idDisciplinaRemover">
-          <button type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Não </button>
-          <button type="submit" class="btn btn-primary"> Sim </a>
+          <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Não </button>
+          <button type="submit" class="btn btn-primary cursor"> Sim </button>
         </div>
       </div>
     </div>

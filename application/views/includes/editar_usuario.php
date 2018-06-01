@@ -101,10 +101,10 @@
 </div>
 
 <script>
-// $(document).ready(function() {
-//   $("#senha_nova").keyup(checkPasswordMatch);
-//   $("#senha_confirmar").keyup(checkPasswordMatch);
-// });
+$(document).ready(function() {
+  $("#senha_nova").keyup(checkPasswordMatch);
+  $("#senha_confirmar").keyup(checkPasswordMatch);
+});
 function checkPassword() {
   var password = $("#senha_nova").val();
   var confirmPassword = $("#senha_confirmar").val();

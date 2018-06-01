@@ -162,6 +162,38 @@ class Professor_model extends CI_Model
     return $this->db->update('conjunto_atividade', $conjunto_atividade);
   }
 
+  public function get_Solicitacoes_Disciplinas($idProfessor=null)
+  {
+    $this->db->where('idProfessor', $idProfessor);
+
+    return $this->db->get('solicitacoes_disciplinas')->result();
+  }
+
+  public function get_Nome_Aluno($idAluno=null)
+  {
+    $this->db->where('idUsuario', $idAluno);
+
+    $aluno = $this->db->get('usuario')->result();
+
+    return $aluno[0]->nome;
+  }
+
+  public function get_Nome_Disciplina($idDisciplina=null)
+  {
+    $this->db->where('idDisciplina', $idDisciplina);
+
+    $disciplina = $this->db->get('disciplina')->result();
+
+    return $disciplina[0]->nome_disciplina;
+  }
+
+  public function excluir_solicitacao($idSolicitacao=null)
+  {
+    $this->db->where('idSolicitacao', $idSolicitacao);
+
+    return $this->db->delete('solicitacoes_disciplinas');
+  }
+
 }
 
 ?>

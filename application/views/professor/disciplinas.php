@@ -104,8 +104,8 @@ $(document).ready(function(){
         </div>
         <div class="modal-footer">
           <input type="hidden" id="idDisciplina" name="idDisciplina">
-          <button type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Não </button>
-          <button type="submit" class="btn btn-primary"> Sim </a>
+          <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Não </button>
+          <button type="submit" class="btn btn-primary cursor"> Sim </button>
         </div>
       </div>
     </div>

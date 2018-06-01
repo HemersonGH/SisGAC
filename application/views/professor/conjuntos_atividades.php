@@ -108,8 +108,8 @@ function confimarExcluirConjunto(id) {
         </div>
         <div class="modal-footer">
           <input type="hidden" id="idConjuntoAtividade" name="idConjuntoAtividade">
-          <button type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Cancelar </button>
-          <button type="submit" class="btn btn-success"> Atualizar </a>
+          <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Cancelar </button>
+          <button type="submit" class="btn btn-success cursor"> Atualizar </button>
         </div>
       </div>
     </div>
@@ -132,8 +132,8 @@ function confimarExcluirConjunto(id) {
         </div>
         <div class="modal-footer">
           <input type="hidden" id="idConjuntoAtividadeExcluir" name="idConjuntoAtividadeExcluir">
-          <button type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Não </button>
-          <button type="submit" class="btn btn-primary"> Sim </a>
+          <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Não </button>
+          <button type="submit" class="btn btn-primary cursor"> Sim </button>
         </div>
       </div>
     </div>

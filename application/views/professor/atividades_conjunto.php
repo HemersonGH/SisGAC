@@ -12,8 +12,8 @@
     <?php foreach ($atividades as $atividade) { ?>
       <tr>
         <td> <?= $atividade->nome_atividade; ?> </td>
-        <td> <?= date('d-m-Y', strtotime($atividade->prazo_entrega)); ?> </td>
-        <td> <?= $atividade->pontos; ?> </td>
+        <td> <?= str_replace("-", "/", date('d-m-Y', strtotime($atividade->prazo_entrega))); ?> </td>
+        <td> <?= $atividade->pontos; ?> Pontos </td>
         <td>
           <a data-tooltip="tooltip" title="Editar atividade" href="<?= base_url('professor/atualizar_atividade/'.$atividade->idAtividade); ?>">
             <span class="fa fa-pencil color_pencil mr-1" aria-hidden="true"></span>
@@ -61,8 +61,8 @@ function confirmarExcluirAtividade(idAtividadeExcluir, idConjuntoAtividadeExclui
         <div class="modal-footer">
           <input type="hidden" id="idAtividadeExcluir" name="idAtividadeExcluir">
           <input type="hidden" id="idConjuntoAtividadeExcluir" name="idConjuntoAtividadeExcluir">
-          <button type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Não </button>
-          <button type="submit" class="btn btn-primary"> Sim </a>
+          <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Não </button>
+          <button type="submit" class="btn btn-primary cursor"> Sim </button>
         </div>
       </div>
     </div>

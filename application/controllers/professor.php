@@ -455,7 +455,8 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$this->professor->get_Qtd_Atividades($idConjuntoAtividade);
-		// $this->professor->get_Qtd_Conjunto_Atividades($disciplina->idDisciplina); // Estava implementado desse jeito antes, a view chamava a model direto
+		// Estava implementado desse jeito antes, a view chamava a model direto
+		// $this->professor->get_Qtd_Conjunto_Atividades($disciplina->idDisciplina);
 	}
 
 	public function get_Qtd_Conjunto_Atividades($idDisciplina=null)
@@ -464,7 +465,8 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$this->professor->get_Qtd_Conjunto_Atividades($idDisciplina);
-		// $this->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade); // Estava implementado desse jeito antes, a view chamava a model direto
+		// Estava implementado desse jeito antes, a view chamava a model direto
+		// $this->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade);
 	}
 
 	public function visualizar_disciplina($idDisciplina=null)
@@ -491,15 +493,69 @@ class Professor extends CI_Controller {
 		$this->professor->get_Atividades($id_conjunto_atividade);
 	}
 
-	public function solicitacoes_disciplinas()
+	public function solicitacoes_disciplinas($indice=null)
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$solicitacoes_disciplinas['solicitacoes_disciplinas'] = $this->professor->get_Solicitacoes_Disciplinas($this->session->userdata('idUsuario'));
+
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 		$this->load->view('professor/menu_lateral');
-		$this->load->view('professor/solicitacoes_disciplinas');
+
+		switch ($indice) {
+			case 1:
+			$msg['msg'] = "Solicitação avaliada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
+			break;
+
+			case 2:
+			$msg['msg'] = "Não foi possível avaliar a solicitação.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
+
+			case 3:
+			$msg['msg'] = "Solicitação excluída com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
+			break;
+
+			case 4:
+			$msg['msg'] = "Não foi possível excluída a solicitação.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
+		}
+
+		$this->load->view('professor/solicitacoes_disciplinas', $solicitacoes_disciplinas);
 		$this->load->view('includes/html_footer');
 	}
+
+	public function get_Nome_Aluno($idAluno=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->professor->get_Nome_Aluno($idAluno);
+	}
+
+	public function get_Nome_Disciplina($idDisciplina=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->professor->get_Nome_Disciplina($idDisciplina);
+	}
+
+	public function excluir_solicitacao()
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		if ($this->professor->excluir_solicitacao($this->input->post('idSolicitacao'))) {
+			redirect('professor/solicitacoes_disciplinas/3');
+		} else {
+			redirect('professor/solicitacoes_disciplinas/4');
+		}
+	}
+
 }

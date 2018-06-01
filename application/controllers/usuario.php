@@ -179,7 +179,7 @@ class Usuario extends CI_Controller {
 			if ($this->usuario->salvar_atualizacao($id, $dadosUsuario)) {
 				$dadosUsuarioLogado['nome'] = $dadosUsuario['nome'];
 				$this->session->set_userdata($dadosUsuarioLogado);
-				
+
 				redirect('professor/1');
 			} else {
 				redirect('professor/2');
