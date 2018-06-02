@@ -108,6 +108,16 @@ class Aluno extends CI_Controller {
 			$msg['msg'] = "Não foi possível excluír a solicitação.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
+
+			case 5:
+			$msg['msg'] = "Solicitacao atualizada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
+			break;
+
+			case 6:
+			$msg['msg'] = "Não foi possível atualizar a solicitação.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
 		}
 
 		$this->load->view('aluno/menu_lateral');
@@ -171,6 +181,35 @@ class Aluno extends CI_Controller {
 		$this->load->view('aluno/menu_lateral');
 		$this->load->view('aluno/visualizar_solicitacao', $solicitacao);
 		$this->load->view('includes/html_footer');
+	}
+
+	public function editar_solicitacao($idSolicitacao=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$solicitacao['solicitacao'] = $this->aluno->get_Solicitacao($idSolicitacao);
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/editar_solicitacao', $solicitacao);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function salvar_atualizacao_solicitacao($idSolicitacao=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$solicitacao['idSolicitacao'] = $this->input->post('idSolicitacao');
+		$solicitacao['justificativa_aluno'] = $this->input->post('justificativa_aluno');
+
+		if ($this->aluno->salvar_atualizacao_solicitacao($this->input->post('idSolicitacao'), $solicitacao)) {
+			redirect('aluno/matricular_disciplina/5');
+		} else {
+			redirect('aluno/matricular_disciplina/6');
+		}
 	}
 
 }

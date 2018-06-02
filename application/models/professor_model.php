@@ -233,6 +233,15 @@ class Professor_model extends CI_Model
     return $qtd[0]->total;
   }
 
+  public function get_Participacao($participacao_disciplina)
+  {
+    $this->db->where('idAluno', $participacao_disciplina['idAluno']);
+    $this->db->where('idDisciplina', $participacao_disciplina['idDisciplina']);
+    $this->db->where('status_participacao', 1);
+
+    return $this->db->get('participa_disciplina')->result();
+  }
+
 }
 
 ?>

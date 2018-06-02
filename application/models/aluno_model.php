@@ -96,6 +96,13 @@ class Aluno_model extends CI_Model
     return $this->db->get('solicitacoes_disciplinas')->result();
   }
 
+  public function salvar_atualizacao_solicitacao($idSolicitacao=null, $solicitacao)
+  {
+    $this->db->where('idSolicitacao', $idSolicitacao);
+
+    return $this->db->update('solicitacoes_disciplinas', $solicitacao);
+  }
+
 }
 
 ?>

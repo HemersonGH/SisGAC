@@ -16,6 +16,9 @@
           <a data-tooltip="tooltip" title="Visualizar solicitação" href="<?= base_url('aluno/visualizar_solicitacao/'.$solicitacao->idSolicitacao); ?>">
             <span class="fa fa-eye eye mr-2" aria-hidden="true"></span>
           </a>
+          <a data-tooltip="tooltip" title="Editar solicitação" href="<?= base_url('aluno/editar_solicitacao/'.$solicitacao->idSolicitacao); ?>">
+            <span class="fa fa-pencil pencil mr-2" aria-hidden="true"></span>
+          </a>
           <span class="fa fa-remove remove mr-2 cursor" title="Excluir Solicitação" aria-hidden="true" data-tooltip="tooltip"
             onclick="confimaExcluirSolicitacao(<?= $solicitacao->idSolicitacao; ?>)" data-toggle="modal" data-target="#myModalExcluirSolicitacao">
           </span>
