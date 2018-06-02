@@ -222,6 +222,17 @@ class Professor_model extends CI_Model
     return $this->db->update('participa_disciplina', $participacao_disciplina);
   }
 
+  public function get_Solicitacoes($idProfessor=null)
+  {
+    $this->db->select('count(*) as total');
+    $this->db->where('idProfessor', $idProfessor);
+    $this->db->where('status_solicitacao', 1);
+
+    $qtd = $this->db->get('solicitacoes_disciplinas')->result();
+
+    return $qtd[0]->total;
+  }
+
 }
 
 ?>

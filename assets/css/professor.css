@@ -171,3 +171,7 @@
   height: 100px;
   resize: none;
 }
+
+.sizeBadge {
+  font-size: 11px;
+}

@@ -32,6 +32,7 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$disciplinas['disciplinas'] = $this->professor->get_Disciplinas($this->session->userdata('idUsuario'));
+		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
@@ -49,12 +50,12 @@ class Professor extends CI_Controller {
 			break;
 
 			case 3:
-			$msg['msg'] = "Disciplina criada com sucesso.";
+			$msg['msg'] = "Disciplina cadastrada com sucesso.";
 			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 4:
-			$msg['msg'] = "Não foi possível criar a disciplina.";
+			$msg['msg'] = "Não foi possível cadastrar a disciplina.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -77,10 +78,9 @@ class Professor extends CI_Controller {
 			$msg['msg'] = "Não foi possível excluir a disciplina.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
-
 		}
 
-		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/menu_lateral', $idProfessor);
 		$this->load->view('professor/disciplinas', $disciplinas);
 		$this->load->view('includes/html_footer');
 	}
@@ -88,10 +88,13 @@ class Professor extends CI_Controller {
 	public function criar_disciplina()
 	{
 		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/menu_lateral', $idProfessor);
 		$this->load->view('professor/criar_disciplina');
 		$this->load->view('includes/html_footer');
 	}
@@ -121,10 +124,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
+		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/menu_lateral', $idProfessor);
 		$this->load->view('professor/editar_disciplina', $disciplina);
 		$this->load->view('includes/html_footer');
 	}
@@ -170,10 +174,11 @@ class Professor extends CI_Controller {
 		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
 		$conjunto_atividades_sem_disciplina['conjunto_atividades_sem_disciplina'] = $this->professor->get_Conjuntos_Sem_Disciplinas($this->session->userdata('idUsuario'));
 		$conjunto_atividades_da_disciplina['conjunto_atividades_da_disciplina'] = $this->professor->get_Conjuntos_Da_Disciplinas($this->session->userdata('idUsuario'), $idDisciplina);
+		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/menu_lateral', $idProfessor);
 
 		switch ($indice) {
 			case 1:
@@ -236,12 +241,13 @@ class Professor extends CI_Controller {
 	public function atividades($indice=null)
 	{
 		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral');
-
-		$this->load->model('professor_model','professor');
+		$this->load->view('professor/menu_lateral', $idProfessor);
 
 		$conjunto_atividades['conjunto_atividades'] = $this->professor->get_Conjuntos($this->session->userdata('idUsuario'));
 
@@ -265,7 +271,6 @@ class Professor extends CI_Controller {
 			$msg['msg'] = "Não foi possível atualizar o conjunto.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
-
 		}
 
 		$this->load->view('professor/conjuntos_atividades', $conjunto_atividades);
@@ -320,9 +325,11 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/menu_lateral', $idProfessor);
 
 		$conjunto_atividade['conjunto_atividade'] = $this->professor->get_Conjunto($idConjuntoAtividade);
 		$atividades['atividades'] = $this->professor->get_Atividades($idConjuntoAtividade);
@@ -370,10 +377,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$conjunto_atividade['conjunto_atividade'] = $this->professor->get_Conjunto($id_conjunto_atividade);
+		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/menu_lateral', $idProfessor);
 		$this->load->view('professor/criar_atividade', $conjunto_atividade);
 		$this->load->view('includes/html_footer');
 	}
@@ -403,10 +411,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$atividade['atividade'] = $this->professor->get_Atividade($idAtividade);
+		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/menu_lateral', $idProfessor);
 		$this->load->view('professor/editar_atividade', $atividade);
 		$this->load->view('includes/html_footer');
 	}
@@ -471,10 +480,11 @@ class Professor extends CI_Controller {
 
 		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
 		$conjunto_atividades_da_disciplina['conjunto_atividades_da_disciplina'] = $this->professor->get_Conjuntos_Da_Disciplinas($this->session->userdata('idUsuario'), $idDisciplina);
+		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/menu_lateral', $idProfessor);
 		$this->load->view('professor/cabecalho_disciplina', $disciplina);
 		$this->load->view('professor/visualizar_disciplina', $conjunto_atividades_da_disciplina);
 		$this->load->view('includes/html_footer');
@@ -494,10 +504,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$solicitacoes_disciplinas['solicitacoes_disciplinas'] = $this->professor->get_Solicitacoes_Disciplinas($this->session->userdata('idUsuario'));
+		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/menu_lateral', $idProfessor);
 
 		switch ($indice) {
 			case 1:
@@ -564,10 +575,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$solicitacao['solicitacao'] = $this->professor->get_Solicitacao($idSolicitacao);
+		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral');
+		$this->load->view('professor/menu_lateral', $idProfessor);
 		$this->load->view('professor/avaliar_solicitacao', $solicitacao);
 		$this->load->view('includes/html_footer');
 	}
@@ -615,5 +627,4 @@ class Professor extends CI_Controller {
 			redirect('professor/solicitacoes_disciplinas/2');
 		}
 	}
-
 }

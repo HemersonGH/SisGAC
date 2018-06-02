@@ -3,21 +3,21 @@
 <div class="padding col-md-12">
   <h4> Conjuntos de Atividades Adicionados </h4>
   <table class="table table-striped">
-      <tr>
-        <th> Nome do Conjunto </th>
-        <th> Nº de Atividades </th>
-        <th> Ações </th>
-      </tr>
-      <?php foreach ($conjunto_atividades_da_disciplina as $conjuntos_atividades) { ?>
-        <tr>
-          <td> <?= $conjuntos_atividades->nome_conjunto; ?> </td>
-          <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Atividades($conjuntos_atividades->idConjuntoAtividade); ?> </td>
-          <td>
+    <tr>
+      <th> Nome do Conjunto </th>
+      <th> Nº de Atividades </th>
+      <th> Ações </th>
+    </tr>
+    <?php foreach ($conjunto_atividades_da_disciplina as $conjuntos_atividades) { ?>
+    <tr>
+        <td> <?= $conjuntos_atividades->nome_conjunto; ?> </td>
+        <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Atividades($conjuntos_atividades->idConjuntoAtividade); ?> </td>
+        <td>
           <span class="fa fa-remove remove cursor" aria-hidden="true" data-tooltip="tooltip" title="Remover conjunto da disciplina"
-            onclick="confirmarRemocaoConjAtividade(<?= $conjuntos_atividades->idConjuntoAtividade; ?>, <?= $conjuntos_atividades->id_disciplina_conjunto; ?>)" data-toggle="modal" data-target="#myModalRemoverConjuntoAtividadeDisciplina">
-          </span>
-        </td>
-      </tr>
+          onclick="confirmarRemocaoConjAtividade(<?= $conjuntos_atividades->idConjuntoAtividade; ?>, <?= $conjuntos_atividades->id_disciplina_conjunto; ?>)" data-toggle="modal" data-target="#myModalRemoverConjuntoAtividadeDisciplina">
+        </span>
+      </td>
+    </tr>
     <?php } ?>
   </table>
 
@@ -58,8 +58,6 @@ function confirmarRemocaoConjAtividade(idConjuntoAtividadeRemover, idDisciplinaR
     </div>
   </form>
 </div>
-
-
 </div>
 </main>
 </div>

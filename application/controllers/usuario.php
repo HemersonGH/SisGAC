@@ -141,11 +141,12 @@ class Usuario extends CI_Controller {
 			$this->load->view('includes/msg_erro', $msg);
 		}
 
-
 		if ($this->session->userdata('tipoUsuario') == 1) {
 			$this->load->view('aluno/menu_lateral');
 		} else if ($this->session->userdata('tipoUsuario') == 2) {
-			$this->load->view('professor/menu_lateral');
+			$this->load->model('professor_model','professor');
+			$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+			$this->load->view('professor/menu_lateral', $idProfessor);
 		}
 
 		$this->load->view('includes/editar_usuario', $dadosUsuario);

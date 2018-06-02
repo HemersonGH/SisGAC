@@ -52,6 +52,49 @@ class Aluno_model extends CI_Model
     return $disciplina[0]->status_disciplina;
   }
 
+  public function get_Disciplinas()
+  {
+    $this->db->select('*');
+    $this->db->where('status_disciplina', 2);
+
+    return $this->db->get('disciplina')->result();
+  }
+
+  public function get_Disciplina($idDisciplina=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idDisciplina', $idDisciplina);
+
+    return $this->db->get('disciplina')->result();
+  }
+
+  public function salvar_solicitacao_disciplina($solicitacao)
+  {
+    return $this->db->insert('solicitacoes_disciplinas', $solicitacao);
+  }
+
+  public function get_Solicitacoes($idAluno=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAluno', $idAluno);
+
+    return $this->db->get('solicitacoes_disciplinas')->result();
+  }
+
+  public function excluir_solicitacao($idSolicitacao=null)
+  {
+    $this->db->where('idSolicitacao', $idSolicitacao);
+
+    return $this->db->delete('solicitacoes_disciplinas');
+  }
+
+  public function get_Solicitacao($idSolicitacao=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idSolicitacao', $idSolicitacao);
+
+    return $this->db->get('solicitacoes_disciplinas')->result();
+  }
 
 }
 

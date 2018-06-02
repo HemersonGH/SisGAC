@@ -29,7 +29,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url(); ?>professor" > Cancelar </a>
+          <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>professor" > Cancelar </a>
           <button type="submit" class="paddingButton btn btn-success right"> Criar Disciplina </button>
         </div>
       </div>

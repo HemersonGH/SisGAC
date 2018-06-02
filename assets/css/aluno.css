@@ -137,8 +137,9 @@
   font-size: 18px;
 }
 
-.paddingButtonAdd {
+.paddingButtonSolicitacao {
   margin-top: 37px;
+  cursor:pointer;
 }
 
 .font {

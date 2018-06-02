@@ -16,7 +16,7 @@
         <td> <?= $atividade->pontos; ?> Pontos </td>
         <td>
           <a data-tooltip="tooltip" title="Editar atividade" href="<?= base_url('professor/atualizar_atividade/'.$atividade->idAtividade); ?>">
-            <span class="fa fa-pencil color_pencil mr-1" aria-hidden="true"></span>
+            <span class="fa fa-pencil pencil mr-1" aria-hidden="true"></span>
           </a>
           <span class="fa fa-remove remove cursor" aria-hidden="true" data-tooltip="tooltip" title="Excluir atividade"
             onclick="confirmarExcluirAtividade(<?= $atividade->idAtividade; ?>, <?= $atividade->idConjuntoAtividade; ?>)" data-toggle="modal" data-target="#myModalExcluirAtividade">
@@ -26,7 +26,6 @@
     <?php } ?>
 </table>
 </div>
-
 </main>
 </div>
 </div>

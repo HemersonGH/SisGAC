@@ -79,7 +79,7 @@ function confimarExcluirConjunto(id) {
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary cursor" data-dismiss="modal"> Cancelar </button>
+          <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Cancelar </button>
           <button type="submit" class="btn btn-primary cursor" href="<?= base_url(); ?>professor/cadastrar_conjunto_atividades"> Salvar </button>
         </div>
       </div>

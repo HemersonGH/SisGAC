@@ -39,7 +39,7 @@
         </div>
       </div>
 
-      <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade[0]->idConjuntoAtividade); ?>"> Cancelar </a>
+      <a class="paddingButton btn btn-danger left" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade[0]->idConjuntoAtividade); ?>"> Cancelar </a>
       <button type="submit" class="paddingButton btn btn-success right"> Criar Atividade </button>
     </div>
   </form>
