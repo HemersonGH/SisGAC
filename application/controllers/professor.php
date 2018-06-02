@@ -32,10 +32,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$disciplinas['disciplinas'] = $this->professor->get_Disciplinas($this->session->userdata('idUsuario'));
-		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 
 		switch ($indice)
 		{
@@ -80,7 +81,6 @@ class Professor extends CI_Controller {
 			break;
 		}
 
-		$this->load->view('professor/menu_lateral', $idProfessor);
 		$this->load->view('professor/disciplinas', $disciplinas);
 		$this->load->view('includes/html_footer');
 	}
@@ -90,11 +90,11 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral', $idProfessor);
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 		$this->load->view('professor/criar_disciplina');
 		$this->load->view('includes/html_footer');
 	}
@@ -105,10 +105,10 @@ class Professor extends CI_Controller {
 
 		$this->load->model('professor_model','professor');
 
+		// $disciplina['status'] = $this->input->post('status');
 		$disciplina['id_Professor'] = $this->input->post('idProfessor');
 		$disciplina['nome_disciplina'] = $this->input->post('nome_disciplina');
 		$disciplina['codigo_disciplina'] = $this->input->post('codigo_disciplina');
-		// $disciplina['status'] = $this->input->post('status');
 		$disciplina['descricao_disciplina'] = $this->input->post('descricao_disciplina');
 
 		if ($this->professor->cadastrar_disciplina($disciplina)) {
@@ -124,11 +124,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
-		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral', $idProfessor);
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 		$this->load->view('professor/editar_disciplina', $disciplina);
 		$this->load->view('includes/html_footer');
 	}
@@ -174,11 +174,11 @@ class Professor extends CI_Controller {
 		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
 		$conjunto_atividades_sem_disciplina['conjunto_atividades_sem_disciplina'] = $this->professor->get_Conjuntos_Sem_Disciplinas($this->session->userdata('idUsuario'));
 		$conjunto_atividades_da_disciplina['conjunto_atividades_da_disciplina'] = $this->professor->get_Conjuntos_Da_Disciplinas($this->session->userdata('idUsuario'), $idDisciplina);
-		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral', $idProfessor);
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 
 		switch ($indice) {
 			case 1:
@@ -243,11 +243,11 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral', $idProfessor);
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 
 		$conjunto_atividades['conjunto_atividades'] = $this->professor->get_Conjuntos($this->session->userdata('idUsuario'));
 
@@ -325,11 +325,11 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral', $idProfessor);
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 
 		$conjunto_atividade['conjunto_atividade'] = $this->professor->get_Conjunto($idConjuntoAtividade);
 		$atividades['atividades'] = $this->professor->get_Atividades($idConjuntoAtividade);
@@ -377,11 +377,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$conjunto_atividade['conjunto_atividade'] = $this->professor->get_Conjunto($id_conjunto_atividade);
-		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral', $idProfessor);
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 		$this->load->view('professor/criar_atividade', $conjunto_atividade);
 		$this->load->view('includes/html_footer');
 	}
@@ -411,11 +411,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$atividade['atividade'] = $this->professor->get_Atividade($idAtividade);
-		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral', $idProfessor);
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 		$this->load->view('professor/editar_atividade', $atividade);
 		$this->load->view('includes/html_footer');
 	}
@@ -480,11 +480,11 @@ class Professor extends CI_Controller {
 
 		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
 		$conjunto_atividades_da_disciplina['conjunto_atividades_da_disciplina'] = $this->professor->get_Conjuntos_Da_Disciplinas($this->session->userdata('idUsuario'), $idDisciplina);
-		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral', $idProfessor);
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 		$this->load->view('professor/cabecalho_disciplina', $disciplina);
 		$this->load->view('professor/visualizar_disciplina', $conjunto_atividades_da_disciplina);
 		$this->load->view('includes/html_footer');
@@ -504,11 +504,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$solicitacoes_disciplinas['solicitacoes_disciplinas'] = $this->professor->get_Solicitacoes_Disciplinas($this->session->userdata('idUsuario'));
-		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral', $idProfessor);
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 
 		switch ($indice) {
 			case 1:
@@ -580,11 +580,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$solicitacao['solicitacao'] = $this->professor->get_Solicitacao($idSolicitacao);
-		$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('professor/menu_lateral', $idProfessor);
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 		$this->load->view('professor/avaliar_solicitacao', $solicitacao);
 		$this->load->view('includes/html_footer');
 	}
@@ -638,5 +638,13 @@ class Professor extends CI_Controller {
 		} else {
 			redirect('professor/solicitacoes_disciplinas/2');
 		}
+	}
+
+	public function get_Solicitacoes($idProfessor=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->professor->get_Solicitacoes($idProfessor);
 	}
 }

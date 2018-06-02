@@ -58,6 +58,17 @@ class Usuario_model extends CI_Model
     }
   }
 
+  public function get_Solicitacoes($idProfessor=null)
+  {
+    $this->db->select('count(*) as total');
+    $this->db->where('idProfessor', $idProfessor);
+    $this->db->where('status_solicitacao', 1);
+
+    $qtd = $this->db->get('solicitacoes_disciplinas')->result();
+
+    return $qtd[0]->total;
+  }
+
 }
 
 ?>

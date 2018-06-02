@@ -1,5 +1,5 @@
 <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main" role="alert">
-  <div class="alert alert-danger" role="alert">
+  <div class="alert alert-danger" id="idAlert" role="alert">
     <strong>
       <span class="fa fa-info-circle" aria-hidden="true"></span> <?= $msg; ?>
     </strong>
@@ -7,4 +7,11 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+  <script type="text/javascript">
+    $().ready(function() {
+      setTimeout(function () {
+        $('#idAlert').hide();
+      }, 3500);
+    });
+  </script>
 </main>

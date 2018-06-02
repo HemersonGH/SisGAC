@@ -39,7 +39,7 @@
           <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Professor($disciplina->idProfessor); ?> </td>
           <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Disciplina($disciplina->idDisciplina); ?> </td>
           <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Status_Disciplina($disciplina->idDisciplina) == 2 ? 'Disponível':'Finalizada'; ?> </td>
-          <td> <?= $disciplina->status_participacao == 1 ? 'Aceitado' : 'Rejeitado'; ?> </td>
+          <td> <?= $disciplina->status_participacao == 1 ? 'Aceito' : 'Rejeitado'; ?> </td>
           <td>
 
           </td>

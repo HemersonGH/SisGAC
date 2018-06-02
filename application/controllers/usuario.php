@@ -144,9 +144,8 @@ class Usuario extends CI_Controller {
 		if ($this->session->userdata('tipoUsuario') == 1) {
 			$this->load->view('aluno/menu_lateral');
 		} else if ($this->session->userdata('tipoUsuario') == 2) {
-			$this->load->model('professor_model','professor');
-			$idProfessor['idProfessor'] = $this->session->userdata('idUsuario');
-			$this->load->view('professor/menu_lateral', $idProfessor);
+			$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->load->library('application/controllers/usuario')->usuario->get_Solicitacoes($this->session->userdata('idUsuario'));
+			$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 		}
 
 		$this->load->view('includes/editar_usuario', $dadosUsuario);
@@ -170,7 +169,7 @@ class Usuario extends CI_Controller {
 		if ($this->session->userdata('tipoUsuario') == 1) {
 			if ($this->usuario->salvar_atualizacao($id, $dadosUsuario)) {
 				$dadosUsuarioLogado['nome'] = $dadosUsuario['nome'];
-				$this->session->set_userdata($dadosUsuarioLogado);
+				$this->session->set_userdata($dadosUsuarioLogado); // alterar
 
 				redirect('aluno/1');
 			} else {
@@ -214,6 +213,14 @@ class Usuario extends CI_Controller {
 		} else {
 			redirect('usuario/atualizar/'.$id.'/2');
 		}
+	}
+
+	public function get_Solicitacoes($idProfessor=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('usuario_model','usuario');
+
+		$this->usuario->get_Solicitacoes($idProfessor);
 	}
 
 }
