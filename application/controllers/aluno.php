@@ -29,21 +29,53 @@ class Aluno extends CI_Controller {
 	public function index($indice=null)
 	{
 		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 
-		if ($indice == 1) {
+		$disciplinas_matriculado['disciplinas_matriculado'] = $this->aluno->get_Disciplinas_Matriculado($this->session->userdata('idUsuario'));
+
+		switch ($indice) {
+			case 1:
 			$msg['msg'] = "Dados atualizados com sucesso.";
 			$this->load->view('includes/msg_sucesso', $msg);
-		} else if ($indice == 2) {
+			break;
+
+			case 2:
 			$msg['msg'] = "Não foi possível atualizar os dados.";
 			$this->load->view('includes/msg_erro', $msg);
+			break;
+
 		}
 
 		$this->load->view('aluno/menu_lateral');
-		$this->load->view('aluno/disciplinas');
+		$this->load->view('aluno/disciplinas', $disciplinas_matriculado);
 		$this->load->view('includes/html_footer');
+	}
+
+	public function get_Nome_Professor($idProfessor=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$this->aluno->get_Nome_Professor($idProfessor);
+	}
+
+	public function get_Nome_Disciplina($idDisciplina=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$this->aluno->get_Nome_Disciplina($idDisciplina);
+	}
+
+	public function get_Status_Disciplina($idDisciplina=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$this->aluno->get_Status_Disciplina($idDisciplina);
 	}
 
 }

@@ -1,11 +1,12 @@
-<main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
+<link href="<?= base_url(); ?>assets/css/aluno.css" rel="stylesheet">
 
+<main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
   <div class="col-md-9">
     <h1 class="page-header"> Disciplinas </h1>
   </div>
 
   <div class="col-md-3">
-    <a class="btn btn-primary btn-block" href="<?= base_url(); ?>usuario/cadastro">
+    <a class="btn btn-primary btn-block font" href="<?= base_url(); ?>aluno/matricular_disciplina">
       <span class="fa fa-plus-square" aria-hidden="true"> </span> Matricular Disciplina
     </a>
   </div>
@@ -27,16 +28,23 @@
   <h5> Disciplinas Matrículadas </h5>
   <table class="table table-striped">
     <tr>
-      <th> ID </th>
-      <th> Nome </th>
-      <th> Email </th>
-      <th> Cidade </th>
-      <th> Nível </th>
-      <th> Status </th>
+      <th> Professor </th>
+      <th> Disciplina </th>
+      <th> Status da Disciplina </th>
+      <th> Status da Matrícula </th>
       <th> Ações </th>
-      <!-- <th> </th> -->
     </tr>
+    <?php foreach ($disciplinas_matriculado as $disciplina) { ?>
+      <tr>
+        <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Professor($disciplina->idProfessor); ?> </td>
+        <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Disciplina($disciplina->idDisciplina); ?> </td>
+        <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Status_Disciplina($disciplina->idDisciplina) == 2 ? 'Disponível':'Finalizada'; ?> </td>
+        <td> <?= $disciplina->status_participacao == 1 ? 'Aceitado' : 'Rejeitado'; ?> </td>
+        <td>
 
+        </td>
+      </tr>
+    <?php } ?>
   </table>
 </div>
 
@@ -44,41 +52,3 @@
 </main>
 </div>
 </div>
-
-<!-- <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-<h1> Disciplinas </h1> -->
-
-<!-- <section class="row text-center placeholders">
-<div class="col-6 col-sm-3 placeholder">
-<img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-<h4>Label</h4>
-<div class="text-muted">Something else</div>
-</div>
-<div class="col-6 col-sm-3 placeholder">
-<img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-<h4>Label</h4>
-<span class="text-muted">Something else</span>
-</div>
-<div class="col-6 col-sm-3 placeholder">
-<img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-<h4>Label</h4>
-<span class="text-muted">Something else</span>
-</div>
-<div class="col-6 col-sm-3 placeholder">
-<img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-<h4>Label</h4>
-<span class="text-muted">Something else</span>
-</div>
-</section> -->
-<!--
-<div class="card" style="width: 18rem;">
-<img class="card-img-top" src="application/img/2.jpg" alt="Card image cap">
-<div class="card-body">
-<h5 class="card-title">Card title</h5>
-<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-<a href="#" class="btn btn-primary">Go somewhere</a>
-</div>
-</div>
-</main>
-</div>
-</div> -->
