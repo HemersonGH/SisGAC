@@ -209,6 +209,19 @@ class Professor_model extends CI_Model
     return $this->db->update('solicitacoes_disciplinas', $solicitacao);
   }
 
+  public function salvar_participacao_disciplina($participacao_disciplina)
+  {
+    return $this->db->insert('participa_disciplina', $participacao_disciplina);
+  }
+
+  public function atualiza_participacao_disciplina($participacao_disciplina)
+  {
+    $this->db->where('idAluno', $participacao_disciplina['idAluno']);
+    $this->db->where('idDisciplina', $participacao_disciplina['idDisciplina']);
+
+    return $this->db->update('participa_disciplina', $participacao_disciplina);
+  }
+
 }
 
 ?>

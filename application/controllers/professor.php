@@ -501,7 +501,7 @@ class Professor extends CI_Controller {
 
 		switch ($indice) {
 			case 1:
-			$msg['msg'] = "Solicitação avaliada com sucesso.";
+			$msg['msg'] = "Solicitação avaliada com sucesso, agora o usuário poderá reliazar as atividades dessa disciplina.";
 			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
@@ -518,6 +518,11 @@ class Professor extends CI_Controller {
 			case 4:
 			$msg['msg'] = "Não foi possível excluída a solicitação.";
 			$this->load->view('includes/msg_erro', $msg);
+			break;
+
+			case 5:
+			$msg['msg'] = "Solicitação avaliada com sucesso, o usuário não poderá reliazar as atividades dessa disciplina.";
+			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 		}
 
@@ -572,12 +577,40 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$solicitacao['idSolicitacao'] = $this->input->post('idSolicitacao');
-		$solicitacao['status_solicitacao'] = $this->input->post('status_solicitacao');
-		$solicitacao['justificativa_professor'] = $this->input->post('justificativa_professor');
+		$solicitacao_avaliada['idSolicitacao'] = $this->input->post('idSolicitacao');
+		$solicitacao_avaliada['status_solicitacao'] = $this->input->post('status_solicitacao');
+		$solicitacao_avaliada['justificativa_professor'] = $this->input->post('justificativa_professor');
 
-		if ($this->professor->salvar_avaliacao_solicitacao($this->input->post('idSolicitacao'), $solicitacao)) {
-			redirect('professor/solicitacoes_disciplinas/1');
+		$solicitacao_anterior = $this->professor->get_Solicitacao($this->input->post('idSolicitacao'));
+
+		if ($this->professor->salvar_avaliacao_solicitacao($this->input->post('idSolicitacao'), $solicitacao_avaliada)) {
+			$participacao_disciplina['idAluno'] = $solicitacao_anterior[0]->idAluno;
+			$participacao_disciplina['idDisciplina'] = $solicitacao_anterior[0]->idDisciplina;
+			$status_avaliacao;
+
+			if ($solicitacao_anterior[0]->status_solicitacao == 1) {
+				if ($this->input->post('status_solicitacao') == 2) {
+					$participacao_disciplina['status_participacao'] = 1;
+					$status_avaliacao = 1;
+				} else if ($this->input->post('status_solicitacao') == 3) {
+					$participacao_disciplina['status_participacao'] = 0;
+					$status_avaliacao = 5;
+				}
+
+				$this->professor->salvar_participacao_disciplina($participacao_disciplina);
+			} else {
+				if ($this->input->post('status_solicitacao') == 2) {
+					$participacao_disciplina['status_participacao'] = 1;
+					$status_avaliacao = 1;
+				} else if ($this->input->post('status_solicitacao') == 3) {
+					$participacao_disciplina['status_participacao'] = 0;
+					$status_avaliacao = 5;
+				}
+
+				$this->professor->atualiza_participacao_disciplina($participacao_disciplina);
+			}
+
+			redirect('professor/solicitacoes_disciplinas/'.$status_avaliacao);
 		} else {
 			redirect('professor/solicitacoes_disciplinas/2');
 		}

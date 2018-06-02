@@ -63,7 +63,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <form class="" action="<?= base_url(); ?>usuario/salvar_senha" method="post">
-      <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $usuario[0]->idUsuario; ?>">
+      <input type="hidden" id="idUsuarioSenha" name="idUsuarioSenha" value="<?= $usuario[0]->idUsuario; ?>">
       <div class="modal-content">
         <div class="modal-header">
           <h4> Atualizar Senha </h4>
@@ -102,8 +102,8 @@
 
 <script>
 $(document).ready(function() {
-  $("#senha_nova").keyup(checkPasswordMatch);
-  $("#senha_confirmar").keyup(checkPasswordMatch);
+  $("#senha_nova").keyup(checkPassword);
+  $("#senha_confirmar").keyup(checkPassword);
 });
 function checkPassword() {
   var password = $("#senha_nova").val();

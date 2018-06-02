@@ -202,15 +202,11 @@ class Usuario extends CI_Controller {
 	public function salvar_senha()
 	{
 		$this->verificar_sessao();
-
-		$id = $this->input->post('idUsuario');
-
-		$senha_antiga = md5($this->input->post('senha_antiga'));
-		$senha_nova = md5($this->input->post('senha_nova'));
-
 		$this->load->model('usuario_model','usuario');
 
-		$id = $this->input->post('idUsuario');
+		$id = $this->input->post('idUsuarioSenha');
+		$senha_antiga = md5($this->input->post('senha_antiga'));
+		$senha_nova = md5($this->input->post('senha_nova'));
 
 		if ($this->usuario->salvar_senha($id, $senha_antiga, $senha_nova)) {
 			redirect('usuario/atualizar/'.$id.'/1');
