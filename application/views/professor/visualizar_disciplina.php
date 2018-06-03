@@ -1,7 +1,6 @@
 <link href="<?= base_url(); ?>assets/css/professor.css" rel="stylesheet">
 
 <div class="padding col-md-12">
-<!-- <h4> Conjuntos de Atividades Adicionados </h4> -->
 
 <?php foreach ($conjunto_atividades_da_disciplina as $conjuntos_atividades) { ?>
   <div class="spaceBeetwenComponents">
@@ -10,7 +9,7 @@
         <tr>
           <th class="colorHeader text-center"> Valor </th>
           <th class="colorHeader text-center"><?= $conjuntos_atividades->nome_conjunto;?></th>
-          <th class="colorHeader text-center"> Data de Entrega </th>
+          <th class="colorHeader text-center"> Prazo de Entrega </th>
         </tr>
       </thead>
       <tbody>

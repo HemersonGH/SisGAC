@@ -23,7 +23,7 @@
 
       <div class="row">
         <div class="col-md-6">
-          <label for="data" class="padding"> <h6> Data de Entrega: </h6> </label>
+          <label for="data" class="padding"> <h6> Prazo de Entrega: </h6> </label>
           <input type="date" class="form-control" id="data" name="data" required>
         </div>
         <div class="col-md-6">

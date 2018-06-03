@@ -22,7 +22,9 @@ class Professor extends CI_Controller {
 	public function verificar_sessao()
 	{
 		if (!($this->session->userdata('logado'))) {
-			redirect('usuario');
+			$this->session->sess_destroy();
+			
+			redirect('usuario/login');
 		}
 	}
 

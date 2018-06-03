@@ -22,7 +22,9 @@ class Aluno extends CI_Controller {
 	public function verificar_sessao()
 	{
 		if (!($this->session->userdata('logado'))) {
-			redirect('usuario');
+			$this->session->sess_destroy();
+
+			redirect('usuario/login');
 		}
 	}
 
@@ -218,6 +220,31 @@ class Aluno extends CI_Controller {
 		} else {
 			redirect('aluno/matricular_disciplina/6');
 		}
+	}
+
+	public function atividades_disciplina($idDisciplina=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$disciplina = $this->aluno->get_Disciplina($idDisciplina);
+		$conjuntos_disciplina['conjuntos_disciplina'] = $this->aluno->get_Conjuntos_Da_Disciplinas($disciplina[0]->id_professor, $idDisciplina);
+		$nomeDisciplina['nomeDisciplina'] = $disciplina[0]->nome_disciplina;
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/cabecalho_disciplina', $nomeDisciplina);
+		$this->load->view('aluno/atividades_disciplina', $conjuntos_disciplina);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function get_Atividades($id_conjunto_atividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$this->aluno->get_Atividades($id_conjunto_atividade);
 	}
 
 }

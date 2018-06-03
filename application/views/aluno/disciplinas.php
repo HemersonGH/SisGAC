@@ -11,11 +11,11 @@
     </a>
   </div>
 
-    <!-- <div class="col-md-12" style="padding-bottom: 10px">
-    <form action="usuario/pesquisar" method="post">
-    <div class="row">
-    <div class="col-md-10">
-    <input type="text" class="form-control" id="pesquisar" name="pesquisar" placeholder="Pesquisar...">
+  <!-- <div class="col-md-12" style="padding-bottom: 10px">
+  <form action="usuario/pesquisar" method="post">
+  <div class="row">
+  <div class="col-md-10">
+  <input type="text" class="form-control" id="pesquisar" name="pesquisar" placeholder="Pesquisar...">
   </div>
   <div class="col-md-2">
   <button type="submit" class="btn btn-success btn-block">Pesquisar</button>
@@ -32,7 +32,7 @@
         <th> Disciplina </th>
         <th> Código da Disciplina </th>
         <th> Status da Disciplina </th>
-        <th> Status da Matrícula </th>
+        <!-- <th> Status da Matrícula </th> -->
         <th> Ações </th>
       </tr>
       <?php foreach ($disciplinas_matriculado as $disciplina) { ?>
@@ -41,9 +41,11 @@
           <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Disciplina($disciplina->idDisciplina); ?> </td>
           <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Cod_Disciplina($disciplina->idDisciplina); ?> </td>
           <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Status_Disciplina($disciplina->idDisciplina) == 2 ? 'Disponível':'Finalizada'; ?> </td>
-          <td> <?= $disciplina->status_participacao == 1 ? 'Aceito' : 'Rejeitado'; ?> </td>
+          <!-- <td> <= $disciplina->status_participacao == 1 ? 'Aceito' : 'Rejeitado'; ?> </td> -->
           <td>
-
+            <a data-tooltip="tooltip" title="Realizar atividades" data-tooltip="tooltip" href="<?= base_url('aluno/atividades_disciplina/'.$disciplina->idDisciplina); ?>">
+              <span class="fa fa-pencil-square-o pencil_square mr-2" aria-hidden="true"></span>
+            </a>
           </td>
         </tr>
       <?php } ?>

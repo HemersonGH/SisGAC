@@ -112,6 +112,24 @@ class Aluno_model extends CI_Model
     return $this->db->update('solicitacoes_disciplinas', $solicitacao);
   }
 
+  public function get_Conjuntos_Da_Disciplinas($idUsuario=null, $idDisciplina)
+  {
+    $this->db->select('*');
+    $this->db->where('id_professor', $idUsuario);
+    $this->db->where('id_disciplina_conjunto', $idDisciplina);
+
+    return $this->db->get('conjunto_atividade')->result();
+  }
+
+  public function get_Atividades($id_conjunto_atividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
+
+    return $this->db->get('atividade')->result();
+  }
+
+
 }
 
 ?>
