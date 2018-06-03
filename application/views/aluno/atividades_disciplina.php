@@ -14,7 +14,7 @@
             <th class="colorHeader text-center"> Ações </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody>teste
           <?php foreach ($this->load->library('application/controllers/aluno')->aluno->get_Atividades($conjuntos_atividades->idConjuntoAtividade) as $atividade) { ?>
             <tr>
               <td class="text-center"> <?= $atividade->pontos; ?> Pontos </td>
@@ -22,7 +22,7 @@
               <td class="text-center"> <?= str_replace("-", "/", date('d-m-Y', strtotime($atividade->prazo_entrega))); ?> </td>
               <td class="text-center">
 
-              </td>              
+              </td>
               <td class="text-center">
 
               </td>
