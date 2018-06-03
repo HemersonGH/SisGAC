@@ -5,7 +5,7 @@
     <h1 class="page-header"> Nova Atividade </h1>
   </div>
   <div class="col-md-12">
-    <div class="form-control col-md-6">
+    <div class="form-control col-md-6 paddingBotton">
       <form class="padding" action="<?= base_url(); ?>professor/cadastrar_atividades" method="post">
         <input type="hidden" id="idProfessor" name="idProfessor" value="<?= $this->session->userdata('idUsuario'); ?>">
         <input type="hidden" id="id_conjunto" name="id_conjunto" value="<?= $conjunto_atividade[0]->idConjuntoAtividade; ?>">
@@ -39,7 +39,7 @@
             <a class="paddingButton btn btn-danger left" href="<?= base_url('professor/atividades_conjunto/'.$conjunto_atividade[0]->idConjuntoAtividade); ?>"> Cancelar </a>
             <button type="submit" class="paddingButton btn btn-success right"> Criar Atividade </button>
           </div>
-        </div>  
+        </div>
       </form>
     </div>
   </div>

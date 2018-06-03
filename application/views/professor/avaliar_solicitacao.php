@@ -5,7 +5,7 @@
     <h1 class="page-header"> Avaliar Solicitação </h1>
   </div>
   <div class="col-md-12">
-    <div class="form-control col-md-6">
+    <div class="form-control col-md-6 paddingBotton">
       <form class="padding" action="<?= base_url(); ?>professor/salvar_avaliacao_solicitacao" method="post">
         <input type="hidden" id="idSolicitacao" name="idSolicitacao" value="<?= $solicitacao[0]->idSolicitacao; ?>">
         <div class="row">
@@ -42,8 +42,12 @@
             <textarea class="form-control justificativa" id="justificativa_professor" name="justificativa_professor" required><?= $solicitacao[0]->justificativa_professor; ?></textarea>
           </div>
         </div>
-        <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>professor/solicitacoes_disciplinas"> Cancelar </a>
-        <button type="submit" class="paddingButton btn btn-success right"> Salvar Avaliação </button>
+        <div class="row">
+          <div class="col-md-12">
+            <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>professor/solicitacoes_disciplinas"> Cancelar </a>
+            <button type="submit" class="paddingButton btn btn-success right"> Salvar Avaliação </button>
+          </div>
+        </div>
       </form>
     </div>
   </div>

@@ -5,7 +5,7 @@
     <h1 class="page-header"> Editar Disciplina </h1>
   </div>
   <div class="col-md-12">
-    <div class="col-md-6 form-control">
+    <div class="col-md-6 form-control paddingBotton">
       <form class="padding" action="<?= base_url(); ?>professor/salvar_atualizacao_disciplina" method="post">
         <input type="hidden" id="idDisciplina" name="idDisciplina" value="<?= $disciplina[0]->idDisciplina ?>">
         <div class="row">

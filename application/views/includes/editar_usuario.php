@@ -47,8 +47,8 @@
 
         <div class="row">
           <div class="col-md-12">
-            <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url('usuario/'.$this->session->userdata('tipoUsuario')); ?>" > Cancelar </a>
-            <button type="submit" class="paddingButton btn btn-success right"> Atualizar </button>
+            <a class="paddingButton btn btn-danger left" href="<?= base_url('usuario/'.$this->session->userdata('tipoUsuario')); ?>" > Cancelar </a>
+            <button type="submit" class="paddingButton btn btn-success right cursor"> Atualizar </button>
           </div>
         </div>
       </form>

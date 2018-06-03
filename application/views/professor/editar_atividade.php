@@ -5,7 +5,7 @@
     <h1 class="page-header"> Editar Atividade </h1>
   </div>
   <div class="col-md-12">
-    <div class="form-control col-md-6">
+    <div class="form-control col-md-6 paddingBotton">
       <form class="padding" action="<?= base_url(); ?>professor/salvar_atualizacao_atividade" method="post">
         <input type="hidden" id="idProfessor" name="idProfessor" value="<?= $this->session->userdata('idUsuario'); ?>">
         <input type="hidden" id="id_conjunto" name="id_conjunto" value="<?= $atividade[0]->idConjuntoAtividade; ?>">
