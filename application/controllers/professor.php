@@ -271,6 +271,16 @@ class Professor extends CI_Controller {
 			$msg['msg'] = "Não foi possível atualizar o conjunto.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
+
+			case 5:
+			$msg['msg'] = "Conjunto excluído com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
+			break;
+
+			case 6:
+			$msg['msg'] = "Não foi possível excluír o conjunto.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
 		}
 
 		$this->load->view('professor/conjuntos_atividades', $conjunto_atividades);
@@ -282,7 +292,7 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$dadosProfessorConjunto['id_professor'] = $this->input->post('id_professor');
+		$dadosProfessorConjunto['id_professor'] = $this->session->userdata('idUsuario');
 		$dadosProfessorConjunto['nome_conjunto'] = $this->input->post('nome_conjunto');
 
 		if ($this->professor->cadastrar_conjunto_atividades($dadosProfessorConjunto)) {
@@ -298,10 +308,10 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$conjunto_atividade['id_professor'] = $this->session->userdata('idUsuario');
-		$conjunto_atividade['nome_conjunto'] = $this->input->post('idNomeConjunto');
-		$conjunto_atividade['idConjuntoAtividade'] = $this->input->post('idConjuntoAtividade');
+		$conjunto_atividade['nome_conjunto'] = $this->input->post('idNomeConjuntoEditar');
+		$conjunto_atividade['idConjuntoAtividade'] = $this->input->post('idConjuntoAtividadeEditar');
 
-		if ($this->professor->salvar_atualizacao_conjunto_atividades($this->input->post('idConjuntoAtividade'), $conjunto_atividade)) {
+		if ($this->professor->salvar_atualizacao_conjunto_atividades($this->input->post('idConjuntoAtividadeEditar'), $conjunto_atividade)) {
 			redirect('professor/atividades/3');
 		} else {
 			redirect('professor/atividades/4');

@@ -69,6 +69,14 @@ class Aluno extends CI_Controller {
 		$this->aluno->get_Nome_Disciplina($idDisciplina);
 	}
 
+	public function get_Cod_Disciplina($idDisciplina=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$this->aluno->get_Cod_Disciplina($idDisciplina);
+	}
+
 	public function get_Status_Disciplina($idDisciplina=null)
 	{
 		$this->verificar_sessao();

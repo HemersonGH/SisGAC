@@ -43,6 +43,15 @@ class Aluno_model extends CI_Model
     return $disciplina[0]->nome_disciplina;
   }
 
+  public function get_Cod_Disciplina($idDisciplina=null)
+  {
+    $this->db->where('idDisciplina', $idDisciplina);
+
+    $disciplina = $this->db->get('disciplina')->result();
+
+    return $disciplina[0]->codigo_disciplina;
+  }
+
   public function get_Status_Disciplina($idDisciplina=null)
   {
     $this->db->where('idDisciplina', $idDisciplina);

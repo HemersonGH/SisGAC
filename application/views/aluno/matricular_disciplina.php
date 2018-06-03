@@ -10,10 +10,10 @@
       <div class="row">
         <div class="col-md-4">
           <label for="idDisciplina"> <h5> Disciplinas Disponíveis: </h5> </label>
-          <select class="form-control paddingBotton" id="idDisciplina" name="idDisciplina" required>
+          <select class="form-control paddingBotton" id="idDisciplina" name="idDisciplina" onchange="verificaValor()" required>
             <?php if ($disciplinas == null): ?>
-              <option value=""> </option>
-              <option value=""> Sem disciplinas disponíveis </option>
+              <option> </option>
+              <option value="0"> Sem disciplinas disponíveis </option>
             <?php else: ?>
               <?php foreach ($disciplinas as $disciplina): ?>
                 <option value="<?= $disciplina->idDisciplina?>"> <?= $disciplina->nome_disciplina; ?> </option>
@@ -27,6 +27,16 @@
       </div>
     </form>
   </div>
+
+  <script type="text/javascript">
+  function verificaValor() {
+    if (document.getElementById("idDisciplina").value == 0) {
+      document.getElementById("solicitacao").disabled = true;
+    } else {
+      document.getElementById("solicitacao").disabled = false;
+    }
+  }
+  </script>
 
   <script>
   $(document).ready(function(){

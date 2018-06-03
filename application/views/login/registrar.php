@@ -14,7 +14,7 @@
     </select>
     <div class="row">
       <div class="col-md-6">
-        <a type="btn" class="btn btn-danger btn-block" href="<?= base_url(); ?>usuario"> Cancelar </a>
+        <a class="btn btn-danger btn-block" href="<?= base_url(); ?>usuario"> Cancelar </a>
       </div>
       <div class="col-md-6">
         <button type="submit" class="btn btn-primary btn-block mt-2 mt-md-0 ajust"> Cadastrar </button>

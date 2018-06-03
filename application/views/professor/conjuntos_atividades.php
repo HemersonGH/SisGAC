@@ -28,7 +28,7 @@
               <span class="fa fa-paste paste mr-2 " aria-hidden="true"> </span>
             </a>
             <span class="fa fa-pencil pencil mr-2 cursor" aria-hidden="true" data-tooltip="tooltip" title="Editar conjunto"
-              onclick="editarConjunto(<?= $conjunto_atividade->idConjuntoAtividade; ?>, <?= $conjunto_atividade->nome_conjunto; ?>)" data-toggle="modal" data-target="#myModalEditarConjunto">
+              onclick="editarConjunto(<?= $conjunto_atividade->idConjuntoAtividade; ?>, '<?= $conjunto_atividade->nome_conjunto; ?>')" data-toggle="modal" data-target="#myModalEditarConjunto">
             </span>
             <span class="fa fa-remove remove mr-2 cursor" aria-hidden="true" data-tooltip="tooltip" title="Excluir conjunto"
               onclick="confimarExcluirConjunto(<?= $conjunto_atividade->idConjuntoAtividade; ?>)" data-toggle="modal" data-target="#myModalExcluirConjunto">
@@ -46,15 +46,15 @@
 </script>
 
 <script type="text/javascript">
-function editarConjunto(id, nome_conjunto) {
-  document.getElementById("idConjuntoAtividade").value = id;
-  document.getElementById("idNomeConjunto").value = nome_conjunto;
+function editarConjunto(idEditar, NomeConjunto) {
+  document.getElementById("idConjuntoAtividadeEditar").value = idEditar;
+  document.getElementById("idNomeConjuntoEditar").value = NomeConjunto;
 }
 </script>
 
 <script type="text/javascript">
-function confimarExcluirConjunto(id) {
-  document.getElementById("idConjuntoAtividadeExcluir").value = id;
+function confimarExcluirConjunto(idExcluir) {
+  document.getElementById("idConjuntoAtividadeExcluir").value = idExcluir;
 }
 </script>
 
@@ -62,7 +62,6 @@ function confimarExcluirConjunto(id) {
 <div class="modal fade" id="myModalCriarConjunto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <form class="" action="<?= base_url(); ?>professor/cadastrar_conjunto_atividades" method="post">
-      <input type="hidden" id="id_professor" name="id_professor" value="<?= $this->session->userdata('idUsuario')?>">
       <div class="modal-content">
         <div class="modal-header">
           <h4> Novo Conjunto de Atividades </h4>
@@ -101,13 +100,13 @@ function confimarExcluirConjunto(id) {
         <div class="modal-body">
           <div class="row">
             <div class="col-md-12 form-group">
-              <label for="nome_conjunto"> <h6> Nome do Conjunto: </h6> </label>
-              <input type="text" class="form-control" name="idNomeConjunto" id="idNomeConjunto" required>
+              <input type="hidden" id="idConjuntoAtividadeEditar" name="idConjuntoAtividadeEditar">
+              <label for="idNomeConjuntoEditar"> <h6> Nome do Conjunto: </h6> </label>
+              <input type="text" class="form-control" name="idNomeConjuntoEditar" id="idNomeConjuntoEditar" required>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <input type="hidden" id="idConjuntoAtividade" name="idConjuntoAtividade">
           <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Cancelar </button>
           <button type="submit" class="btn btn-success cursor"> Atualizar </button>
         </div>

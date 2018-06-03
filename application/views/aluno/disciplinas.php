@@ -30,6 +30,7 @@
       <tr>
         <th> Professor </th>
         <th> Disciplina </th>
+        <th> Código da Disciplina </th>
         <th> Status da Disciplina </th>
         <th> Status da Matrícula </th>
         <th> Ações </th>
@@ -38,6 +39,7 @@
         <tr>
           <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Professor($disciplina->idProfessor); ?> </td>
           <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Disciplina($disciplina->idDisciplina); ?> </td>
+          <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Cod_Disciplina($disciplina->idDisciplina); ?> </td>
           <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Status_Disciplina($disciplina->idDisciplina) == 2 ? 'Disponível':'Finalizada'; ?> </td>
           <td> <?= $disciplina->status_participacao == 1 ? 'Aceito' : 'Rejeitado'; ?> </td>
           <td>
