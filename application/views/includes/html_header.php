@@ -12,6 +12,7 @@
   <link href="<?= base_url(); ?>assets/css/font-awesome.css" rel="stylesheet">
 
   <script src="<?= base_url(); ?>assets/js/vendor/jquery.min.js"></script>
+  <script src="<?= base_url(); ?>assets/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
 
   <title> SGDs </title>
 

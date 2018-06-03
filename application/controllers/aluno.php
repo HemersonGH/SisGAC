@@ -247,4 +247,33 @@ class Aluno extends CI_Controller {
 		$this->aluno->get_Atividades($id_conjunto_atividade);
 	}
 
+	public function enviar_atividade($idAtividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$atividade = $this->aluno->get_Atividade($idAtividade);
+		$conjunto = $this->aluno->get_Nome_Conjunto($atividade[0]->idConjuntoAtividade);
+		$atividadeEnviar['atividadeEnviar'] = $this->aluno->get_Atividade($idAtividade);
+		$atividadeEnviar['idDisciplina'] = $conjunto[0]->id_disciplina_conjunto;
+		$nomeConjunto['nomeConjunto'] = $conjunto[0]->nome_conjunto;
+
+		// $idDisciplina['idDisciplina'] =
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/cabecalho_conjunto_atividade', $nomeConjunto);
+		$this->load->view('aluno/enviar_atividade', $atividadeEnviar);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function get_Atividade($idAtividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$this->aluno->get_Atividades($idAtividade);
+	}
+
 }

@@ -173,7 +173,6 @@
   resize: none;
 }
 
-
 .pencil_square {
   cursor:pointer;
   /* color: red; */
@@ -182,4 +181,9 @@
 
 .current {
   background-color: silver;
+}
+
+.paper_plane {
+  font-size: 20px;
+  color: black;
 }

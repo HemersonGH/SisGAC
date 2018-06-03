@@ -129,6 +129,23 @@ class Aluno_model extends CI_Model
     return $this->db->get('atividade')->result();
   }
 
+  public function get_Atividade($idAtividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAtividade', $idAtividade);
+
+    return $this->db->get('atividade')->result();
+  }
+
+  public function get_Nome_Conjunto($id_conjunto_atividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
+
+    return $this->db->get('conjunto_atividade')->result();
+  }
+
+
 
 }
 

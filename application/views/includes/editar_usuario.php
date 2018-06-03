@@ -5,55 +5,55 @@
     <h1 class="page-header"> Editar Dados </h1>
   </div>
 
-  <div class="col-md-6 form-control">
-    <form class="padding" action="<?= base_url(); ?>usuario/salvar_atualizacao" method="post">
-      <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $usuario[0]->idUsuario; ?>">
+  <div class="col-md-12">
+    <div class="col-md-6 form-control">
+      <form class="padding" action="<?= base_url(); ?>usuario/salvar_atualizacao" method="post">
+        <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $usuario[0]->idUsuario; ?>">
 
-      <div class="row">
-        <div class="col-md-12">
-          <label for="name">Nome:</label>
-          <input type="text" class="form-control" id="name" name="name" value="<?= $usuario[0]->nome; ?>" required>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="name">Nome:</label>
+            <input type="text" class="form-control" id="name" name="name" value="<?= $usuario[0]->nome; ?>" required>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <label for="cpf" class="padding">CPF:</label>
-          <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $usuario[0]->cpf; ?>" required>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="cpf" class="padding">CPF:</label>
+            <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $usuario[0]->cpf; ?>" required>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <label for="data" class="padding"> Data de Nascimento: </label>
-          <input type="date" class="form-control" id="data" name="data" value="<?= date('Y-m-d', strtotime($usuario[0]->data)); ?>" required>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="data" class="padding"> Data de Nascimento: </label>
+            <input type="date" class="form-control" id="data" name="data" value="<?= date('Y-m-d', strtotime($usuario[0]->data)); ?>" required>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <label for="email" class="padding">Email:</label>
-          <input type="email" class="form-control" id="email" name="email" value="<?= $usuario[0]->email; ?>" required>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="email" class="padding">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" value="<?= $usuario[0]->email; ?>" required>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <label for="password" class="padding">Senha:</label>
-          <input type="button" class="btn btn-default btn-block" value="Atualizar Senha" data-toggle="modal" data-target="#myModal">
+        <div class="row">
+          <div class="col-md-12">
+            <label for="password" class="padding">Senha:</label>
+            <input type="button" class="btn btn-default btn-block" value="Atualizar Senha" data-toggle="modal" data-target="#myModal">
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url('usuario/'.$this->session->userdata('tipoUsuario')); ?>" > Cancelar </a>
-          <button type="submit" class="paddingButton btn btn-success right"> Atualizar </button>
+        <div class="row">
+          <div class="col-md-12">
+            <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url('usuario/'.$this->session->userdata('tipoUsuario')); ?>" > Cancelar </a>
+            <button type="submit" class="paddingButton btn btn-success right"> Atualizar </button>
+          </div>
         </div>
-      </div>
-
+      </form>
     </div>
-  </form>
-</div>
+  </div>
 
 </main>
 </div>

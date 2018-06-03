@@ -23,7 +23,7 @@ class Professor extends CI_Controller {
 	{
 		if (!($this->session->userdata('logado'))) {
 			$this->session->sess_destroy();
-			
+
 			redirect('usuario/login');
 		}
 	}
@@ -378,7 +378,7 @@ class Professor extends CI_Controller {
 			break;
 		}
 
-		$this->load->view('professor/cabecalho_atividade', $conjunto_atividade);
+		$this->load->view('professor/cabecalho_conjunto_atividade', $conjunto_atividade);
 		$this->load->view('professor/atividades_conjunto', $atividades);
 		$this->load->view('includes/html_footer');
 	}

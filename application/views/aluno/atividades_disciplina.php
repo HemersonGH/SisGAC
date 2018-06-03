@@ -24,7 +24,9 @@
 
               </td>
               <td class="text-center">
-
+                <a data-tooltip="tooltip" title="Enviar atividade" href="<?= base_url('aluno/enviar_atividade/'.$atividade->idAtividade); ?>">
+                  <span class="fa fa-paper-plane paper_plane mr-2" aria-hidden="true"></span>
+                </a>
               </td>
             </tr>
           <?php } ?>
