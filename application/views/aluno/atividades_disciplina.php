@@ -14,7 +14,7 @@
             <th class="colorHeader text-center"> Ações </th>
           </tr>
         </thead>
-        <tbody>teste
+        <tbody>
           <?php foreach ($this->load->library('application/controllers/aluno')->aluno->get_Atividades($conjuntos_atividades->idConjuntoAtividade) as $atividade) { ?>
             <tr>
               <td class="text-center"> <?= $atividade->pontos; ?> Pontos </td>
