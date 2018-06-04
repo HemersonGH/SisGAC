@@ -112,16 +112,16 @@
 
 .remove {
   color: red;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .pencil {
-  font-size: 18px;
+  font-size: 20px;
   color: black;
 }
 
 .color_disabled {
-  font-size: 18px;
+  font-size: 20px;
   color: silver;
 }
 
@@ -130,11 +130,11 @@
 }
 
 .paste {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .folder {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .paddingButtonAdd {
