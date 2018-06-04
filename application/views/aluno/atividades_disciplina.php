@@ -44,15 +44,15 @@
                   </a>
                 <?php endif; ?>
                 <span class="fa fa-remove remove mr-2 cursor" title="Excluir Atividade" aria-hidden="true" data-tooltip="tooltip"
-                  onclick="confimaExcluirAtividadeRealizada()" data-toggle="modal" data-target="#myModalAtividadeRealizada">
-                </span>
-              </td>
-            </tr>
-          <?php } ?>
-        </tbody>
-      </table>
-    </div>
-  <?php } ?>
+                onclick="confimaExcluirAtividadeRealizada()" data-toggle="modal" data-target="#myModalAtividadeRealizada">
+              </span>
+            </td>
+          </tr>
+        <?php } ?>
+      </tbody>
+    </table>
+  </div>
+<?php } ?>
 
 <script>
 $(document).ready(function(){
@@ -66,29 +66,29 @@ function confimaExcluirAtividadeRealizada() {
 }
 </script>
 
-  <!-- Modal Excluir Atividade Realizada -->
-  <div class="modal fade" id="myModalAtividadeRealizada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <form class="" action="<?= base_url(); ?>aluno/excluir_atividade_enviada" method="post">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4> Excluir Atividade </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Tem certeza que deseja excluir a atividade realizada?
-          </div>
-          <div class="modal-footer">
-            <input type="hidden" id="idDisciplina" name="idDisciplina">
-            <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Não </button>
-            <button type="submit" class="btn btn-primary cursor"> Sim </button>
-          </div>
+<!-- Modal Excluir Atividade Realizada -->
+<div class="modal fade" id="myModalAtividadeRealizada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form class="" action="<?= base_url(); ?>aluno/excluir_atividade_enviada" method="post">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4> Excluir Atividade </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Tem certeza que deseja excluir a atividade realizada?
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" id="idDisciplina" name="idDisciplina">
+          <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Não </button>
+          <button type="submit" class="btn btn-primary cursor"> Sim </button>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>
 </div>
 </main>
 </div>
