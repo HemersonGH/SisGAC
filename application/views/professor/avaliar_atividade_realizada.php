@@ -31,23 +31,28 @@
             <textarea class="form-control descricao_atividade" id="descricao_atividade" name="descricao_atividade" disabled><?= $this->load->library('application/controllers/professor')->professor->get_Descricao_Atividade($atividadeRealizada[0]->idAtividade); ?></textarea>
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-12">
-            <label for="resposta_aluno" class="padding"> <h6> Resposta: </h6> </label>
+            <label for="resposta_aluno" class="padding"> <h6> Resposta do Aluno: </h6> </label>
             <textarea class="form-control resposta" id="resposta_aluno" name="resposta_aluno" disabled><?= $atividadeRealizada[0]->resposta_aluno; ?></textarea>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <label for="anexo" class="padding"> <h6> Anexos: </h6> </label>
-            <input type="file" class="form-control camp paddingBotton" id="anexo" name="anexo" required>
+            <label for="paddingButton anexo" class="padding"> <h6> Arquivo Anexado: </h6> </label>
+            <a class="paddingButton btn btn-secondary buttonSize" href="<?= base_url('professor/downloadAnexo/'.$atividadeRealizada[0]->anexo) ?>"> Download Arquivo </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="resposta_professor" class="padding"> <h6> Resposta do Professor: </h6> </label>
+            <textarea class="form-control resposta" id="resposta_professor" name="resposta_professor" required></textarea>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>professor/avaliacoes_atividades_realizada"> Cancelar </a>
-            <button type="submit" class="paddingButton btn btn-success right cursor"> Enviar Atividade </button>
+            <button type="submit" class="paddingButton btn btn-success right cursor"> Salvar Avaliação </button>
           </div>
         </div>
       </form>

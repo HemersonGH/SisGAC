@@ -300,19 +300,20 @@ class Aluno extends CI_Controller {
 		$disciplina = $this->aluno->get_Disciplina($this->input->post('idDisciplina'));
 		$nomeArquivo = $this->session->userdata('nome').'_'.$this->session->userdata('idUsuario').'_'.$this->input->post('idAtividade');
 
+		$anexo = $_FILES['anexo'];
+		$extensao = @end(explode('.', $_FILES['anexo']['name']));
+
 		$atividadeRealizada['idAtividade']      = $this->input->post('idAtividade');
 		$atividadeRealizada['idAluno']          = $this->session->userdata('idUsuario');
 		$atividadeRealizada['idDisciplina']     = $this->input->post('idDisciplina');
 		$atividadeRealizada['idProfessor']      = $disciplina[0]->id_professor;
 		$atividadeRealizada['resposta_aluno']   = $this->input->post('resposta');
-		$atividadeRealizada['anexo']            = $nomeArquivo;
+		$atividadeRealizada['anexo']            = $nomeArquivo.'.'.$extensao;
 		$atividadeRealizada['status_atividade'] = 2;
-
-		$anexo = $_FILES['anexo'];
 
 		$configuracao['upload_path']    = 'C:\xampp\htdocs\SGDs_ES\application\anexos';
 		$configuracao['allowed_types']  = 'pdf|jpg|jpeg|png|zip|rar|doc|docx|txt';
-		$configuracao['file_name']      = $nomeArquivo;
+		$configuracao['file_name']      = $nomeArquivo.".".$extensao;
 		$configuracao['max_size']       = 15000;
 		$configuracao['overwrite']      = true;
 

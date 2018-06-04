@@ -46,9 +46,9 @@
               </span>
               </td>
             </tr>
-          </table>
-        </div>
-      <?php } ?>
+          <?php } ?>
+        </table>
+      </div>
 
   <script>
   $(document).ready(function(){

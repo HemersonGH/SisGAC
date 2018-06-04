@@ -723,10 +723,13 @@ class Professor extends CI_Controller {
 		$this->aluno->get_Status_Atividade($idAtividade, $idAluno);
 	}
 
-	public function avaliar_atividade_realizada($idAtividade=null, $idAluno=null)
+	public function avaliar_atividade_realizada()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idAtividade = $this->uri->segment(3);
+		$idAluno = $this->uri->segment(4);
 
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 		$atividadeRealizada['atividadeRealizada'] = $this->professor->get_Atividade_Realizada($idAtividade, $idAluno);
@@ -738,5 +741,16 @@ class Professor extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
+	public function downloadAnexo()
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$nomeArquivo = $this->uri->segment(3);
+
+		$this->load->helper('Download');
+
+		force_download($nomeArquivo, 'C:/xampp/htdocs/SGDs_ES/application/anexos/');
+	}
 
 }

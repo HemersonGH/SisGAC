@@ -40,6 +40,11 @@
   resize: none;
 }
 
+.resposta {
+  height: 120px;
+  /* resize: none; */
+}
+
 .descricao_atividade {
   height: 150px;
   resize: none;
