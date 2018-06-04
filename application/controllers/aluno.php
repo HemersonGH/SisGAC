@@ -222,7 +222,7 @@ class Aluno extends CI_Controller {
 		}
 	}
 
-	public function atividades_disciplina($idDisciplina=null)
+	public function atividades_disciplina($idDisciplina=null, $indice=null)
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
@@ -234,6 +234,24 @@ class Aluno extends CI_Controller {
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 		$this->load->view('aluno/menu_lateral');
+
+		switch ($indice) {
+			case 1:
+			$msg['msg'] = "Não foi possível fazer o upload do seu arquivo, tente novamente ou contate o administrador do sistema.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
+
+			case 2:
+			$msg['msg'] = "Sua atividade foi enviada com sucesso, aguarde a correção pelo professor.";
+			$this->load->view('includes/msg_sucesso', $msg);
+			break;
+
+			case 3:
+			$msg['msg'] = "Não foi possível enviar sua atividade, tente novamente ou contate o administrador do sistema.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
+		}
+
 		$this->load->view('aluno/cabecalho_disciplina', $nomeDisciplina);
 		$this->load->view('aluno/atividades_disciplina', $conjuntos_disciplina);
 		$this->load->view('includes/html_footer');
@@ -258,8 +276,6 @@ class Aluno extends CI_Controller {
 		$atividadeEnviar['idDisciplina'] = $conjunto[0]->id_disciplina_conjunto;
 		$nomeConjunto['nomeConjunto'] = $conjunto[0]->nome_conjunto;
 
-		// $idDisciplina['idDisciplina'] =
-
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 		$this->load->view('aluno/menu_lateral');
@@ -274,6 +290,59 @@ class Aluno extends CI_Controller {
 		$this->load->model('aluno_model','aluno');
 
 		$this->aluno->get_Atividades($idAtividade);
+	}
+
+	public function salvar_atividade_enviada()
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$disciplina = $this->aluno->get_Disciplina($this->input->post('idDisciplina'));
+		$nomeArquivo = $this->session->userdata('nome').'_'.$this->session->userdata('idUsuario').'_'.$this->input->post('idAtividade');
+
+		$atividadeRealizada['idAtividade']      = $this->input->post('idAtividade');
+		$atividadeRealizada['idAluno']          = $this->session->userdata('idUsuario');
+		$atividadeRealizada['idDisciplina']     = $this->input->post('idDisciplina');
+		$atividadeRealizada['idProfessor']      = $this->aluno->get_Nome_Professor($disciplina[0]->id_professor);
+		$atividadeRealizada['resposta']         = $this->input->post('resposta');
+		$atividadeRealizada['anexo']            = $nomeArquivo;
+		$atividadeRealizada['status_atividade'] = 2;
+
+		$anexo = $_FILES['anexo'];
+
+		$configuracao['upload_path']    = 'C:\xampp\htdocs\SGDs_ES\application\anexos';
+		$configuracao['allowed_types']  = 'pdf|jpg|jpeg|png|zip|rar|doc|docx|txt';
+		$configuracao['file_name']      = $nomeArquivo;
+		$configuracao['max_size']       = 15000;
+		$configuracao['overwrite']      = true;
+
+		$this->load->library('upload', $configuracao);
+		$this->upload->initialize($configuracao);
+
+		if ($this->upload->do_upload('anexo')) {
+			$erro = false;
+		}	else {
+			$erro = true;
+		}
+
+		if ($erro == true) {
+			redirect('aluno/matricular_disciplina/'.$this->input->post('idDisciplina').'/1');
+			// $this->upload->display_errors();
+		}
+
+		if ($this->aluno->salvar_atividade_enviada($atividadeRealizada)) {
+			redirect('aluno/matricular_disciplina/'.$this->input->post('idDisciplina').'/2');
+		} else {
+			redirect('aluno/matricular_disciplina/'.$this->input->post('idDisciplina').'/3');
+		}
+	}
+
+	public function get_Status_Atividade($idAtividade=null, $idAluno=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$this->aluno->get_Status_Atividade($idAtividade, $idAluno);
 	}
 
 }

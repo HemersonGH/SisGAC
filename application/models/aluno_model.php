@@ -145,7 +145,24 @@ class Aluno_model extends CI_Model
     return $this->db->get('conjunto_atividade')->result();
   }
 
+  public function salvar_atividade_enviada($atividadeRealizada)
+  {
+    return $this->db->insert('realiza_atividade', $atividadeRealizada);
+  }
 
+  public function get_Status_Atividade($idAtividade=null, $idAluno=null)
+  {
+    $this->db->where('idAtividade', $idAtividade);
+    $this->db->where('idAluno', $idAluno);
+
+    $atividadeRealizada = $this->db->get('realiza_atividade')->result();
+
+    if ($atividadeRealizada == null) {
+      return 1;
+    } else {
+      return $atividadeRealizada[0]->status_atividade;
+    }
+  }
 
 }
 

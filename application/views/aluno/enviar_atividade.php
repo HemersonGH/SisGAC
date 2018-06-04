@@ -2,7 +2,7 @@
 
   <div class="col-md-12">
     <div class="form-control col-md-6 paddingBotton">
-      <form class="padding" action="<?= base_url(); ?>aluno/salvar_atividade_enviada" method="post">
+      <form class="padding" action="<?= base_url(); ?>aluno/salvar_atividade_enviada" enctype="multipart/form-data" method="post">
         <input type="hidden" id="idAtividade" name="idAtividade" value="<?= $atividadeEnviar[0]->idAtividade; ?>">
         <input type="hidden" id="idDisciplina" name="idDisciplina" value="<?= $idDisciplina; ?>">
         <div class="row">
@@ -30,17 +30,16 @@
 
         <div class="row">
           <div class="col-md-12">
-            <label for="resolucao" class="padding"> <h6> Resolução: </h6> </label>
-            <textarea class="form-control resolucao" id="resolucao" name="resolucao"></textarea>
+            <label for="resposta" class="padding"> <h6> Resposta: </h6> </label>
+            <textarea class="form-control resposta" id="resposta" name="resposta"></textarea>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label for="anexo" class="padding"> <h6> Anexos: </h6> </label>
-            <input type="text" class="form-control camp paddingBotton" id="anexo" name="anexo" value="" disabled>
+            <input type="file" class="form-control camp paddingBotton" id="anexo" name="anexo">
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-12">
             <a class="paddingButton btn btn-danger left" href="<?= base_url('aluno/atividades_disciplina/'.$idDisciplina); ?>"> Cancelar </a>
