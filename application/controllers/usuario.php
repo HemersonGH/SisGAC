@@ -120,7 +120,7 @@ class Usuario extends CI_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		
+
 		redirect('usuario');
 	}
 
@@ -170,7 +170,11 @@ class Usuario extends CI_Controller {
 		if ($this->session->userdata('tipoUsuario') == 1) {
 			if ($this->usuario->salvar_atualizacao($id, $dadosUsuario)) {
 				$dadosUsuarioLogado['nome'] = $dadosUsuario['nome'];
-				$this->session->set_userdata($dadosUsuarioLogado); // alterar
+				$dadosUsuarioLogado['idUsuario'] = $this->session->userdata('idUsuario');
+				$dadosUsuarioLogado['tipoUsuario'] = $this->session->userdata('tipoUsuario');
+				$dadosUsuarioLogado['logado'] = true;
+				
+				$this->session->set_userdata($dadosUsuarioLogado);
 
 				redirect('aluno/1');
 			} else {
