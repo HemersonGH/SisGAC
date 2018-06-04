@@ -297,25 +297,26 @@ class Aluno extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
 
-		$disciplina = $this->aluno->get_Disciplina($this->input->post('idDisciplina'));
-		$nomeArquivo = $this->session->userdata('nome').'_'.$this->session->userdata('idUsuario').'_'.$this->input->post('idAtividade');
+		$disciplina  = $this->aluno->get_Disciplina($this->input->post('idDisciplina'));
+		$nomeAluno   = str_replace(" ", "_", $this->session->userdata('nome'));
+		$nomeArquivo = $nomeAluno.'_'.$this->session->userdata('idUsuario').'_'.$this->input->post('idAtividade');
 
 		$anexo = $_FILES['anexo'];
 		$extensao = @end(explode('.', $_FILES['anexo']['name']));
+
+		$configuracao['upload_path']    = 'C:\xampp\htdocs\SGDs_ES\application\anexos';
+		$configuracao['allowed_types']  = 'pdf|jpg|jpeg|png|zip|rar|doc|docx|txt';
+		$configuracao['file_name']      = $nomeArquivo.".".$extensao;
+		$configuracao['max_size']       = 150000;
+		$configuracao['overwrite']      = true;
 
 		$atividadeRealizada['idAtividade']      = $this->input->post('idAtividade');
 		$atividadeRealizada['idAluno']          = $this->session->userdata('idUsuario');
 		$atividadeRealizada['idDisciplina']     = $this->input->post('idDisciplina');
 		$atividadeRealizada['idProfessor']      = $disciplina[0]->id_professor;
 		$atividadeRealizada['resposta_aluno']   = $this->input->post('resposta');
-		$atividadeRealizada['anexo']            = $nomeArquivo.'.'.$extensao;
+		$atividadeRealizada['anexo']            = $configuracao['file_name'];
 		$atividadeRealizada['status_atividade'] = 2;
-
-		$configuracao['upload_path']    = 'C:\xampp\htdocs\SGDs_ES\application\anexos';
-		$configuracao['allowed_types']  = 'pdf|jpg|jpeg|png|zip|rar|doc|docx|txt';
-		$configuracao['file_name']      = $nomeArquivo.".".$extensao;
-		$configuracao['max_size']       = 15000;
-		$configuracao['overwrite']      = true;
 
 		$this->load->library('upload', $configuracao);
 		$this->upload->initialize($configuracao);

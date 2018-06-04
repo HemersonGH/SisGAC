@@ -37,7 +37,7 @@
         <div class="row">
           <div class="col-md-12">
             <label for="anexo" class="padding"> <h6> Anexos: </h6> </label>
-            <input type="file" class="form-control camp paddingBotton" id="anexo" name="anexo" required>
+            <input type="file" class="form-control paddingBotton" id="anexo" name="anexo" required>
           </div>
         </div>
         <div class="row">

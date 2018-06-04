@@ -40,7 +40,7 @@
         <div class="row">
           <div class="col-md-12">
             <label for="paddingButton anexo" class="padding"> <h6> Arquivo Anexado: </h6> </label>
-            <a class="paddingButton btn btn-secondary buttonSize" href="<?= base_url('professor/downloadAnexo/'.$atividadeRealizada[0]->anexo) ?>"> Download Arquivo </a>
+            <a class="paddingButton btn btn-secondary" href="<?= base_url('professor/downloadAnexo/'.$atividadeRealizada[0]->anexo) ?>"> Download Arquivo </a>
           </div>
         </div>
         <div class="row">

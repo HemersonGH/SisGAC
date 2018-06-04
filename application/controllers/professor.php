@@ -747,10 +747,11 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$nomeArquivo = $this->uri->segment(3);
+		$caminhoArquivo = base_url().'application/anexos/'.$nomeArquivo;
 
 		$this->load->helper('Download');
 
-		force_download($nomeArquivo, 'C:/xampp/htdocs/SGDs_ES/application/anexos/');
+		force_download($nomeArquivo, 'dd');
 	}
 
 }
