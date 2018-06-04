@@ -668,6 +668,18 @@ class Professor extends CI_Controller {
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 		$atividadesRealizada['atividadesRealizada'] = $this->professor->get_Atividades_Realizadas($this->session->userdata('idUsuario'));
 
+		// switch ($indice) {
+		// 	case 1:
+		// 	$msg['msg'] = "Solicitação avaliada com sucesso, agora o usuário poderá reliazar as atividades dessa disciplina.";
+		// 	$this->load->view('includes/msg_sucesso', $msg);
+		// 	break;
+		//
+		// 	case 2:
+		// 	$msg['msg'] = "Não foi possível avaliar a solicitação.";
+		// 	$this->load->view('includes/msg_erro', $msg);
+		// 	break;
+		// }
+
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
@@ -747,11 +759,26 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$nomeArquivo = $this->uri->segment(3);
-		$caminhoArquivo = base_url().'application/anexos/'.$nomeArquivo;
+		$caminhoArquivo = "application/anexos/".$nomeArquivo;
 
-		$this->load->helper('Download');
+		$this->load->helper('download');
 
-		force_download($nomeArquivo, 'dd');
+		force_download($caminhoArquivo, NULL);
+	}
+
+	public function salvar_avaliacao_atividade()
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$idAtividade = $this->uri->segment(3);
+		$idAluno = $this->uri->segment(4);
+
+		if ($this->professor->excluir_solicitacao($this->input->post('idSolicitacao'))) {
+			redirect('professor/avaliacoes_atividades_realizada/3');
+		} else {
+			redirect('professor/avaliacoes_atividades_realizada/4');
+		}
 	}
 
 }

@@ -44,11 +44,11 @@
               <span class="fa fa-remove remove mr-2 cursor" title="Excluir avaliação" aria-hidden="true" data-tooltip="tooltip"
                 onclick="confimaExcluirAvaliacaoAtividade()" data-toggle="modal" data-target="#myModalAvaliacaoAtividade">
               </span>
-              </td>
-            </tr>
-          <?php } ?>
-        </table>
-      </div>
+            </td>
+          </tr>
+        <?php } ?>
+      </table>
+    </div>
 
   <script>
   $(document).ready(function(){
