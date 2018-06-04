@@ -290,6 +290,15 @@ class Professor_model extends CI_Model
     return $atividade[0]->prazo_entrega;
   }
 
+  public function get_Descricao_Atividade($idAtividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAtividade', $idAtividade);
+    $atividade = $this->db->get('atividade')->result();
+
+    return $atividade[0]->descricao_atividade;
+  }
+
   public function get_Status_Atividade($idAtividade=null, $idAluno=null)
   {
     $this->db->select('*');
@@ -305,7 +314,14 @@ class Professor_model extends CI_Model
     }
   }
 
-  
+  public function get_Atividade_Realizada($idAtividade=null, $idAluno=null)
+  {
+    $this->db->where('idAtividade', $idAtividade);
+    $this->db->where('idAluno', $idAluno);
+
+    return $this->db->get('realiza_atividade')->result();
+  }
+
 
 }
 

@@ -15,7 +15,7 @@
           <th> Status </th>
           <th> Ações </th>
         </tr>
-        <?php foreach ($atividadesNaoAvaliada as $atividade) { ?>
+        <?php foreach ($atividadesRealizada as $atividade) { ?>
           <tr>
             <td> <?= $this->load->library('application/controllers/professor')->professor->get_Nome_Aluno($atividade->idAluno); ?> </td>
             <td> <?= $this->load->library('application/controllers/professor')->professor->get_Nome_Conjunto($atividade->idAtividade); ?> </td>
@@ -27,21 +27,28 @@
               ?>
             </td>
             <td>
-              <?php if (($this->load->library('application/controllers/professor')->professor->get_Status_Atividade($atividade->idAtividade, $this->session->userdata('idUsuario')) == 1)): ?>
-                <span class="fa fa-pencil color_disabled mr-2" aria-hidden="true" data-tooltip="tooltip" title="Para editar, primeiro envie a atividade"></span>
+              <?php if (($this->load->library('application/controllers/professor')->professor->get_Status_Atividade($atividade->idAtividade, $atividade->idAluno) == 2)): ?>
+                <a data-tooltip="tooltip" title="Avaliar atividade" href="<?= base_url('professor/avaliar_atividade_realizada/'.$atividade->idAtividade.'/'.$atividade->idAluno); ?>">
+                  <span class="fa fa-gavel pencil mr-2" aria-hidden="true"></span>
+                </a>
               <?php else: ?>
-                <a data-tooltip="tooltip" title="Editar avaliação" href="<?= base_url('professor/atualizar_avaliacao_atividade/'); ?>">
+                <span class="fa fa-gavel color_disabled mr-2" aria-hidden="true" data-tooltip="tooltip" title="Atividade já foi avaliada"></span>
+              <?php endif; ?>
+              <?php if (($this->load->library('application/controllers/professor')->professor->get_Status_Atividade($atividade->idAtividade, $atividade->idAluno) != 2)): ?>
+                <a data-tooltip="tooltip" title="Editar avaliação" href="<?= base_url('professor/atualizar_avaliacao_atividade/'.$atividade->idAtividade.'/'.$atividade->idAluno); ?>">
                   <span class="fa fa-pencil pencil mr-2" aria-hidden="true"></span>
                 </a>
+              <?php else: ?>
+                <span class="fa fa-pencil color_disabled mr-2" aria-hidden="true" data-tooltip="tooltip" title="Para editar, primeiro avalie a atividade"></span>
               <?php endif; ?>
-              <span class="fa fa-remove remove mr-2 cursor" title="Excluir Atividade" aria-hidden="true" data-tooltip="tooltip"
-              onclick="confimaExcluirAtividadeRealizada()" data-toggle="modal" data-target="#myModalAtividadeRealizada">
-            </span>
-            </td>
-          </tr>
-        </table>
-      </div>
-    <?php } ?>
+              <span class="fa fa-remove remove mr-2 cursor" title="Excluir avaliação" aria-hidden="true" data-tooltip="tooltip"
+                onclick="confimaExcluirAvaliacaoAtividade()" data-toggle="modal" data-target="#myModalAvaliacaoAtividade">
+              </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      <?php } ?>
 
   <script>
   $(document).ready(function(){
@@ -50,13 +57,13 @@
   </script>
 
   <script type="text/javascript">
-  function confimaExcluirAtividadeRealizada() {
+  function confimaExcluirAvaliacaoAtividade() {
     // document.getElementById("idDisciplina").value = id;
   }
   </script>
 
   <!-- Modal Excluir Atividade Realizada -->
-  <div class="modal fade" id="myModalAtividadeRealizada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="myModalAvaliacaoAtividade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <form class="" action="<?= base_url(); ?>professor/excluir_atividade_enviada" method="post">
       <div class="modal-dialog" role="document">
         <div class="modal-content">

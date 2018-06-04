@@ -16,7 +16,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url(); ?>professor/avaliar_atividades_realizada" style="color: black;">
+          <a class="nav-link" href="<?= base_url(); ?>professor/avaliacoes_atividades_realizada" style="color: black;">
             <h5> <span class="fa fa-gavel" aria-hidden="true"></span> Avaliações </h5>
           </a>
         </li>
