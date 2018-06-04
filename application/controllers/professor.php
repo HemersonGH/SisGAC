@@ -659,4 +659,59 @@ class Professor extends CI_Controller {
 
 		$this->professor->get_Solicitacoes($idProfessor);
 	}
+
+	public function avaliar_atividades_realizada()
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$atividadesNaoAvaliada['atividadesNaoAvaliada'] = $this->professor->get_Atividades_Realizadas($this->session->userdata('idUsuario'));
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
+		$this->load->view('professor/avaliacoes_atividades_realizada', $atividadesNaoAvaliada);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function get_Atividades_Realizadas($idProfessor=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->professor->get_Atividades_Realizadas($idProfessor);
+	}
+
+	public function get_Nome_Atividade($idAtividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->aluno->get_Nome_Atividade($idAtividade);
+	}
+
+	public function get_Prazo_Atividade($idAtividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->aluno->get_Prazo_Atividade($idAtividade);
+	}
+
+	public function get_Pontos_Atividade($idAtividade=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->aluno->get_Pontos_Atividade($idAtividade);
+	}
+
+	public function get_Status_Atividade($idAtividade=null, $idAluno=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$this->aluno->get_Status_Atividade($idAtividade, $idAluno);
+	}
 }

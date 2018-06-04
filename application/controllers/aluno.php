@@ -303,8 +303,8 @@ class Aluno extends CI_Controller {
 		$atividadeRealizada['idAtividade']      = $this->input->post('idAtividade');
 		$atividadeRealizada['idAluno']          = $this->session->userdata('idUsuario');
 		$atividadeRealizada['idDisciplina']     = $this->input->post('idDisciplina');
-		$atividadeRealizada['idProfessor']      = $this->aluno->get_Nome_Professor($disciplina[0]->id_professor);
-		$atividadeRealizada['resposta']         = $this->input->post('resposta');
+		$atividadeRealizada['idProfessor']      = $disciplina[0]->id_professor;
+		$atividadeRealizada['resposta_aluno']   = $this->input->post('resposta');
 		$atividadeRealizada['anexo']            = $nomeArquivo;
 		$atividadeRealizada['status_atividade'] = 2;
 
@@ -326,14 +326,14 @@ class Aluno extends CI_Controller {
 		}
 
 		if ($erro == true) {
-			redirect('aluno/matricular_disciplina/'.$this->input->post('idDisciplina').'/1');
+			redirect('aluno/atividades_disciplina/'.$this->input->post('idDisciplina').'/1');
 			// $this->upload->display_errors();
 		}
 
 		if ($this->aluno->salvar_atividade_enviada($atividadeRealizada)) {
-			redirect('aluno/matricular_disciplina/'.$this->input->post('idDisciplina').'/2');
+			redirect('aluno/atividades_disciplina/'.$this->input->post('idDisciplina').'/2');
 		} else {
-			redirect('aluno/matricular_disciplina/'.$this->input->post('idDisciplina').'/3');
+			redirect('aluno/atividades_disciplina/'.$this->input->post('idDisciplina').'/3');
 		}
 	}
 

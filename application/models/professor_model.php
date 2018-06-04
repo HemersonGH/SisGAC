@@ -242,6 +242,71 @@ class Professor_model extends CI_Model
     return $this->db->get('participa_disciplina')->result();
   }
 
+  public function get_Atividades_Realizadas($idProfessor=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idProfessor', $idProfessor);
+
+    return $this->db->get('realiza_atividade')->result();
+  }
+
+  public function get_Nome_Conjunto($idAtividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAtividade', $idAtividade);
+    $atividade = $this->db->get('atividade')->result();
+
+    $this->db->select('*');
+    $this->db->where('idConjuntoAtividade', $atividade[0]->idConjuntoAtividade);
+    $conjunto_atividade = $this->db->get('conjunto_atividade')->result();
+
+    return $conjunto_atividade[0]->nome_conjunto;
+  }
+
+  public function get_Nome_Atividade($idAtividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAtividade', $idAtividade);
+    $atividade = $this->db->get('atividade')->result();
+
+    return $atividade[0]->nome_atividade;
+  }
+
+  public function get_Pontos_Atividade($idAtividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAtividade', $idAtividade);
+    $atividade = $this->db->get('atividade')->result();
+
+    return $atividade[0]->pontos;
+  }
+
+  public function get_Prazo_Atividade($idAtividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAtividade', $idAtividade);
+    $atividade = $this->db->get('atividade')->result();
+
+    return $atividade[0]->prazo_entrega;
+  }
+
+  public function get_Status_Atividade($idAtividade=null, $idAluno=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAtividade', $idAtividade);
+    $this->db->where('idAluno', $idAluno);
+
+    $atividadeRealizada = $this->db->get('realiza_atividade')->result();
+
+    if ($atividadeRealizada == null) {
+      return 1;
+    } else {
+      return $atividadeRealizada[0]->status_atividade;
+    }
+  }
+
+  
+
 }
 
 ?>

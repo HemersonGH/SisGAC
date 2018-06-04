@@ -31,13 +31,13 @@
         <div class="row">
           <div class="col-md-12">
             <label for="resposta" class="padding"> <h6> Resposta: </h6> </label>
-            <textarea class="form-control resposta" id="resposta" name="resposta"></textarea>
+            <textarea class="form-control resposta" id="resposta" name="resposta" required></textarea>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label for="anexo" class="padding"> <h6> Anexos: </h6> </label>
-            <input type="file" class="form-control camp paddingBotton" id="anexo" name="anexo">
+            <input type="file" class="form-control camp paddingBotton" id="anexo" name="anexo" required>
           </div>
         </div>
         <div class="row">

@@ -152,6 +152,7 @@ class Aluno_model extends CI_Model
 
   public function get_Status_Atividade($idAtividade=null, $idAluno=null)
   {
+    $this->db->select('*');
     $this->db->where('idAtividade', $idAtividade);
     $this->db->where('idAluno', $idAluno);
 

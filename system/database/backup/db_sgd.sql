@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Maio-2018 às 06:02
+-- Generation Time: 04-Jun-2018 às 07:53
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -43,14 +43,11 @@ CREATE TABLE `atividade` (
 --
 
 INSERT INTO `atividade` (`idAtividade`, `nome_atividade`, `descricao_atividade`, `prazo_entrega`, `idConjuntoAtividade`, `id_professor`, `pontos`) VALUES
-(4, 'Nome da Atividade:', '1212', '2018-05-27 03:00:00', 3, 3, '212'),
-(7, '423', '3434', '2018-06-28 03:00:00', 1, 3, '243'),
-(9, '23', '23', '2018-05-28 03:00:00', 1, 3, '1'),
-(10, '22', '232', '2018-05-28 03:00:00', 1, 3, '12'),
-(11, '232', '32', '2018-05-28 03:00:00', 3, 3, '2'),
-(12, 'Criar projeto GitHub', 'O aluno deverá criar um projeto na plataforma github fim de poder gerênciar o mesmo para desenvolvimento do site.', '2018-05-31 03:00:00', 7, 3, '15'),
-(13, 'Criar casos de teste', 'A equipe deverá criar casos de teste para contemplar todo o teste que deverá ser feito sobre o sistema', '2018-06-12 03:00:00', 7, 3, '7'),
-(14, 'Recolher requisitos', 'Recolher os requisitos do software', '2018-06-12 03:00:00', 8, 3, '10');
+(16, 'Descrever modelo de ciclo de vida', 'Descreva o modelo de ciclo de vida adotado para o desenvolvimento do software', '2018-07-25 03:00:00', 18, 7, '7'),
+(17, 'Definir a o escopo do projeto', 'Definir a o escopo do projeto (objetivo, principais funcionalidades e restrições)', '2018-06-10 03:00:00', 18, 7, '5'),
+(18, 'Selecionar ferramenta de Gerência', 'Selecione e adote uma ferramenta para gerenciar as atividades de desenvolvimento e defina o backlog do produto nesta ferramenta', '2018-07-25 03:00:00', 18, 7, '5'),
+(19, 'Criar projeto no Git-Hub', 'Criar projeto no Git-Hub e adicionar todos os envolvidos', '2018-04-19 03:00:00', 19, 7, '3'),
+(20, 'Definir e seguir políticas de uso do Git', 'Definir e seguir políticas de uso do Git no leia-me do projeto (mínimo: estrutura de diretórios e quais tipos de produtos de trabalho serão armazenados em cada\r\ndiretório).', '2018-07-19 03:00:00', 19, 7, '7');
 
 -- --------------------------------------------------------
 
@@ -70,8 +67,11 @@ CREATE TABLE `conjunto_atividade` (
 --
 
 INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `id_professor`, `id_disciplina_conjunto`) VALUES
-(11, '111', 3, 1),
-(12, '22121', 3, 1);
+(18, 'Gerência de Projetos', 7, 10),
+(19, 'Gerência de Configuração', 7, 10),
+(22, 'link park', 7, NULL),
+(23, 'errrrooooou', 7, NULL),
+(24, 'cabrititinha', 7, NULL);
 
 -- --------------------------------------------------------
 
@@ -85,19 +85,86 @@ CREATE TABLE `disciplina` (
   `nome_disciplina` varchar(80) NOT NULL,
   `codigo_disciplina` varchar(10) NOT NULL,
   `descricao_disciplina` varchar(200) NOT NULL,
-  `status` tinyint(1) DEFAULT NULL
+  `status_disciplina` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `disciplina`
 --
 
-INSERT INTO `disciplina` (`idDisciplina`, `id_professor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status`) VALUES
-(1, 3, 'Banco de Dados', 'GCC-192', 'Essa disciplina deverá propiciar conhecimento na área de banco de dados com o professor.', NULL),
-(2, 4, 'renata', 'renata', 'renatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatarenatare', NULL),
-(3, 4, 'renata2', 'renata2', 'renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2renata2', NULL),
-(6, 3, 'Redes de Computadores', 'GCC-117', 'Redes...', NULL),
-(7, 3, 'qwqwqwq', 'wqwq', 'wqwq', NULL);
+INSERT INTO `disciplina` (`idDisciplina`, `id_professor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status_disciplina`) VALUES
+(10, 7, 'Engenharia de Software', 'GCC-112', 'Engenharia de software é uma área da computação voltada à especificação, desenvolvimento, manutenção e criação de software, com a aplicação de tecnologias e práticas de gerência de projetos.', 2),
+(11, 7, 'Banco de Dados', 'GCC-143', 'Bancos de dados ou bases de dados são um conjunto de arquivos relacionados entre si com registros sobre pessoas, lugares ou coisas.', 1),
+(12, 7, 'Algoritmos em Grafos', 'GCC-172', 'Grafos', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `participa_disciplina`
+--
+
+CREATE TABLE `participa_disciplina` (
+  `idAluno` int(11) NOT NULL,
+  `idDisciplina` int(11) NOT NULL,
+  `status_participacao` tinyint(1) NOT NULL,
+  `idProfessor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `participa_disciplina`
+--
+
+INSERT INTO `participa_disciplina` (`idAluno`, `idDisciplina`, `status_participacao`, `idProfessor`) VALUES
+(6, 10, 1, 7),
+(6, 12, 1, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `realiza_atividade`
+--
+
+CREATE TABLE `realiza_atividade` (
+  `idAtividade` int(11) NOT NULL,
+  `idAluno` int(11) NOT NULL,
+  `idDisciplina` int(11) NOT NULL,
+  `idProfessor` int(11) NOT NULL,
+  `resposta_aluno` varchar(300) DEFAULT NULL,
+  `anexo` varchar(200) NOT NULL,
+  `status_atividade` int(11) NOT NULL DEFAULT '1',
+  `resposta_professor` varchar(300) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `realiza_atividade`
+--
+
+INSERT INTO `realiza_atividade` (`idAtividade`, `idAluno`, `idDisciplina`, `idProfessor`, `resposta_aluno`, `anexo`, `status_atividade`, `resposta_professor`) VALUES
+(16, 6, 10, 7, 'ff', 'Hemerson Batista Filho_6_16', 2, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `solicitacoes_disciplinas`
+--
+
+CREATE TABLE `solicitacoes_disciplinas` (
+  `idSolicitacao` int(11) NOT NULL,
+  `idAluno` int(11) NOT NULL,
+  `idDisciplina` int(11) NOT NULL,
+  `justificativa_aluno` varchar(250) NOT NULL,
+  `status_solicitacao` int(11) NOT NULL DEFAULT '1',
+  `idProfessor` int(11) NOT NULL,
+  `justificativa_professor` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `solicitacoes_disciplinas`
+--
+
+INSERT INTO `solicitacoes_disciplinas` (`idSolicitacao`, `idAluno`, `idDisciplina`, `justificativa_aluno`, `status_solicitacao`, `idProfessor`, `justificativa_professor`) VALUES
+(7, 6, 10, 'Desejo me matrícular nessa disciplna afim de realizar as demais atividades oferecidas pela mesma.', 2, 7, 'Aceito sua solicitação.'),
+(8, 6, 12, 'Desejo me matrícular nessa disciplna afim de realizar as demais atividades oferecidas pela mesma.', 2, 7, 'Aceito');
 
 -- --------------------------------------------------------
 
@@ -151,10 +218,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `data`, `email`, `senha`, `tipoUsuario`) VALUES
-(1, 'aluno', 'aluno', '2018-05-26 23:49:29', 'aluno@aluno', 'ca0cd09a12abade3bf0777574d9f987f', 1),
-(3, 'Hemerson', 'Professor', '2018-05-29 22:53:55', 'professor@professor', 'd450c5dbcc10db0749277efc32f15f9f', 2),
-(4, 'Renata', 'Renata', '1998-04-12 03:00:00', 'renata@renata', '1b67d3053dc8facc72e0238bc8640c7a', 2),
-(5, 'rrr', 'rrr', '2018-05-02 03:00:00', 'rrr@eee', 'd2f2297d6e829cd3493aa7de4416a18f', 1);
+(6, 'Hemerson Batista Filho', 'XXX.XXX.XXX-XX', '1998-03-31 03:00:00', 'aluno@aluno', 'ca0cd09a12abade3bf0777574d9f987f', 1),
+(7, 'Antônio Carlos Silva', 'XXX.XXX.XXX-XX', '1988-09-21 03:00:00', 'professor@professor', 'd450c5dbcc10db0749277efc32f15f9f', 2);
 
 --
 -- Indexes for dumped tables
@@ -177,6 +242,24 @@ ALTER TABLE `conjunto_atividade`
 --
 ALTER TABLE `disciplina`
   ADD PRIMARY KEY (`idDisciplina`,`id_professor`) USING BTREE;
+
+--
+-- Indexes for table `participa_disciplina`
+--
+ALTER TABLE `participa_disciplina`
+  ADD PRIMARY KEY (`idAluno`,`idDisciplina`);
+
+--
+-- Indexes for table `realiza_atividade`
+--
+ALTER TABLE `realiza_atividade`
+  ADD PRIMARY KEY (`idAtividade`,`idAluno`) USING BTREE;
+
+--
+-- Indexes for table `solicitacoes_disciplinas`
+--
+ALTER TABLE `solicitacoes_disciplinas`
+  ADD PRIMARY KEY (`idSolicitacao`);
 
 --
 -- Indexes for table `trofeus`
@@ -204,19 +287,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `atividade`
 --
 ALTER TABLE `atividade`
-  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `conjunto_atividade`
 --
 ALTER TABLE `conjunto_atividade`
-  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `disciplina`
 --
 ALTER TABLE `disciplina`
-  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `solicitacoes_disciplinas`
+--
+ALTER TABLE `solicitacoes_disciplinas`
+  MODIFY `idSolicitacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `trofeus`
@@ -228,7 +317,7 @@ ALTER TABLE `trofeus`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

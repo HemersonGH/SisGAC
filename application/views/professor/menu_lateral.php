@@ -16,6 +16,11 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="<?= base_url(); ?>professor/avaliar_atividades_realizada" style="color: black;">
+            <h5> <span class="fa fa-gavel" aria-hidden="true"></span> Avaliações </h5>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="<?= base_url(); ?>professor/solicitacoes_disciplinas" style="color: black;">
             <h5> <span class="fa fa-id-card-o" aria-hidden="true"></span> Solicitações
               <?php if ($quantidadeSolicitacoesPendentes != 0): ?>
