@@ -28,10 +28,12 @@ class Aluno extends CI_Controller {
 		}
 	}
 
-	public function index($indice=null)
+	public function index()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$indice = $this->uri->segment(2);
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
@@ -45,7 +47,7 @@ class Aluno extends CI_Controller {
 			break;
 
 			case 2:
-			$msg['msg'] = "Não foi possível atualizar os dados.";
+			$msg['msg'] = "Não foi possível atualizar seus dados, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 		}
@@ -55,42 +57,52 @@ class Aluno extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function get_Nome_Professor($idProfessor=null)
+	public function get_Nome_Professor()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$idProfessor = $this->uri->segment(3);
 
 		$this->aluno->get_Nome_Professor($idProfessor);
 	}
 
-	public function get_Nome_Disciplina($idDisciplina=null)
+	public function get_Nome_Disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$idDisciplina = $this->uri->segment(3);
 
 		$this->aluno->get_Nome_Disciplina($idDisciplina);
 	}
 
-	public function get_Cod_Disciplina($idDisciplina=null)
+	public function get_Cod_Disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$idDisciplina = $this->uri->segment(3);
 
 		$this->aluno->get_Cod_Disciplina($idDisciplina);
 	}
 
-	public function get_Status_Disciplina($idDisciplina=null)
+	public function get_Status_Disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$idDisciplina = $this->uri->segment(3);
 
 		$this->aluno->get_Status_Disciplina($idDisciplina);
 	}
 
-	public function matricular_disciplina($indice=null)
+	public function matricular_disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$indice = $this->uri->segment(3);
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
@@ -105,7 +117,7 @@ class Aluno extends CI_Controller {
 			break;
 
 			case 2:
-			$msg['msg'] = "Não foi possível enviar a solicitação.";
+			$msg['msg'] = "Não foi possível enviar sua solicitação, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -115,7 +127,7 @@ class Aluno extends CI_Controller {
 			break;
 
 			case 4:
-			$msg['msg'] = "Não foi possível excluír a solicitação.";
+			$msg['msg'] = "Não foi possível excluír sua solicitação, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -125,7 +137,7 @@ class Aluno extends CI_Controller {
 			break;
 
 			case 6:
-			$msg['msg'] = "Não foi possível atualizar a solicitação.";
+			$msg['msg'] = "Não foi possível atualizar sua solicitação, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 		}
@@ -179,10 +191,12 @@ class Aluno extends CI_Controller {
 		}
 	}
 
-	public function visualizar_solicitacao($idSolicitacao=null)
+	public function visualizar_solicitacao()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$idSolicitacao = $this->uri->segment(3);
 
 		$solicitacao['solicitacao'] = $this->aluno->get_Solicitacao($idSolicitacao);
 
@@ -193,10 +207,12 @@ class Aluno extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function editar_solicitacao($idSolicitacao=null)
+	public function editar_solicitacao()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$idSolicitacao = $this->uri->segment(3);
 
 		$solicitacao['solicitacao'] = $this->aluno->get_Solicitacao($idSolicitacao);
 
@@ -207,10 +223,12 @@ class Aluno extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function salvar_atualizacao_solicitacao($idSolicitacao=null)
+	public function salvar_atualizacao_solicitacao()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$idSolicitacao = $this->uri->segment(3);
 
 		$solicitacao['idSolicitacao'] = $this->input->post('idSolicitacao');
 		$solicitacao['justificativa_aluno'] = $this->input->post('justificativa_aluno');
@@ -222,13 +240,16 @@ class Aluno extends CI_Controller {
 		}
 	}
 
-	public function atividades_disciplina($idDisciplina=null, $indice=null)
+	public function atividades_disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
 
+		$idDisciplina = $this->uri->segment(3);
+		$indice = $this->uri->segment(4);
+
 		$disciplina = $this->aluno->get_Disciplina($idDisciplina);
-		$conjuntos_disciplina['conjuntos_disciplina'] = $this->aluno->get_Conjuntos_Da_Disciplinas($disciplina[0]->id_professor, $idDisciplina);
+		$conjuntos_disciplina['conjuntos_disciplina'] = $this->aluno->get_Conjuntos_Da_Disciplinas($disciplina[0]->idProfessor, $idDisciplina);
 		$nomeDisciplina['nomeDisciplina'] = $disciplina[0]->nome_disciplina;
 
 		$this->load->view('includes/html_header');
@@ -247,7 +268,7 @@ class Aluno extends CI_Controller {
 			break;
 
 			case 3:
-			$msg['msg'] = "Não foi possível enviar sua atividade, tente novamente ou contate o administrador do sistema.";
+			$msg['msg'] = "Não foi possível enviar sua atividade, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 		}
@@ -257,18 +278,22 @@ class Aluno extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function get_Atividades($id_conjunto_atividade=null)
+	public function get_Atividades()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$id_conjunto_atividade = $this->uri->segment(3);
 
 		$this->aluno->get_Atividades($id_conjunto_atividade);
 	}
 
-	public function enviar_atividade($idAtividade=null)
+	public function enviar_atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$idAtividade = $this->uri->segment(3);
 
 		$atividade = $this->aluno->get_Atividade($idAtividade);
 		$conjunto = $this->aluno->get_Nome_Conjunto($atividade[0]->idConjuntoAtividade);
@@ -284,10 +309,12 @@ class Aluno extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function get_Atividade($idAtividade=null)
+	public function get_Atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$idAtividade = $this->uri->segment(3);
 
 		$this->aluno->get_Atividades($idAtividade);
 	}
@@ -304,7 +331,7 @@ class Aluno extends CI_Controller {
 		$anexo = $_FILES['anexo'];
 		$extensao = @end(explode('.', $_FILES['anexo']['name']));
 
-		$configuracao['upload_path']    = 'C:\xampp\htdocs\SGDs_ES\application\anexos';
+		$configuracao['upload_path']    = "application/anexos/";
 		$configuracao['allowed_types']  = 'pdf|jpg|jpeg|png|zip|rar|doc|docx|txt';
 		$configuracao['file_name']      = $nomeArquivo.".".$extensao;
 		$configuracao['max_size']       = 150000;
@@ -313,10 +340,10 @@ class Aluno extends CI_Controller {
 		$atividadeRealizada['idAtividade']      = $this->input->post('idAtividade');
 		$atividadeRealizada['idAluno']          = $this->session->userdata('idUsuario');
 		$atividadeRealizada['idDisciplina']     = $this->input->post('idDisciplina');
-		$atividadeRealizada['idProfessor']      = $disciplina[0]->id_professor;
+		$atividadeRealizada['idProfessor']      = $disciplina[0]->idProfessor;
 		$atividadeRealizada['resposta_aluno']   = $this->input->post('resposta');
 		$atividadeRealizada['anexo']            = $configuracao['file_name'];
-		$atividadeRealizada['status_atividade'] = 2;
+		$atividadeRealizada['status_avaliacao'] = 2;
 
 		$this->load->library('upload', $configuracao);
 		$this->upload->initialize($configuracao);
@@ -339,10 +366,13 @@ class Aluno extends CI_Controller {
 		}
 	}
 
-	public function get_Status_Atividade($idAtividade=null, $idAluno=null)
+	public function get_Status_Atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
+
+		$idAtividade = $this->uri->segment(3);
+		$idAluno = $this->uri->segment(4);
 
 		$this->aluno->get_Status_Atividade($idAtividade, $idAluno);
 	}

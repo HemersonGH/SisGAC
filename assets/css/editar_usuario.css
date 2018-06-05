@@ -2,8 +2,8 @@
   /* margin: 0px auto; */ serve para centralizar os input
   -ms-flex-align: center;
   align-items: center;
-  padding-top: 1%;
-  padding-bottom: 2%;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .distance {
@@ -12,13 +12,21 @@
   background-color: #616B5C;
 }
 
+.paddingForm {
+  margin-top: 5px;
+}
+
 .padding {
-  margin-top: 2%;
+  margin-top: 10px;
+}
+
+.paddingUp {
+  margin-top: 15px;
 }
 
 .paddingButton {
-  margin-top: 15px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 15px;
 }
 
 .left {

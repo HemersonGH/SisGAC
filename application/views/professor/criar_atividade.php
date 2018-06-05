@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-12">
     <div class="form-control col-md-6 paddingBotton">
-      <form class="padding" action="<?= base_url(); ?>professor/cadastrar_atividades" method="post">
+      <form action="<?= base_url(); ?>professor/cadastrar_atividades" method="post">
         <input type="hidden" id="idProfessor" name="idProfessor" value="<?= $this->session->userdata('idUsuario'); ?>">
         <input type="hidden" id="id_conjunto" name="id_conjunto" value="<?= $conjunto_atividade[0]->idConjuntoAtividade; ?>">
         <div class="tituloConjunto">

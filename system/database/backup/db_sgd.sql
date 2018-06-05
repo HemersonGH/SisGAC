@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Jun-2018 às 07:53
+-- Generation Time: 05-Jun-2018 às 05:19
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -58,7 +58,7 @@ INSERT INTO `atividade` (`idAtividade`, `nome_atividade`, `descricao_atividade`,
 CREATE TABLE `conjunto_atividade` (
   `idConjuntoAtividade` int(11) NOT NULL,
   `nome_conjunto` varchar(80) NOT NULL,
-  `id_professor` int(11) NOT NULL,
+  `idProfessor` int(11) NOT NULL,
   `id_disciplina_conjunto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -66,11 +66,10 @@ CREATE TABLE `conjunto_atividade` (
 -- Extraindo dados da tabela `conjunto_atividade`
 --
 
-INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `id_professor`, `id_disciplina_conjunto`) VALUES
+INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `idProfessor`, `id_disciplina_conjunto`) VALUES
 (18, 'Gerência de Projetos', 7, 10),
 (19, 'Gerência de Configuração', 7, 10),
 (22, 'link park', 7, NULL),
-(23, 'errrrooooou', 7, NULL),
 (24, 'cabrititinha', 7, NULL);
 
 -- --------------------------------------------------------
@@ -81,7 +80,7 @@ INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `id_pr
 
 CREATE TABLE `disciplina` (
   `idDisciplina` int(11) NOT NULL,
-  `id_professor` int(11) NOT NULL,
+  `idProfessor` int(11) NOT NULL,
   `nome_disciplina` varchar(80) NOT NULL,
   `codigo_disciplina` varchar(10) NOT NULL,
   `descricao_disciplina` varchar(200) NOT NULL,
@@ -92,10 +91,12 @@ CREATE TABLE `disciplina` (
 -- Extraindo dados da tabela `disciplina`
 --
 
-INSERT INTO `disciplina` (`idDisciplina`, `id_professor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status_disciplina`) VALUES
+INSERT INTO `disciplina` (`idDisciplina`, `idProfessor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status_disciplina`) VALUES
 (10, 7, 'Engenharia de Software', 'GCC-112', 'Engenharia de software é uma área da computação voltada à especificação, desenvolvimento, manutenção e criação de software, com a aplicação de tecnologias e práticas de gerência de projetos.', 2),
 (11, 7, 'Banco de Dados', 'GCC-143', 'Bancos de dados ou bases de dados são um conjunto de arquivos relacionados entre si com registros sobre pessoas, lugares ou coisas.', 1),
-(12, 7, 'Algoritmos em Grafos', 'GCC-172', 'Grafos', 3);
+(12, 7, 'Algoritmos em Grafos', 'GCC-172', 'Grafos', 3),
+(13, 7, 'dsfdfdsf', 'dsfsd', 'sdf', 1),
+(14, 7, 'egr', 'r', 'rg', 1);
 
 -- --------------------------------------------------------
 
@@ -131,7 +132,7 @@ CREATE TABLE `realiza_atividade` (
   `idProfessor` int(11) NOT NULL,
   `resposta_aluno` varchar(300) DEFAULT NULL,
   `anexo` varchar(200) NOT NULL,
-  `status_atividade` int(11) NOT NULL DEFAULT '1',
+  `status_avaliacao` int(11) NOT NULL DEFAULT '1',
   `resposta_professor` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -139,8 +140,10 @@ CREATE TABLE `realiza_atividade` (
 -- Extraindo dados da tabela `realiza_atividade`
 --
 
-INSERT INTO `realiza_atividade` (`idAtividade`, `idAluno`, `idDisciplina`, `idProfessor`, `resposta_aluno`, `anexo`, `status_atividade`, `resposta_professor`) VALUES
-(16, 6, 10, 7, 'ff', 'Hemerson Batista Filho_6_16', 2, NULL);
+INSERT INTO `realiza_atividade` (`idAtividade`, `idAluno`, `idDisciplina`, `idProfessor`, `resposta_aluno`, `anexo`, `status_avaliacao`, `resposta_professor`) VALUES
+(16, 6, 10, 7, 'ff', 'Hemerson_Batista_Filho_6_16.docx', 3, 'dsfdsfdsf'),
+(17, 6, 10, 7, 'kjsdfksdn sdfdskfjdsf sdfksdjfkds fdskfjsdkfsd', 'Hemerson_Batista_Filho_6_17.pdf', 3, 'fdgfdg'),
+(18, 6, 10, 7, 'sfdsfdsf', 'Hemerson_Batista_Filho_6_18.docx', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -164,7 +167,9 @@ CREATE TABLE `solicitacoes_disciplinas` (
 
 INSERT INTO `solicitacoes_disciplinas` (`idSolicitacao`, `idAluno`, `idDisciplina`, `justificativa_aluno`, `status_solicitacao`, `idProfessor`, `justificativa_professor`) VALUES
 (7, 6, 10, 'Desejo me matrícular nessa disciplna afim de realizar as demais atividades oferecidas pela mesma.', 2, 7, 'Aceito sua solicitação.'),
-(8, 6, 12, 'Desejo me matrícular nessa disciplna afim de realizar as demais atividades oferecidas pela mesma.', 2, 7, 'Aceito');
+(8, 6, 12, 'Desejo me matrícular nessa disciplna afim de realizar as demais atividades oferecidas pela mesma.', 2, 7, 'Aceito'),
+(9, 6, 10, 'dgsgsdgs', 1, 7, ''),
+(10, 6, 10, 'fsdfdsfsdfsd', 1, 7, '');
 
 -- --------------------------------------------------------
 
@@ -241,7 +246,7 @@ ALTER TABLE `conjunto_atividade`
 -- Indexes for table `disciplina`
 --
 ALTER TABLE `disciplina`
-  ADD PRIMARY KEY (`idDisciplina`,`id_professor`) USING BTREE;
+  ADD PRIMARY KEY (`idDisciplina`,`idProfessor`) USING BTREE;
 
 --
 -- Indexes for table `participa_disciplina`
@@ -293,19 +298,19 @@ ALTER TABLE `atividade`
 -- AUTO_INCREMENT for table `conjunto_atividade`
 --
 ALTER TABLE `conjunto_atividade`
-  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `disciplina`
 --
 ALTER TABLE `disciplina`
-  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `solicitacoes_disciplinas`
 --
 ALTER TABLE `solicitacoes_disciplinas`
-  MODIFY `idSolicitacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idSolicitacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `trofeus`

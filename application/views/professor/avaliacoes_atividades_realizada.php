@@ -22,7 +22,7 @@
             <td> <?= $this->load->library('application/controllers/professor')->professor->get_Nome_Atividade($atividade->idAtividade); ?> </td>
             <td>
               <?=
-               $this->load->library('application/controllers/professor')->professor->get_Status_Atividade($atividade->idAtividade, $atividade->idAluno) == 2 ? 'Aguardando Avaliação':
+               $this->load->library('application/controllers/professor')->professor->get_Status_Atividade($atividade->idAtividade, $atividade->idAluno) == 2 ? 'Não Avaliada':
               ($this->load->library('application/controllers/professor')->professor->get_Status_Atividade($atividade->idAtividade, $atividade->idAluno) == 3 ? 'Recusada':'Avaliada');
               ?>
             </td>

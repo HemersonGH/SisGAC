@@ -26,9 +26,11 @@ class Usuario extends CI_Controller {
 		}
 	}
 
-	public function index($indice=null)
+	public function index()
 	{
 		$this->verificar_sessao();
+
+		$indice = $this->uri->segment(3);
 
 		if ($this->session->userdata('tipoUsuario') == 1) {
 			redirect('aluno');
@@ -37,10 +39,12 @@ class Usuario extends CI_Controller {
 		}
 	}
 
-	public function login($indice=null)
+	public function login()
 	{
 		$this->load->view('includes/html_header');
 		$this->load->view('login/login');
+
+		$indice = $this->uri->segment(3);
 
 		switch ($indice) {
 			case '1':
@@ -49,7 +53,7 @@ class Usuario extends CI_Controller {
 			break;
 
 			case '2':
-			$msg['msg'] = "Não foi possível cadastrar o usuário.";
+			$msg['msg'] = "Não foi possível cadastrar o usuário, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro_login', $msg);
 			break;
 
@@ -124,12 +128,15 @@ class Usuario extends CI_Controller {
 		redirect('usuario');
 	}
 
-	public function atualizar($id=null, $indice=null)
+	public function atualizar()
 	{
 		$this->verificar_sessao();
 		$this->load->model('usuario_model','usuario');
 
-		$dadosUsuario['usuario'] = $this->usuario->get_Usuario($id);
+		$idUsuario = $this->uri->segment(3);
+		$indice = $this->uri->segment(4);
+
+		$dadosUsuario['usuario'] = $this->usuario->get_Usuario($idUsuario);
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
@@ -138,13 +145,14 @@ class Usuario extends CI_Controller {
 			$msg['msg'] = 	"Senha atualizada com sucesso.";
 			$this->load->view('includes/msg_sucesso', $msg);
 		} else if ($indice == 2) {
-			$msg['msg'] = 	"Não foi possível atualizar a senha do usuário.";
+			$msg['msg'] = 	"Não foi possível atualizar sua senha, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 		}
 
 		if ($this->session->userdata('tipoUsuario') == 1) {
 			$this->load->view('aluno/menu_lateral');
 		} else if ($this->session->userdata('tipoUsuario') == 2) {
+			$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->load->library('application/controllers/usuario')->usuario->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 			$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->load->library('application/controllers/usuario')->usuario->get_Solicitacoes($this->session->userdata('idUsuario'));
 			$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 		}
@@ -158,7 +166,7 @@ class Usuario extends CI_Controller {
 	{
 		$this->verificar_sessao();
 
-		$id = $this->input->post('idUsuario');
+		$idUsuario = $this->input->post('idUsuario');
 
 		$dadosUsuario['nome'] = $this->input->post('name');
 		$dadosUsuario['cpf'] = $this->input->post('cpf');
@@ -168,12 +176,12 @@ class Usuario extends CI_Controller {
 		$this->load->model('usuario_model','usuario');
 
 		if ($this->session->userdata('tipoUsuario') == 1) {
-			if ($this->usuario->salvar_atualizacao($id, $dadosUsuario)) {
+			if ($this->usuario->salvar_atualizacao($idUsuario, $dadosUsuario)) {
 				$dadosUsuarioLogado['nome'] = $dadosUsuario['nome'];
 				$dadosUsuarioLogado['idUsuario'] = $this->session->userdata('idUsuario');
 				$dadosUsuarioLogado['tipoUsuario'] = $this->session->userdata('tipoUsuario');
 				$dadosUsuarioLogado['logado'] = true;
-				
+
 				$this->session->set_userdata($dadosUsuarioLogado);
 
 				redirect('aluno/1');
@@ -181,7 +189,7 @@ class Usuario extends CI_Controller {
 				redirect('aluno/2');
 			}
 		} else if ($this->session->userdata('tipoUsuario') == 2) {
-			if ($this->usuario->salvar_atualizacao($id, $dadosUsuario)) {
+			if ($this->usuario->salvar_atualizacao($idUsuario, $dadosUsuario)) {
 				$dadosUsuarioLogado['nome'] = $dadosUsuario['nome'];
 				$this->session->set_userdata($dadosUsuarioLogado);
 
@@ -192,12 +200,14 @@ class Usuario extends CI_Controller {
 		}
 	}
 
-	public function excluir($id=null)
+	public function excluir()
 	{
 		$this->verificar_sessao();
 		$this->load->model('usuario_model','usuario');
 
-		if ($this->usuario->excluir($id)) {
+		$idUsuario = $this->uri->segment(3);
+
+		if ($this->usuario->excluir($idUsuario)) {
 			redirect('usuario/3');
 		} else {
 			redirect('usuario/4');
@@ -220,10 +230,12 @@ class Usuario extends CI_Controller {
 		}
 	}
 
-	public function get_Solicitacoes($idProfessor=null)
+	public function get_Solicitacoes()
 	{
 		$this->verificar_sessao();
 		$this->load->model('usuario_model','usuario');
+
+		$idProfessor = $this->uri->segment(3);
 
 		$this->usuario->get_Solicitacoes($idProfessor);
 	}

@@ -28,11 +28,14 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function index($indice=null)
+	public function index()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$indice = $this->uri->segment(2);
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 		$disciplinas['disciplinas'] = $this->professor->get_Disciplinas($this->session->userdata('idUsuario'));
 
@@ -48,7 +51,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 2:
-			$msg['msg'] = "Não foi possível atualizar os dados.";
+			$msg['msg'] = "Não foi possível atualizar seus dados, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -58,7 +61,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 4:
-			$msg['msg'] = "Não foi possível cadastrar a disciplina.";
+			$msg['msg'] = "Não foi possível cadastrar a disciplina, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -68,7 +71,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 6:
-			$msg['msg'] = "Não foi possível atualizar a disciplina.";
+			$msg['msg'] = "Não foi possível atualizar a disciplina, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -78,7 +81,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 8:
-			$msg['msg'] = "Não foi possível excluir a disciplina.";
+			$msg['msg'] = "Não foi possível excluir a disciplina, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 		}
@@ -92,6 +95,7 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
@@ -107,8 +111,7 @@ class Professor extends CI_Controller {
 
 		$this->load->model('professor_model','professor');
 
-		// $disciplina['status'] = $this->input->post('status');
-		$disciplina['id_Professor'] = $this->input->post('idProfessor');
+		$disciplina['idProfessor'] = $this->input->post('idProfessor');
 		$disciplina['nome_disciplina'] = $this->input->post('nome_disciplina');
 		$disciplina['codigo_disciplina'] = $this->input->post('codigo_disciplina');
 		$disciplina['descricao_disciplina'] = $this->input->post('descricao_disciplina');
@@ -120,11 +123,14 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function atualizar_disciplina($idDisciplina=null)
+	public function atualizar_disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$idDisciplina = $this->uri->segment(3);
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
 
@@ -168,12 +174,17 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function adicionar_conjunto_atividade($idDisciplina=null, $indice=null)
+	public function adicionar_conjunto_atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$idDisciplina = $this->uri->segment(3);
+		$indice = $this->uri->segment(4);
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
+
 		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
 		$conjunto_atividades_sem_disciplina['conjunto_atividades_sem_disciplina'] = $this->professor->get_Conjuntos_Sem_Disciplinas($this->session->userdata('idUsuario'));
 		$conjunto_atividades_da_disciplina['conjunto_atividades_da_disciplina'] = $this->professor->get_Conjuntos_Da_Disciplinas($this->session->userdata('idUsuario'), $idDisciplina);
@@ -189,7 +200,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 2:
-			$msg['msg'] = "Não foi possível adicionar o conjunto para a disciplina.";
+			$msg['msg'] = "Não foi possível adicionar o conjunto para a disciplina, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -199,7 +210,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 4:
-			$msg['msg'] = "Não foi possível remover o conjunto da disciplina.";
+			$msg['msg'] = "Não foi possível remover o conjunto da disciplina, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 		}
@@ -240,11 +251,14 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function atividades($indice=null)
+	public function atividades()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$indice = $this->uri->segment(3);
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
@@ -260,7 +274,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 2:
-			$msg['msg'] = "Não foi possível cadastrar o conjunto.";
+			$msg['msg'] = "Não foi possível cadastrar o conjunto, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -270,7 +284,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 4:
-			$msg['msg'] = "Não foi possível atualizar o conjunto.";
+			$msg['msg'] = "Não foi possível atualizar o conjunto de atividades, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -280,7 +294,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 6:
-			$msg['msg'] = "Não foi possível excluír o conjunto.";
+			$msg['msg'] = "Não foi possível excluír o conjunto, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 		}
@@ -294,7 +308,7 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$dadosProfessorConjunto['id_professor'] = $this->session->userdata('idUsuario');
+		$dadosProfessorConjunto['idProfessor'] = $this->session->userdata('idUsuario');
 		$dadosProfessorConjunto['nome_conjunto'] = $this->input->post('nome_conjunto');
 
 		if ($this->professor->cadastrar_conjunto_atividades($dadosProfessorConjunto)) {
@@ -309,7 +323,7 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$conjunto_atividade['id_professor'] = $this->session->userdata('idUsuario');
+		$conjunto_atividade['idProfessor'] = $this->session->userdata('idUsuario');
 		$conjunto_atividade['nome_conjunto'] = $this->input->post('idNomeConjuntoEditar');
 		$conjunto_atividade['idConjuntoAtividade'] = $this->input->post('idConjuntoAtividadeEditar');
 
@@ -332,11 +346,15 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function atividades_conjunto($idConjuntoAtividade=null, $indice=null)
+	public function atividades_conjunto()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$idConjuntoAtividade = $this->uri->segment(3);
+		$indice = $this->uri->segment(4);
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
@@ -353,7 +371,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 2:
-			$msg['msg'] = "Não foi possível cadastrar a atividade.";
+			$msg['msg'] = "Não foi possível cadastrar a atividade, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -363,7 +381,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 4:
-			$msg['msg'] = "Não foi possível atualizar a atividade.";
+			$msg['msg'] = "Não foi possível atualizar a atividade, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -373,7 +391,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 6:
-			$msg['msg'] = "Não foi possível excluír a atividade.";
+			$msg['msg'] = "Não foi possível excluír a atividade, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 		}
@@ -383,11 +401,14 @@ class Professor extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function adicionar_atividade($id_conjunto_atividade=null)
+	public function adicionar_atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$id_conjunto_atividade = $this->uri->segment(3);
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 		$conjunto_atividade['conjunto_atividade'] = $this->professor->get_Conjunto($id_conjunto_atividade);
 
@@ -407,7 +428,7 @@ class Professor extends CI_Controller {
 		$atividade['descricao_atividade'] = $this->input->post('descricao_atividade');
 		$atividade['prazo_entrega'] = $this->input->post('data');
 		$atividade['idConjuntoAtividade'] = $this->input->post('id_conjunto');
-		$atividade['id_professor'] = $this->input->post('idProfessor');
+		$atividade['idProfessor'] = $this->input->post('idProfessor');
 		$atividade['pontos'] = $this->input->post('valor_atividade');
 
 		if ($this->professor->cadastrar_atividades($atividade)) {
@@ -417,11 +438,14 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function atualizar_atividade($idAtividade=null)
+	public function atualizar_atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$idAtividade = $this->uri->segment(3);
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 		$atividade['atividade'] = $this->professor->get_Atividade($idAtividade);
 
@@ -443,7 +467,7 @@ class Professor extends CI_Controller {
 		$atividade['descricao_atividade'] = $this->input->post('descricao_atividade');
 		$atividade['prazo_entrega'] = $this->input->post('data');
 		$atividade['idConjuntoAtividade'] = $this->input->post('id_conjunto');
-		$atividade['id_professor'] = $this->input->post('idProfessor');
+		$atividade['idProfessor'] = $this->input->post('idProfessor');
 		$atividade['pontos'] = $this->input->post('valor_atividade');
 
 		if ($this->professor->salvar_atualizacao_atividade($this->input->post('idAtividade'), $atividade)) {
@@ -465,32 +489,40 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function get_Qtd_Atividades($idConjuntoAtividade=null)
+	public function get_Qtd_Atividades()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idConjuntoAtividade = $this->uri->segment(3);
 
 		$this->professor->get_Qtd_Atividades($idConjuntoAtividade);
 		// Estava implementado desse jeito antes, a view chamava a model direto
 		// $this->professor->get_Qtd_Conjunto_Atividades($disciplina->idDisciplina);
 	}
 
-	public function get_Qtd_Conjunto_Atividades($idDisciplina=null)
+	public function get_Qtd_Conjunto_Atividades()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idDisciplina = $this->uri->segment(3);
 
 		$this->professor->get_Qtd_Conjunto_Atividades($idDisciplina);
 		// Estava implementado desse jeito antes, a view chamava a model direto
 		// $this->professor->get_Qtd_Atividades($conjunto_atividade->idConjuntoAtividade);
 	}
 
-	public function visualizar_disciplina($idDisciplina=null)
+	public function visualizar_disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$idDisciplina = $this->uri->segment(3);
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
+
 		$disciplina['disciplina'] = $this->professor->get_Disciplina($idDisciplina);
 		$conjunto_atividades_da_disciplina['conjunto_atividades_da_disciplina'] = $this->professor->get_Conjuntos_Da_Disciplinas($this->session->userdata('idUsuario'), $idDisciplina);
 
@@ -502,19 +534,24 @@ class Professor extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function get_Atividades($id_conjunto_atividade=null)
+	public function get_Atividades()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$id_conjunto_atividade = $this->uri->segment(3);
 
 		$this->professor->get_Atividades($id_conjunto_atividade);
 	}
 
-	public function solicitacoes_disciplinas($indice=null)
+	public function solicitacoes_disciplinas()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$indice = $this->uri->segment(3);
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 		$solicitacoes_disciplinas['solicitacoes_disciplinas'] = $this->professor->get_Solicitacoes_Disciplinas($this->session->userdata('idUsuario'));
 
@@ -529,7 +566,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 2:
-			$msg['msg'] = "Não foi possível avaliar a solicitação.";
+			$msg['msg'] = "Não foi possível avaliar a solicitação, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -539,7 +576,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 4:
-			$msg['msg'] = "Não foi possível excluída a solicitação.";
+			$msg['msg'] = "Não foi possível excluída a solicitação, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
@@ -549,7 +586,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 6:
-			$msg['msg'] = "O aluno já está participando dessa disciplina.";
+			$msg['msg'] = "O aluno já está participando dessa disciplina, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_alerta', $msg);
 			break;
 		}
@@ -558,18 +595,22 @@ class Professor extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function get_Nome_Aluno($idAluno=null)
+	public function get_Nome_Aluno()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idAluno = $this->uri->segment(3);
 
 		$this->professor->get_Nome_Aluno($idAluno);
 	}
 
-	public function get_Nome_Disciplina($idDisciplina=null)
+	public function get_Nome_Disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idDisciplina = $this->uri->segment(3);
 
 		$this->professor->get_Nome_Disciplina($idDisciplina);
 	}
@@ -586,11 +627,14 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function avaliar_solicitacao($idSolicitacao=null)
+	public function avaliar_solicitacao()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$idSolicitacao = $this->uri->segment(3);
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 		$solicitacao['solicitacao'] = $this->professor->get_Solicitacao($idSolicitacao);
 
@@ -652,10 +696,12 @@ class Professor extends CI_Controller {
 		}
 	}
 
-	public function get_Solicitacoes($idProfessor=null)
+	public function get_Solicitacoes()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idProfessor = $this->uri->segment(3);
 
 		$this->professor->get_Solicitacoes($idProfessor);
 	}
@@ -665,72 +711,89 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
 		$atividadesRealizada['atividadesRealizada'] = $this->professor->get_Atividades_Realizadas($this->session->userdata('idUsuario'));
 
-		// switch ($indice) {
-		// 	case 1:
-		// 	$msg['msg'] = "Solicitação avaliada com sucesso, agora o usuário poderá reliazar as atividades dessa disciplina.";
-		// 	$this->load->view('includes/msg_sucesso', $msg);
-		// 	break;
-		//
-		// 	case 2:
-		// 	$msg['msg'] = "Não foi possível avaliar a solicitação.";
-		// 	$this->load->view('includes/msg_erro', $msg);
-		// 	break;
-		// }
+		$indice = $this->uri->segment(3);
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
+
+		switch ($indice) {
+			case 1:
+			$msg['msg'] = "Atividade avaliada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
+			break;
+
+			case 2:
+			$msg['msg'] = "Não foi possível avaliar a atividade, tente novamente, tente novamente ou entre em contato com o administrador do sistema.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
+		}
+
 		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 		$this->load->view('professor/avaliacoes_atividades_realizada', $atividadesRealizada);
 		$this->load->view('includes/html_footer');
 	}
 
-	public function get_Atividades_Realizadas($idProfessor=null)
+	public function get_Atividades_Realizadas()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idProfessor = $this->uri->segment(3);
 
 		$this->professor->get_Atividades_Realizadas($idProfessor);
 	}
 
-	public function get_Nome_Atividade($idAtividade=null)
+	public function get_Nome_Atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idAtividade = $this->uri->segment(3);
 
 		$this->aluno->get_Nome_Atividade($idAtividade);
 	}
 
-	public function get_Prazo_Atividade($idAtividade=null)
+	public function get_Prazo_Atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idAtividade = $this->uri->segment(3);
 
 		$this->aluno->get_Prazo_Atividade($idAtividade);
 	}
 
-	public function get_Pontos_Atividade($idAtividade=null)
+	public function get_Pontos_Atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idAtividade = $this->uri->segment(3);
 
 		$this->aluno->get_Pontos_Atividade($idAtividade);
 	}
 
-	public function get_Descricao_Atividade($idAtividade=null)
+	public function get_Descricao_Atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idAtividade = $this->uri->segment(3);
 
 		$this->aluno->get_Descricao_Atividade($idAtividade);
 	}
 
-	public function get_Status_Atividade($idAtividade=null, $idAluno=null)
+	public function get_Status_Atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
+
+		$idAtividade = $this->uri->segment(3);
+		$idAluno = $this->uri->segment(4);
 
 		$this->aluno->get_Status_Atividade($idAtividade, $idAluno);
 	}
@@ -742,12 +805,27 @@ class Professor extends CI_Controller {
 
 		$idAtividade = $this->uri->segment(3);
 		$idAluno = $this->uri->segment(4);
-
-		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
-		$atividadeRealizada['atividadeRealizada'] = $this->professor->get_Atividade_Realizada($idAtividade, $idAluno);
+		$indice = $this->uri->segment(5);
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
+
+		switch ($indice) {
+			case 1:
+			$msg['msg'] = "Arquivo baixado com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
+			break;
+
+			case 2:
+			$msg['msg'] = "Não foi possível baixar o arquivo, tente novamente ou entre em contato com o administrador do sistema.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
+		}
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
+		$atividadeRealizada['atividadeRealizada'] = $this->professor->get_Atividade_Realizada($idAtividade, $idAluno);
+
 		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 		$this->load->view('professor/avaliar_atividade_realizada', $atividadeRealizada);
 		$this->load->view('includes/html_footer');
@@ -759,11 +837,17 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$nomeArquivo = $this->uri->segment(3);
+		$idAtividade = $this->uri->segment(4);
+		$idAluno = $this->uri->segment(5);
 		$caminhoArquivo = "application/anexos/".$nomeArquivo;
 
 		$this->load->helper('download');
 
-		force_download($caminhoArquivo, NULL);
+		if (force_download($caminhoArquivo, NULL)) {
+			redirect('professor/avaliar_atividade_realizada/'.$idAtividade.'/'.$idAluno.'/1');
+		} else {
+			redirect('professor/avaliar_atividade_realizada/'.$idAtividade.'/'.$idAluno.'/2');
+		}
 	}
 
 	public function salvar_avaliacao_atividade()
@@ -771,13 +855,17 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$idAtividade = $this->uri->segment(3);
-		$idAluno = $this->uri->segment(4);
+		$idAtividade = $this->input->post('idAtividade');
+		$idAluno = $this->input->post('idAluno');
 
-		if ($this->professor->excluir_solicitacao($this->input->post('idSolicitacao'))) {
-			redirect('professor/avaliacoes_atividades_realizada/3');
+		$atividadeAvaliada = $this->professor->get_Atividade_Realizada($idAtividade, $idAluno);
+		$atividadeAvaliada[0]->status_avaliacao = $this->input->post('status_avaliacao');
+		$atividadeAvaliada[0]->resposta_professor = $this->input->post('resposta_professor');
+
+		if ($this->professor->salvar_avaliacao_atividade($idAtividade, $idAluno, $atividadeAvaliada[0])) {
+			redirect('professor/avaliacoes_atividades_realizada/1');
 		} else {
-			redirect('professor/avaliacoes_atividades_realizada/4');
+			redirect('professor/avaliacoes_atividades_realizada/2');
 		}
 	}
 

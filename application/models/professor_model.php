@@ -15,7 +15,7 @@ class Professor_model extends CI_Model
   public function get_Disciplinas($idUsuario=null)
   {
     $this->db->select('*');
-    $this->db->where('id_professor', $idUsuario);
+    $this->db->where('idProfessor', $idUsuario);
 
     return $this->db->get('disciplina')->result();
   }
@@ -49,7 +49,7 @@ class Professor_model extends CI_Model
   public function get_Conjuntos($idUsuario=null)
   {
     $this->db->select('*');
-    $this->db->where('id_professor', $idUsuario);
+    $this->db->where('idProfessor', $idUsuario);
 
     return $this->db->get('conjunto_atividade')->result();
   }
@@ -57,7 +57,7 @@ class Professor_model extends CI_Model
   public function get_Conjuntos_Sem_Disciplinas($idUsuario=null)
   {
     $this->db->select('*');
-    $this->db->where('id_professor', $idUsuario);
+    $this->db->where('idProfessor', $idUsuario);
     $this->db->where('id_disciplina_conjunto', null);
 
     return $this->db->get('conjunto_atividade')->result();
@@ -66,7 +66,7 @@ class Professor_model extends CI_Model
   public function get_Conjuntos_Da_Disciplinas($idUsuario=null, $idDisciplina)
   {
     $this->db->select('*');
-    $this->db->where('id_professor', $idUsuario);
+    $this->db->where('idProfessor', $idUsuario);
     $this->db->where('id_disciplina_conjunto', $idDisciplina);
 
     return $this->db->get('conjunto_atividade')->result();
@@ -310,7 +310,7 @@ class Professor_model extends CI_Model
     if ($atividadeRealizada == null) {
       return 1;
     } else {
-      return $atividadeRealizada[0]->status_atividade;
+      return $atividadeRealizada[0]->status_avaliacao;
     }
   }
 
@@ -322,7 +322,24 @@ class Professor_model extends CI_Model
     return $this->db->get('realiza_atividade')->result();
   }
 
+  public function salvar_avaliacao_atividade($idAtividade=null, $idAluno=null, $atividadeAvaliada)
+  {
+    $this->db->where('idAtividade', $idAtividade);
+    $this->db->where('idAluno', $idAluno);
 
+    return $this->db->update('realiza_atividade', $atividadeAvaliada);
+  }
+
+  public function get_Atividades_Nao_Avaliada($idProfessor=null)
+  {
+    $this->db->select('count(*) as total');
+    $this->db->where('idProfessor', $idProfessor);
+    $this->db->where('status_avaliacao', 2);
+
+    $qtd = $this->db->get('realiza_atividade')->result();
+
+    return $qtd[0]->total;
+  }
 }
 
 ?>

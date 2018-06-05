@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-12">
     <div class="col-md-6 form-control paddingBotton">
-      <form class="padding" action="<?= base_url(); ?>professor/salvar_atualizacao_disciplina" method="post">
+      <form action="<?= base_url(); ?>professor/salvar_atualizacao_disciplina" method="post">
         <input type="hidden" id="idDisciplina" name="idDisciplina" value="<?= $disciplina[0]->idDisciplina ?>">
         <div class="row">
           <div class="col-md-12">
@@ -16,11 +16,11 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <label for="codigo_disciplina" class="padding"> <h6> Código da Disciplina: </h6> </label>
+            <label for="codigo_disciplina" class="paddingUp"> <h6> Código da Disciplina: </h6> </label>
             <input type="text" class="form-control" id="codigo_disciplina" name="codigo_disciplina" value="<?= $disciplina[0]->codigo_disciplina; ?>" required>
           </div>
           <div class="col-md-6">
-            <label for="status" class="padding"> <h6> Status: </h6> </label>
+            <label for="status" class="paddingUp"> <h6> Status: </h6> </label>
             <select id="status" name="status" class="form-control" required>
               <option value="1" <?= $disciplina[0]->status_disciplina == 1 ? 'selected':''; ?> > Em Andamento </option>
               <option value="2" <?= $disciplina[0]->status_disciplina == 2 ? 'selected':''; ?> > Disponível </option>
@@ -30,7 +30,7 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <label for="descricao_disciplina" class="padding"> <h6> Descrição da Disciplina: </h6> </label>
+            <label for="descricao_disciplina" class="paddingUp"> <h6> Descrição da Disciplina: </h6> </label>
             <textarea class="form-control descricao_height" id="descricao_disciplina" name="descricao_disciplina" required><?= $disciplina[0]->descricao_disciplina; ?></textarea>
           </div>
         </div>

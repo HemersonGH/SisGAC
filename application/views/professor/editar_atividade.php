@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-12">
     <div class="form-control col-md-6 paddingBotton">
-      <form class="padding" action="<?= base_url(); ?>professor/salvar_atualizacao_atividade" method="post">
+      <form action="<?= base_url(); ?>professor/salvar_atualizacao_atividade" method="post">
         <input type="hidden" id="idProfessor" name="idProfessor" value="<?= $this->session->userdata('idUsuario'); ?>">
         <input type="hidden" id="id_conjunto" name="id_conjunto" value="<?= $atividade[0]->idConjuntoAtividade; ?>">
         <input type="hidden" id="idAtividade" name="idAtividade" value="<?= $atividade[0]->idAtividade; ?>">
@@ -18,17 +18,17 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <label for="data" class="padding"> <h6> Prazo de Entrega: </h6> </label>
+            <label for="data" class="paddingUp"> <h6> Prazo de Entrega: </h6> </label>
             <input type="date" class="form-control" id="data" name="data" value="<?= date('Y-m-d', strtotime($atividade[0]->prazo_entrega)); ?>" required>
           </div>
           <div class="col-md-6">
-            <label for="valor_atividade" class="padding"> <h6> Valor da Atividade: </h6> </label>
+            <label for="valor_atividade" class="paddingUp"> <h6> Valor da Atividade: </h6> </label>
             <input type="number" class="form-control camp" id="valor_atividade" name="valor_atividade" value="<?= $atividade[0]->pontos; ?>"required>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <label for="descricao_atividade" class="padding paddingUp"> <h6> Descrição da Atividade: </h6> </label>
+            <label for="descricao_atividade" class="paddingUp paddingUp"> <h6> Descrição da Atividade: </h6> </label>
             <textarea class="form-control descricao_atividade" id="descricao_atividade" name="descricao_atividade" required><?= $atividade[0]->descricao_atividade; ?></textarea>
           </div>
         </div>

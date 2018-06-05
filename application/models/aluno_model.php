@@ -115,7 +115,7 @@ class Aluno_model extends CI_Model
   public function get_Conjuntos_Da_Disciplinas($idUsuario=null, $idDisciplina)
   {
     $this->db->select('*');
-    $this->db->where('id_professor', $idUsuario);
+    $this->db->where('idProfessor', $idUsuario);
     $this->db->where('id_disciplina_conjunto', $idDisciplina);
 
     return $this->db->get('conjunto_atividade')->result();
@@ -161,7 +161,7 @@ class Aluno_model extends CI_Model
     if ($atividadeRealizada == null) {
       return 1;
     } else {
-      return $atividadeRealizada[0]->status_atividade;
+      return $atividadeRealizada[0]->status_avaliacao;
     }
   }
 

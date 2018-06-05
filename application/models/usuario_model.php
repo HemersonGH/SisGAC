@@ -69,6 +69,17 @@ class Usuario_model extends CI_Model
     return $qtd[0]->total;
   }
 
+  public function get_Atividades_Nao_Avaliada($idProfessor=null)
+  {
+    $this->db->select('count(*) as total');
+    $this->db->where('idProfessor', $idProfessor);
+    $this->db->where('status_avaliacao', 2);
+
+    $qtd = $this->db->get('realiza_atividade')->result();
+
+    return $qtd[0]->total;
+  }
+
 }
 
 ?>

@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-12">
     <div class="form-control col-md-6">
-      <form class="padding" action="<?= base_url(); ?>aluno/salvar_atualizacao_solicitacao" method="post">
+      <form action="<?= base_url(); ?>aluno/salvar_atualizacao_solicitacao" method="post">
         <input type="hidden" id="idSolicitacao" name="idSolicitacao" value="<?= $solicitacao[0]->idSolicitacao; ?>">
         <div class="row">
           <div class="col-md-12">
@@ -17,19 +17,23 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <label for="nomeDisciplina" class="padding paddingUp"> <h6> Disciplina Solicitada: </h6> </label>
+            <label for="nomeDisciplina" class="paddingUp"> <h6> Disciplina Solicitada: </h6> </label>
             <input type="text" class="form-control" id="nomeDisciplina" name="nomeDisciplina"
             value="<?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Disciplina($solicitacao[0]->idDisciplina); ?>" disabled>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <label for="justificativa_aluno" class="padding paddingUp"> <h6> Justificativa do Aluno: </h6> </label>
+            <label for="justificativa_aluno" class="paddingUp"> <h6> Justificativa do Aluno: </h6> </label>
             <textarea class="form-control justificativa" id="justificativa_aluno" name="justificativa_aluno" required><?= $solicitacao[0]->justificativa_aluno; ?></textarea>
           </div>
         </div>
-        <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url(); ?>aluno/matricular_disciplina"> Cancelar </a>
-        <button type="submit" class="paddingButton btn btn-success right"> Salvar Atualização </button>
+        <div class="row">
+          <div class="col-md-12">
+            <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url(); ?>aluno/matricular_disciplina"> Cancelar </a>
+            <button type="submit" class="paddingButton btn btn-success right"> Salvar Atualização </button>
+          </div>
+        </div>
       </form>
     </div>
   </div>

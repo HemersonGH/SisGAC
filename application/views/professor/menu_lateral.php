@@ -17,7 +17,13 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url(); ?>professor/avaliacoes_atividades_realizada" style="color: black;">
-            <h5> <span class="fa fa-gavel" aria-hidden="true"></span> Avaliações </h5>
+            <h5> <span class="fa fa-gavel" aria-hidden="true"></span> Avaliações
+              <?php if ($quantidadeAtividadesNaoAvaliada != 0): ?>
+                <span class="badge badge-danger badge-pill sizeBadge">
+                  <?= $quantidadeAtividadesNaoAvaliada; ?>
+                </span>
+              <?php endif; ?>
+            </h5>
           </a>
         </li>
         <li class="nav-item">
