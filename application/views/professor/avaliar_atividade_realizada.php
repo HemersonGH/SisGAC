@@ -39,16 +39,17 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <label for="anexo" class="paddingUp"> <h6> Arquivo Anexado: </h6> </label>
-            <a class="btn btn-secondary" href="<?= base_url('professor/downloadAnexo/'.$atividadeRealizada[0]->anexo.'/'.$atividadeRealizada[0]->idAtividade.'/'.$atividadeRealizada[0]->idAluno) ?>"> Download Arquivo </a>
-          </div>
-          <div class="col-md-6">
             <label for="status_avaliacao" class="paddingUp"> <h6> Status da Avaliação: </h6> </label>
             <select id="status_avaliacao" name="status_avaliacao" class="form-control" required>
               <option value="2"> Não Avaliada </option>
               <option value="3"> Recusada </option>
               <option value="4"> Avaliada </option>
             </select>
+          </div>
+          <div class="col-md-6">
+            <label for="anexo" class="paddingUp"> <h6> Arquivo Anexado: </h6> </label>
+            <a class="btn btn-info form-control" id="anexo" name="anexo" data-tooltip="tooltip" title="Baixar documento"
+            href="<?= base_url('professor/downloadAnexo/'.$atividadeRealizada[0]->anexo.'/'.$atividadeRealizada[0]->idAtividade.'/'.$atividadeRealizada[0]->idAluno) ?>"> Download Arquivo </a>
           </div>
         </div>
         <div class="row">
@@ -66,6 +67,13 @@
       </form>
     </div>
   </div>
+
+  <script>
+  $(document).ready(function(){
+    $('[data-tooltip="tooltip"]').tooltip();
+  });
+  </script>
+
 </main>
 </div>
 </div>
