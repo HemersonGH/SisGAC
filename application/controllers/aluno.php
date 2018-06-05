@@ -298,7 +298,7 @@ class Aluno extends CI_Controller {
 		$atividade = $this->aluno->get_Atividade($idAtividade);
 		$conjunto = $this->aluno->get_Nome_Conjunto($atividade[0]->idConjuntoAtividade);
 		$atividadeEnviar['atividadeEnviar'] = $this->aluno->get_Atividade($idAtividade);
-		$atividadeEnviar['idDisciplina'] = $conjunto[0]->id_disciplina_conjunto;
+		$atividadeEnviar['idDisciplina'] = $conjunto[0]->idDisciplina;
 		$nomeConjunto['nomeConjunto'] = $conjunto[0]->nome_conjunto;
 
 		$this->load->view('includes/html_header');

@@ -116,7 +116,7 @@ class Aluno_model extends CI_Model
   {
     $this->db->select('*');
     $this->db->where('idProfessor', $idUsuario);
-    $this->db->where('id_disciplina_conjunto', $idDisciplina);
+    $this->db->where('idDisciplina', $idDisciplina);
 
     return $this->db->get('conjunto_atividade')->result();
   }

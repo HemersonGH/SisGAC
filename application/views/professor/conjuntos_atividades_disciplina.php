@@ -14,7 +14,7 @@
         <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Atividades($conjuntos_atividades->idConjuntoAtividade); ?> </td>
         <td>
           <span class="fa fa-remove remove cursor" aria-hidden="true" data-tooltip="tooltip" title="Remover conjunto da disciplina"
-          onclick="confirmarRemocaoConjAtividade(<?= $conjuntos_atividades->idConjuntoAtividade; ?>, <?= $conjuntos_atividades->id_disciplina_conjunto; ?>)" data-toggle="modal" data-target="#myModalRemoverConjuntoAtividadeDisciplina">
+          onclick="confirmarRemocaoConjAtividade(<?= $conjuntos_atividades->idConjuntoAtividade; ?>, <?= $conjuntos_atividades->idDisciplina; ?>)" data-toggle="modal" data-target="#myModalRemoverConjuntoAtividadeDisciplina">
         </span>
       </td>
     </tr>

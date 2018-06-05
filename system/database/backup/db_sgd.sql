@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05-Jun-2018 às 05:19
--- Versão do servidor: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Generation Time: Jun 05, 2018 at 02:57 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.1.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `atividade`
+-- Table structure for table `atividade`
 --
 
 CREATE TABLE `atividade` (
@@ -39,7 +39,7 @@ CREATE TABLE `atividade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `atividade`
+-- Dumping data for table `atividade`
 --
 
 INSERT INTO `atividade` (`idAtividade`, `nome_atividade`, `descricao_atividade`, `prazo_entrega`, `idConjuntoAtividade`, `id_professor`, `pontos`) VALUES
@@ -52,21 +52,21 @@ INSERT INTO `atividade` (`idAtividade`, `nome_atividade`, `descricao_atividade`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `conjunto_atividade`
+-- Table structure for table `conjunto_atividade`
 --
 
 CREATE TABLE `conjunto_atividade` (
   `idConjuntoAtividade` int(11) NOT NULL,
   `nome_conjunto` varchar(80) NOT NULL,
   `idProfessor` int(11) NOT NULL,
-  `id_disciplina_conjunto` int(11) DEFAULT NULL
+  `idDisciplina` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `conjunto_atividade`
+-- Dumping data for table `conjunto_atividade`
 --
 
-INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `idProfessor`, `id_disciplina_conjunto`) VALUES
+INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `idProfessor`, `idDisciplina`) VALUES
 (18, 'Gerência de Projetos', 7, 10),
 (19, 'Gerência de Configuração', 7, 10),
 (22, 'link park', 7, NULL),
@@ -75,7 +75,7 @@ INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `idPro
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `disciplina`
+-- Table structure for table `disciplina`
 --
 
 CREATE TABLE `disciplina` (
@@ -88,7 +88,7 @@ CREATE TABLE `disciplina` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `disciplina`
+-- Dumping data for table `disciplina`
 --
 
 INSERT INTO `disciplina` (`idDisciplina`, `idProfessor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status_disciplina`) VALUES
@@ -101,7 +101,7 @@ INSERT INTO `disciplina` (`idDisciplina`, `idProfessor`, `nome_disciplina`, `cod
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `participa_disciplina`
+-- Table structure for table `participa_disciplina`
 --
 
 CREATE TABLE `participa_disciplina` (
@@ -112,7 +112,7 @@ CREATE TABLE `participa_disciplina` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `participa_disciplina`
+-- Dumping data for table `participa_disciplina`
 --
 
 INSERT INTO `participa_disciplina` (`idAluno`, `idDisciplina`, `status_participacao`, `idProfessor`) VALUES
@@ -122,7 +122,7 @@ INSERT INTO `participa_disciplina` (`idAluno`, `idDisciplina`, `status_participa
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `realiza_atividade`
+-- Table structure for table `realiza_atividade`
 --
 
 CREATE TABLE `realiza_atividade` (
@@ -137,7 +137,7 @@ CREATE TABLE `realiza_atividade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `realiza_atividade`
+-- Dumping data for table `realiza_atividade`
 --
 
 INSERT INTO `realiza_atividade` (`idAtividade`, `idAluno`, `idDisciplina`, `idProfessor`, `resposta_aluno`, `anexo`, `status_avaliacao`, `resposta_professor`) VALUES
@@ -148,7 +148,7 @@ INSERT INTO `realiza_atividade` (`idAtividade`, `idAluno`, `idDisciplina`, `idPr
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `solicitacoes_disciplinas`
+-- Table structure for table `solicitacoes_disciplinas`
 --
 
 CREATE TABLE `solicitacoes_disciplinas` (
@@ -162,7 +162,7 @@ CREATE TABLE `solicitacoes_disciplinas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `solicitacoes_disciplinas`
+-- Dumping data for table `solicitacoes_disciplinas`
 --
 
 INSERT INTO `solicitacoes_disciplinas` (`idSolicitacao`, `idAluno`, `idDisciplina`, `justificativa_aluno`, `status_solicitacao`, `idProfessor`, `justificativa_professor`) VALUES
@@ -174,7 +174,7 @@ INSERT INTO `solicitacoes_disciplinas` (`idSolicitacao`, `idAluno`, `idDisciplin
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `trofeus`
+-- Table structure for table `trofeus`
 --
 
 CREATE TABLE `trofeus` (
@@ -183,7 +183,7 @@ CREATE TABLE `trofeus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `trofeus`
+-- Dumping data for table `trofeus`
 --
 
 INSERT INTO `trofeus` (`idTrofeu`, `nome_trofeu`) VALUES
@@ -194,7 +194,7 @@ INSERT INTO `trofeus` (`idTrofeu`, `nome_trofeu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `trofeus_atividades`
+-- Table structure for table `trofeus_atividades`
 --
 
 CREATE TABLE `trofeus_atividades` (
@@ -205,7 +205,7 @@ CREATE TABLE `trofeus_atividades` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -219,7 +219,7 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Dumping data for table `usuario`
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `data`, `email`, `senha`, `tipoUsuario`) VALUES
@@ -298,7 +298,7 @@ ALTER TABLE `atividade`
 -- AUTO_INCREMENT for table `conjunto_atividade`
 --
 ALTER TABLE `conjunto_atividade`
-  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `disciplina`

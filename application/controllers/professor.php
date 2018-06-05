@@ -226,13 +226,13 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$conjunto_atividade['id_disciplina_conjunto'] = $this->input->post('idDisciplina');
+		$conjunto_atividade['idDisciplina'] = $this->input->post('idDisciplina');
 		$conjunto_atividade['idConjuntoAtividade'] = $this->input->post('idConjuntoAtividade');
 
 		if ($this->professor->cadastrar_conjAtiv_disciplina($conjunto_atividade)) {
-			redirect('professor/adicionar_conjunto_atividade/'.$conjunto_atividade['id_disciplina_conjunto'].'/1');
+			redirect('professor/adicionar_conjunto_atividade/'.$conjunto_atividade['idDisciplina'].'/1');
 		} else {
-			redirect('professor/adicionar_conjunto_atividade/'.$conjunto_atividade['id_disciplina_conjunto'].'/2');
+			redirect('professor/adicionar_conjunto_atividade/'.$conjunto_atividade['idDisciplina'].'/2');
 		}
 	}
 
@@ -242,7 +242,7 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$conjunto_atividade = $this->professor->get_Conjunto($this->input->post('idConjuntoAtividadeRemover'));
-		$conjunto_atividade[0]->id_disciplina_conjunto = null;
+		$conjunto_atividade[0]->idDisciplina = null;
 
 		if ($this->professor->remove_conjunto_atividade_disciplina($this->input->post('idConjuntoAtividadeRemover'), $conjunto_atividade[0])) {
 			redirect('professor/adicionar_conjunto_atividade/'.$this->input->post('idDisciplinaRemover').'/3');

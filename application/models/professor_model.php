@@ -58,7 +58,7 @@ class Professor_model extends CI_Model
   {
     $this->db->select('*');
     $this->db->where('idProfessor', $idUsuario);
-    $this->db->where('id_disciplina_conjunto', null);
+    $this->db->where('idDisciplina', null);
 
     return $this->db->get('conjunto_atividade')->result();
   }
@@ -67,7 +67,7 @@ class Professor_model extends CI_Model
   {
     $this->db->select('*');
     $this->db->where('idProfessor', $idUsuario);
-    $this->db->where('id_disciplina_conjunto', $idDisciplina);
+    $this->db->where('idDisciplina', $idDisciplina);
 
     return $this->db->get('conjunto_atividade')->result();
   }
@@ -127,7 +127,7 @@ class Professor_model extends CI_Model
   public function get_Qtd_Conjunto_Atividades($idDisciplina=null)
   {
     $this->db->select('count(*) as total');
-    $this->db->where('id_disciplina_conjunto', $idDisciplina);
+    $this->db->where('idDisciplina', $idDisciplina);
 
     $qtd = $this->db->get('conjunto_atividade')->result();
 
