@@ -84,7 +84,7 @@ class Usuario extends CI_Controller {
 
 		$this->load->model('usuario_model','usuario');
 
-		$dadosUsuario['usuario'] = $this->usuario->valida_usuario($email, $senha);
+		$dadosUsuario['usuario'] = $this->usuario->valida_Usuario($email, $senha);
 
 		if (count($dadosUsuario['usuario']) == 1) {
 			$dadosUsuarioLogado['nome'] = $dadosUsuario['usuario'][0]->nome;

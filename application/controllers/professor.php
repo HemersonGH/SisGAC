@@ -221,7 +221,7 @@ class Professor extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function cadastrar_conjAtiv_disciplina()
+	public function cadastrar_conjunto_atividade_disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
@@ -229,7 +229,7 @@ class Professor extends CI_Controller {
 		$conjunto_atividade['idDisciplina'] = $this->input->post('idDisciplina');
 		$conjunto_atividade['idConjuntoAtividade'] = $this->input->post('idConjuntoAtividade');
 
-		if ($this->professor->cadastrar_conjAtiv_disciplina($conjunto_atividade)) {
+		if ($this->professor->cadastrar_conjunto_atividade_disciplina($conjunto_atividade)) {
 			redirect('professor/adicionar_conjunto_atividade/'.$conjunto_atividade['idDisciplina'].'/1');
 		} else {
 			redirect('professor/adicionar_conjunto_atividade/'.$conjunto_atividade['idDisciplina'].'/2');
@@ -676,7 +676,7 @@ class Professor extends CI_Controller {
 						$status_avaliacao = 5;
 					}
 
-					$this->professor->salvar_participacao_disciplina($participacao_disciplina);
+					$this->professor->salvar_Participacao_Disciplina($participacao_disciplina);
 				} else {
 					if ($this->input->post('status_solicitacao') == 2) {
 						$participacao_disciplina['status_participacao'] = 1;
@@ -686,7 +686,7 @@ class Professor extends CI_Controller {
 						$status_avaliacao = 5;
 					}
 
-					$this->professor->atualiza_participacao_disciplina($participacao_disciplina);
+					$this->professor->atualiza_Participacao_Disciplina($participacao_disciplina);
 				}
 
 				redirect('professor/solicitacoes_disciplinas/'.$status_avaliacao);

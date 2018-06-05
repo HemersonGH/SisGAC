@@ -36,7 +36,7 @@ function confirmarRemocaoConjAtividade(idConjuntoAtividadeRemover, idDisciplinaR
 
 <!-- Modal Remover Conjunto Atividades da Disciplina -->
 <div class="modal fade" id="myModalRemoverConjuntoAtividadeDisciplina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <form class="" action="<?= base_url(); ?>professor/remove_conjunto_atividade_disciplina" method="post">
+  <form action="<?= base_url(); ?>professor/remove_conjunto_atividade_disciplina" method="post">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">

@@ -7,9 +7,9 @@ class Professor_model extends CI_Model
     parent::__construct();
   }
 
-  public function cadastrar_disciplina($data)
+  public function cadastrar_disciplina($disciplina)
   {
-    return $this->db->insert('disciplina', $data);
+    return $this->db->insert('disciplina', $disciplina);
   }
 
   public function get_Disciplinas($idUsuario=null)
@@ -41,9 +41,9 @@ class Professor_model extends CI_Model
     return $this->db->delete('disciplina');
   }
 
-  public function cadastrar_conjunto_atividades($data)
+  public function cadastrar_conjunto_atividades($conjunto_atividade)
   {
-    return $this->db->insert('conjunto_atividade', $data);
+    return $this->db->insert('conjunto_atividade', $conjunto_atividade);
   }
 
   public function get_Conjuntos($idUsuario=null)
@@ -148,7 +148,7 @@ class Professor_model extends CI_Model
     return $this->db->delete('atividade');
   }
 
-  public function cadastrar_conjAtiv_disciplina($conjunto_atividade)
+  public function cadastrar_conjunto_atividade_disciplina($conjunto_atividade)
   {
     $this->db->where('idConjuntoAtividade', $conjunto_atividade['idConjuntoAtividade']);
 
@@ -209,12 +209,12 @@ class Professor_model extends CI_Model
     return $this->db->update('solicitacoes_disciplinas', $solicitacao);
   }
 
-  public function salvar_participacao_disciplina($participacao_disciplina)
+  public function salvar_Participacao_Disciplina($participacao_disciplina)
   {
     return $this->db->insert('participa_disciplina', $participacao_disciplina);
   }
 
-  public function atualiza_participacao_disciplina($participacao_disciplina)
+  public function atualiza_Participacao_Disciplina($participacao_disciplina)
   {
     $this->db->where('idAluno', $participacao_disciplina['idAluno']);
     $this->db->where('idDisciplina', $participacao_disciplina['idDisciplina']);

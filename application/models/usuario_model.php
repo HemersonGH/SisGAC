@@ -7,12 +7,12 @@ class Usuario_model extends CI_Model
     parent::__construct();
   }
 
-  public function cadastrar($data)
+  public function cadastrar($dadosUsuario)
   {
-    return $this->db->insert('usuario', $data);
+    return $this->db->insert('usuario', $dadosUsuario);
   }
 
-  public function valida_usuario($email, $senha)
+  public function valida_Usuario($email, $senha)
   {
     $this->db->where('email', $email);
     $this->db->where('senha', $senha);
@@ -20,37 +20,37 @@ class Usuario_model extends CI_Model
     return $this->db->get('usuario')->result();
   }
 
-  public function get_Usuario($id=null)
+  public function get_Usuario($idUsuario=null)
   {
-    $this->db->where('idUsuario', $id);
+    $this->db->where('idUsuario', $idUsuario);
 
     return $this->db->get('usuario')->result();
   }
 
-  public function excluir($id=null)
+  public function excluir($idUsuario=null)
   {
-    $this->db->where('idUsuario', $id);
+    $this->db->where('idUsuario', $idUsuario);
 
     return $this->db->delete('usuario');
   }
 
-  public function salvar_atualizacao($id, $data)
+  public function salvar_atualizacao($idUsuario, $dadosUsuario)
   {
-    $this->db->where('idUsuario', $id);
+    $this->db->where('idUsuario', $idUsuario);
 
-    return $this->db->update('usuario', $data);
+    return $this->db->update('usuario', $dadosUsuario);
   }
 
-  public function salvar_senha($id, $senha_antiga, $senha_nova)
+  public function salvar_senha($idUsuario, $senhaAntiga, $senhaNova)
   {
     $this->db->select('senha');
-    $this->db->where('idUsuario', $id);
-    $data['senha'] = $this->db->get('usuario')->result();
-    $dados['senha'] = $senha_nova;
+    $this->db->where('idUsuario', $idUsuario);
+    $senhaAntiga['senha'] = $this->db->get('usuario')->result();
+    $senhaNova['senha'] = $senhaNova;
 
-    if ($data['senha'][0]->senha == $senha_antiga) {
-      $this->db->where('idUsuario', $id);
-      $this->db->update('usuario', $dados);
+    if ($senhaAntiga['senha'][0]->senha == $senhaAntiga) {
+      $this->db->where('idUsuario', $idUsuario);
+      $this->db->update('usuario', $senhaNova);
 
       return true;
     } else {

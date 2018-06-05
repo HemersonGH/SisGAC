@@ -97,7 +97,7 @@ class Aluno extends CI_Controller {
 		$this->aluno->get_Status_Disciplina($idDisciplina);
 	}
 
-	public function matricular_disciplina()
+	public function matricular_Disciplina()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
@@ -148,7 +148,7 @@ class Aluno extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function solicitar_matricula()
+	public function solicitar_Matricula()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
@@ -191,7 +191,7 @@ class Aluno extends CI_Controller {
 		}
 	}
 
-	public function visualizar_solicitacao()
+	public function visualizar_Solicitacao()
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
