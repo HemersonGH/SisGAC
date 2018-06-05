@@ -576,17 +576,17 @@ class Professor extends CI_Controller {
 			break;
 
 			case 4:
-			$msg['msg'] = "Não foi possível excluída a solicitação, tente novamente ou entre em contato com o administrador do sistema.";
+			$msg['msg'] = "Não foi possível excluír a solicitação, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
 			case 5:
-			$msg['msg'] = "Solicitação avaliada com sucesso, o usuário não poderá reliazar as atividades dessa disciplina.";
+			$msg['msg'] = "Solicitação avaliada com sucesso, o usuário não poderá realizar as atividades dessa disciplina.";
 			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
 			case 6:
-			$msg['msg'] = "O aluno já está participando dessa disciplina, tente novamente ou entre em contato com o administrador do sistema.";
+			$msg['msg'] = "O aluno já está participando dessa disciplina.";
 			$this->load->view('includes/msg_alerta', $msg);
 			break;
 		}
@@ -664,7 +664,7 @@ class Professor extends CI_Controller {
 
 			$verifica_participacao['participacao_disciplina'] = $this->professor->get_Participacao($participacao_disciplina);
 
-			if (count($verifica_participacao['participacao_disciplina']) == 1) {
+			if (count($verifica_participacao['participacao_disciplina']) == 1 && $this->input->post('status_solicitacao') == 2) {
 				redirect('professor/solicitacoes_disciplinas/6');
 			} else {
 				if ($solicitacao_anterior[0]->status_solicitacao == 1) {

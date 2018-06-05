@@ -45,12 +45,13 @@ class Usuario_model extends CI_Model
   {
     $this->db->select('senha');
     $this->db->where('idUsuario', $idUsuario);
-    $senhaAntiga['senha'] = $this->db->get('usuario')->result();
-    $senhaNova['senha'] = $senhaNova;
 
-    if ($senhaAntiga['senha'][0]->senha == $senhaAntiga) {
+    $dadosUsuario['senha'] = $this->db->get('usuario')->result();
+    $novosDados['senha'] = $senhaNova;
+
+    if ($dadosUsuario['senha'][0]->senha == $senhaAntiga) {
       $this->db->where('idUsuario', $idUsuario);
-      $this->db->update('usuario', $senhaNova);
+      $this->db->update('usuario', $novosDados);
 
       return true;
     } else {
