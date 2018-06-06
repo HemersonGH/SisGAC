@@ -39,13 +39,11 @@
           <td> <?= $disciplina->codigo_disciplina; ?> </td>
           <td> <?= $disciplina->nome_disciplina; ?> </td>
           <td> <?= $this->load->library('application/controllers/professor')->professor->get_Qtd_Conjunto_Atividades($disciplina->idDisciplina); ?> </td>
-          <td> <?= $disciplina->status_disciplina == 1 ? 'Em Andamento':($disciplina->status_disciplina == 2 ? 'Disponível':'Finalizada'); ?> </td>
+          <td> <?= $disciplina->status_disciplina == 1 ? 'Em Planejamento':($disciplina->status_disciplina == 2 ? 'Disponível':'Finalizada'); ?> </td>
           <td>
-            <?php if ($disciplina->status_disciplina == 2): ?>
-              <a data-tooltip="tooltip" title="Visualizar disciplina" href="<?= base_url('professor/visualizar_disciplina/'.$disciplina->idDisciplina); ?>">
-                <span class="fa fa-eye eye mr-2" aria-hidden="true"></span>
-              </a>
-            <?php endif; ?>
+            <a data-tooltip="tooltip" title="Visualizar disciplina" href="<?= base_url('professor/visualizar_disciplina/'.$disciplina->idDisciplina); ?>">
+              <span class="fa fa-eye eye mr-2" aria-hidden="true"></span>
+            </a>
             <?php if ($disciplina->status_disciplina == 1): ?>
               <a data-tooltip="tooltip" title="Adicionar conjuntos de atividades para a disciplina" href="<?= base_url('professor/adicionar_conjunto_atividade/'.$disciplina->idDisciplina); ?>">
                 <span class="fa fa-folder folder mr-2" aria-hidden="true"></span>
