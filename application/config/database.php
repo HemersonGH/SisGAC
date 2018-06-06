@@ -81,6 +81,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
+	// 'hostname' => '127.0.0.1',
+	// 'username' => 'postgres',
+	// 'password' => 'root',
+	// 'database' => 'db_sgd',
+	// 'dbdriver' => 'postgre',
+	// 'port' => 5432,
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
