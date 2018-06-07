@@ -43,7 +43,9 @@
         <div class="row">
           <div class="col-md-12">
             <a class="paddingButton btn btn-danger left" href="<?= base_url('aluno/atividades_disciplina/'.$idDisciplina); ?>"> Cancelar </a>
-            <button type="submit" class="paddingButton btn btn-success right cursor"> Enviar Atividade </button>
+            <button type="submit" class="paddingButton btn btn-success right cursor">
+              <span class="fa fa-paper-plane" aria-hidden="true"></span> Enviar Atividade
+            </button>
           </div>
         </div>
       </form>

@@ -31,7 +31,9 @@
         <div class="row">
           <div class="col-md-12">
             <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>aluno/matricular_disciplina"> Cancelar </a>
-            <button type="submit" class="paddingButton btn btn-success right"> Enviar Solicitação </button>
+            <button type="submit" class="paddingButton btn btn-success right">
+              <span class="fa fa-paper-plane" aria-hidden="true"></span> Enviar Solicitação 
+            </button>
           </div>
         </div>
       </form>

@@ -1,15 +1,15 @@
 <link href="<?= base_url(); ?>assets/css/aluno.css" rel="stylesheet">
 
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
-  <div class="col-md-9">
+  <div class="col-md-12">
     <h1 class="page-header"> Disciplinas </h1>
   </div>
 
-  <div class="col-md-3">
-    <a class="btn btn-primary btn-block font" href="<?= base_url(); ?>aluno/matricular_disciplina">
+  <!-- <div class="col-md-3">
+    <a class="btn btn-primary btn-block font" href="< base_url(); ?>aluno/matricular_disciplina">
       <span class="fa fa-plus-square" aria-hidden="true"> </span> Matricular Disciplina
     </a>
-  </div>
+  </div> -->
 
   <!-- <div class="col-md-12" style="padding-bottom: 10px">
   <form action="usuario/pesquisar" method="post">

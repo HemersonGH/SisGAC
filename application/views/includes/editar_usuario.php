@@ -41,7 +41,9 @@
         <div class="row">
           <div class="col-md-12">
             <a class="paddingButton btn btn-danger left" href="<?= base_url('usuario/'.$this->session->userdata('tipoUsuario')); ?>" > Cancelar </a>
-            <button type="submit" class="paddingButton btn btn-success right cursor"> Atualizar </button>
+            <button type="submit" class="paddingButton btn btn-success right cursor">
+              <span class="fa fa-save" aria-hidden="true"></span> Salvar
+            </button>
           </div>
         </div>
       </form>
@@ -86,7 +88,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fechar </button>
-          <button type="submit" class="btn btn-primary" id="enviarSenha" disabled> Salvar </button>
+          <button type="submit" class="btn btn-primary" id="enviarSenha" disabled>
+            <span class="fa fa-save" aria-hidden="true"></span> Salvar 
+          </button>
         </div>
       </div>
     </form>

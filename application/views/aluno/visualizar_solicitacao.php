@@ -43,7 +43,9 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>aluno/matricular_disciplina"> Voltar </a>
+          <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>aluno/matricular_disciplina">
+            <span class="fa fa-chevron-left" aria-hidden="true"></span> Voltar
+          </a>
         </div>
       </div>
     </div>

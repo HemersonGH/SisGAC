@@ -35,7 +35,9 @@
         <div class="row">
           <div class="col-md-12">
             <a class="paddingButton btn btn-danger left" href="<?= base_url('professor/atividades_conjunto/'.$atividade[0]->idConjuntoAtividade); ?>"> Cancelar </a>
-            <button type="submit" class="paddingButton btn btn-success right"> Atualizar Atividade </button>
+            <button type="submit" class="paddingButton btn btn-success right">
+              <span class="fa fa-save" aria-hidden="true"></span> Salvar 
+            </button>
           </div>
         </div>
       </form>

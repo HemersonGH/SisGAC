@@ -108,7 +108,9 @@ function confimarExcluirConjunto(idExcluir) {
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Cancelar </button>
-          <button type="submit" class="btn btn-success cursor"> Atualizar </button>
+          <button type="submit" class="btn btn-success cursor">
+            <span class="fa fa-save" aria-hidden="true"></span> Salvar 
+          </button>
         </div>
       </div>
     </div>

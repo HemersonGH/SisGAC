@@ -14,10 +14,14 @@
     </select>
     <div class="row">
       <div class="col-md-6">
-        <a class="btn btn-danger btn-block" href="<?= base_url(); ?>usuario"> Cancelar </a>
+        <a class="btn btn-danger btn-block" href="<?= base_url(); ?>usuario">
+          <span class="fa fa-chevron-left" aria-hidden="true"></span> Voltar
+        </a>
       </div>
       <div class="col-md-6">
-        <button type="submit" class="btn btn-primary btn-block mt-2 mt-md-0 ajust"> Cadastrar </button>
+        <button type="submit" class="btn btn-primary btn-block mt-2 mt-md-0 ajust">
+          <span class="fa fa-save" aria-hidden="true"></span> Cadastrar
+        </button>
       </div>
     </div>
   </form>
