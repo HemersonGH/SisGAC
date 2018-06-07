@@ -1,4 +1,4 @@
-# Trabalho Prático De Engenharia de Software - 2018_1 - Sistema Gerenciador De Atividades Currculares
+# Trabalho Prático De Engenharia de Software - 2018_1 - Sistema Gerenciador De Atividades Curriculares
 
 Os produtos de trabalho referente a esse projeto se encontra no Google Driver
 pelo Link: <br /> https://drive.google.com/drive/folders/1qKuH4UJI4pZ4dgHFmJyi52-NaFw-a3wr <br />
@@ -17,4 +17,4 @@ Essa pasta conterá com as seguintes estruturas e documentos:<br />
 <br />
 <b> Divisão Da Equipe CS Dev:</b> <br />
 Hemerson Batista (G.P %% P.O && Analista de Requisitos && Dev && WebDesing && Tester && DBA)<br />
-Alexandre Grillo (WebDesing && Tester)<br />
+Alexandre Grillo (WebDesing && Tester && Dev)<br />
