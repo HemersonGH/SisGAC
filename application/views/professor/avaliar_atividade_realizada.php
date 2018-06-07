@@ -48,8 +48,10 @@
           </div>
           <div class="col-md-6">
             <label for="anexo" class="paddingUp"> <h6> Arquivo Anexado: </h6> </label>
-            <a class="btn btn-info form-control" id="anexo" name="anexo" data-tooltip="tooltip" title="Baixar documento"
-            href="<?= base_url('professor/downloadAnexo/'.$atividadeRealizada[0]->anexo.'/'.$atividadeRealizada[0]->idAtividade.'/'.$atividadeRealizada[0]->idAluno) ?>"> Download Arquivo </a>
+            <a class="btn btn-primary form-control" id="anexo" name="anexo" data-tooltip="tooltip" title="Baixar documento"
+            href="<?= base_url('professor/downloadAnexo/'.$atividadeRealizada[0]->anexo.'/'.$atividadeRealizada[0]->idAtividade.'/'.$atividadeRealizada[0]->idAluno) ?>">
+              <span class="fa fa-paperclip mr-2" aria-hidden="true"></span> Download Arquivo
+            </a>
           </div>
         </div>
         <div class="row">
