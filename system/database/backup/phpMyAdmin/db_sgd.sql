@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 08-Jun-2018 às 13:38
+-- Generation Time: 08-Jun-2018 às 16:55
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.1.16
 
@@ -80,6 +80,13 @@ CREATE TABLE `disciplina` (
   `status_disciplina` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `disciplina`
+--
+
+INSERT INTO `disciplina` (`idDisciplina`, `idProfessor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status_disciplina`) VALUES
+(1, 2, 'hgfhfg', 'gdfg34', '346redf', '');
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +132,28 @@ CREATE TABLE `solicitacao_disciplina` (
   `justificativa_professor` varchar(250) NOT NULL,
   `idSolicitacao` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `trofeu`
+--
+
+CREATE TABLE `trofeu` (
+  `idTrofeu` int(11) NOT NULL,
+  `tipo_trofeu` varchar(45) NOT NULL COMMENT 'Os tipos de trofeus podera assumir os seguintes valores:\n1 => Ouro\n2 => Prata\n3 => Bronze'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `trofeu_atividade`
+--
+
+CREATE TABLE `trofeu_atividade` (
+  `idTrofeu` int(11) NOT NULL,
+  `idAtividade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -201,6 +230,20 @@ ALTER TABLE `solicitacao_disciplina`
   ADD KEY `fk_Usuario_has_disciplina_Usuario2_idx` (`idAluno`);
 
 --
+-- Indexes for table `trofeu`
+--
+ALTER TABLE `trofeu`
+  ADD PRIMARY KEY (`idTrofeu`);
+
+--
+-- Indexes for table `trofeu_atividade`
+--
+ALTER TABLE `trofeu_atividade`
+  ADD PRIMARY KEY (`idTrofeu`,`idAtividade`),
+  ADD KEY `fk_trofeu_has_atividade_atividade1_idx` (`idAtividade`),
+  ADD KEY `fk_trofeu_has_atividade_trofeu1_idx` (`idTrofeu`);
+
+--
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
@@ -226,7 +269,7 @@ ALTER TABLE `conjunto_atividade`
 -- AUTO_INCREMENT for table `disciplina`
 --
 ALTER TABLE `disciplina`
-  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `usuario`
@@ -277,6 +320,13 @@ ALTER TABLE `realiza_atividade`
 ALTER TABLE `solicitacao_disciplina`
   ADD CONSTRAINT `fk_Usuario_disciplina_solicitada` FOREIGN KEY (`idAluno`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_Usuario_solicita_disciplina` FOREIGN KEY (`idDisciplina`) REFERENCES `disciplina` (`idDisciplina`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `trofeu_atividade`
+--
+ALTER TABLE `trofeu_atividade`
+  ADD CONSTRAINT `fk_trofeu_atividade` FOREIGN KEY (`idAtividade`) REFERENCES `atividade` (`idAtividade`),
+  ADD CONSTRAINT `fk_trofeu_da_atividade` FOREIGN KEY (`idTrofeu`) REFERENCES `trofeu` (`idTrofeu`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
