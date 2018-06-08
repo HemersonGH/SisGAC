@@ -87,14 +87,14 @@ class Aluno_model extends CI_Model
     $this->db->select('*');
     $this->db->where('idAluno', $idAluno);
 
-    return $this->db->get('solicitacoes_disciplinas')->result();
+    return $this->db->get('solicitacao_disciplina')->result();
   }
 
   public function excluir_solicitacao($idSolicitacao=null)
   {
     $this->db->where('idSolicitacao', $idSolicitacao);
 
-    return $this->db->delete('solicitacoes_disciplinas');
+    return $this->db->delete('solicitacao_disciplina');
   }
 
   public function get_Solicitacao($idSolicitacao=null)
@@ -102,14 +102,14 @@ class Aluno_model extends CI_Model
     $this->db->select('*');
     $this->db->where('idSolicitacao', $idSolicitacao);
 
-    return $this->db->get('solicitacoes_disciplinas')->result();
+    return $this->db->get('solicitacao_disciplina')->result();
   }
 
   public function salvar_atualizacao_solicitacao($idSolicitacao=null, $solicitacao)
   {
     $this->db->where('idSolicitacao', $idSolicitacao);
 
-    return $this->db->update('solicitacoes_disciplinas', $solicitacao);
+    return $this->db->update('solicitacao_disciplina', $solicitacao);
   }
 
   public function get_Conjuntos_Da_Disciplinas($idUsuario=null, $idDisciplina)

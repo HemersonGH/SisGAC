@@ -65,7 +65,7 @@ class Usuario_model extends CI_Model
     $this->db->where('idProfessor', $idProfessor);
     $this->db->where('status_solicitacao', 1);
 
-    $qtd = $this->db->get('solicitacoes_disciplinas')->result();
+    $qtd = $this->db->get('solicitacao_disciplina')->result();
 
     return $qtd[0]->total;
   }

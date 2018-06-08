@@ -166,7 +166,7 @@ class Professor_model extends CI_Model
   {
     $this->db->where('idProfessor', $idProfessor);
 
-    return $this->db->get('solicitacoes_disciplinas')->result();
+    return $this->db->get('solicitacao_disciplina')->result();
   }
 
   public function get_Nome_Aluno($idAluno=null)
@@ -191,7 +191,7 @@ class Professor_model extends CI_Model
   {
     $this->db->where('idSolicitacao', $idSolicitacao);
 
-    return $this->db->delete('solicitacoes_disciplinas');
+    return $this->db->delete('solicitacao_disciplina');
   }
 
   public function get_Solicitacao($idSolicitacao=null)
@@ -199,14 +199,14 @@ class Professor_model extends CI_Model
     $this->db->select('*');
     $this->db->where('idSolicitacao', $idSolicitacao);
 
-    return $this->db->get('solicitacoes_disciplinas')->result();
+    return $this->db->get('solicitacao_disciplina')->result();
   }
 
   public function salvar_avaliacao_solicitacao($idSolicitacao=null, $solicitacao)
   {
     $this->db->where('idSolicitacao', $idSolicitacao);
 
-    return $this->db->update('solicitacoes_disciplinas', $solicitacao);
+    return $this->db->update('solicitacao_disciplina', $solicitacao);
   }
 
   public function salvar_Participacao_Disciplina($participacao_disciplina)
@@ -228,7 +228,7 @@ class Professor_model extends CI_Model
     $this->db->where('idProfessor', $idProfessor);
     $this->db->where('status_solicitacao', 1);
 
-    $qtd = $this->db->get('solicitacoes_disciplinas')->result();
+    $qtd = $this->db->get('solicitacao_disciplina')->result();
 
     return $qtd[0]->total;
   }
