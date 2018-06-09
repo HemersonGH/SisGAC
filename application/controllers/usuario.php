@@ -32,9 +32,9 @@ class Usuario extends CI_Controller {
 
 		$indice = $this->uri->segment(3);
 
-		if ($this->session->userdata('tipoUsuario') == 1) {
+		if ($this->session->userdata('tipo_usuario') == 1) {
 			redirect('aluno');
-		} else if ($this->session->userdata('tipoUsuario') == 2) {
+		} else if ($this->session->userdata('tipo_usuario') == 2) {
 			redirect('professor');
 		}
 	}
@@ -89,13 +89,13 @@ class Usuario extends CI_Controller {
 		if (count($dadosUsuario['usuario']) == 1) {
 			$dadosUsuarioLogado['nome'] = $dadosUsuario['usuario'][0]->nome;
 			$dadosUsuarioLogado['idUsuario'] = $dadosUsuario['usuario'][0]->idUsuario;
-			$dadosUsuarioLogado['tipoUsuario'] = $dadosUsuario['usuario'][0]->tipoUsuario;
+			$dadosUsuarioLogado['tipo_usuario'] = $dadosUsuario['usuario'][0]->tipo_usuario;
 			$dadosUsuarioLogado['logado'] = true;
 			$this->session->set_userdata($dadosUsuarioLogado);
 
-			if ($dadosUsuario['usuario'][0]->tipoUsuario == 1) {
+			if ($dadosUsuario['usuario'][0]->tipo_usuario == 1) {
 				redirect('aluno');
-			} else if ($dadosUsuario['usuario'][0]->tipoUsuario == 2) {
+			} else if ($dadosUsuario['usuario'][0]->tipo_usuario == 2) {
 				redirect('professor');
 			}
 		} else {
@@ -110,7 +110,7 @@ class Usuario extends CI_Controller {
 		$dadosUsuario['data'] = $this->input->post('data');
 		$dadosUsuario['email'] = $this->input->post('email');
 		$dadosUsuario['senha'] = md5($this->input->post('senha'));
-		$dadosUsuario['tipoUsuario'] = $this->input->post('tipoUsuario');
+		$dadosUsuario['tipo_usuario'] = $this->input->post('tipo_usuario');
 
 		$this->load->model('usuario_model','usuario');
 
@@ -149,9 +149,9 @@ class Usuario extends CI_Controller {
 			$this->load->view('includes/msg_erro', $msg);
 		}
 
-		if ($this->session->userdata('tipoUsuario') == 1) {
+		if ($this->session->userdata('tipo_usuario') == 1) {
 			$this->load->view('aluno/menu_lateral');
-		} else if ($this->session->userdata('tipoUsuario') == 2) {
+		} else if ($this->session->userdata('tipo_usuario') == 2) {
 			$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->load->library('application/controllers/usuario')->usuario->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 			$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->load->library('application/controllers/usuario')->usuario->get_Solicitacoes($this->session->userdata('idUsuario'));
 			$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
@@ -175,11 +175,11 @@ class Usuario extends CI_Controller {
 
 		$this->load->model('usuario_model','usuario');
 
-		if ($this->session->userdata('tipoUsuario') == 1) {
+		if ($this->session->userdata('tipo_usuario') == 1) {
 			if ($this->usuario->salvar_atualizacao($idUsuario, $dadosUsuario)) {
 				$dadosUsuarioLogado['nome'] = $dadosUsuario['nome'];
 				$dadosUsuarioLogado['idUsuario'] = $this->session->userdata('idUsuario');
-				$dadosUsuarioLogado['tipoUsuario'] = $this->session->userdata('tipoUsuario');
+				$dadosUsuarioLogado['tipo_usuario'] = $this->session->userdata('tipo_usuario');
 				$dadosUsuarioLogado['logado'] = true;
 
 				$this->session->set_userdata($dadosUsuarioLogado);
@@ -188,7 +188,7 @@ class Usuario extends CI_Controller {
 			} else {
 				redirect('aluno/2');
 			}
-		} else if ($this->session->userdata('tipoUsuario') == 2) {
+		} else if ($this->session->userdata('tipo_usuario') == 2) {
 			if ($this->usuario->salvar_atualizacao($idUsuario, $dadosUsuario)) {
 				$dadosUsuarioLogado['nome'] = $dadosUsuario['nome'];
 				$this->session->set_userdata($dadosUsuarioLogado);

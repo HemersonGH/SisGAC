@@ -7,7 +7,7 @@
   <span class="navbar-toggler-icon"></span>
 </button>
 
-<a class="navbar-brand" href="<?= base_url('usuario/'.$this->session->userdata('tipoUsuario')); ?>">
+<a class="navbar-brand" href="<?= base_url('usuario/'.$this->session->userdata('tipo_usuario')); ?>">
   <span class="fa fa-home" aria-hidden="true"></span> Home
 </a>
 

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 08-Jun-2018 às 16:55
+-- Generation Time: 09-Jun-2018 às 02:41
 -- Versão do servidor: 10.1.31-MariaDB
--- PHP Version: 7.1.16
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,17 +33,8 @@ CREATE TABLE `atividade` (
   `nome_atividade` varchar(100) NOT NULL,
   `descricao_atividade` varchar(200) NOT NULL,
   `prazo_entrega` date NOT NULL,
-  `idConjuntoAtividade` int(11) NOT NULL,
-  `idProfessor` int(11) NOT NULL,
-  `pontos` decimal(11,0) NOT NULL
+  `idConjuntoAtividade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `atividade`
---
-
-INSERT INTO `atividade` (`idAtividade`, `nome_atividade`, `descricao_atividade`, `prazo_entrega`, `idConjuntoAtividade`, `idProfessor`, `pontos`) VALUES
-(3, '52', 'dsf', '2018-06-08', 2, 2, '43');
 
 -- --------------------------------------------------------
 
@@ -58,13 +49,6 @@ CREATE TABLE `conjunto_atividade` (
   `idDisciplina` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `conjunto_atividade`
---
-
-INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `idProfessor`, `idDisciplina`) VALUES
-(2, 'xfx', 2, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -77,15 +61,8 @@ CREATE TABLE `disciplina` (
   `nome_disciplina` varchar(80) NOT NULL,
   `codigo_disciplina` varchar(20) NOT NULL,
   `descricao_disciplina` varchar(200) NOT NULL,
-  `status_disciplina` varchar(45) NOT NULL
+  `status_disciplina` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da disciplina podera assumir os seguintes valores:\n1 => Em Planejamento\n2 => Disponivel\n3 => Finalizada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `disciplina`
---
-
-INSERT INTO `disciplina` (`idDisciplina`, `idProfessor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status_disciplina`) VALUES
-(1, 2, 'hgfhfg', 'gdfg34', '346redf', '');
 
 -- --------------------------------------------------------
 
@@ -96,8 +73,7 @@ INSERT INTO `disciplina` (`idDisciplina`, `idProfessor`, `nome_disciplina`, `cod
 CREATE TABLE `participa_disciplina` (
   `idAluno` int(11) NOT NULL,
   `idDisciplina` int(11) NOT NULL,
-  `status_participacao` int(11) NOT NULL,
-  `idProfessor` int(11) NOT NULL
+  `status_participacao` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da participação podera assumir os seguintes valores:\n1 => Pendente, aguardando confirmação do professor\n2 => Aceita, pelo professor\n3 => Recusada, pelo professor'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -109,12 +85,10 @@ CREATE TABLE `participa_disciplina` (
 CREATE TABLE `realiza_atividade` (
   `idAluno` int(11) NOT NULL,
   `idAtividade` int(11) NOT NULL,
-  `idDisciplina` varchar(45) NOT NULL,
-  `idProfessor` varchar(45) NOT NULL,
-  `resposta_aluno` varchar(200) NOT NULL,
   `anexo` varchar(200) NOT NULL,
-  `status_avaliacao` int(11) NOT NULL DEFAULT '1',
-  `resposta_professor` varchar(200) NOT NULL
+  `resposta_aluno` varchar(200) NOT NULL,
+  `resposta_professor` varchar(200) NOT NULL,
+  `status_avaliacao` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da avaliação podera assumir os seguintes valores:\n1 => Pendente, aguardando avaliação do professor(Não Avaliada)\n2 => Aceita, confirmada pelo professor(Aceita)\n3 => Recusada, não aceita pelo professor(Recusada)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -126,11 +100,8 @@ CREATE TABLE `realiza_atividade` (
 CREATE TABLE `solicitacao_disciplina` (
   `idAluno` int(11) NOT NULL,
   `idDisciplina` int(11) NOT NULL,
-  `idProfessor` int(11) NOT NULL,
-  `status_solicitacao` int(11) NOT NULL,
-  `justificativa_aluno` varchar(250) NOT NULL,
-  `justificativa_professor` varchar(250) NOT NULL,
-  `idSolicitacao` int(11) NOT NULL
+  `status_solicitacao` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da solicitacao podera assumir os seguintes valores:\n1 => Pendente, aguardando confirmação do professor\n2 => Aceita, pelo professor\n3 => Recusada, pelo professor',
+  `justificativa_aluno` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -163,21 +134,20 @@ CREATE TABLE `trofeu_atividade` (
 
 CREATE TABLE `usuario` (
   `idUsuario` int(11) NOT NULL,
-  `nome` varchar(80) NOT NULL,
+  `nome` varchar(100) NOT NULL,
   `cpf` varchar(20) NOT NULL,
   `data` date NOT NULL,
   `email` varchar(80) NOT NULL,
   `senha` varchar(150) NOT NULL,
-  `tipoUsuario` int(11) NOT NULL
+  `tipo_usuario` int(11) NOT NULL COMMENT 'O tipo de usuario podera assumir os seguintes valores:\n1 => Aluno\n2 => Professor'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `data`, `email`, `senha`, `tipoUsuario`) VALUES
-(1, 'ee', 'ee', '2018-06-08', 'e@e', '08a4415e9d594ff960030b921d42b91e', 1),
-(2, 'p', 'p', '2018-06-08', 'po@po', '83878c91171338902e0fe0fb97a8c47a', 2);
+INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `data`, `email`, `senha`, `tipo_usuario`) VALUES
+(1, 'asd', 'sa', '2018-06-08', 'sa@d', '016998dad6c68fea05b9df7f6f56fb96', 1);
 
 --
 -- Indexes for dumped tables
@@ -225,7 +195,7 @@ ALTER TABLE `realiza_atividade`
 -- Indexes for table `solicitacao_disciplina`
 --
 ALTER TABLE `solicitacao_disciplina`
-  ADD PRIMARY KEY (`idAluno`,`idDisciplina`,`idSolicitacao`),
+  ADD PRIMARY KEY (`idAluno`,`idDisciplina`),
   ADD KEY `fk_Usuario_has_disciplina_disciplina2_idx` (`idDisciplina`),
   ADD KEY `fk_Usuario_has_disciplina_Usuario2_idx` (`idAluno`);
 
@@ -257,25 +227,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `atividade`
 --
 ALTER TABLE `atividade`
-  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `conjunto_atividade`
 --
 ALTER TABLE `conjunto_atividade`
-  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `disciplina`
 --
 ALTER TABLE `disciplina`
-  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -298,7 +268,7 @@ ALTER TABLE `conjunto_atividade`
 -- Limitadores para a tabela `disciplina`
 --
 ALTER TABLE `disciplina`
-  ADD CONSTRAINT `fk_disciplina_Usuario` FOREIGN KEY (`idProfessor`) REFERENCES `usuario` (`idUsuario`);
+  ADD CONSTRAINT `fk_disciplina_professor` FOREIGN KEY (`idProfessor`) REFERENCES `usuario` (`idUsuario`);
 
 --
 -- Limitadores para a tabela `participa_disciplina`
@@ -318,8 +288,8 @@ ALTER TABLE `realiza_atividade`
 -- Limitadores para a tabela `solicitacao_disciplina`
 --
 ALTER TABLE `solicitacao_disciplina`
-  ADD CONSTRAINT `fk_Usuario_disciplina_solicitada` FOREIGN KEY (`idAluno`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Usuario_solicita_disciplina` FOREIGN KEY (`idDisciplina`) REFERENCES `disciplina` (`idDisciplina`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_disciplina_solicitada` FOREIGN KEY (`idDisciplina`) REFERENCES `disciplina` (`idDisciplina`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_solicitao_disciplina` FOREIGN KEY (`idAluno`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `trofeu_atividade`

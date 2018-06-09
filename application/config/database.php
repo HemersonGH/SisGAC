@@ -75,21 +75,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // 'username' => 'epiz_21889983',
 // 'password' => 'Seagate01ZXIF',
 // 'database' => 'epiz_21889983_db_sgd',
-
+// Routes postgres
+// 'hostname' => '127.0.0.1',
+// 'username' => 'postgres',
+// 'password' => 'root',
+// 'database' => 'db_sgd',
+// 'dbdriver' => 'postgre',
+// 'port' => 5432,
+// C:\xampp\phpMyAdmin\config.inc.php colocar a senha no db
 $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	// 'hostname' => '127.0.0.1',
-	// 'username' => 'postgres',
-	// 'password' => 'root',
-	// 'database' => 'db_sgd',
-	// 'dbdriver' => 'postgre',
-	// 'port' => 5432,
+
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => '',
+	'password' => 'db_sgd_es_2018',
 	'database' => 'db_sgd',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
