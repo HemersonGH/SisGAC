@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Jun-2018 às 03:24
+-- Generation Time: 10-Jun-2018 às 08:52
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -33,8 +33,24 @@ CREATE TABLE `atividade` (
   `nome_atividade` varchar(100) NOT NULL,
   `descricao_atividade` varchar(200) NOT NULL,
   `prazo_entrega` date NOT NULL,
-  `idConjuntoAtividade` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idConjuntoAtividade` int(11) NOT NULL,
+  `idProfessor` int(11) NOT NULL,
+  `trofeu_ouro` int(11) DEFAULT '0',
+  `trofeu_prata` int(11) DEFAULT '0',
+  `trofeu_bronze` int(11) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='																																																																																																																																																																																								';
+
+--
+-- Extraindo dados da tabela `atividade`
+--
+
+INSERT INTO `atividade` (`idAtividade`, `nome_atividade`, `descricao_atividade`, `prazo_entrega`, `idConjuntoAtividade`, `idProfessor`, `trofeu_ouro`, `trofeu_prata`, `trofeu_bronze`) VALUES
+(1, 'rerstete', 'tetsfsddsr', '2018-06-10', 1, 1, 1, 1, 0),
+(2, 'wetewew', 'twtwet', '2018-06-10', 1, 1, 0, 1, 1),
+(3, 'twetwetw', 'ewtewtew', '2018-05-30', 1, 1, 0, 1, 0),
+(4, 'wetewt', 'ewtwtew', '2018-05-29', 1, 1, 1, 1, 1),
+(5, 'rewrewrw', 'rwerewrew', '2018-06-10', 2, 1, 1, 1, 0),
+(6, 'rewrewrwe', 'rewrewrewr', '2018-05-30', 2, 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -48,6 +64,14 @@ CREATE TABLE `conjunto_atividade` (
   `idProfessor` int(11) NOT NULL,
   `idDisciplina` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `conjunto_atividade`
+--
+
+INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `idProfessor`, `idDisciplina`) VALUES
+(1, 'Gerência', 1, 1),
+(2, 'rewrew', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -64,6 +88,13 @@ CREATE TABLE `disciplina` (
   `status_disciplina` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da disciplina podera assumir os seguintes valores:\n1 => Em Planejamento\n2 => Disponivel\n3 => Finalizada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `disciplina`
+--
+
+INSERT INTO `disciplina` (`idDisciplina`, `idProfessor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status_disciplina`) VALUES
+(1, 1, 'Teste', 'testes', 'testestestestestestestestestestestesstestes', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -73,8 +104,15 @@ CREATE TABLE `disciplina` (
 CREATE TABLE `participa_disciplina` (
   `idAluno` int(11) NOT NULL,
   `idDisciplina` int(11) NOT NULL,
-  `status_participacao` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da participação podera assumir os seguintes valores:\n1 => Pendente, aguardando confirmação do professor\n2 => Aceita, pelo professor\n3 => Recusada, pelo professor'
+  `status_participacao` int(11) NOT NULL COMMENT 'O status da participação podera assumir os seguintes valores:\n1 => Aceito, pelo professor\n0 => Recusado, pelo professor'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `participa_disciplina`
+--
+
+INSERT INTO `participa_disciplina` (`idAluno`, `idDisciplina`, `status_participacao`) VALUES
+(2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -89,8 +127,16 @@ CREATE TABLE `realiza_atividade` (
   `resposta_aluno` varchar(200) NOT NULL,
   `resposta_professor` varchar(200) NOT NULL,
   `status_avaliacao` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da avaliação podera assumir os seguintes valores:\n1 => Pendente, aguardando avaliação do professor(Não Avaliada)\n2 => Aceita, confirmada pelo professor(Aceita)\n3 => Recusada, não aceita pelo professor(Recusada)',
-  `idProfessor` int(11) NOT NULL
+  `idProfessor` int(11) NOT NULL,
+  `idDisciplina` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `realiza_atividade`
+--
+
+INSERT INTO `realiza_atividade` (`idAluno`, `idAtividade`, `anexo`, `resposta_aluno`, `resposta_professor`, `status_avaliacao`, `idProfessor`, `idDisciplina`) VALUES
+(2, 1, 'Daniel_Ferrera_Carlos_2_1.pdf', 'dsfdsfsd', '', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -102,30 +148,16 @@ CREATE TABLE `solicitacao_disciplina` (
   `idAluno` int(11) NOT NULL,
   `idDisciplina` int(11) NOT NULL,
   `status_solicitacao` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da solicitacao podera assumir os seguintes valores:\n1 => Pendente, aguardando confirmação do professor\n2 => Aceita, pelo professor\n3 => Recusada, pelo professor',
-  `justificativa_aluno` varchar(250) NOT NULL
+  `justificativa_aluno` varchar(250) NOT NULL,
+  `idProfessor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Estrutura da tabela `trofeu`
+-- Extraindo dados da tabela `solicitacao_disciplina`
 --
 
-CREATE TABLE `trofeu` (
-  `idTrofeu` int(11) NOT NULL,
-  `tipo_trofeu` varchar(45) NOT NULL COMMENT 'Os tipos de trofeus podera assumir os seguintes valores:\n1 => Ouro\n2 => Prata\n3 => Bronze'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `trofeu_atividade`
---
-
-CREATE TABLE `trofeu_atividade` (
-  `idTrofeu` int(11) NOT NULL,
-  `idAtividade` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `solicitacao_disciplina` (`idAluno`, `idDisciplina`, `status_solicitacao`, `justificativa_aluno`, `idProfessor`) VALUES
+(2, 1, 2, 'ssafsa', 1);
 
 -- --------------------------------------------------------
 
@@ -142,6 +174,14 @@ CREATE TABLE `usuario` (
   `senha` varchar(150) NOT NULL,
   `tipo_usuario` int(11) NOT NULL COMMENT 'O tipo de usuario podera assumir os seguintes valores:\n1 => Aluno\n2 => Professor'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `data`, `email`, `senha`, `tipo_usuario`) VALUES
+(1, 'Antônio Carlos Garcia', '453.980.134-90', '2018-06-10', 'professor@professor', 'd450c5dbcc10db0749277efc32f15f9f', 2),
+(2, 'Daniel Ferrera Carlos', '213.123.123-12', '2018-05-30', 'aluno@aluno', 'ca0cd09a12abade3bf0777574d9f987f', 1);
 
 --
 -- Indexes for dumped tables
@@ -194,20 +234,6 @@ ALTER TABLE `solicitacao_disciplina`
   ADD KEY `fk_Usuario_has_disciplina_Usuario2_idx` (`idAluno`);
 
 --
--- Indexes for table `trofeu`
---
-ALTER TABLE `trofeu`
-  ADD PRIMARY KEY (`idTrofeu`);
-
---
--- Indexes for table `trofeu_atividade`
---
-ALTER TABLE `trofeu_atividade`
-  ADD PRIMARY KEY (`idTrofeu`,`idAtividade`),
-  ADD KEY `fk_trofeu_has_atividade_atividade1_idx` (`idAtividade`),
-  ADD KEY `fk_trofeu_has_atividade_trofeu1_idx` (`idTrofeu`);
-
---
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
@@ -221,25 +247,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `atividade`
 --
 ALTER TABLE `atividade`
-  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `conjunto_atividade`
 --
 ALTER TABLE `conjunto_atividade`
-  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `disciplina`
 --
 ALTER TABLE `disciplina`
-  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -284,13 +310,6 @@ ALTER TABLE `realiza_atividade`
 ALTER TABLE `solicitacao_disciplina`
   ADD CONSTRAINT `fk_disciplina_solicitada` FOREIGN KEY (`idDisciplina`) REFERENCES `disciplina` (`idDisciplina`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_solicitao_disciplina` FOREIGN KEY (`idAluno`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `trofeu_atividade`
---
-ALTER TABLE `trofeu_atividade`
-  ADD CONSTRAINT `fk_trofeu_atividade` FOREIGN KEY (`idAtividade`) REFERENCES `atividade` (`idAtividade`),
-  ADD CONSTRAINT `fk_trofeu_da_atividade` FOREIGN KEY (`idTrofeu`) REFERENCES `trofeu` (`idTrofeu`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
