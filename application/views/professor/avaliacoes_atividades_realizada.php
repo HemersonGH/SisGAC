@@ -23,7 +23,7 @@
             <td>
               <?=
                $this->load->library('application/controllers/professor')->professor->get_Status_Atividade($atividade->idAtividade, $atividade->idAluno) == 2 ? 'Não Avaliada':
-              ($this->load->library('application/controllers/professor')->professor->get_Status_Atividade($atividade->idAtividade, $atividade->idAluno) == 3 ? 'Recusada':'Avaliada');
+              ($this->load->library('application/controllers/professor')->professor->get_Status_Atividade($atividade->idAtividade, $atividade->idAluno) == 3 ? 'Recusada':'Aceita');
               ?>
             </td>
             <td>

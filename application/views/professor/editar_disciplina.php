@@ -22,7 +22,7 @@
           <div class="col-md-6">
             <label for="status" class="paddingUp"> <h6> Status: </h6> </label>
             <select id="status" name="status" class="form-control" required>
-              <option value="1" <?= $disciplina[0]->status_disciplina == 1 ? 'selected':''; ?> > Em Andamento </option>
+              <option value="1" <?= $disciplina[0]->status_disciplina == 1 ? 'selected':''; ?> > Em Planejamento </option>
               <option value="2" <?= $disciplina[0]->status_disciplina == 2 ? 'selected':''; ?> > Disponível </option>
               <option value="3" <?= $disciplina[0]->status_disciplina == 3 ? 'selected':''; ?> > Finalizada </option>
             </select>
@@ -38,7 +38,7 @@
           <div class="col-md-12">
             <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>professor" > Cancelar </a>
             <button type="submit" class="paddingButton btn btn-success right">
-              <span class="fa fa-save" aria-hidden="true"></span> Salvar 
+              <span class="fa fa-save" aria-hidden="true"></span> Salvar
             </button>
           </div>
         </div>

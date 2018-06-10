@@ -30,8 +30,10 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <a type="btn" class="paddingButton btn btn-secondary left" href="<?= base_url(); ?>aluno/matricular_disciplina"> Cancelar </a>
-            <button type="submit" class="paddingButton btn btn-success right"> Salvar Atualização </button>
+            <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>aluno/matricular_disciplina"> Cancelar </a>
+            <button type="submit" class="paddingButton btn btn-success right cursor">
+              <span class="fa fa-save" aria-hidden="true"></span> Salvar
+            </button>
           </div>
         </div>
       </form>

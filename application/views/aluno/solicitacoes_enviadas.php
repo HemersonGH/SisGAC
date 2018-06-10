@@ -16,7 +16,7 @@
           <a data-tooltip="tooltip" title="Visualizar solicitação" href="<?= base_url('aluno/visualizar_solicitacao/'.$solicitacao->idDisciplina); ?>">
             <span class="fa fa-eye eye mr-2" aria-hidden="true"></span>
           </a>
-          <?php if ($solicitacao->status_solicitacao == 2): ?>
+          <?php if ($solicitacao->status_solicitacao != 1): ?>
             <span class="fa fa-pencil pencil color_disabled mr-2" aria-hidden="true" data-tooltip="tooltip" title="Edição bloqueada"></span>
           <?php else: ?>
             <a data-tooltip="tooltip" title="Editar solicitação" href="<?= base_url('aluno/editar_solicitacao/'.$solicitacao->idDisciplina); ?>">

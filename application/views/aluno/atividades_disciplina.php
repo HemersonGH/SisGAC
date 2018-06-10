@@ -37,7 +37,7 @@
                 <?=
                 $this->load->library('application/controllers/aluno')->aluno->get_Status_Atividade($atividade->idAtividade, $this->session->userdata('idUsuario')) == 1 ? 'Pendente':
                 ($this->load->library('application/controllers/aluno')->aluno->get_Status_Atividade($atividade->idAtividade, $this->session->userdata('idUsuario')) == 2 ? 'Aguardando Avaliação':
-                ($this->load->library('application/controllers/aluno')->aluno->get_Status_Atividade($atividade->idAtividade, $this->session->userdata('idUsuario')) == 3 ? 'Recusada':'Avaliada'));
+                ($this->load->library('application/controllers/aluno')->aluno->get_Status_Atividade($atividade->idAtividade, $this->session->userdata('idUsuario')) == 3 ? 'Recusada':'Aceita'));
                 ?>
               </td>
               <td class="text-center">

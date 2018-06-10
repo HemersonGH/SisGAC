@@ -114,7 +114,6 @@ class Aluno_model extends CI_Model
 
   public function salvar_atualizacao_solicitacao($idAluno=null, $idDisciplina=null, $solicitacao)
   {
-    $this->db->select('*');
     $this->db->where('idAluno', $idAluno);
     $this->db->where('idDisciplina', $idDisciplina);
 

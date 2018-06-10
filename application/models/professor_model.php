@@ -188,6 +188,15 @@ class Professor_model extends CI_Model
     return $disciplina[0]->nome_disciplina;
   }
 
+  public function get_Codigo_Disciplina($idDisciplina=null)
+  {
+    $this->db->where('idDisciplina', $idDisciplina);
+
+    $disciplina = $this->db->get('disciplina')->result();
+
+    return $disciplina[0]->codigo_disciplina;
+  }
+
   public function excluir_solicitacao($idSolicitacao=null)
   {
     $this->db->where('idSolicitacao', $idSolicitacao);
@@ -362,6 +371,34 @@ class Professor_model extends CI_Model
     $qtd = $this->db->get('realiza_atividade')->result();
 
     return $qtd[0]->total;
+  }
+
+  public function get_Alunos_Matriculado($idProfessor=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idProfessor', $idProfessor);
+    $this->db->where('status_participacao', 1);
+
+    return $this->db->get('participa_disciplina')->result();
+  }
+
+  public function excluir_matricula($idAluno=null, $idDisciplina=null, $idProfessor=null)
+  {
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('idDisciplina', $idDisciplina);
+    $this->db->where('idProfessor', $idProfessor);
+
+    return $this->db->delete('participa_disciplina');
+  }
+
+  public function salvar_atualizacao_solicitacao($idAluno=null, $idProfessor=null, $idDisciplina=null, $solicitacao)
+  {
+    $this->db->select('*');
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('idProfessor', $idProfessor);
+    $this->db->where('idDisciplina', $idDisciplina);
+
+    return $this->db->update('solicitacao_disciplina', $solicitacao);
   }
 }
 

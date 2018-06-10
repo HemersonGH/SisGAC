@@ -179,7 +179,18 @@ class Aluno extends CI_Controller {
 
 		$solicitada = $this->aluno->get_Solicitacao($this->session->userdata('idUsuario'), $this->input->post('idDisciplina'));
 
-		if (count($solicitada) == 1) {
+		if ($solicitada[0]->status_solicitacao == 3) {
+			$solicitacao['status_solicitacao'] = 1;
+
+			if ($this->aluno->salvar_atualizacao_solicitacao($this->session->userdata('idUsuario'), $this->input->post('idDisciplina'), $solicitacao)) {
+
+				redirect('aluno/matricular_disciplina/2');
+			} else {
+				redirect('aluno/matricular_disciplina/3');
+			}
+		}
+
+		if (count($solicitada) == 1 && $solicitada[0]->status_solicitacao != 3) {
 			redirect('aluno/matricular_disciplina/1');
 		}
 

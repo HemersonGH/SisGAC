@@ -632,7 +632,7 @@ class Professor extends CI_Controller {
 		$this->load->model('professor_model','professor');
 
 		$idAluno = $this->uri->segment(3);
-		$idDisciplina = $this->uri->segment(3);
+		$idDisciplina = $this->uri->segment(4);
 		$idProfessor = $this->session->userdata('idUsuario');
 
 		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
@@ -663,6 +663,7 @@ class Professor extends CI_Controller {
 			$participacao_disciplina['idAluno'] = $idAluno;
 			$participacao_disciplina['idDisciplina'] = $idDisciplina;
 			$participacao_disciplina['status_participacao'] = 1;
+			$participacao_disciplina['idProfessor'] = $idProfessor;
 
 			if ($this->professor->salvar_Participacao_Disciplina($participacao_disciplina)) {
 				redirect('professor/solicitacoes_disciplinas/1');
@@ -691,6 +692,7 @@ class Professor extends CI_Controller {
 			$participacao_disciplina['idAluno'] = $idAluno;
 			$participacao_disciplina['idDisciplina'] = $idDisciplina;
 			$participacao_disciplina['status_participacao'] = 0;
+			$participacao_disciplina['idProfessor'] = $idProfessor;
 
 			if ($this->professor->salvar_Participacao_Disciplina($participacao_disciplina)) {
 				redirect('professor/solicitacoes_disciplinas/3');
@@ -733,7 +735,7 @@ class Professor extends CI_Controller {
 			break;
 
 			case 2:
-			$msg['msg'] = "Não foi possível avaliar a atividade, tente novamente, tente novamente ou entre em contato com o administrador do sistema.";
+			$msg['msg'] = "Não foi possível avaliar a atividade, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 		}
@@ -872,6 +874,62 @@ class Professor extends CI_Controller {
 			redirect('professor/avaliacoes_atividades_realizada/1');
 		} else {
 			redirect('professor/avaliacoes_atividades_realizada/2');
+		}
+	}
+
+	public function alunos_matriculado()
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
+		$alunosMatriculados['alunosMatriculados'] = $this->professor->get_Alunos_Matriculado($this->session->userdata('idUsuario'));
+
+		$indice = $this->uri->segment(3);
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+
+		switch ($indice) {
+			case 1:
+			$msg['msg'] = "Matrícula excluída com sucesso.";
+			$this->load->view('includes/msg_sucesso', $msg);
+			break;
+
+			case 2:
+			$msg['msg'] = "Não foi possível excluír a matrícula, tente novamente ou entre em contato com o administrador do sistema.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
+		}
+
+		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
+		$this->load->view('professor/alunos_matriculado', $alunosMatriculados);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function excluir_matricula()
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
+
+		$idAluno = $this->uri->segment(3);
+		$idDisciplina = $this->uri->segment(4);
+		$idProfessor = $this->session->userdata('idUsuario');
+
+		if ($this->professor->excluir_matricula($idAluno, $idDisciplina, $idProfessor)) {
+			$solicitacao['idAluno'] = $idAluno;
+			$solicitacao['idDisciplina'] = $idDisciplina;
+			$solicitacao['idProfessor'] = $idProfessor;
+			$solicitacao['status_solicitacao'] = 3;
+
+			if ($this->professor->salvar_atualizacao_solicitacao($idAluno, $idProfessor, $idDisciplina, $solicitacao)) {
+				redirect('professor/alunos_matriculado/1');
+			} else {
+				redirect('professor/alunos_matriculado/2');
+			}
+		} else {
+			redirect('professor/alunos_matriculado/2');
 		}
 	}
 
