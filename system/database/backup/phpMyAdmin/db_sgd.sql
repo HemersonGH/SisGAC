@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 09-Jun-2018 às 02:41
+-- Generation Time: 10-Jun-2018 às 03:24
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -88,7 +88,8 @@ CREATE TABLE `realiza_atividade` (
   `anexo` varchar(200) NOT NULL,
   `resposta_aluno` varchar(200) NOT NULL,
   `resposta_professor` varchar(200) NOT NULL,
-  `status_avaliacao` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da avaliação podera assumir os seguintes valores:\n1 => Pendente, aguardando avaliação do professor(Não Avaliada)\n2 => Aceita, confirmada pelo professor(Aceita)\n3 => Recusada, não aceita pelo professor(Recusada)'
+  `status_avaliacao` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da avaliação podera assumir os seguintes valores:\n1 => Pendente, aguardando avaliação do professor(Não Avaliada)\n2 => Aceita, confirmada pelo professor(Aceita)\n3 => Recusada, não aceita pelo professor(Recusada)',
+  `idProfessor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -141,13 +142,6 @@ CREATE TABLE `usuario` (
   `senha` varchar(150) NOT NULL,
   `tipo_usuario` int(11) NOT NULL COMMENT 'O tipo de usuario podera assumir os seguintes valores:\n1 => Aluno\n2 => Professor'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `usuario`
---
-
-INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `data`, `email`, `senha`, `tipo_usuario`) VALUES
-(1, 'asd', 'sa', '2018-06-08', 'sa@d', '016998dad6c68fea05b9df7f6f56fb96', 1);
 
 --
 -- Indexes for dumped tables
@@ -245,7 +239,7 @@ ALTER TABLE `disciplina`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

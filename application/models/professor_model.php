@@ -12,10 +12,10 @@ class Professor_model extends CI_Model
     return $this->db->insert('disciplina', $disciplina);
   }
 
-  public function get_Disciplinas($idUsuario=null)
+  public function get_Disciplinas($idProfessor=null)
   {
     $this->db->select('*');
-    $this->db->where('idProfessor', $idUsuario);
+    $this->db->where('idProfessor', $idProfessor);
 
     return $this->db->get('disciplina')->result();
   }
@@ -46,27 +46,27 @@ class Professor_model extends CI_Model
     return $this->db->insert('conjunto_atividade', $conjunto_atividade);
   }
 
-  public function get_Conjuntos($idUsuario=null)
+  public function get_Conjuntos($idProfessor=null)
   {
     $this->db->select('*');
-    $this->db->where('idProfessor', $idUsuario);
+    $this->db->where('idProfessor', $idProfessor);
 
     return $this->db->get('conjunto_atividade')->result();
   }
 
-  public function get_Conjuntos_Sem_Disciplinas($idUsuario=null)
+  public function get_Conjuntos_Sem_Disciplinas($idProfessor=null)
   {
     $this->db->select('*');
-    $this->db->where('idProfessor', $idUsuario);
+    $this->db->where('idProfessor', $idProfessor);
     $this->db->where('idDisciplina', null);
 
     return $this->db->get('conjunto_atividade')->result();
   }
 
-  public function get_Conjuntos_Da_Disciplinas($idUsuario=null, $idDisciplina)
+  public function get_Conjuntos_Da_Disciplinas($idProfessor=null, $idDisciplina)
   {
     $this->db->select('*');
-    $this->db->where('idProfessor', $idUsuario);
+    $this->db->where('idProfessor', $idProfessor);
     $this->db->where('idDisciplina', $idDisciplina);
 
     return $this->db->get('conjunto_atividade')->result();
@@ -93,7 +93,7 @@ class Professor_model extends CI_Model
     return $this->db->delete('conjunto_atividade');
   }
 
-  public function cadastrar_atividades($atividade=null)
+  public function cadastrar_atividade($atividade=null)
   {
     return $this->db->insert('atividade', $atividade);
   }
@@ -165,6 +165,7 @@ class Professor_model extends CI_Model
   public function get_Solicitacoes_Disciplinas($idProfessor=null)
   {
     $this->db->where('idProfessor', $idProfessor);
+    $this->db->where('status_solicitacao', 1);
 
     return $this->db->get('solicitacao_disciplina')->result();
   }
@@ -194,17 +195,21 @@ class Professor_model extends CI_Model
     return $this->db->delete('solicitacao_disciplina');
   }
 
-  public function get_Solicitacao($idSolicitacao=null)
+  public function get_Solicitacao($idAluno=null, $idDisciplina=null, $idProfessor=null)
   {
     $this->db->select('*');
-    $this->db->where('idSolicitacao', $idSolicitacao);
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('idDisciplina', $idDisciplina);
+    $this->db->where('idProfessor', $idProfessor);
 
     return $this->db->get('solicitacao_disciplina')->result();
   }
 
-  public function salvar_avaliacao_solicitacao($idSolicitacao=null, $solicitacao)
+  public function salvar_avaliacao_solicitacao($idAluno=null, $idDisciplina=null, $idProfessor=null, $solicitacao)
   {
-    $this->db->where('idSolicitacao', $idSolicitacao);
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('idDisciplina', $idDisciplina);
+    $this->db->where('idProfessor', $idProfessor);
 
     return $this->db->update('solicitacao_disciplina', $solicitacao);
   }
@@ -272,13 +277,31 @@ class Professor_model extends CI_Model
     return $atividade[0]->nome_atividade;
   }
 
-  public function get_Pontos_Atividade($idAtividade=null)
+  public function get_Trofeu_Ouro($idAtividade=null)
   {
     $this->db->select('*');
     $this->db->where('idAtividade', $idAtividade);
     $atividade = $this->db->get('atividade')->result();
 
-    return $atividade[0]->pontos;
+    return $atividade[0]->trofeu_ouro;
+  }
+
+  public function get_Trofeu_Prata($idAtividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAtividade', $idAtividade);
+    $atividade = $this->db->get('atividade')->result();
+
+    return $atividade[0]->trofeu_prata;
+  }
+
+  public function get_Trofeu_Bronze($idAtividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAtividade', $idAtividade);
+    $atividade = $this->db->get('atividade')->result();
+
+    return $atividade[0]->trofeu_bronze;
   }
 
   public function get_Prazo_Atividade($idAtividade=null)

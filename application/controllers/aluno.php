@@ -112,31 +112,36 @@ class Aluno extends CI_Controller {
 
 		switch ($indice) {
 			case 1:
+			$msg['msg'] = "Você já solicitou matrícula para essa disciplina, aguarde a resposta do professor.";
+			$this->load->view('includes/msg_alerta', $msg);
+			break;
+
+			case 2:
 			$msg['msg'] = "Solicitacao enviada com sucesso.";
 			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
-			case 2:
+			case 3:
 			$msg['msg'] = "Não foi possível enviar sua solicitação, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
-			case 3:
+			case 4:
 			$msg['msg'] = "Solicitacao excluída com sucesso.";
 			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
-			case 4:
+			case 5:
 			$msg['msg'] = "Não foi possível excluír sua solicitação, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
 
-			case 5:
+			case 6:
 			$msg['msg'] = "Solicitacao atualizada com sucesso.";
 			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
-			case 6:
+			case 7:
 			$msg['msg'] = "Não foi possível atualizar sua solicitação, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
@@ -167,15 +172,21 @@ class Aluno extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
 
-		$solicitacao['idDisciplina'] = $this->input->post('idDisciplina');
 		$solicitacao['idAluno'] = $this->session->userdata('idUsuario');
+		$solicitacao['idDisciplina'] = $this->input->post('idDisciplina');
 		$solicitacao['idProfessor'] = $this->input->post('idProfDisciplina');
 		$solicitacao['justificativa_aluno'] = $this->input->post('justificativa_aluno');
 
-		if ($this->aluno->salvar_solicitacao_disciplina($solicitacao)) {
+		$solicitada = $this->aluno->get_Solicitacao($this->session->userdata('idUsuario'), $this->input->post('idDisciplina'));
+
+		if (count($solicitada) == 1) {
 			redirect('aluno/matricular_disciplina/1');
-		} else {
+		}
+
+		if ($this->aluno->salvar_solicitacao_disciplina($solicitacao)) {
 			redirect('aluno/matricular_disciplina/2');
+		} else {
+			redirect('aluno/matricular_disciplina/3');
 		}
 	}
 
@@ -184,10 +195,13 @@ class Aluno extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
 
-		if ($this->aluno->excluir_solicitacao($this->input->post('idSolicitacao'))) {
-			redirect('aluno/matricular_disciplina/3');
-		} else {
+		$idAluno = $this->session->userdata('idUsuario');
+		$idDisciplina = $this->input->post('idDisciplinaSolicitacao');
+
+		if ($this->aluno->excluir_solicitacao($idAluno, $idDisciplina)) {
 			redirect('aluno/matricular_disciplina/4');
+		} else {
+			redirect('aluno/matricular_disciplina/5');
 		}
 	}
 
@@ -196,9 +210,10 @@ class Aluno extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
 
-		$idSolicitacao = $this->uri->segment(3);
+		$idAluno = $this->session->userdata('idUsuario');
+		$idDisciplina = $this->uri->segment(3);
 
-		$solicitacao['solicitacao'] = $this->aluno->get_Solicitacao($idSolicitacao);
+		$solicitacao['solicitacao'] = $this->aluno->get_Solicitacao($idAluno, $idDisciplina);
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
@@ -212,9 +227,10 @@ class Aluno extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
 
-		$idSolicitacao = $this->uri->segment(3);
+		$idAluno = $this->session->userdata('idUsuario');
+		$idDisciplina = $this->uri->segment(3);
 
-		$solicitacao['solicitacao'] = $this->aluno->get_Solicitacao($idSolicitacao);
+		$solicitacao['solicitacao'] = $this->aluno->get_Solicitacao($idAluno, $idDisciplina);
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
@@ -228,15 +244,15 @@ class Aluno extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
 
-		$idSolicitacao = $this->uri->segment(3);
+		$idAluno = $this->session->userdata('idUsuario');
+		$idDisciplina = $this->input->post('idDisciplina');
 
-		$solicitacao['idSolicitacao'] = $this->input->post('idSolicitacao');
 		$solicitacao['justificativa_aluno'] = $this->input->post('justificativa_aluno');
 
-		if ($this->aluno->salvar_atualizacao_solicitacao($this->input->post('idSolicitacao'), $solicitacao)) {
-			redirect('aluno/matricular_disciplina/5');
-		} else {
+		if ($this->aluno->salvar_atualizacao_solicitacao($idAluno, $idDisciplina, $solicitacao)) {
 			redirect('aluno/matricular_disciplina/6');
+		} else {
+			redirect('aluno/matricular_disciplina/7');
 		}
 	}
 

@@ -5,15 +5,28 @@
   <table class="table table-striped">
     <tr>
       <th> Nome da Atividade </th>
+      <th> Troféus </th>
       <th> Prazo </th>
-      <th> Valor </th>
       <th> Ações </th>
     </tr>
     <?php foreach ($atividades as $atividade) { ?>
       <tr>
         <td> <?= $atividade->nome_atividade; ?> </td>
+        <td>
+          <?php if ($atividade->trofeu_ouro == 0 && $atividade->trofeu_prata == 0 && $atividade->trofeu_bronze == 0): ?>
+            Sem Troféus
+          <?php endif; ?>
+          <?php if ($atividade->trofeu_ouro == 1): ?>
+            <span class="fa fa-trophy ouro mr-2" aria-hidden="true" data-tooltip="tooltip" title="Ouro"></span>
+          <?php endif; ?>
+          <?php if ($atividade->trofeu_prata == 1): ?>
+            <span class="fa fa-trophy prata mr-2" aria-hidden="true" data-tooltip="tooltip" title="Prata"></span>
+          <?php endif; ?>
+          <?php if ($atividade->trofeu_bronze == 1): ?>
+            <span class="fa fa-trophy bronze" aria-hidden="true" data-tooltip="tooltip" title="Bronze"></span>
+          <?php endif; ?>
+        </td>
         <td> <?= str_replace("-", "/", date('d-m-Y', strtotime($atividade->prazo_entrega))); ?> </td>
-        <td> <?= $atividade->pontos; ?> Pontos </td>
         <td>
           <a data-tooltip="tooltip" title="Editar atividade" href="<?= base_url('professor/atualizar_atividade/'.$atividade->idAtividade); ?>">
             <span class="fa fa-pencil pencil mr-1" aria-hidden="true"></span>

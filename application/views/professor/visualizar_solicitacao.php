@@ -2,12 +2,13 @@
 
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
   <div class="col-md-12">
-    <h1 class="page-header"> Avaliar Solicitação </h1>
+    <h1 class="page-header"> Visualizar Solicitação </h1>
   </div>
   <div class="col-md-12">
     <div class="form-control col-md-6 paddingBotton">
       <form action="<?= base_url(); ?>professor/salvar_avaliacao_solicitacao" method="post">
-        <input type="hidden" id="idSolicitacao" name="idSolicitacao" value="<?= $solicitacao[0]->idSolicitacao; ?>">
+        <input type="hidden" id="idAluno" name="idAluno" value="<?= $solicitacao[0]->idAluno; ?>">
+        <input type="hidden" id="idDisciplina" name="idDisciplina" value="<?= $solicitacao[0]->idDisciplina; ?>">
         <div class="row">
           <div class="col-md-12">
             <label for="nome_aluno" class="padding"> <h6> Nome do Aluno: </h6> </label>
@@ -28,24 +29,15 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <label for="status_solicitacao" class="paddingUp"> <h6> Status da Solicitação: </h6> </label>
-            <select id="status_solicitacao" name="status_solicitacao" class="form-control" required>
-              <option value="1" <?= $solicitacao[0]->status_solicitacao == 1 ? 'selected':''; ?> > Pendente </option>
-              <option value="2" <?= $solicitacao[0]->status_solicitacao == 2 ? 'selected':''; ?> > Aceitar </option>
-              <option value="3" <?= $solicitacao[0]->status_solicitacao == 3 ? 'selected':''; ?> > Recusar </option>
-            </select>
+            <label for="status_solicitacao" class="padding paddingUp"> <h6> Status da Solicitação: </h6> </label>
+            <input type="text" class="form-control" name="status_solicitacao" value="<?= $solicitacao[0]->status_solicitacao == 1 ? 'Aguardando Avaliação' : ($solicitacao[0]->status_solicitacao == 2 ? 'Aceita' : 'Recusada') ?>" disabled>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <label for="justificativa_professor" class="paddingUp"> <h6> Justificativa do Professor: </h6> </label>
-            <textarea class="form-control justificativa" id="justificativa_professor" name="justificativa_professor" required><?= $solicitacao[0]->justificativa_professor; ?></textarea>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>professor/solicitacoes_disciplinas"> Cancelar </a>
-            <button type="submit" class="paddingButton btn btn-success right"> Salvar Avaliação </button>
+            <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>professor/solicitacoes_disciplinas">
+              <span class="fa fa-chevron-left" aria-hidden="true"></span> Voltar
+            </a>
           </div>
         </div>
       </form>

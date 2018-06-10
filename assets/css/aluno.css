@@ -164,6 +164,46 @@
   padding-bottom: 20px;
 }
 
+
+.checkTrofeu {
+  width: 20px;
+  height: 20px;
+  /* align-items: flex-start; */
+}
+
+.ouro {
+  color:#ffd700;
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.prata {
+  color:#909090;
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.bronze {
+  color:#cd7f32;
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.ouroEnvio {
+  color:#ffd700;
+  font-size: 35px;
+}
+
+.prataEnvio {
+  color:#909090;
+  font-size: 35px;
+}
+
+.bronzeEnvio {
+  color:#cd7f32;
+  font-size: 35px;
+}
+
 .eye {
   font-size: 20px;
   color: black;

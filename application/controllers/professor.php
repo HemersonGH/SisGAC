@@ -419,7 +419,7 @@ class Professor extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function cadastrar_atividades()
+	public function cadastrar_atividade()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
@@ -427,14 +427,25 @@ class Professor extends CI_Controller {
 		$atividade['nome_atividade'] = $this->input->post('nome_atividade');
 		$atividade['descricao_atividade'] = $this->input->post('descricao_atividade');
 		$atividade['prazo_entrega'] = $this->input->post('data');
-		$atividade['idConjuntoAtividade'] = $this->input->post('id_conjunto');
-		$atividade['idProfessor'] = $this->input->post('idProfessor');
-		$atividade['pontos'] = $this->input->post('valor_atividade');
+		$atividade['idConjuntoAtividade'] = $this->input->post('idConjuntoAtividade');
+		$atividade['idProfessor'] = $this->session->userdata('idUsuario');
 
-		if ($this->professor->cadastrar_atividades($atividade)) {
-			redirect('professor/atividades_conjunto/'.$this->input->post('id_conjunto').'/1');
+		$trofeus = $this->input->post('trofeu');
+
+		foreach ($trofeus as $trofeu) {
+			if ($trofeu == 1) {
+				$atividade['trofeu_ouro'] = 1;
+			} else if ($trofeu == 2) {
+				$atividade['trofeu_prata'] = 1;
+			} elseif ($trofeu == 3) {
+				$atividade['trofeu_bronze'] = 1;
+			}
+		}
+
+		if ($this->professor->cadastrar_atividade($atividade)) {
+			redirect('professor/atividades_conjunto/'.$this->input->post('idConjuntoAtividade').'/1');
 		} else {
-			redirect('professor/atividades_conjunto/'.$this->input->post('id_conjunto').'/2');
+			redirect('professor/atividades_conjunto/'.$this->input->post('idConjuntoAtividade').'/2');
 		}
 	}
 
@@ -466,14 +477,29 @@ class Professor extends CI_Controller {
 		$atividade['nome_atividade'] = $this->input->post('nome_atividade');
 		$atividade['descricao_atividade'] = $this->input->post('descricao_atividade');
 		$atividade['prazo_entrega'] = $this->input->post('data');
-		$atividade['idConjuntoAtividade'] = $this->input->post('id_conjunto');
-		$atividade['idProfessor'] = $this->input->post('idProfessor');
-		$atividade['pontos'] = $this->input->post('valor_atividade');
+		$atividade['idConjuntoAtividade'] = $this->input->post('idConjuntoAtividade');
+		$atividade['idProfessor'] = $this->session->userdata('idUsuario');
+
+		$trofeus = $this->input->post('trofeu');
+
+		$atividade['trofeu_ouro'] = 0;
+		$atividade['trofeu_prata'] = 0;
+		$atividade['trofeu_bronze'] = 0;
+
+		foreach ($trofeus as $trofeu) {
+			if ($trofeu == 1) {
+				$atividade['trofeu_ouro'] = 1;
+			} else if ($trofeu == 2) {
+				$atividade['trofeu_prata'] = 1;
+			} elseif ($trofeu == 3) {
+				$atividade['trofeu_bronze'] = 1;
+			}
+		}
 
 		if ($this->professor->salvar_atualizacao_atividade($this->input->post('idAtividade'), $atividade)) {
-			redirect('professor/atividades_conjunto/'.$this->input->post('id_conjunto').'/3');
+			redirect('professor/atividades_conjunto/'.$this->input->post('idConjuntoAtividade').'/3');
 		} else {
-			redirect('professor/atividades_conjunto/'.$this->input->post('id_conjunto').'/4');
+			redirect('professor/atividades_conjunto/'.$this->input->post('idConjuntoAtividade').'/4');
 		}
 	}
 
@@ -561,7 +587,7 @@ class Professor extends CI_Controller {
 
 		switch ($indice) {
 			case 1:
-			$msg['msg'] = "Solicitação avaliada com sucesso, agora o usuário poderá reliazar as atividades dessa disciplina.";
+			$msg['msg'] = "Solicitação avaliada com sucesso, agora o aluno poderá reliazar as atividades dessa disciplina.";
 			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
@@ -571,23 +597,8 @@ class Professor extends CI_Controller {
 			break;
 
 			case 3:
-			$msg['msg'] = "Solicitação excluída com sucesso.";
+			$msg['msg'] = "Solicitação avaliada com sucesso, o aluno não poderá realizar as atividades dessa disciplina.";
 			$this->load->view('includes/msg_sucesso', $msg);
-			break;
-
-			case 4:
-			$msg['msg'] = "Não foi possível excluír a solicitação, tente novamente ou entre em contato com o administrador do sistema.";
-			$this->load->view('includes/msg_erro', $msg);
-			break;
-
-			case 5:
-			$msg['msg'] = "Solicitação avaliada com sucesso, o usuário não poderá realizar as atividades dessa disciplina.";
-			$this->load->view('includes/msg_sucesso', $msg);
-			break;
-
-			case 6:
-			$msg['msg'] = "O aluno já está participando dessa disciplina.";
-			$this->load->view('includes/msg_alerta', $msg);
 			break;
 		}
 
@@ -615,81 +626,76 @@ class Professor extends CI_Controller {
 		$this->professor->get_Nome_Disciplina($idDisciplina);
 	}
 
-	public function excluir_solicitacao()
+	public function visualizar_solicitacao()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		if ($this->professor->excluir_solicitacao($this->input->post('idSolicitacao'))) {
-			redirect('professor/solicitacoes_disciplinas/3');
-		} else {
-			redirect('professor/solicitacoes_disciplinas/4');
-		}
-	}
-
-	public function avaliar_solicitacao()
-	{
-		$this->verificar_sessao();
-		$this->load->model('professor_model','professor');
-
-		$idSolicitacao = $this->uri->segment(3);
+		$idAluno = $this->uri->segment(3);
+		$idDisciplina = $this->uri->segment(3);
+		$idProfessor = $this->session->userdata('idUsuario');
 
 		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
-		$solicitacao['solicitacao'] = $this->professor->get_Solicitacao($idSolicitacao);
+		$solicitacao['solicitacao'] = $this->professor->get_Solicitacao($idAluno, $idDisciplina, $idProfessor);
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 		$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
-		$this->load->view('professor/avaliar_solicitacao', $solicitacao);
+		$this->load->view('professor/visualizar_solicitacao', $solicitacao);
 		$this->load->view('includes/html_footer');
 	}
 
-	public function salvar_avaliacao_solicitacao()
+	public function aceitar_solicitacao()
 	{
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$solicitacao_avaliada['idSolicitacao'] = $this->input->post('idSolicitacao');
-		$solicitacao_avaliada['status_solicitacao'] = $this->input->post('status_solicitacao');
-		$solicitacao_avaliada['justificativa_professor'] = $this->input->post('justificativa_professor');
+		$idAluno = $this->uri->segment(3);
+		$idDisciplina = $this->uri->segment(4);
+		$idProfessor = $this->session->userdata('idUsuario');
 
-		$solicitacao_anterior = $this->professor->get_Solicitacao($this->input->post('idSolicitacao'));
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
+		$solicitacao['status_solicitacao'] = 2;
 
-		if ($this->professor->salvar_avaliacao_solicitacao($this->input->post('idSolicitacao'), $solicitacao_avaliada)) {
-			$participacao_disciplina['idAluno'] = $solicitacao_anterior[0]->idAluno;
-			$participacao_disciplina['idDisciplina'] = $solicitacao_anterior[0]->idDisciplina;
-			$participacao_disciplina['idProfessor'] = $this->session->userdata('idUsuario');
-			$status_avaliacao;
+		if ($this->professor->salvar_avaliacao_solicitacao($idAluno, $idDisciplina, $idProfessor, $solicitacao)) {
+			$participacao_disciplina['idAluno'] = $idAluno;
+			$participacao_disciplina['idDisciplina'] = $idDisciplina;
+			$participacao_disciplina['status_participacao'] = 1;
 
-			$verifica_participacao['participacao_disciplina'] = $this->professor->get_Participacao($participacao_disciplina);
-
-			if (count($verifica_participacao['participacao_disciplina']) == 1 && $this->input->post('status_solicitacao') == 2) {
-				redirect('professor/solicitacoes_disciplinas/6');
+			if ($this->professor->salvar_Participacao_Disciplina($participacao_disciplina)) {
+				redirect('professor/solicitacoes_disciplinas/1');
 			} else {
-				if ($solicitacao_anterior[0]->status_solicitacao == 1) {
-					if ($this->input->post('status_solicitacao') == 2) {
-						$participacao_disciplina['status_participacao'] = 1;
-						$status_avaliacao = 1;
-					} else if ($this->input->post('status_solicitacao') == 3) {
-						$participacao_disciplina['status_participacao'] = 0;
-						$status_avaliacao = 5;
-					}
+				redirect('professor/solicitacoes_disciplinas/2');
+			}
+		} else {
+			redirect('professor/solicitacoes_disciplinas/2');
+		}
+	}
 
-					$this->professor->salvar_Participacao_Disciplina($participacao_disciplina);
-				} else {
-					if ($this->input->post('status_solicitacao') == 2) {
-						$participacao_disciplina['status_participacao'] = 1;
-						$status_avaliacao = 1;
-					} else if ($this->input->post('status_solicitacao') == 3) {
-						$participacao_disciplina['status_participacao'] = 0;
-						$status_avaliacao = 5;
-					}
+	public function recusar_solicitacao()
+	{
+		$this->verificar_sessao();
+		$this->load->model('professor_model','professor');
 
-					$this->professor->atualiza_Participacao_Disciplina($participacao_disciplina);
-				}
+		$idAluno = $this->uri->segment(3);
+		$idDisciplina = $this->uri->segment(4);
+		$idProfessor = $this->session->userdata('idUsuario');
 
-				redirect('professor/solicitacoes_disciplinas/'.$status_avaliacao);
+		$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->professor->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
+		$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->professor->get_Solicitacoes($this->session->userdata('idUsuario'));
+		$solicitacao['status_solicitacao'] = 3;
+
+		if ($this->professor->salvar_avaliacao_solicitacao($idAluno, $idDisciplina, $idProfessor, $solicitacao)) {
+			$participacao_disciplina['idAluno'] = $idAluno;
+			$participacao_disciplina['idDisciplina'] = $idDisciplina;
+			$participacao_disciplina['status_participacao'] = 0;
+
+			if ($this->professor->salvar_Participacao_Disciplina($participacao_disciplina)) {
+				redirect('professor/solicitacoes_disciplinas/3');
+			} else {
+				redirect('professor/solicitacoes_disciplinas/2');
 			}
 		} else {
 			redirect('professor/solicitacoes_disciplinas/2');

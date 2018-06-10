@@ -10,31 +10,31 @@
         <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $usuario[0]->idUsuario; ?>">
         <div class="row">
           <div class="col-md-12">
-            <label for="name">Nome:</label>
+            <label for="name"> <h6> Nome: </h6> </label>
             <input type="text" class="form-control" id="name" name="name" value="<?= $usuario[0]->nome; ?>" required>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <label for="cpf" class="paddingUp">CPF:</label>
+            <label for="cpf" class="paddingUp"> <h6> CPF: </h6> </label>
             <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $usuario[0]->cpf; ?>" required>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <label for="data" class="paddingUp"> Data de Nascimento: </label>
+            <label for="data" class="paddingUp"> <h6> Data de Nascimento: </h6> </label>
             <input type="date" class="form-control" id="data" name="data" value="<?= date('Y-m-d', strtotime($usuario[0]->data)); ?>" required>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <label for="email" class="paddingUp">Email:</label>
+            <label for="email" class="paddingUp"> <h6> Email: </h6> </label>
             <input type="email" class="form-control" id="email" name="email" value="<?= $usuario[0]->email; ?>" required>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <label for="password" class="paddingUp">Senha:</label>
+            <label for="password" class="paddingUp"> <h6> Senha: </h6> </label>
             <input type="button" class="btn btn-default btn-block" value="Atualizar Senha" data-toggle="modal" data-target="#myModal">
           </div>
         </div>
@@ -89,7 +89,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fechar </button>
           <button type="submit" class="btn btn-primary" id="enviarSenha" disabled>
-            <span class="fa fa-save" aria-hidden="true"></span> Salvar 
+            <span class="fa fa-save" aria-hidden="true"></span> Salvar
           </button>
         </div>
       </div>

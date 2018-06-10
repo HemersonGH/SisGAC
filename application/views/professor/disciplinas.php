@@ -51,12 +51,12 @@
             <?php else: ?>
               <span class="fa fa-folder mr-2 color_disabled" aria-hidden="true" data-tooltip="tooltip" title="Não é possível adicionar conjunto de atividades pois a disciplina está disponível ou finalizada"></span>
             <?php endif; ?>
-            <?php if ($disciplina->status_disciplina == 1): ?>
+            <?php if ($disciplina->status_disciplina != 0): ?>
               <a data-tooltip="tooltip" title="Editar disciplina" href="<?= base_url('professor/atualizar_disciplina/'.$disciplina->idDisciplina); ?>">
                 <span class="fa fa-pencil pencil mr-2" aria-hidden="true"></span>
               </a>
             <?php else: ?>
-              <span class="fa fa-pencil color_disabled mr-2" aria-hidden="true" data-tooltip="tooltip" title="Edição bloqueada"></span>
+              <!-- <span class="fa fa-pencil color_disabled mr-2" aria-hidden="true" data-tooltip="tooltip" title="Edição bloqueada"></span> -->
             <?php endif; ?>
             <span class="fa fa-remove remove mr-2 cursor" title="Excluir disciplina" aria-hidden="true" data-tooltip="tooltip"
               onclick="confimaExcluirDisciplina(<?= $disciplina->idDisciplina; ?>)" data-toggle="modal" data-target="#myModalExcluirDisciplina">

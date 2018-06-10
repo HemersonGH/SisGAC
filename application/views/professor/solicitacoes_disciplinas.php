@@ -18,14 +18,19 @@
         <tr>
           <td> <?= $this->load->library('application/controllers/professor')->professor->get_Nome_Aluno($solicitacao->idAluno); ?> </td>
           <td> <?= $this->load->library('application/controllers/professor')->professor->get_Nome_Disciplina($solicitacao->idDisciplina); ?> </td>
-          <td> <?= $solicitacao->status_solicitacao == 1 ? 'Pendente':($solicitacao->status_solicitacao == 2 ? 'Aceita':'Recusada'); ?> </td>
+          <td> <?= $solicitacao->status_solicitacao == 1 ? 'Não Avaliada':($solicitacao->status_solicitacao == 2 ? 'Aceita':'Recusada'); ?> </td>
           <td>
-            <a data-tooltip="tooltip" title="Avaliar Solicitação" href="<?= base_url('professor/avaliar_solicitacao/'.$solicitacao->idSolicitacao); ?>">
-              <span class="fa fa-handshake-o handshake mr-2" aria-hidden="true"></span>
+            <?php if ($solicitacao->status_solicitacao == 1): ?>
+              <a data-tooltip="tooltip" title="Visualizar Solicitação" href="<?= base_url('professor/visualizar_solicitacao/'.$solicitacao->idAluno.'/'.$solicitacao->idDisciplina); ?>">
+                <span class="fa fa-eye eye mr-2" aria-hidden="true"></span>
+              </a>
+            <?php endif; ?>
+            <a data-tooltip="tooltip" title="Aceitar Solicitação" href="<?= base_url('professor/aceitar_solicitacao/'.$solicitacao->idAluno.'/'.$solicitacao->idDisciplina); ?>">
+              <span class="fa fa-check handshake mr-2" aria-hidden="true"></span>
             </a>
-            <span class="fa fa-remove remove mr-2 cursor" aria-hidden="true" data-tooltip="tooltip" title="Excluir Solicitação"
-              onclick="confimarExcluirSolicitacao(<?= $solicitacao->idSolicitacao; ?>)" data-toggle="modal" data-target="#myModalExcluirSolicitacaoDisciplina">
-            </span>
+            <a data-tooltip="tooltip" title="Recusar Solicitação" href="<?= base_url('professor/recusar_solicitacao/'.$solicitacao->idAluno.'/'.$solicitacao->idDisciplina); ?>">
+              <span class="fa fa-ban remove" aria-hidden="true"></span>
+            </a>
           </td>
         </tr>
       <?php } ?>
@@ -36,36 +41,6 @@
         $('[data-tooltip="tooltip"]').tooltip();
       });
     </script>
-
-    <script type="text/javascript">
-      function confimarExcluirSolicitacao(idSolicitacao) {
-        document.getElementById("idSolicitacao").value = idSolicitacao;
-      }
-    </script>
-
-    <!-- Modal Excluir Solicitação de Matrícula em Disciplina -->
-    <div class="modal fade" id="myModalExcluirSolicitacaoDisciplina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <form class="" action="<?= base_url(); ?>professor/excluir_solicitacao" method="post">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4> Excluír Solicitação </h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Tem certeza que deseja excluir essa solicitação de matrícula?
-            </div>
-            <div class="modal-footer">
-              <input type="hidden" id="idSolicitacao" name="idSolicitacao">
-              <button type="button" class="btn btn-danger" style="cursor:pointer; color: white;" data-dismiss="modal"> Não </button>
-              <button type="submit" class="btn btn-primary"> Sim </a>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
     </div>
   </main>
 </div>

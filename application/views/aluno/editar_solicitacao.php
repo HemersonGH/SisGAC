@@ -2,12 +2,12 @@
 
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
   <div class="col-md-12">
-    <h1 class="page-header"> Enviar Solicitação de Matrícula </h1>
+    <h1 class="page-header"> Atualizar Solicitação de Matrícula </h1>
   </div>
   <div class="col-md-12">
     <div class="form-control col-md-6">
       <form action="<?= base_url(); ?>aluno/salvar_atualizacao_solicitacao" method="post">
-        <input type="hidden" id="idSolicitacao" name="idSolicitacao" value="<?= $solicitacao[0]->idSolicitacao; ?>">
+        <input type="hidden" id="idDisciplina" name="idDisciplina" value="<?= $solicitacao[0]->idDisciplina; ?>">
         <div class="row">
           <div class="col-md-12">
             <label for="nomeProfessor" class="padding"> <h6> Nome do Professor: </h6> </label>

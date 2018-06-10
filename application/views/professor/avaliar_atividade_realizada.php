@@ -21,8 +21,24 @@
             <input type="date" class="form-control" id="data" name="data" value="<?= date('Y-m-d', strtotime($this->load->library('application/controllers/professor')->professor->get_Prazo_Atividade($atividadeRealizada[0]->idAtividade))); ?>" disabled>
           </div>
           <div class="col-md-6">
-            <label for="valorAtividade" class="paddingUp"> <h6> Valor da Atividade: </h6> </label>
-            <input type="number" class="form-control camp" id="valorAtividade" name="valorAtividade" value="<?= $this->load->library('application/controllers/professor')->professor->get_Pontos_Atividade($atividadeRealizada[0]->idAtividade); ?>" disabled>
+            <label for="trofeu" class="paddingUp"> <h6> Troféus: </h6> </label>
+            <div class="row">
+              <?php if ($this->load->library('application/controllers/professor')->professor->get_Trofeu_Ouro($atividadeRealizada[0]->idAtividade)): ?>
+                <div class="col-md-3">
+                  <span class="fa fa-trophy ouroEnvio" aria-hidden="true" data-tooltip="tooltip" title="Ouro"></span>
+                </div>
+              <?php endif; ?>
+              <?php if ($this->load->library('application/controllers/professor')->professor->get_Trofeu_Prata($atividadeRealizada[0]->idAtividade)): ?>
+              <div class="col-md-3">
+                  <span class="fa fa-trophy prataEnvio" aria-hidden="true" data-tooltip="tooltip" title="Prata"></span>
+              </div>
+            <?php endif; ?>
+            <?php if ($this->load->library('application/controllers/professor')->professor->get_Trofeu_Bronze($atividadeRealizada[0]->idAtividade)): ?>
+              <div class="col-md-3">
+                  <span class="fa fa-trophy bronzeEnvio" aria-hidden="true" data-tooltip="tooltip" title="Bronze"></span>
+              </div>
+            <?php endif; ?>
+            </div>
           </div>
         </div>
         <div class="row">

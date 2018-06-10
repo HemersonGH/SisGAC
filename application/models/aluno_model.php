@@ -7,10 +7,10 @@ class Aluno_model extends CI_Model
     parent::__construct();
   }
 
-  public function get_Disciplinas_Matriculado($idUsuario=null)
+  public function get_Disciplinas_Matriculado($idAluno=null)
   {
     $this->db->select('*');
-    $this->db->where('idAluno', $idUsuario);
+    $this->db->where('idAluno', $idAluno);
     $this->db->where('status_participacao', 1);
 
     return $this->db->get('participa_disciplina')->result();
@@ -19,15 +19,20 @@ class Aluno_model extends CI_Model
   public  function get_Disciplinas_Nao_Matriculado($idDisciplina=null)
   {
     $this->db->select('*');
-    $this->db->where('idAluno', $idUsuario);
+    $this->db->where('idAluno', $idAluno);
     $this->db->where('status_participacao', 0);
 
     return $this->db->get('participa_disciplina')->result();
   }
 
-  public function get_Nome_Professor($idProfessor=null)
+  public function get_Nome_Professor($idDisciplina=null)
   {
-    $this->db->where('idUsuario', $idProfessor);
+    $this->db->select('*');
+    $this->db->where('idDisciplina', $idDisciplina);
+
+    $disciplina = $this->db->get('disciplina')->result();
+
+    $this->db->where('idUsuario', $disciplina[0]->idProfessor);
 
     $professor = $this->db->get('usuario')->result();
 
@@ -79,7 +84,7 @@ class Aluno_model extends CI_Model
 
   public function salvar_solicitacao_disciplina($solicitacao)
   {
-    return $this->db->insert('solicitacoes_disciplinas', $solicitacao);
+    return $this->db->insert('solicitacao_disciplina', $solicitacao);
   }
 
   public function get_Solicitacoes($idAluno=null)
@@ -90,24 +95,28 @@ class Aluno_model extends CI_Model
     return $this->db->get('solicitacao_disciplina')->result();
   }
 
-  public function excluir_solicitacao($idSolicitacao=null)
+  public function excluir_solicitacao($idAluno=null, $idDisciplina=null)
   {
-    $this->db->where('idSolicitacao', $idSolicitacao);
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('idDisciplina', $idDisciplina);
 
     return $this->db->delete('solicitacao_disciplina');
   }
 
-  public function get_Solicitacao($idSolicitacao=null)
+  public function get_Solicitacao($idAluno=null, $idDisciplina=null)
   {
     $this->db->select('*');
-    $this->db->where('idSolicitacao', $idSolicitacao);
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('idDisciplina', $idDisciplina);
 
     return $this->db->get('solicitacao_disciplina')->result();
   }
 
-  public function salvar_atualizacao_solicitacao($idSolicitacao=null, $solicitacao)
+  public function salvar_atualizacao_solicitacao($idAluno=null, $idDisciplina=null, $solicitacao)
   {
-    $this->db->where('idSolicitacao', $idSolicitacao);
+    $this->db->select('*');
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('idDisciplina', $idDisciplina);
 
     return $this->db->update('solicitacao_disciplina', $solicitacao);
   }
