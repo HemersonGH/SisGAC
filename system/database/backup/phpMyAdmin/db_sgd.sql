@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Jun-2018 às 08:52
+-- Generation Time: 10-Jun-2018 às 17:37
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -45,12 +45,7 @@ CREATE TABLE `atividade` (
 --
 
 INSERT INTO `atividade` (`idAtividade`, `nome_atividade`, `descricao_atividade`, `prazo_entrega`, `idConjuntoAtividade`, `idProfessor`, `trofeu_ouro`, `trofeu_prata`, `trofeu_bronze`) VALUES
-(1, 'rerstete', 'tetsfsddsr', '2018-06-10', 1, 1, 1, 1, 0),
-(2, 'wetewew', 'twtwet', '2018-06-10', 1, 1, 0, 1, 1),
-(3, 'twetwetw', 'ewtewtew', '2018-05-30', 1, 1, 0, 1, 0),
-(4, 'wetewt', 'ewtwtew', '2018-05-29', 1, 1, 1, 1, 1),
-(5, 'rewrewrw', 'rwerewrew', '2018-06-10', 2, 1, 1, 1, 0),
-(6, 'rewrewrwe', 'rewrewrewr', '2018-05-30', 2, 1, 1, 0, 0);
+(1, 'asd', 'daa', '2018-06-10', 1, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -70,8 +65,7 @@ CREATE TABLE `conjunto_atividade` (
 --
 
 INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `idProfessor`, `idDisciplina`) VALUES
-(1, 'Gerência', 1, 1),
-(2, 'rewrew', 1, 1);
+(1, 'asd', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -88,13 +82,6 @@ CREATE TABLE `disciplina` (
   `status_disciplina` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da disciplina podera assumir os seguintes valores:\n1 => Em Planejamento\n2 => Disponivel\n3 => Finalizada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `disciplina`
---
-
-INSERT INTO `disciplina` (`idDisciplina`, `idProfessor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status_disciplina`) VALUES
-(1, 1, 'Teste', 'testes', 'testestestestestestestestestestestesstestes', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -106,13 +93,6 @@ CREATE TABLE `participa_disciplina` (
   `idDisciplina` int(11) NOT NULL,
   `status_participacao` int(11) NOT NULL COMMENT 'O status da participação podera assumir os seguintes valores:\n1 => Aceito, pelo professor\n0 => Recusado, pelo professor'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `participa_disciplina`
---
-
-INSERT INTO `participa_disciplina` (`idAluno`, `idDisciplina`, `status_participacao`) VALUES
-(2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -131,13 +111,6 @@ CREATE TABLE `realiza_atividade` (
   `idDisciplina` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `realiza_atividade`
---
-
-INSERT INTO `realiza_atividade` (`idAluno`, `idAtividade`, `anexo`, `resposta_aluno`, `resposta_professor`, `status_avaliacao`, `idProfessor`, `idDisciplina`) VALUES
-(2, 1, 'Daniel_Ferrera_Carlos_2_1.pdf', 'dsfdsfsd', '', 2, 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -151,13 +124,6 @@ CREATE TABLE `solicitacao_disciplina` (
   `justificativa_aluno` varchar(250) NOT NULL,
   `idProfessor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `solicitacao_disciplina`
---
-
-INSERT INTO `solicitacao_disciplina` (`idAluno`, `idDisciplina`, `status_solicitacao`, `justificativa_aluno`, `idProfessor`) VALUES
-(2, 1, 2, 'ssafsa', 1);
 
 -- --------------------------------------------------------
 
@@ -180,8 +146,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `data`, `email`, `senha`, `tipo_usuario`) VALUES
-(1, 'Antônio Carlos Garcia', '453.980.134-90', '2018-06-10', 'professor@professor', 'd450c5dbcc10db0749277efc32f15f9f', 2),
-(2, 'Daniel Ferrera Carlos', '213.123.123-12', '2018-05-30', 'aluno@aluno', 'ca0cd09a12abade3bf0777574d9f987f', 1);
+(1, 'Antônio Carlos Garcia', '453.980.134-90', '2018-06-10', 'professor@professor', 'd450c5dbcc10db0749277efc32f15f9f', 2);
 
 --
 -- Indexes for dumped tables
@@ -247,13 +212,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `atividade`
 --
 ALTER TABLE `atividade`
-  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `conjunto_atividade`
 --
 ALTER TABLE `conjunto_atividade`
-  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idConjuntoAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `disciplina`
@@ -265,7 +230,7 @@ ALTER TABLE `disciplina`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -281,28 +246,28 @@ ALTER TABLE `atividade`
 -- Limitadores para a tabela `conjunto_atividade`
 --
 ALTER TABLE `conjunto_atividade`
-  ADD CONSTRAINT `fk_conjunto_atividade_da_disciplina` FOREIGN KEY (`idDisciplina`) REFERENCES `disciplina` (`idDisciplina`),
-  ADD CONSTRAINT `fk_conjunto_atividade_professor` FOREIGN KEY (`idProfessor`) REFERENCES `usuario` (`idUsuario`);
+  ADD CONSTRAINT `fk_conjunto_atividade_da_disciplina` FOREIGN KEY (`idDisciplina`) REFERENCES `disciplina` (`idDisciplina`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `fk_conjunto_atividade_professor` FOREIGN KEY (`idProfessor`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `disciplina`
 --
 ALTER TABLE `disciplina`
-  ADD CONSTRAINT `fk_disciplina_professor` FOREIGN KEY (`idProfessor`) REFERENCES `usuario` (`idUsuario`);
+  ADD CONSTRAINT `fk_disciplina_professor` FOREIGN KEY (`idProfessor`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `participa_disciplina`
 --
 ALTER TABLE `participa_disciplina`
-  ADD CONSTRAINT `fk_Usuario_participa` FOREIGN KEY (`idAluno`) REFERENCES `usuario` (`idUsuario`),
-  ADD CONSTRAINT `fk_disciplina_participa` FOREIGN KEY (`idDisciplina`) REFERENCES `disciplina` (`idDisciplina`);
+  ADD CONSTRAINT `fk_Usuario_participa` FOREIGN KEY (`idAluno`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_disciplina_participa` FOREIGN KEY (`idDisciplina`) REFERENCES `disciplina` (`idDisciplina`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `realiza_atividade`
 --
 ALTER TABLE `realiza_atividade`
-  ADD CONSTRAINT `fk_aluno_realiza_atividade` FOREIGN KEY (`idAluno`) REFERENCES `usuario` (`idUsuario`),
-  ADD CONSTRAINT `fk_atividade_realizada` FOREIGN KEY (`idAtividade`) REFERENCES `atividade` (`idAtividade`);
+  ADD CONSTRAINT `fk_aluno_realiza_atividade` FOREIGN KEY (`idAluno`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_atividade_realizada` FOREIGN KEY (`idAtividade`) REFERENCES `atividade` (`idAtividade`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `solicitacao_disciplina`
