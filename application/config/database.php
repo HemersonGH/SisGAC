@@ -88,7 +88,6 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'db_sgd_es_2018',
