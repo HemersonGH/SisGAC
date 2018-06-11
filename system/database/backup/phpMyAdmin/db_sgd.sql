@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Jun-2018 às 17:37
+-- Generation Time: 11-Jun-2018 às 19:36
 -- Versão do servidor: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- PHP Version: 7.1.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,7 +45,7 @@ CREATE TABLE `atividade` (
 --
 
 INSERT INTO `atividade` (`idAtividade`, `nome_atividade`, `descricao_atividade`, `prazo_entrega`, `idConjuntoAtividade`, `idProfessor`, `trofeu_ouro`, `trofeu_prata`, `trofeu_bronze`) VALUES
-(1, 'asd', 'daa', '2018-06-10', 1, 1, 1, 1, 0);
+(1, 'Criar banco de dados', 'Criar banco', '2018-06-30', 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE `conjunto_atividade` (
 --
 
 INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `idProfessor`, `idDisciplina`) VALUES
-(1, 'asd', 1, NULL);
+(1, 'Gerência', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -82,6 +82,13 @@ CREATE TABLE `disciplina` (
   `status_disciplina` int(11) NOT NULL DEFAULT '1' COMMENT 'O status da disciplina podera assumir os seguintes valores:\n1 => Em Planejamento\n2 => Disponivel\n3 => Finalizada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `disciplina`
+--
+
+INSERT INTO `disciplina` (`idDisciplina`, `idProfessor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status_disciplina`) VALUES
+(1, 1, 'Banco de Dados', 'GCC-117', 'Banco de dados teste.', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -91,8 +98,16 @@ CREATE TABLE `disciplina` (
 CREATE TABLE `participa_disciplina` (
   `idAluno` int(11) NOT NULL,
   `idDisciplina` int(11) NOT NULL,
-  `status_participacao` int(11) NOT NULL COMMENT 'O status da participação podera assumir os seguintes valores:\n1 => Aceito, pelo professor\n0 => Recusado, pelo professor'
+  `status_participacao` int(11) NOT NULL COMMENT 'O status da participação podera assumir os seguintes valores:\n1 => Aceito, pelo professor\n0 => Recusado, pelo professor',
+  `idProfessor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `participa_disciplina`
+--
+
+INSERT INTO `participa_disciplina` (`idAluno`, `idDisciplina`, `status_participacao`, `idProfessor`) VALUES
+(2, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -111,6 +126,13 @@ CREATE TABLE `realiza_atividade` (
   `idDisciplina` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `realiza_atividade`
+--
+
+INSERT INTO `realiza_atividade` (`idAluno`, `idAtividade`, `anexo`, `resposta_aluno`, `resposta_professor`, `status_avaliacao`, `idProfessor`, `idDisciplina`) VALUES
+(2, 1, 'Daniel_Ferrera_Carlos_2_1.pdf', 'dsfsdfdsfdsfdsfsssfgdfgdfgg', '', 2, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -124,6 +146,13 @@ CREATE TABLE `solicitacao_disciplina` (
   `justificativa_aluno` varchar(250) NOT NULL,
   `idProfessor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `solicitacao_disciplina`
+--
+
+INSERT INTO `solicitacao_disciplina` (`idAluno`, `idDisciplina`, `status_solicitacao`, `justificativa_aluno`, `idProfessor`) VALUES
+(2, 1, 2, 'gdsgsdgds', 1);
 
 -- --------------------------------------------------------
 
@@ -146,7 +175,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `data`, `email`, `senha`, `tipo_usuario`) VALUES
-(1, 'Antônio Carlos Garcia', '453.980.134-90', '2018-06-10', 'professor@professor', 'd450c5dbcc10db0749277efc32f15f9f', 2);
+(1, 'Antônio Carlos Garcia', '453.980.134-90', '1987-02-10', 'professor@professor', 'd450c5dbcc10db0749277efc32f15f9f', 2),
+(2, 'Daniel Ferrera Carlos', '213.123.123-12', '1961-07-13', 'aluno@aluno', 'ca0cd09a12abade3bf0777574d9f987f', 1);
 
 --
 -- Indexes for dumped tables
@@ -230,7 +260,7 @@ ALTER TABLE `disciplina`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
