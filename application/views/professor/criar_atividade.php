@@ -25,17 +25,21 @@
           <div class="col-md-6">
             <label for="trofeu" class="paddingUp"> <h6> Troféus: </h6> </label>
             <div class="row">
-              <div class="col-md-3">
-                <span class="fa fa-trophy ouro" aria-hidden="true" data-tooltip="tooltip" title="Ouro"></span>
-                <input type="checkbox" class="checkTrofeu" name="trofeu[]" id="ouro" value="1">
-              </div>
-              <div class="col-md-3">
-                <span class="fa fa-trophy prata" aria-hidden="true" data-tooltip="tooltip" title="Prata"></span>
-                <input type="checkbox" class="checkTrofeu" name="trofeu[]" id="prata" value="2">
-              </div>
-              <div class="col-md-3">
-                <span class="fa fa-trophy bronze" aria-hidden="true" data-tooltip="tooltip" title="Bronze"></span>
-                <input type="checkbox" class="checkTrofeu" name="trofeu[]" id="bronze" value="3">
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-3">
+                    <span class="fa fa-trophy ouro" aria-hidden="true" data-tooltip="tooltip" title="Ouro"></span>
+                    <input type="checkbox" class="checkTrofeu" name="trofeu[]" id="ouro" value="1">
+                  </div>
+                  <div class="col-md-3">
+                    <span class="fa fa-trophy prata" aria-hidden="true" data-tooltip="tooltip" title="Prata"></span>
+                    <input type="checkbox" class="checkTrofeu" name="trofeu[]" id="prata" value="2">
+                  </div>
+                  <div class="col-md-3">
+                    <span class="fa fa-trophy bronze" aria-hidden="true" data-tooltip="tooltip" title="Bronze"></span>
+                    <input type="checkbox" class="checkTrofeu" name="trofeu[]" id="bronze" value="3">
+                  </div>
+                </div>
               </div>
             </div>
           </div>
