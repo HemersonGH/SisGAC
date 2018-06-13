@@ -7,7 +7,7 @@
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url(); ?>professor/alunos_matriculado" style="color: black;">
-            <h5> <span class="fa fa-id-card-o" aria-hidden="true"></span> Matrícula </h5>
+            <h5> <span class="fa fa-id-card" aria-hidden="true"></span> Matrícula </h5>
           </a>
         </li>
         <li class="nav-item">
@@ -33,7 +33,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url(); ?>professor/solicitacoes_disciplinas" style="color: black;">
-            <h5> <span class="fa fa-id-card-o" aria-hidden="true"></span> Solicitações
+            <h5> <span class="fa fa-bell" aria-hidden="true"></span> Solicitações
               <?php if ($quantidadeSolicitacoesPendentes != 0): ?>
                 <span class="badge badge-danger badge-pill sizeBadge">
                   <?= $quantidadeSolicitacoesPendentes; ?>
