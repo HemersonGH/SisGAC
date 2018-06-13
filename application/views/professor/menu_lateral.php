@@ -7,7 +7,7 @@
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url(); ?>professor/alunos_matriculado" style="color: black;">
-            <h5> <span class="fa fa-id-card-o" aria-hidden="true"></span> Matrícula </h5>
+            <h5> <span class="fa fa-group" aria-hidden="true"></span> Matrículas </h5>
           </a>
         </li>
         <li class="nav-item">

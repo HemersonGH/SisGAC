@@ -29,15 +29,15 @@
                 </div>
               <?php endif; ?>
               <?php if ($this->load->library('application/controllers/professor')->professor->get_Trofeu_Prata($atividadeRealizada[0]->idAtividade)): ?>
-              <div class="col-md-3">
+                <div class="col-md-3">
                   <span class="fa fa-trophy prataEnvio" aria-hidden="true" data-tooltip="tooltip" title="Prata"></span>
-              </div>
-            <?php endif; ?>
-            <?php if ($this->load->library('application/controllers/professor')->professor->get_Trofeu_Bronze($atividadeRealizada[0]->idAtividade)): ?>
-              <div class="col-md-3">
+                </div>
+              <?php endif; ?>
+              <?php if ($this->load->library('application/controllers/professor')->professor->get_Trofeu_Bronze($atividadeRealizada[0]->idAtividade)): ?>
+                <div class="col-md-3">
                   <span class="fa fa-trophy bronzeEnvio" aria-hidden="true" data-tooltip="tooltip" title="Bronze"></span>
-              </div>
-            <?php endif; ?>
+                </div>
+              <?php endif; ?>
             </div>
           </div>
         </div>
@@ -55,41 +55,61 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <label for="status_avaliacao" class="paddingUp"> <h6> Status da Avaliação: </h6> </label>
-            <select id="status_avaliacao" name="status_avaliacao" class="form-control" required>
-              <option value="4"> Aceitar </option>
-              <option value="3"> Recusar </option>
-            </select>
-          </div>
-          <div class="col-md-6">
             <label for="anexo" class="paddingUp"> <h6> Arquivo Anexado: </h6> </label>
-            <a class="btn btn-primary form-control" id="anexo" name="anexo" data-tooltip="tooltip" title="Baixar documento"
+            <a class="btn btn-primary form-control" id="anexo" name="anexo" data-tooltip="tooltip" title="Baixar"
             href="<?= base_url('professor/downloadAnexo/'.$atividadeRealizada[0]->anexo.'/'.$atividadeRealizada[0]->idAtividade.'/'.$atividadeRealizada[0]->idAluno) ?>">
-              <span class="fa fa-paperclip mr-2" aria-hidden="true"></span> Baixar Arquivo
-            </a>
-          </div>
+            <span class="fa fa-download mr-2" aria-hidden="true"></span> Documento
+          </a>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <label for="resposta_professor" class="paddingUp"> <h6> Resposta do Professor: </h6> </label>
-            <textarea class="form-control resposta" id="resposta_professor" name="resposta_professor" required></textarea>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="status_avaliacao" class="paddingUp"> <h6> Status: </h6> </label>
+          <select class="form-control" name="status_avaliacao" id="status_avaliacao" required>
+            <option></option>
+            <option value="4"> Aceitar </option>
+            <option value="3"> Recusar </option>
+          </select>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>professor/avaliacoes_atividades_realizada"> Cancelar </a>
-            <button type="submit" class="paddingButton btn btn-success right cursor"> Salvar Avaliação </button>
-          </div>
+        <div class="col-md-6">
+          <label for="trofeu" class="paddingUp"> <h6> Atribuir Trofeu: </h6> </label>
+          <select class="form-control" name="trofeu" id="trofeu" required>
+            <option></option>
+            <option value="1">
+              <span class="fa fa-trophy ouro" aria-hidden="true"></span> Ouro
+            </option>
+            <option value="2">
+              <span class="fa fa-trophy prata" aria-hidden="true"></span> Prata
+            </option>
+            <option value="3">
+              <span class="fa fa-trophy bronze" aria-hidden="true"></span> Bronze
+            </option>
+          </select>
         </div>
-      </form>
-    </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label for="resposta_professor" class="paddingUp"> <h6> Resposta do Professor: </h6> </label>
+          <textarea class="form-control resposta" id="resposta_professor" name="resposta_professor" required></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <a class="paddingButton btn btn-danger left" href="<?= base_url(); ?>professor/avaliacoes_atividades_realizada"> Cancelar </a>
+          <button type="submit" class="paddingButton btn btn-success right cursor">
+            <span class="fa fa-save" aria-hidden="true"></span> Salvar
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
+</div>
 
-  <script>
-  $(document).ready(function(){
-    $('[data-tooltip="tooltip"]').tooltip();
-  });
-  </script>
+<script>
+$(document).ready(function(){
+  $('[data-tooltip="tooltip"]').tooltip();
+});
+</script>
 
 </main>
 </div>
