@@ -15,15 +15,23 @@ Essa pasta conterá com as seguintes estruturas e documentos:<br>
 <b>Requisitos:</b> Todos os documentos relacionados aos requisitos do projeto; <br>
 <b>StakeHolders:</b> Um documento descrevendo os principais interessados do projeto. <br>
 <br>
+
+----------------------
+
 <b> Divisão Da Equipe Unit:</b> <br>
 Hemerson Batista (G.P %% P.O && A.R && Dev && WebDesing && Tester && DBA); <br>
 Alexandre Grillo (WebDesing && Tester && Dev && DBA). <br>
 <br>
+
+----------------------
+
 <b> Políticas De uso Do Git </b> <br>
 Estruturas das pastas: A base das estrutura das pastas seguirá a estrutura pré-definida pelo framework utilizado, Code Igniter, sendo assim utilizamos o padrão MVC. <br>
    * Models: application/models; <br>
    * Views: application/views; <br>
    * Controllers: application/controllers. <br>
+
+----------------------
 
 <b> Regras De Commits </b> <br>
 O commit deverá ser intuitivo, breve e conter qual ou quais funcionalidades foram implementadas ou conter uma tag que possa ser identificada pelas planilhas de acompanhamento do projeto, exemplos: <br>
@@ -31,6 +39,8 @@ O commit deverá ser intuitivo, breve e conter qual ou quais funcionalidades for
    * Validação do campo CPF(Implementação feita); <br>
    * Issue #(ID da issue); <br>
    * S2-H3-A1(Nº da Sprint, Nº da história e Nº da Atividade). <br>
+
+----------------------
 
 <b> Estratégias De Branching </b> <br>
 A divisão das branchs seguirá da seguinte forma, existirá três branchs, sendo elas:
