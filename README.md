@@ -1,4 +1,4 @@
-# Trabalho Prático De Engenharia de Software - 2018_1 - Sistema Gerenciador De Atividades Curriculares
+# Trabalho Prático De Engenharia De Software - 2018-1 - Sistema Gerenciador De Atividades Curriculares
 
 Os produtos de trabalho referente a esse projeto se encontra no Google Driver
 pelo Link: <br> https://drive.google.com/drive/folders/1qKuH4UJI4pZ4dgHFmJyi52-NaFw-a3wr <br>
@@ -18,3 +18,12 @@ Essa pasta conterá com as seguintes estruturas e documentos:<br>
 <b> Divisão Da Equipe CS Dev:</b> <br>
 Hemerson Batista (G.P %% P.O && Analista de Requisitos && Dev && WebDesing && Tester && DBA)<br>
 Alexandre Grillo (WebDesing && Tester && Dev)<br>
+<br>
+<b> Políticas de uso do Git </b> <br>
+Estruturas das pastas: A base das estrutura de pastas seguirá a estrutura pré-definida pelo framework utilizado, Code Igniter, sendo assim utilizamos o padrão MVC.
+** Models: application/models
+** Views: application/views
+** Controllers: application/controllers
+
+<b> Regras de Commit </b> <br>
+O commit deve ser breve e conter em qual - ou quais - funcionalidades se foi trabalhado, identificando-a com uma sigla para o requisito rastreavel.
