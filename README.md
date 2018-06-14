@@ -20,10 +20,10 @@ Hemerson Batista (G.P %% P.O && Analista de Requisitos && Dev && WebDesing && Te
 Alexandre Grillo (WebDesing && Tester && Dev)<br>
 <br>
 <b> Políticas de uso do Git </b> <br>
-Estruturas das pastas: A base das estrutura de pastas seguirá a estrutura pré-definida pelo framework utilizado, Code Igniter, sendo assim utilizamos o padrão MVC.
-** Models: application/models
-** Views: application/views
-** Controllers: application/controllers
+Estruturas das pastas: A base das estrutura de pastas seguirá a estrutura pré-definida pelo framework utilizado, Code Igniter, sendo assim utilizamos o padrão MVC. <br>
+   * Models: application/models <br>
+   * Views: application/views <br>
+   * Controllers: application/controllers <br>
 
 <b> Regras de Commit </b> <br>
 O commit deve ser breve e conter em qual - ou quais - funcionalidades se foi trabalhado, identificando-a com uma sigla para o requisito rastreavel.
