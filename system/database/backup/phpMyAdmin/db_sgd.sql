@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11-Jun-2018 às 19:36
+-- Generation Time: 14-Jun-2018 às 05:07
 -- Versão do servidor: 10.1.31-MariaDB
--- PHP Version: 7.1.16
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,7 +45,10 @@ CREATE TABLE `atividade` (
 --
 
 INSERT INTO `atividade` (`idAtividade`, `nome_atividade`, `descricao_atividade`, `prazo_entrega`, `idConjuntoAtividade`, `idProfessor`, `trofeu_ouro`, `trofeu_prata`, `trofeu_bronze`) VALUES
-(1, 'Criar banco de dados', 'Criar banco', '2018-06-30', 1, 1, 1, 1, 1);
+(1, 'rwawetsdfdsf', 'dxvbnvbnmgncbvx', '2018-06-10', 1, 1, 1, 1, 0),
+(2, 'sdfsdfds', 'sdfdsfds', '2018-05-31', 1, 1, 0, 1, 1),
+(3, 'sdfsdf', 'sfsdfsd', '2018-08-31', 1, 1, 1, 1, 1),
+(4, 'asdsada', 'asdsad', '2018-06-06', 1, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -65,7 +68,7 @@ CREATE TABLE `conjunto_atividade` (
 --
 
 INSERT INTO `conjunto_atividade` (`idConjuntoAtividade`, `nome_conjunto`, `idProfessor`, `idDisciplina`) VALUES
-(1, 'Gerência', 1, 1);
+(1, 'Teste', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -87,7 +90,7 @@ CREATE TABLE `disciplina` (
 --
 
 INSERT INTO `disciplina` (`idDisciplina`, `idProfessor`, `nome_disciplina`, `codigo_disciplina`, `descricao_disciplina`, `status_disciplina`) VALUES
-(1, 1, 'Banco de Dados', 'GCC-117', 'Banco de dados teste.', 2);
+(1, 1, 'teste', 'testes', 'testesteste', 2);
 
 -- --------------------------------------------------------
 
@@ -131,7 +134,7 @@ CREATE TABLE `realiza_atividade` (
 --
 
 INSERT INTO `realiza_atividade` (`idAluno`, `idAtividade`, `anexo`, `resposta_aluno`, `resposta_professor`, `status_avaliacao`, `idProfessor`, `idDisciplina`) VALUES
-(2, 1, 'Daniel_Ferrera_Carlos_2_1.pdf', 'dsfsdfdsfdsfdsfsssfgdfgdfgg', '', 2, 1, 1);
+(2, 1, 'Daniel_Ferrera_Carlos_2_1.pdf', 'hghagdagbsdhasdbnsadasdas', 'asdsa', 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -152,7 +155,8 @@ CREATE TABLE `solicitacao_disciplina` (
 --
 
 INSERT INTO `solicitacao_disciplina` (`idAluno`, `idDisciplina`, `status_solicitacao`, `justificativa_aluno`, `idProfessor`) VALUES
-(2, 1, 2, 'gdsgsdgds', 1);
+(2, 1, 2, 'fsfsdfdsfsd', 1),
+(3, 1, 1, 'dsfds', 1);
 
 -- --------------------------------------------------------
 
@@ -175,8 +179,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `data`, `email`, `senha`, `tipo_usuario`) VALUES
-(1, 'Antônio Carlos Garcia', '453.980.134-90', '1987-02-10', 'professor@professor', 'd450c5dbcc10db0749277efc32f15f9f', 2),
-(2, 'Daniel Ferrera Carlos', '213.123.123-12', '1961-07-13', 'aluno@aluno', 'ca0cd09a12abade3bf0777574d9f987f', 1);
+(1, 'Antônio Carlos Garcia', '453.980.134-90', '2018-01-31', 'professor@professor', 'd450c5dbcc10db0749277efc32f15f9f', 2),
+(2, 'Daniel Ferrera Carlos', '213.123.123-12', '2018-06-10', 'aluno@aluno', 'ca0cd09a12abade3bf0777574d9f987f', 1),
+(3, 'asd', 'das', '2018-05-28', 'asdas@fsd', '804f743824c0451b2f60d81b63b6a900', 1);
 
 --
 -- Indexes for dumped tables
@@ -242,7 +247,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `atividade`
 --
 ALTER TABLE `atividade`
-  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idAtividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `conjunto_atividade`
@@ -260,7 +265,7 @@ ALTER TABLE `disciplina`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
