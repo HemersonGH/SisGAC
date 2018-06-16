@@ -6,6 +6,7 @@
   </div>
 
   <div class="padding col-md-12">
+    <h5> Avaliações </h5>
     <div class="spaceBeetwenComponents">
       <table class="table table-striped">
         <tr>

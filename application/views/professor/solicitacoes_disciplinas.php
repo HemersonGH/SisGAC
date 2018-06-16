@@ -2,11 +2,11 @@
 
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
   <div class="col-md-12">
-    <h1 class="page-header "> Solicitações de Matrícula em Disciplinas </h1>
+    <h1 class="page-header "> Solicitações de Matrícula </h1>
   </div>
 
   <div class="padding col-md-12">
-    <h4> Conjuntos de Atividades Adicionados </h4>
+    <h5> Solicitações </h5>
     <table class="table table-striped">
       <tr>
         <th> Nome do Aluno </th>
