@@ -866,6 +866,9 @@ class Professor extends CI_Controller {
 		$idAtividade = $this->input->post('idAtividade');
 		$idAluno = $this->input->post('idAluno');
 
+		echo $this->input->post('status_avaliacao');
+		echo $this->input->post('trofeu');
+
 		$atividadeAvaliada = $this->professor->get_Atividade_Realizada($idAtividade, $idAluno);
 		$atividadeAvaliada[0]->status_avaliacao = $this->input->post('status_avaliacao');
 		$atividadeAvaliada[0]->resposta_professor = $this->input->post('resposta_professor');

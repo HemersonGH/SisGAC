@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-md-6">
             <label for="data" class="paddingUp"> <h6> Prazo de Entrega: </h6> </label>
-            <input type="date" class="form-control" id="data" name="data" value="<?= date('Y-m-d', strtotime($this->load->library('application/controllers/professor')->professor->get_Prazo_Atividade($atividadeRealizada[0]->idAtividade))); ?>" disabled>
+            <input type="text" class="form-control" id="data" name="data" value="<?= str_replace('-', '/', date('d-m-Y', strtotime($this->load->library('application/controllers/professor')->professor->get_Prazo_Atividade($atividadeRealizada[0]->idAtividade)))); ?>" disabled>
           </div>
           <div class="col-md-6">
             <label for="trofeu" class="paddingUp"> <h6> Troféus: </h6> </label>
@@ -64,27 +64,36 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          <label for="status_avaliacao" class="paddingUp"> <h6> Status: </h6> </label>
-          <select class="form-control" name="status_avaliacao" id="status_avaliacao" required>
-            <option></option>
-            <option value="4"> Aceitar </option>
-            <option value="3"> Recusar </option>
-          </select>
+          <label for="status" class="paddingUp"> <h6> Status: </h6> </label>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="radio" name="status_avaliacao" id="status_ok" value="4"> <label for="status_ok"> Aceitar </label>
+            </div>
+            <div class="col-md-6">
+              <input type="radio" name="status_avaliacao" id="status_not" value="3"> <label for="status_not"> Recusar </label>
+            </div>
+          </div>
         </div>
         <div class="col-md-6">
           <label for="trofeu" class="paddingUp"> <h6> Atribuir Trofeu: </h6> </label>
-          <select class="form-control" name="trofeu" id="trofeu" required>
-            <option></option>
-            <option value="1">
-              <span class="fa fa-trophy ouro" aria-hidden="true"></span> Ouro
-            </option>
-            <option value="2">
-              <span class="fa fa-trophy prata" aria-hidden="true"></span> Prata
-            </option>
-            <option value="3">
-              <span class="fa fa-trophy bronze" aria-hidden="true"></span> Bronze
-            </option>
-          </select>
+          <div class="row">
+            <div class="col-md-4">
+              <input type="radio" name="trofeu" id="ouro" value="1">
+              <label for="ouro">
+                <span class="fa fa-trophy ouroEnvio" aria-hidden="true" data-tooltip="tooltip" title="Ouro"></span>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <input type="radio" name="trofeu" id="prata" value="2">
+              <label for="prata"> <span class="fa fa-trophy prataEnvio" aria-hidden="true" data-tooltip="tooltip" title="Prata"></span>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <input type="radio" name="trofeu" id="bronze" value="3">
+              <label for="bronze"> <span class="fa fa-trophy bronzeEnvio" aria-hidden="true" data-tooltip="tooltip" title="Bronze"></span> 
+              </label>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
