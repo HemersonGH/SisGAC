@@ -587,7 +587,7 @@ class Professor extends CI_Controller {
 
 		switch ($indice) {
 			case 1:
-			$msg['msg'] = "Solicitação avaliada com sucesso, agora o aluno poderá reliazar as atividades dessa disciplina.";
+			$msg['msg'] = "Solicitação avaliada com sucesso, agora o aluno poderá realizar as atividades dessa disciplina.";
 			$this->load->view('includes/msg_sucesso', $msg);
 			break;
 
