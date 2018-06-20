@@ -35,16 +35,17 @@
           <td> <?= $this->load->library('application/controllers/professor')->professor->get_Nome_Disciplina($aluno->idDisciplina); ?> </td>
           <td> <?= $aluno->status_participacao == 1 ? 'Matriculado' : 'Recusado'; ?> </td>
           <td>
-            <a data-tooltip="tooltip" title="Excluir matrícula" href="<?= base_url('professor/excluir_matricula/'.$aluno->idAluno.'/'.$aluno->idDisciplina); ?>">
-              <span class="fa fa-remove remove" aria-hidden="true"></span>
-            </a>
-        </tr>
+            <span class="fa fa-remove remove cursor" aria-hidden="true" data-tooltip="tooltip" title="Excluir"
+              onclick="confimaExcluirMatricula(<?= $aluno->idAluno; ?>, <?= $aluno->idDisciplina; ?>)" data-toggle="modal" data-target="#myModalExcluirMatricula">
+            </span>
+          </tr>
       <?php } ?>
     </table>
   </div>
   <script type="text/javascript">
-  function confimaExcluirDisciplina(id) {
-    document.getElementById("idDisciplina").value = id;
+  function confimaExcluirMatricula(idAluno, idDisciplina) {
+    document.getElementById("idAluno").value = idAluno;
+    document.getElementById("idDisciplina").value = idDisciplina;
   }
   </script>
 
@@ -54,22 +55,23 @@
   });
   </script>
 
-  <!-- Modal Excluir Disciplina -->
-  <div class="modal fade" id="myModalExcluirDisciplina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <form class="" action="<?= base_url(); ?>professor/excluir_disciplina" method="post">
+  <!-- Modal Excluir Matricula -->
+  <div class="modal fade" id="myModalExcluirMatricula" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <form class="" action="<?= base_url(); ?>professor/excluir_matricula" method="post">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4> Excluir Disciplina </h4>
+            <h4> Excluir Matrícula </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            Tem certeza que deseja excluir essa disciplina?
+            Tem certeza que deseja excluír a matrícula desse aluno?
           </div>
           <div class="modal-footer">
             <input type="hidden" id="idDisciplina" name="idDisciplina">
+            <input type="hidden" id="idAluno" name="idAluno">
             <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Não </button>
             <button type="submit" class="btn btn-primary cursor"> Sim </button>
           </div>

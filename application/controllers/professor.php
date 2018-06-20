@@ -916,8 +916,8 @@ class Professor extends CI_Controller {
 		$this->verificar_sessao();
 		$this->load->model('professor_model','professor');
 
-		$idAluno = $this->uri->segment(3);
-		$idDisciplina = $this->uri->segment(4);
+		$idAluno = $this->input->post('idAluno');
+		$idDisciplina = $this->input->post('idDisciplina');
 		$idProfessor = $this->session->userdata('idUsuario');
 
 		if ($this->professor->excluir_matricula($idAluno, $idDisciplina, $idProfessor)) {
