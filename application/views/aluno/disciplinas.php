@@ -35,9 +35,15 @@
           <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Cod_Disciplina($disciplina->idDisciplina); ?> </td>
           <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Status_Disciplina($disciplina->idDisciplina) == 2 ? 'Disponível':'Finalizada'; ?> </td>
           <td>
-            <a data-tooltip="tooltip" title="Realizar atividades" data-tooltip="tooltip" href="<?= base_url('aluno/atividades_disciplina/'.$disciplina->idDisciplina); ?>">
-              <span class="fa fa-pencil-square-o pencil_square mr-2" aria-hidden="true"></span>
-            </a>
+            <?php if ($this->load->library('application/controllers/aluno')->aluno->get_Status_Disciplina($disciplina->idDisciplina) == 2): ?>
+              <a data-tooltip="tooltip" title="Realizar atividades" href="<?= base_url('aluno/atividades_disciplina/'.$disciplina->idDisciplina); ?>">
+                <span class="fa fa-pencil-square-o pencil_square" aria-hidden="true"></span>
+              </a>
+            <?php else: ?>
+              <span data-tooltip="tooltip" title="Não é possuir realizar atividades dessa disciplina pois ela está Finalizada"
+                class="fa fa-pencil-square-o pencil_square_disabled" aria-hidden="true">
+              </span>
+            <?php endif; ?>
           </td>
         </tr>
       <?php } ?>

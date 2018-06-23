@@ -873,6 +873,14 @@ class Professor extends CI_Controller {
 		$atividadeAvaliada[0]->status_avaliacao = $this->input->post('status_avaliacao');
 		$atividadeAvaliada[0]->resposta_professor = $this->input->post('resposta_professor');
 
+		if ($this->input->post('status_avaliacao') == 4) {
+			$trofeu_ganho['tipo_trofeu'] = $this->input->post('trofeu');
+			$trofeu_ganho['idAluno'] = $idAluno;
+			$trofeu_ganho['idAtividade'] = $idAtividade;
+
+			$this->professor->atribuir_trofeu($trofeu_ganho);
+		}
+
 		if ($this->professor->salvar_avaliacao_atividade($idAtividade, $idAluno, $atividadeAvaliada[0])) {
 			redirect('professor/avaliacoes_atividades_realizada/1');
 		} else {

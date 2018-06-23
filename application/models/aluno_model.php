@@ -173,6 +173,23 @@ class Aluno_model extends CI_Model
     }
   }
 
+  public function get_Atividade_Realizada($idAluno=null, $idAtividade=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('idAtividade', $idAtividade);
+
+    return $this->db->get('realiza_atividade')->result();
+  }
+
+  public function salvar_atualizacao_atividade_realizada($idAluno=null, $idAtividade=null, $atividade)
+  {
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('idAtividade', $idAtividade);
+
+    return $this->db->update('realiza_atividade', $atividade);
+  }
+
 }
 
 ?>

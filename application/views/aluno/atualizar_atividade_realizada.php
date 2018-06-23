@@ -2,7 +2,7 @@
 
 <div class="col-md-12">
   <div class="form-control col-md-6 paddingBotton">
-    <form action="<?= base_url(); ?>aluno/salvar_atividade_enviada" enctype="multipart/form-data" method="post">
+    <form action="<?= base_url(); ?>aluno/salvar_atividade_atualizada" enctype="multipart/form-data" method="post">
       <input type="hidden" id="idAtividade" name="idAtividade" value="<?= $atividadeEnviar[0]->idAtividade; ?>">
       <input type="hidden" id="idDisciplina" name="idDisciplina" value="<?= $idDisciplina; ?>">
       <div class="row">
@@ -46,7 +46,7 @@
       <div class="row">
         <div class="col-md-12">
           <label for="resposta" class="paddingUp"> <h6> Resposta: </h6> </label>
-          <textarea class="form-control resposta" id="resposta" name="resposta" required></textarea>
+          <textarea class="form-control resposta" id="resposta" name="resposta" required><?= $resposta_aluno; ?></textarea>
         </div>
       </div>
       <div class="row">
@@ -59,7 +59,7 @@
         <div class="col-md-12">
           <a class="paddingButton btn btn-danger left" href="<?= base_url('aluno/atividades_disciplina/'.$idDisciplina); ?>"> Cancelar </a>
           <button type="submit" class="paddingButton btn btn-success right cursor">
-            <span class="fa fa-paper-plane" aria-hidden="true"></span> Enviar
+            <span class="fa fa-paper-plane" aria-hidden="true"></span> Salvar
           </button>
         </div>
       </div>

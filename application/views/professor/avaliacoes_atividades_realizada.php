@@ -35,16 +35,6 @@
               <?php else: ?>
                 <span class="fa fa-gavel color_disabled mr-2" aria-hidden="true" data-tooltip="tooltip" title="Atividade já foi avaliada"></span>
               <?php endif; ?>
-              <?php if (($this->load->library('application/controllers/professor')->professor->get_Status_Atividade($atividade->idAtividade, $atividade->idAluno) != 2)): ?>
-                <a data-tooltip="tooltip" title="Editar avaliação" href="<?= base_url('professor/atualizar_avaliacao_atividade/'.$atividade->idAtividade.'/'.$atividade->idAluno); ?>">
-                  <span class="fa fa-pencil pencil mr-2" aria-hidden="true"></span>
-                </a>
-              <?php else: ?>
-                <span class="fa fa-pencil color_disabled mr-2" aria-hidden="true" data-tooltip="tooltip" title="Para editar, primeiro avalie a atividade"></span>
-              <?php endif; ?>
-              <span class="fa fa-remove remove mr-2 cursor" title="Excluir avaliação" aria-hidden="true" data-tooltip="tooltip"
-                onclick="confimaExcluirAvaliacaoAtividade()" data-toggle="modal" data-target="#myModalAvaliacaoAtividade">
-              </span>
             </td>
           </tr>
         <?php } ?>
@@ -56,36 +46,6 @@
     $('[data-tooltip="tooltip"]').tooltip();
   });
   </script>
-
-  <script type="text/javascript">
-  function confimaExcluirAvaliacaoAtividade() {
-    // document.getElementById("idDisciplina").value = id;
-  }
-  </script>
-
-  <!-- Modal Excluir Atividade Realizada -->
-  <div class="modal fade" id="myModalAvaliacaoAtividade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <form class="" action="<?= base_url(); ?>professor/excluir_atividade_enviada" method="post">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4> Excluir Atividade </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Tem certeza que deseja excluir a atividade realizada?
-          </div>
-          <div class="modal-footer">
-            <input type="hidden" id="idDisciplina" name="idDisciplina">
-            <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Não </button>
-            <button type="submit" class="btn btn-primary cursor"> Sim </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
 </div>
 </main>
 </div>

@@ -298,6 +298,16 @@ class Aluno extends CI_Controller {
 			$msg['msg'] = "Não foi possível enviar sua atividade, tente novamente ou entre em contato com o administrador do sistema.";
 			$this->load->view('includes/msg_erro', $msg);
 			break;
+
+			case 4:
+			$msg['msg'] = "Atividade atualizada com sucesso, aguarde a correção pelo professor.";
+			$this->load->view('includes/msg_sucesso', $msg);
+			break;
+
+			case 5:
+			$msg['msg'] = "Não foi possível atualizar sua atividade, tente novamente ou entre em contato com o administrador do sistema.";
+			$this->load->view('includes/msg_erro', $msg);
+			break;
 		}
 
 		$this->load->view('aluno/cabecalho_disciplina', $nomeDisciplina);
@@ -324,8 +334,10 @@ class Aluno extends CI_Controller {
 
 		$atividade = $this->aluno->get_Atividade($idAtividade);
 		$conjunto = $this->aluno->get_Nome_Conjunto($atividade[0]->idConjuntoAtividade);
+
 		$atividadeEnviar['atividadeEnviar'] = $this->aluno->get_Atividade($idAtividade);
 		$atividadeEnviar['idDisciplina'] = $conjunto[0]->idDisciplina;
+
 		$nomeConjunto['nomeConjunto'] = $conjunto[0]->nome_conjunto;
 
 		$this->load->view('includes/html_header');
@@ -402,6 +414,80 @@ class Aluno extends CI_Controller {
 		$idAluno = $this->uri->segment(4);
 
 		$this->aluno->get_Status_Atividade($idAtividade, $idAluno);
+	}
+
+	public function atualizar_atividade_realizada()
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$idAtividade = $this->uri->segment(3);
+
+		$atividade = $this->aluno->get_Atividade($idAtividade);
+		$conjunto = $this->aluno->get_Nome_Conjunto($atividade[0]->idConjuntoAtividade);
+
+		$atividadeEnviar['atividadeEnviar'] = $this->aluno->get_Atividade($idAtividade);
+		$atividadeEnviar['idDisciplina'] = $conjunto[0]->idDisciplina;
+		$atividadeEnviar['resposta_aluno'] = $this->aluno->get_Atividade_Realizada($this->session->userdata('idUsuario'), $idAtividade)[0]->resposta_aluno;
+
+		$nomeConjunto['nomeConjunto'] = $conjunto[0]->nome_conjunto;
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/cabecalho_conjunto_atividade', $nomeConjunto);
+		$this->load->view('aluno/atualizar_atividade_realizada', $atividadeEnviar);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function salvar_atividade_atualizada()
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$disciplina  = $this->aluno->get_Disciplina($this->input->post('idDisciplina'));
+		$nomeAluno   = str_replace(" ", "_", $this->session->userdata('nome'));
+		$nomeArquivo = $nomeAluno.'_'.$this->session->userdata('idUsuario').'_'.$this->input->post('idAtividade');
+
+		$anexo = $_FILES['anexo'];
+		$extensao = @end(explode('.', $_FILES['anexo']['name']));
+
+		$configuracao['upload_path']    = "application/anexos/";
+		$configuracao['allowed_types']  = 'pdf|jpg|jpeg|png|zip|rar|doc|docx|txt';
+		$configuracao['file_name']      = $nomeArquivo.".".$extensao;
+		$configuracao['max_size']       = 5000000;
+		$configuracao['overwrite']      = true;
+
+		$atividadeRealizada['idAtividade']      = $this->input->post('idAtividade');
+		$atividadeRealizada['idAluno']          = $this->session->userdata('idUsuario');
+		$atividadeRealizada['idDisciplina']     = $this->input->post('idDisciplina');
+		$atividadeRealizada['idProfessor']      = $disciplina[0]->idProfessor;
+		$atividadeRealizada['resposta_aluno']   = $this->input->post('resposta');
+		$atividadeRealizada['resposta_professor']   = '';
+		$atividadeRealizada['anexo']            = $configuracao['file_name'];
+		$atividadeRealizada['status_avaliacao'] = 2;
+
+		$this->load->library('upload', $configuracao);
+		$this->upload->initialize($configuracao);
+
+		if ($this->upload->do_upload('anexo')) {
+			$erro = false;
+		}	else {
+			$erro = true;
+		}
+
+		// echo $atividadeRealizada['resposta_aluno'];
+
+		if ($erro == true) {
+			redirect('aluno/atividades_disciplina/'.$this->input->post('idDisciplina').'/1');
+			// $this->upload->display_errors();
+		}
+
+		if ($this->aluno->salvar_atualizacao_atividade_realizada($this->session->userdata('idUsuario'), $this->input->post('idAtividade'), $atividadeRealizada)) {
+			redirect('aluno/atividades_disciplina/'.$this->input->post('idDisciplina').'/4');
+		} else {
+			redirect('aluno/atividades_disciplina/'.$this->input->post('idDisciplina').'/5');
+		}
 	}
 
 }

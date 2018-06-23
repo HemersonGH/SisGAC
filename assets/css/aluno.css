@@ -229,6 +229,13 @@
   font-size: 20px;
 }
 
+.pencil_square_disabled {
+  color: silver;
+  font-size: 20px;
+}
+
+color: silver;
+
 .current {
   background-color: silver;
 }

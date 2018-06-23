@@ -400,6 +400,11 @@ class Professor_model extends CI_Model
 
     return $this->db->update('solicitacao_disciplina', $solicitacao);
   }
+
+  public function atribuir_trofeu($trofeu_ganho)
+  {
+    return $this->db->insert('trofeu_ganho', $trofeu_ganho);
+  }
 }
 
 ?>
