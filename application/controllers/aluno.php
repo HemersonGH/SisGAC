@@ -500,4 +500,18 @@ class Aluno extends CI_Controller {
 		}
 	}
 
+	public function trofeus()
+	{
+		$this->verificar_sessao();
+		$this->load->model('aluno_model','aluno');
+
+		$quantidadeAtividadesRecusadas['quantidadeAtividadesRecusadas'] =	$this->aluno->get_Atividades_Recusadas($this->session->userdata('idUsuario'));
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('aluno/menu_lateral', $quantidadeAtividadesRecusadas);
+		$this->load->view('aluno/trofeus');
+		$this->load->view('includes/html_footer');
+	}
+
 }

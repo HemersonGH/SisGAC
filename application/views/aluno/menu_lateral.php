@@ -27,7 +27,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" style="color: black;">
+          <a class="nav-link" href="<?= base_url(); ?>aluno/trofeus" style="color: black;">
             <h5> <span class="fa fa-trophy" aria-hidden="true"> </span> Troféus </h5>
           </a>
         </li>

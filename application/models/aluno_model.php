@@ -213,6 +213,39 @@ class Aluno_model extends CI_Model
     return $qtd[0]->total;
   }
 
+  public function get_Trofeus_Ouro($idAluno=null)
+  {
+    $this->db->select('count(*) as total');
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('tipo_trofeu', 1);
+
+    $qtd = $this->db->get('trofeu_ganho')->result();
+
+    return $qtd[0]->total;
+  }
+
+  public function get_Trofeus_Prata($idAluno=null)
+  {
+    $this->db->select('count(*) as total');
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('tipo_trofeu', 2);
+
+    $qtd = $this->db->get('trofeu_ganho')->result();
+
+    return $qtd[0]->total;
+  }
+
+  public function get_Trofeus_Bronze($idAluno=null)
+  {
+    $this->db->select('count(*) as total');
+    $this->db->where('idAluno', $idAluno);
+    $this->db->where('tipo_trofeu', 3);
+
+    $qtd = $this->db->get('trofeu_ganho')->result();
+
+    return $qtd[0]->total;
+  }
+
 }
 
 ?>
