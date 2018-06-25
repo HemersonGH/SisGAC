@@ -49,25 +49,25 @@
                   </a>
                 <?php endif; ?>
                 <?php if ( ($this->load->library('application/controllers/aluno')->aluno->get_Status_Atividade($atividade->idAtividade, $this->session->userdata('idUsuario') ) == 1) ||
-                         ($this->load->library('application/controllers/aluno')->aluno->get_Status_Atividade($atividade->idAtividade, $this->session->userdata('idUsuario') ) == 4)): ?>
-                  <span class="fa fa-pencil color_disabled mr-2" aria-hidden="true" data-tooltip="tooltip" title="Edição bloqueada"></span>
-                <?php else: ?>
-                  <a data-tooltip="tooltip" title="Editar envio" href="<?= base_url('aluno/atualizar_atividade_realizada/'.$atividade->idAtividade); ?>">
-                    <span class="fa fa-pencil pencil mr-2" aria-hidden="true"></span>
-                  </a>
-                <?php endif; ?>
-              </td>
-            </tr>
-          <?php } ?>
-        </tbody>
-      </table>
-    </div>
-  <?php } ?>
+                ($this->load->library('application/controllers/aluno')->aluno->get_Status_Atividade($atividade->idAtividade, $this->session->userdata('idUsuario') ) == 4)): ?>
+                <span class="fa fa-pencil color_disabled mr-2" aria-hidden="true" data-tooltip="tooltip" title="Edição bloqueada"></span>
+              <?php else: ?>
+                <a data-tooltip="tooltip" title="Editar envio" href="<?= base_url('aluno/atualizar_atividade_realizada/'.$atividade->idAtividade); ?>">
+                  <span class="fa fa-pencil pencil mr-2" aria-hidden="true"></span>
+                </a>
+              <?php endif; ?>
+            </td>
+          </tr>
+        <?php } ?>
+      </tbody>
+    </table>
+  </div>
+<?php } ?>
 
-  <script>
-  $(document).ready(function(){
-    $('[data-tooltip="tooltip"]').tooltip();
-  });
+<script>
+$(document).ready(function(){
+  $('[data-tooltip="tooltip"]').tooltip();
+});
 </script>
 </div>
 </main>

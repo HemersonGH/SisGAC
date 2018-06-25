@@ -234,8 +234,6 @@
   font-size: 20px;
 }
 
-color: silver;
-
 .current {
   background-color: silver;
 }
@@ -243,4 +241,9 @@ color: silver;
 .paper_plane {
   font-size: 20px;
   /* color: black; */
+}
+
+.sizeBadge {
+  font-size: 13px;
+  color: red;
 }

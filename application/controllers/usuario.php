@@ -150,10 +150,13 @@ class Usuario extends CI_Controller {
 		}
 
 		if ($this->session->userdata('tipo_usuario') == 1) {
-			$this->load->view('aluno/menu_lateral');
+			$quantidadeAtividadesRecusadas['quantidadeAtividadesRecusadas'] =	$this->load->library('application/controllers/usuario')->usuario->get_Atividades_Recusadas($this->session->userdata('idUsuario'));
+
+			$this->load->view('aluno/menu_lateral', $quantidadeAtividadesRecusadas);
 		} else if ($this->session->userdata('tipo_usuario') == 2) {
 			$quantidadeSolicitacoesPendentes['quantidadeAtividadesNaoAvaliada'] =	$this->load->library('application/controllers/usuario')->usuario->get_Atividades_Nao_Avaliada($this->session->userdata('idUsuario'));
 			$quantidadeSolicitacoesPendentes['quantidadeSolicitacoesPendentes'] =	$this->load->library('application/controllers/usuario')->usuario->get_Solicitacoes($this->session->userdata('idUsuario'));
+
 			$this->load->view('professor/menu_lateral', $quantidadeSolicitacoesPendentes);
 		}
 

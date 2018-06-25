@@ -35,8 +35,11 @@ class Aluno extends CI_Controller {
 
 		$indice = $this->uri->segment(2);
 
+		$quantidadeAtividadesRecusadas['quantidadeAtividadesRecusadas'] =	$this->aluno->get_Atividades_Recusadas($this->session->userdata('idUsuario'));
+
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
+		$this->load->view('aluno/menu_lateral', $quantidadeAtividadesRecusadas);
 
 		$disciplinas_matriculado['disciplinas_matriculado'] = $this->aluno->get_Disciplinas_Matriculado($this->session->userdata('idUsuario'));
 
@@ -52,7 +55,6 @@ class Aluno extends CI_Controller {
 			break;
 		}
 
-		$this->load->view('aluno/menu_lateral');
 		$this->load->view('aluno/disciplinas', $disciplinas_matriculado);
 		$this->load->view('includes/html_footer');
 	}
@@ -109,6 +111,7 @@ class Aluno extends CI_Controller {
 
 		$disciplinas['disciplinas'] = $this->aluno->get_Disciplinas();
 		$solicitacoes['solicitacoes'] = $this->aluno->get_Solicitacoes($this->session->userdata('idUsuario'));
+		$quantidadeAtividadesRecusadas['quantidadeAtividadesRecusadas'] =	$this->aluno->get_Atividades_Recusadas($this->session->userdata('idUsuario'));
 
 		switch ($indice) {
 			case 1:
@@ -147,7 +150,7 @@ class Aluno extends CI_Controller {
 			break;
 		}
 
-		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/menu_lateral', $quantidadeAtividadesRecusadas);
 		$this->load->view('aluno/matricular_disciplina', $disciplinas);
 		$this->load->view('aluno/solicitacoes_enviadas', $solicitacoes);
 		$this->load->view('includes/html_footer');
@@ -159,10 +162,11 @@ class Aluno extends CI_Controller {
 		$this->load->model('aluno_model','aluno');
 
 		$disciplina['disciplina'] = $this->aluno->get_Disciplina($this->input->post('idDisciplina'));
+		$quantidadeAtividadesRecusadas['quantidadeAtividadesRecusadas'] =	$this->aluno->get_Atividades_Recusadas($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/menu_lateral', $quantidadeAtividadesRecusadas);
 		$this->load->view('aluno/solicitar_matricula', $disciplina);
 		$this->load->view('includes/html_footer');
 	}
@@ -225,10 +229,11 @@ class Aluno extends CI_Controller {
 		$idDisciplina = $this->uri->segment(3);
 
 		$solicitacao['solicitacao'] = $this->aluno->get_Solicitacao($idAluno, $idDisciplina);
+		$quantidadeAtividadesRecusadas['quantidadeAtividadesRecusadas'] =	$this->aluno->get_Atividades_Recusadas($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/menu_lateral', $quantidadeAtividadesRecusadas);
 		$this->load->view('aluno/visualizar_solicitacao', $solicitacao);
 		$this->load->view('includes/html_footer');
 	}
@@ -242,10 +247,11 @@ class Aluno extends CI_Controller {
 		$idDisciplina = $this->uri->segment(3);
 
 		$solicitacao['solicitacao'] = $this->aluno->get_Solicitacao($idAluno, $idDisciplina);
+		$quantidadeAtividadesRecusadas['quantidadeAtividadesRecusadas'] =	$this->aluno->get_Atividades_Recusadas($this->session->userdata('idUsuario'));
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/menu_lateral', $quantidadeAtividadesRecusadas);
 		$this->load->view('aluno/editar_solicitacao', $solicitacao);
 		$this->load->view('includes/html_footer');
 	}
@@ -279,9 +285,11 @@ class Aluno extends CI_Controller {
 		$conjuntos_disciplina['conjuntos_disciplina'] = $this->aluno->get_Conjuntos_Da_Disciplinas($disciplina[0]->idProfessor, $idDisciplina);
 		$nomeDisciplina['nomeDisciplina'] = $disciplina[0]->nome_disciplina;
 
+		$quantidadeAtividadesRecusadas['quantidadeAtividadesRecusadas'] =	$this->aluno->get_Atividades_Recusadas($this->session->userdata('idUsuario'));
+
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/menu_lateral', $quantidadeAtividadesRecusadas);
 
 		switch ($indice) {
 			case 1:
@@ -340,9 +348,11 @@ class Aluno extends CI_Controller {
 
 		$nomeConjunto['nomeConjunto'] = $conjunto[0]->nome_conjunto;
 
+		$quantidadeAtividadesRecusadas['quantidadeAtividadesRecusadas'] =	$this->aluno->get_Atividades_Recusadas($this->session->userdata('idUsuario'));
+
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/menu_lateral', $quantidadeAtividadesRecusadas);
 		$this->load->view('aluno/cabecalho_conjunto_atividade', $nomeConjunto);
 		$this->load->view('aluno/enviar_atividade', $atividadeEnviar);
 		$this->load->view('includes/html_footer');
@@ -432,9 +442,11 @@ class Aluno extends CI_Controller {
 
 		$nomeConjunto['nomeConjunto'] = $conjunto[0]->nome_conjunto;
 
+		$quantidadeAtividadesRecusadas['quantidadeAtividadesRecusadas'] =	$this->aluno->get_Atividades_Recusadas($this->session->userdata('idUsuario'));
+
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('aluno/menu_lateral');
+		$this->load->view('aluno/menu_lateral', $quantidadeAtividadesRecusadas);
 		$this->load->view('aluno/cabecalho_conjunto_atividade', $nomeConjunto);
 		$this->load->view('aluno/atualizar_atividade_realizada', $atividadeEnviar);
 		$this->load->view('includes/html_footer');
@@ -475,8 +487,6 @@ class Aluno extends CI_Controller {
 		}	else {
 			$erro = true;
 		}
-
-		// echo $atividadeRealizada['resposta_aluno'];
 
 		if ($erro == true) {
 			redirect('aluno/atividades_disciplina/'.$this->input->post('idDisciplina').'/1');

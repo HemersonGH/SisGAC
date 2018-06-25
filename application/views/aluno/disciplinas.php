@@ -44,6 +44,10 @@
                 class="fa fa-pencil-square-o pencil_square_disabled" aria-hidden="true">
               </span>
             <?php endif; ?>
+            <?php if ($this->load->library('application/controllers/aluno')->aluno->get_Atividades_Disciplina_Recusadas($this->session->userdata('idUsuario'), $disciplina->idDisciplina) != 0): ?>
+              <span class="fa fa-exclamation-triangle sizeBadge" data-tooltip="tooltip"
+                title="Contém <?= $this->load->library('application/controllers/aluno')->aluno->get_Atividades_Disciplina_Recusadas($this->session->userdata('idUsuario'), $disciplina->idDisciplina); ?> atividade(s) recusada(s)">
+            <?php endif; ?>
           </td>
         </tr>
       <?php } ?>

@@ -1,3 +1,6 @@
+<link href="<?= base_url(); ?>assets/css/menu.css" rel="stylesheet">
+<link href="<?= base_url(); ?>assets/css/aluno.css" rel="stylesheet">
+
 <div class="container-fluid">
   <div class="row">
     <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
@@ -9,7 +12,13 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url(); ?>aluno" style="color: black;">
-            <h5> <span class="fa fa-th-list" aria-hidden="true"> </span> Disciplinas </h5>
+            <h5> <span class="fa fa-th-list" aria-hidden="true"> </span> Disciplinas
+              <?php if ($quantidadeAtividadesRecusadas != 0): ?>
+                <span class="fa fa-exclamation-triangle sizeBadge" data-tooltip="tooltip" title="Contém <?= $quantidadeAtividadesRecusadas; ?> atividade(s) recusada(s)">
+                  <?= $quantidadeAtividadesRecusadas; ?>
+                </span>
+              <?php endif; ?>
+            </h5>
           </a>
         </li>
         <li class="nav-item">
@@ -29,3 +38,9 @@
         </li>
       </ul>
     </nav>
+
+    <script>
+    $(document).ready(function(){
+      $('[data-tooltip="tooltip"]').tooltip();
+    });
+    </script>
