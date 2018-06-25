@@ -48,7 +48,6 @@
     document.getElementById("idDisciplina").value = idDisciplina;
   }
   </script>
-
   <script>
   $(document).ready(function(){
     $('[data-tooltip="tooltip"]').tooltip();

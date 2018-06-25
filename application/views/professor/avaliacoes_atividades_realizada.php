@@ -40,7 +40,6 @@
         <?php } ?>
       </table>
     </div>
-
   <script>
   $(document).ready(function(){
     $('[data-tooltip="tooltip"]').tooltip();

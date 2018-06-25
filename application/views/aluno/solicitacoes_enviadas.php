@@ -30,19 +30,16 @@
       </tr>
     <?php } ?>
   </table>
-
   <script>
     $(document).ready(function(){
       $('[data-tooltip="tooltip"]').tooltip();
     });
   </script>
-
   <script type="text/javascript">
     function confimaExcluirSolicitacao(id) {
       document.getElementById("idDisciplinaSolicitacao").value = id;
     }
   </script>
-
   <!-- Modal Excluir Solicitação -->
   <div class="modal fade" id="myModalExcluirSolicitacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <form class="" action="<?= base_url(); ?>aluno/excluir_solicitacao" method="post">
@@ -66,7 +63,6 @@
       </div>
     </form>
   </div>
-
 </div>
 </main>
 </div>

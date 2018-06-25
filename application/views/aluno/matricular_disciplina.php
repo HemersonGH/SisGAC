@@ -27,7 +27,6 @@
       </div>
     </form>
   </div>
-
   <script type="text/javascript">
   function verificaValor() {
     if (document.getElementById("idDisciplina").value == 0) {
@@ -37,7 +36,6 @@
     }
   }
   </script>
-
   <script>
   $(document).ready(function(){
     $('[data-tooltip="tooltip"]').tooltip();

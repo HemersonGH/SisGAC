@@ -23,7 +23,6 @@
     </div>
   </form>
 </div>
-
 <script type="text/javascript">
 function verificaValor() {
   if (document.getElementById("idConjuntoAtividade").value == 0) {
@@ -33,7 +32,6 @@ function verificaValor() {
   }
 }
 </script>
-
 <script>
 $(document).ready(function(){
   $('[data-tooltip="tooltip"]').tooltip();

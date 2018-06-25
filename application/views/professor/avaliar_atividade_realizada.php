@@ -90,7 +90,7 @@
             </div>
             <div class="col-md-4">
               <input type="radio" name="trofeu" id="bronze" value="3">
-              <label for="bronze"> <span class="fa fa-trophy bronzeEnvio" aria-hidden="true" data-tooltip="tooltip" title="Bronze"></span> 
+              <label for="bronze"> <span class="fa fa-trophy bronzeEnvio" aria-hidden="true" data-tooltip="tooltip" title="Bronze"></span>
               </label>
             </div>
           </div>
@@ -113,13 +113,11 @@
     </form>
   </div>
 </div>
-
 <script>
 $(document).ready(function(){
   $('[data-tooltip="tooltip"]').tooltip();
 });
 </script>
-
 </main>
 </div>
 </div>

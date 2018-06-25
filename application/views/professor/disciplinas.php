@@ -71,7 +71,6 @@
     document.getElementById("idDisciplina").value = id;
   }
   </script>
-
   <script>
   $(document).ready(function(){
     $('[data-tooltip="tooltip"]').tooltip();

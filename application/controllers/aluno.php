@@ -513,5 +513,4 @@ class Aluno extends CI_Controller {
 		$this->load->view('aluno/trofeus');
 		$this->load->view('includes/html_footer');
 	}
-
 }

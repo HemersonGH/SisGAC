@@ -35,7 +35,6 @@
         </tr>
       <?php } ?>
     </table>
-
     <script>
       $(document).ready(function(){
         $('[data-tooltip="tooltip"]').tooltip();

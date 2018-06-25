@@ -38,20 +38,17 @@
       <?php } ?>
     </table>
   </div>
-
 <script>
   $(document).ready(function(){
     $('[data-tooltip="tooltip"]').tooltip();
   });
 </script>
-
 <script type="text/javascript">
 function editarConjunto(idEditar, NomeConjunto) {
   document.getElementById("idConjuntoAtividadeEditar").value = idEditar;
   document.getElementById("idNomeConjuntoEditar").value = NomeConjunto;
 }
 </script>
-
 <script type="text/javascript">
 function confimarExcluirConjunto(idExcluir) {
   document.getElementById("idConjuntoAtividadeExcluir").value = idExcluir;
@@ -80,7 +77,7 @@ function confimarExcluirConjunto(idExcluir) {
         <div class="modal-footer">
           <button type="button" class="btn btn-danger cursor" data-dismiss="modal"> Cancelar </button>
           <button type="submit" class="btn btn-primary cursor" href="<?= base_url(); ?>professor/cadastrar_conjunto_atividades">
-            <span class="fa fa-save" aria-hidden="true"></span> Salvar  
+            <span class="fa fa-save" aria-hidden="true"></span> Salvar
           </button>
         </div>
       </div>

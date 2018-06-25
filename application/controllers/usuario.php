@@ -242,5 +242,4 @@ class Usuario extends CI_Controller {
 
 		$this->usuario->get_Solicitacoes($idProfessor);
 	}
-
 }

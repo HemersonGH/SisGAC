@@ -943,5 +943,4 @@ class Professor extends CI_Controller {
 			redirect('professor/alunos_matriculado/2');
 		}
 	}
-
 }

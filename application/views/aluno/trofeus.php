@@ -40,13 +40,11 @@
       </div>
     </div>
   </div>
-
   <script>
   $(document).ready(function(){
     $('[data-tooltip="tooltip"]').tooltip();
   });
   </script>
-
 </main>
 </div>
 </div>

@@ -91,7 +91,6 @@ class Usuario_model extends CI_Model
 
     return $qtd[0]->total;
   }
-
 }
 
 ?>

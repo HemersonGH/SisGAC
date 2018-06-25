@@ -48,7 +48,6 @@ $(document).ready(function(){
   $('[data-tooltip="tooltip"]').tooltip();
 });
 </script>
-
 <script type="text/javascript">
 function confirmarExcluirAtividade(idAtividadeExcluir, idConjuntoAtividadeExcluir) {
   document.getElementById("idAtividadeExcluir").value = idAtividadeExcluir;

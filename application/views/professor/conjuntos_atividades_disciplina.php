@@ -20,13 +20,11 @@
     </tr>
     <?php } ?>
   </table>
-
 <script>
 $(document).ready(function(){
   $('[data-tooltip="tooltip"]').tooltip();
 });
 </script>
-
 <script type="text/javascript">
 function confirmarRemocaoConjAtividade(idConjuntoAtividadeRemover, idDisciplinaRemover) {
   document.getElementById("idConjuntoAtividadeRemover").value = idConjuntoAtividadeRemover;
