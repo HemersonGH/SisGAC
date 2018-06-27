@@ -31,7 +31,6 @@ function confirmarRemocaoConjAtividade(idConjuntoAtividadeRemover, idDisciplinaR
   document.getElementById("idDisciplinaRemover").value = idDisciplinaRemover;
 }
 </script>
-
 <!-- Modal Remover Conjunto Atividades da Disciplina -->
 <div class="modal fade" id="myModalRemoverConjuntoAtividadeDisciplina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <form action="<?= base_url(); ?>professor/remove_conjunto_atividade_disciplina" method="post">

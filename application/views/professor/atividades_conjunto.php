@@ -42,7 +42,6 @@
 </main>
 </div>
 </div>
-
 <script>
 $(document).ready(function(){
   $('[data-tooltip="tooltip"]').tooltip();
@@ -54,7 +53,6 @@ function confirmarExcluirAtividade(idAtividadeExcluir, idConjuntoAtividadeExclui
   document.getElementById("idConjuntoAtividadeExcluir").value = idConjuntoAtividadeExcluir;
 }
 </script>
-
 <!-- Modal Excluir Atividades -->
 <div class="modal fade" id="myModalExcluirAtividade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <form class="" action="<?= base_url(); ?>professor/excluir_atividade" method="post">
