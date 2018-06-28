@@ -77,22 +77,30 @@
         <div class="col-md-6">
           <label for="trofeu" class="paddingUp"> <h6> Atribuir Trofeu: </h6> </label>
           <div class="row">
-            <div class="col-md-4">
-              <input type="radio" name="trofeu" id="ouro" value="1">
-              <label for="ouro">
-                <span class="fa fa-trophy ouroEnvio" aria-hidden="true" data-tooltip="tooltip" title="Ouro"></span>
-              </label>
-            </div>
-            <div class="col-md-4">
-              <input type="radio" name="trofeu" id="prata" value="2">
-              <label for="prata"> <span class="fa fa-trophy prataEnvio" aria-hidden="true" data-tooltip="tooltip" title="Prata"></span>
-              </label>
-            </div>
-            <div class="col-md-4">
-              <input type="radio" name="trofeu" id="bronze" value="3">
-              <label for="bronze"> <span class="fa fa-trophy bronzeEnvio" aria-hidden="true" data-tooltip="tooltip" title="Bronze"></span>
-              </label>
-            </div>
+            <?php if ($this->load->library('application/controllers/professor')->professor->get_Trofeu_Ouro($atividadeRealizada[0]->idAtividade)): ?>
+              <div class="col-md-4">
+                <input type="radio" name="trofeu" id="ouro" value="1">
+                <label for="ouro">
+                  <span class="fa fa-trophy ouroEnvio" aria-hidden="true" data-tooltip="tooltip" title="Ouro"></span>
+                </label>
+              </div>
+            <?php endif; ?>
+            <?php if ($this->load->library('application/controllers/professor')->professor->get_Trofeu_Prata($atividadeRealizada[0]->idAtividade)): ?>
+              <div class="col-md-4">
+                <input type="radio" name="trofeu" id="prata" value="2">
+                <label for="prata">
+                  <span class="fa fa-trophy prataEnvio" aria-hidden="true" data-tooltip="tooltip" title="Prata"></span>
+                </label>
+              </div>
+            <?php endif; ?>
+            <?php if ($this->load->library('application/controllers/professor')->professor->get_Trofeu_Bronze($atividadeRealizada[0]->idAtividade)): ?>
+              <div class="col-md-4">
+                <input type="radio" name="trofeu" id="bronze" value="3">
+                <label for="bronze">
+                  <span class="fa fa-trophy bronzeEnvio" aria-hidden="true" data-tooltip="tooltip" title="Bronze"></span>
+                </label>
+              </div>
+            <?php endif; ?>
           </div>
         </div>
       </div>
