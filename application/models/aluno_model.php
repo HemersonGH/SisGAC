@@ -133,6 +133,7 @@ class Aluno_model extends CI_Model
   {
     $this->db->select('*');
     $this->db->where('idConjuntoAtividade', $id_conjunto_atividade);
+    // $this->db->order_by("prazo_entrega", "desc");
 
     return $this->db->get('atividade')->result();
   }
