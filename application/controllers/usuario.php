@@ -26,6 +26,19 @@ class Usuario extends CI_Controller {
 		}
 	}
 
+	public function testSession()
+	{
+		$this->load->library('unit_test');
+
+		$test = $this->session->userdata('logado');
+
+		$expected_result = true;
+
+		$test_name = 'Confere sessão';
+
+		$this->unit->run($test, $expected_result, $test_name);
+	}
+
 	public function index()
 	{
 		$this->verificar_sessao();

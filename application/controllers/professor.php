@@ -28,6 +28,19 @@ class Professor extends CI_Controller {
 		}
 	}
 
+	public function testTypeUser()
+	{
+		$this->load->library('unit_test');
+
+		$test = $this->session->userdata('tipo_usuario');
+
+		$expected_result = 2; // Tipo Professor
+
+		$test_name = 'Confere Tipo de Usuário';
+
+		$this->unit->run($test, $expected_result, $test_name);
+	}
+
 	public function index()
 	{
 		$this->verificar_sessao();
