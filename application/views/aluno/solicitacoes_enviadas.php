@@ -9,7 +9,7 @@
     </tr>
     <?php foreach ($solicitacoes as $solicitacao) { ?>
       <tr>
-        <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Professor($solicitacao->idProfessor); ?> </td>
+        <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Professor_Solicitacao($solicitacao->idProfessor); ?> </td>
         <td> <?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Disciplina($solicitacao->idDisciplina); ?> </td>
         <td> <?= $solicitacao->status_solicitacao == 1 ? 'Aguardando Avaliação':($solicitacao->status_solicitacao == 2 ? 'Aceita':'Recusado'); ?> </td>
         <td>

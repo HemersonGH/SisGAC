@@ -38,6 +38,16 @@ class Aluno_model extends CI_Model
 
     return $professor[0]->nome;
   }
+  
+  public function get_Nome_Professor_Solicitacao($idProfessor=null)
+  {
+    $this->db->select('*');
+    $this->db->where('idUsuario', $idProfessor);
+
+    $professor = $this->db->get('usuario')->result();
+
+    return $professor[0]->nome;
+  }
 
   public function get_Nome_Disciplina($idDisciplina=null)
   {

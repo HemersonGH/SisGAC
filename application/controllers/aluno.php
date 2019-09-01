@@ -72,14 +72,11 @@ class Aluno extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function get_Nome_Professor()
+	public function get_Nome_Professor($idProfessor=null)
 	{
 		$this->verificar_sessao();
 		$this->load->model('aluno_model','aluno');
-
-		$idProfessor = $this->uri->segment(3);
-
-		$this->aluno->get_Nome_Professor($idProfessor);
+		$this->aluno->get_Nome_Professor_Solicitacao($idProfessor);
 	}
 
 	public function get_Nome_Disciplina()
