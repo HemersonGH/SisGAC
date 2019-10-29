@@ -2,8 +2,8 @@
 
 <div class="col-md-12 text-center">
   <form class="form-control form-signin" action="<?= base_url(); ?>usuario/cadastrar" method="post">
-    <h1 class="h3 mb-3 font-weight-normal"> Novo Cadastro </h1>
-    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome Completo" required>
+    <h1 class="h3 mb-3 font-weight-normal"> Novo cadastro </h1>
+    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo" required>
     <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" maxlength="11" required>
     <input type="date" class="form-control" id="data" name="data" data-tooltip="tooltip" title="Data de Nascimento" required>
     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required autofocus>

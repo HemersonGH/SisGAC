@@ -2,7 +2,7 @@
 
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
   <div class="col-md-12">
-    <h1 class="page-header"> Enviar Solicitação de Matrícula </h1>
+    <h1 class="page-header"> Visualizar Solicitação de Matrícula </h1>
   </div>
   <div class="col-md-12 paddingBotton">
     <div class="form-control col-md-6">
@@ -10,7 +10,7 @@
         <div class="col-md-12">
           <label for="nomeProfessor" class="padding"> <h6> Nome do Professor: </h6> </label>
           <input type="text" class="form-control camp" id="nomeProfessor" name="nomeProfessor"
-          value="<?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Professor($solicitacao[0]->idProfessor); ?>" disabled>
+          value="<?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Professor_Solicitacao($solicitacao[0]->idProfessor); ?>" disabled>
         </div>
       </div>
       <div class="row">

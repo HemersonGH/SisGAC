@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Sistema Gerenciador De Disciplinas">
+  <meta name="description" content="Sistema Gerenciador De Atividades Curriculares">
   <meta name="author" content="Hemerson Batista">
   <link rel="icon" href="<?= base_url(); ?>application/img/favicon.ico">
 
@@ -14,7 +14,7 @@
   <script src="<?= base_url(); ?>assets/js/vendor/jquery.min.js"></script>
   <script src="<?= base_url(); ?>assets/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
 
-  <title> SGDs </title>
+  <title> SisGac </title>
 
 </head>
 <body>
