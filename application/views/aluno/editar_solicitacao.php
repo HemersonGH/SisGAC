@@ -12,7 +12,7 @@
           <div class="col-md-12">
             <label for="nomeProfessor" class="padding"> <h6> Nome do Professor: </h6> </label>
             <input type="text" class="form-control camp" id="nomeProfessor" name="nomeProfessor"
-            value="<?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Professor($solicitacao[0]->idProfessor); ?>" disabled>
+            value="<?= $this->load->library('application/controllers/aluno')->aluno->get_Nome_Professor_Solicitacao($solicitacao[0]->idProfessor); ?>" disabled>
           </div>
         </div>
         <div class="row">
